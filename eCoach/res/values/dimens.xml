@@ -3,5 +3,20 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- common text sizes -->
+    <dimen name="txtsize_micro">10dp</dimen>
+    <dimen name="txtsize_small">12dp</dimen>
+    <dimen name="txtsize_middle">14dp</dimen>
+    <dimen name="txtsize_default">16dp</dimen>
+    <dimen name="txtsize_large">18dp</dimen>
+    <dimen name="txtsize_xlarge">20dp</dimen>
+    <dimen name="txtsize_xxlarge">22dp</dimen>
 
+    <!-- common widget dimensions -->
+    <dimen name="common_titlebar_height">100dp</dimen>
+    <dimen name="common_titlebar_backbtn_width">50dp</dimen>
+    <dimen name="common_reddot_width">5dp</dimen>
+    <dimen name="common_reddot_height">5dp</dimen>
+    
 </resources>
