@@ -14,7 +14,7 @@
     <dimen name="txtsize_xxlarge">22dp</dimen>
 
     <!-- common widget dimensions -->
-    <dimen name="common_titlebar_height">100dp</dimen>
+    <dimen name="common_titlebar_height">60dp</dimen>
     <dimen name="common_titlebar_backbtn_width">50dp</dimen>
     <dimen name="common_reddot_width">5dp</dimen>
     <dimen name="common_reddot_height">5dp</dimen>

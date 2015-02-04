@@ -1,5 +1,19 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <style name="style_common_titlebar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/common_titlebar_height</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:background">@color/color_titlebar_bkg</item>
+    </style>
+    <style name="style_common_titletv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/color_titlebar_txt</item>
+        <item name="android:textSize">@dimen/txtsize_xlarge</item>
+    </style>
+    
     <style name="style_common_red_dot">
         <item name="android:layout_width">@dimen/common_reddot_width</item>
         <item name="android:layout_height">@dimen/common_reddot_height</item>

@@ -4,5 +4,8 @@
     <string name="app_name">e驾学车(教练版)</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string name="str_activity_main_title">e驾学车</string>
+    <string name="str_frag_snapup_title">抢  单</string>
 
 </resources>
