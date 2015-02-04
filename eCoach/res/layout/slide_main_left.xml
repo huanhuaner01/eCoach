@@ -1,74 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	<ImageView
-	    android:id="@+id/slide_left_avatar" 
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="20dp"
-	    android:layout_width="@dimen/slide_left_avatar_width"
-	    android:layout_height="@dimen/slide_left_avatar_height"
-	    android:contentDescription="@string/app_name"/>
-	<TextView
-	    android:id="@+id/slide_left_coachname" 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	    android:layout_below="@id/slide_left_avatar"
-	    android:textColor="@android:color/black"
-	    android:textSize="@dimen/txtsize_xlarge"
-	    android:paddingTop="10dp"
-	    android:paddingBottom="10dp"/>
-	<RatingBar
-	    android:id="@+id/slide_left_rating"
-	    android:layout_below="@id/slide_left_coachname"
-	    android:layout_centerHorizontal="true" 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:rating="3"
-	    android:stepSize="1"/>
-	<ProgressBar 
-	    android:id="@+id/slide_left_scoreprg"
-	    style="?android:attr/progressBarStyleHorizontal"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/slide_left_rating"
-	    android:layout_marginTop="10dp"
-	    android:layout_centerHorizontal="true"
-	    android:max="100"
-	    android:progress="0"/>
-	<TextView 
-	    android:id="@+id/slide_left_scoreup"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:padding="10dp"
-	    android:layout_below="@id/slide_left_scoreprg"
-	    android:layout_centerHorizontal="true"
-	    android:textColor="@color/color_titlebar_txt"
-	    android:textSize="@dimen/txtsize_default"
-	    />
-	<LinearLayout 
-	    android:id="@+id/slide_left_menubar"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/slide_left_scoreup"
-	    android:orientation="vertical"
-	    >
-	    <!-- Warning:this layout require picture as same size! -->
-	    <TextView style="@style/style_slide_left_menu_itemtv"
-	        android:text="@string/str_slide_leftmenu_userguide"
-	        android:drawableLeft="@drawable/ic_launcher"/>
-	    <TextView style="@style/style_slide_left_menu_itemtv"
-	        android:text="@string/str_slide_leftmenu_recommend"/>
-	    <TextView style="@style/style_slide_left_menu_itemtv"
-	        android:text="@string/str_slide_leftmenu_setting"/>
-	</LinearLayout>
 
-	<RelativeLayout android:layout_width="match_parent"
-	    android:layout_below="@id/slide_left_menubar"
-	    android:layout_marginTop="40dp"
-	    android:layout_height="wrap_content">
-	    <TextView
+    <ImageView
+        android:id="@+id/slide_left_avatar"
+        android:layout_width="@dimen/slide_left_avatar_width"
+        android:layout_height="@dimen/slide_left_avatar_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/slide_left_coachname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_avatar"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txtsize_xlarge" />
+
+    <RatingBar
+        android:id="@+id/slide_left_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_coachname"
+        android:layout_centerHorizontal="true"
+        android:isIndicator="true"
+        android:rating="3"
+        android:stepSize="1" />
+
+    <ProgressBar
+        android:id="@+id/slide_left_scoreprg"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_rating"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:max="100"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/slide_left_scoreup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_scoreprg"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:textColor="@color/color_titlebar_txt"
+        android:textSize="@dimen/txtsize_default" />
+
+    <LinearLayout
+        android:id="@+id/slide_left_menubar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_scoreup"
+        android:orientation="vertical" >
+
+        <!-- Warning:this layout require picture as same size! -->
+
+        <TextView
+            style="@style/style_slide_left_menu_itemtv"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableStart="@drawable/ic_launcher"
+            android:text="@string/str_slide_leftmenu_userguide" />
+
+        <TextView
+            style="@style/style_slide_left_menu_itemtv"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableStart="@drawable/ic_launcher"
+            android:text="@string/str_slide_leftmenu_recommend" />
+
+        <TextView
+            style="@style/style_slide_left_menu_itemtv"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableStart="@drawable/ic_launcher"
+            android:text="@string/str_slide_leftmenu_setting" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slide_left_menubar"
+        android:layout_marginTop="40dp" >
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -78,14 +98,14 @@
             android:text="@string/str_slide_leftmenu_pushmsg"
             android:textColor="@color/color_titlebar_txt"
             android:textSize="@dimen/txtsize_default" />
-	    <ToggleButton
+
+        <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp" />
+    </RelativeLayout>
 
-	</RelativeLayout>
-	
 </RelativeLayout>

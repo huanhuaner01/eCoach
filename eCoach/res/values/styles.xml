@@ -21,13 +21,16 @@
     </style>
     
     <style name="style_slide_left_menu_itemtv">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:textColor">@color/color_titlebar_txt</item>
         <item name="android:textSize">@dimen/txtsize_default</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
         <item name="android:drawablePadding">10dp</item>
     </style>
     
