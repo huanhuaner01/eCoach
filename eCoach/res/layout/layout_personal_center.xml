@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/slide_left_avatar"
-        android:layout_width="@dimen/slide_left_avatar_width"
-        android:layout_height="@dimen/slide_left_avatar_height"
+        android:layout_width="@dimen/pcenter_avatar_width"
+        android:layout_height="@dimen/pcenter_avatar_height"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/app_name" />
@@ -65,22 +65,22 @@
         <!-- Warning:this layout require picture as same size! -->
 
         <TextView
-            style="@style/style_slide_left_menu_itemtv"
+            style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
-            android:text="@string/str_slide_leftmenu_userguide" />
+            android:text="@string/str_pcenter_userguide" />
 
         <TextView
-            style="@style/style_slide_left_menu_itemtv"
+            style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
-            android:text="@string/str_slide_leftmenu_recommend" />
+            android:text="@string/str_pcenter_recommend" />
 
         <TextView
-            style="@style/style_slide_left_menu_itemtv"
+            style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
-            android:text="@string/str_slide_leftmenu_setting" />
+            android:text="@string/str_pcenter_setting" />
     </LinearLayout>
 
     <RelativeLayout
@@ -96,7 +96,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
-            android:text="@string/str_slide_leftmenu_pushmsg"
+            android:text="@string/str_pcenter_pushmsg"
             android:textColor="@color/color_titlebar_txt"
             android:textSize="@dimen/txtsize_default" />
 

@@ -8,10 +8,10 @@
     <string name="str_activity_main_title">e驾学车</string>
     <string name="str_frag_snapup_title">抢  单</string>
 
-    <string name="str_slide_leftmenu_userguide">使用指南</string>
-    <string name="str_slide_leftmenu_recommend">推　　荐</string>
-    <string name="str_slide_leftmenu_setting"  >设　　置</string>
-    <string name="str_slide_leftmenu_pushmsg"  >消息提醒</string>
-    <string name="str_slide_coach_score_level">%1$d积分，升级还需要%2$d积分</string>
+    <string name="str_pcenter_userguide">使用指南</string>
+    <string name="str_pcenter_recommend">推　　荐</string>
+    <string name="str_pcenter_setting"  >设　　置</string>
+    <string name="str_pcenter_pushmsg"  >消息提醒</string>
+    <string name="str_pcenter_coach_score_level">%1$d积分，升级还需要%2$d积分</string>
     
 </resources>

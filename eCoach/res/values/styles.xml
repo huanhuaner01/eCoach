@@ -20,7 +20,7 @@
         <item name="android:background">@drawable/bkg_common_reddot</item>
     </style>
     
-    <style name="style_slide_left_menu_itemtv">
+    <style name="style_pcenter_menu_itemtv">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
