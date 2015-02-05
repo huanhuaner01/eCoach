@@ -8,4 +8,6 @@
     <!-- useful pure colors -->
     <color name="color_red">#FF0000</color>
     
+    <!-- page specified colors -->
+    <color name="color_pcenter_textcolor">@android:color/white</color>
 </resources>

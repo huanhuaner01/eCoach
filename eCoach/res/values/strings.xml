@@ -8,6 +8,16 @@
     <string name="str_activity_main_title">e驾学车</string>
     <string name="str_frag_snapup_title">抢  单</string>
 
+    <string name="str_pcenter_default_coach_name">李文</string>
+    
+    <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
+    <string name="str_pcenter_stat_dimen_praiserates">好评率</string>
+    <string name="str_pcenter_stat_dimen_range">排行榜</string>
+    <string name="str_pcenter_stat_dimen_recommend">推荐指数</string>
+        <string name="str_pcenter_stat_default_ordernum">0</string>
+    <string name="str_pcenter_stat_default_praiserates">0%</string>
+    <string name="str_pcenter_stat_default_range">9999</string>
+    <string name="str_pcenter_stat_default_recommend">0</string>
     <string name="str_pcenter_userguide">使用指南</string>
     <string name="str_pcenter_recommend">推　　荐</string>
     <string name="str_pcenter_setting"  >设　　置</string>
