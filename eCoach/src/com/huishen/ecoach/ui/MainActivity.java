@@ -1,4 +1,8 @@
-package com.huishen.ecoach;
+package com.huishen.ecoach.ui;
+
+import com.huishen.ecoach.R;
+import com.huishen.ecoach.R.layout;
+import com.huishen.ecoach.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
