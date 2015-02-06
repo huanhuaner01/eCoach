@@ -1,26 +1,42 @@
 package com.huishen.ecoach.ui;
 
-import com.huishen.ecoach.R;
-import com.huishen.ecoach.R.layout;
-import com.huishen.ecoach.R.menu;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
+import com.huishen.ecoach.R;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.AbsoluteSizeSpan;
+import android.widget.TextView;
 import android.app.Activity;
-import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+	private TextView tvDate;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		retrieveWidgets();
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	
+	/**
+	 * Call {@link #setContentView(int)} before this method!
+	 */
+	private void retrieveWidgets(){
+		tvDate = (TextView) findViewById(R.id.main_tv_date);
+		//Generate date string
+		Calendar calendar = Calendar.getInstance(Locale.CHINA);
+		int dom = calendar.get(Calendar.DAY_OF_MONTH);
+		String tail = new SimpleDateFormat("d日 M月 yyyy", Locale.CHINA).format(calendar.getTime());
+		SpannableStringBuilder builder = new SpannableStringBuilder(tail);
+		builder.setSpan(new AbsoluteSizeSpan(36, true), 0, 1,
+				(dom >= 10) ? Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+						: Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		tvDate.setText(builder);
 	}
-
+	
 }
