@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@android:id/background">
+
+        <!-- 这里不能使用clip，否则将无法显示。 -->
+        <shape>
+            <corners android:radius="10dp" />
+
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+
+        <!-- 该标签需要使用clip,否则将占满整个进度条（而不是实际进度的应有比例）。 -->
+        <clip>
+            <shape>
+                <corners android:radius="10dp" />
+
+                <solid android:color="#FF9900" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>
