@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:imgctrl="http://schemas.android.com/apk/res-auto"  
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bkg_personal_center"
      >
 
-    <ImageView
+    <!-- 使用圆形头像 -->
+    <com.huishen.ecoach.widget.RoundImageView
         android:id="@+id/pcenter_avatar"
         android:layout_width="@dimen/pcenter_avatar_width"
         android:layout_height="@dimen/pcenter_avatar_height"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/default_personal_avatar"
         android:contentDescription="@string/app_name" />
 
     <TextView
@@ -21,50 +23,55 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pcenter_avatar"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
         android:text="@string/str_pcenter_default_coach_name"
         android:textColor="@color/color_pcenter_textcolor"
-        android:textSize="@dimen/txtsize_xlarge" />
+        android:textSize="@dimen/txtsize_xxlarge" />
 
     <RatingBar
         android:id="@+id/pcenter_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/pcenter_coachname"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         style="@style/style_coach_ratingbar"
         android:layout_centerHorizontal="true"
         android:isIndicator="true"
         android:rating="3.0"
         android:stepSize="1" />
-
-    <ProgressBar
-        android:id="@+id/pcenter_scoreprg"
-        style="?android:attr/progressBarStyleHorizontal"
+    <FrameLayout
+        android:id="@+id/pcenter_frm_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_rating"
         android:layout_centerHorizontal="true"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:max="100"
-        android:progress="0" />
+        android:layout_below="@id/pcenter_rating" >
 
-    <TextView
-        android:id="@+id/pcenter_scoreup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_scoreprg"
-        android:layout_centerHorizontal="true"
-        android:padding="5dp"
-        android:textColor="@color/color_pcenter_textcolor"
-        android:textSize="@dimen/txtsize_default"
-        android:text="@string/str_pcenter_coach_score_level" />
+        <ProgressBar
+            android:id="@+id/pcenter_scoreprg"
+            style="@style/style_pcenter_scoreprg"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:progress="30" />
+
+        <TextView
+            android:id="@+id/pcenter_scoreup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@android:color/transparent"
+            android:text="@string/str_pcenter_coach_score_level"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txtsize_middle" />
+    </FrameLayout>
 
     <LinearLayout 
         android:id="@+id/pcenter_statll_dimen"
         style="@style/style_pcenter_stat_linear"
-        android:layout_below="@id/pcenter_scoreup">
+        android:layout_below="@id/pcenter_frm_score">
         <TextView style="@style/style_pcenter_stattv"
             android:text="@string/str_pcenter_stat_dimen_ordernum"/>
         <TextView style="@style/style_pcenter_stattv"
@@ -93,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/pcenter_statll_value"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:orientation="vertical" >
 
         <!-- Warning:this layout require picture as same size! -->
