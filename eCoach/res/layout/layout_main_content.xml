@@ -8,9 +8,20 @@
         android:id="@+id/main_title"
         style="@style/style_common_titlebar" >
 
+        <ImageButton android:id="@+id/main_title_leftpanel"
+            style="@style/style_common_title_leftbtn"
+            android:src="@drawable/ic_launcher"
+            android:contentDescription="@null"
+            />
+        
         <TextView
             style="@style/style_common_titletv"
             android:text="@string/str_activity_main_title" />
+        <ImageButton android:id="@+id/main_title_msg"
+            style="@style/style_common_title_rightbtn"
+            android:src="@drawable/ic_launcher"
+            android:contentDescription="@null"
+            />
     </RelativeLayout>
 
     <RelativeLayout
