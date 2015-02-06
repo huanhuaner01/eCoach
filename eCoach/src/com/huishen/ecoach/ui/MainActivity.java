@@ -6,29 +6,45 @@ import java.util.Locale;
 
 import com.huishen.ecoach.R;
 import android.os.Bundle;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.app.Activity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener{
 
+	private SlidingPaneLayout slidePaneLayout;
 	private TextView tvDate;
+	private ImageButton btnMe;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		retrieveWidgets();
+		addListeners();
+		displayDate();
 	}
 	
 	/**
 	 * Call {@link #setContentView(int)} before this method!
 	 */
 	private void retrieveWidgets(){
+		slidePaneLayout = (SlidingPaneLayout)findViewById(R.id.main_slidepane);
 		tvDate = (TextView) findViewById(R.id.main_tv_date);
-		//Generate date string
+		btnMe = (ImageButton)findViewById(R.id.main_btn_me);
+	}
+	
+	private void addListeners(){
+		btnMe.setOnClickListener(this);
+	}
+	
+	private void displayDate(){
 		Calendar calendar = Calendar.getInstance(Locale.CHINA);
 		int dom = calendar.get(Calendar.DAY_OF_MONTH);
 		String tail = new SimpleDateFormat("d日 M月 yyyy", Locale.CHINA).format(calendar.getTime());
@@ -38,5 +54,21 @@ public class MainActivity extends Activity {
 						: Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 		tvDate.setText(builder);
 	}
-	
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.main_btn_me:
+			if (!slidePaneLayout.isOpen()){
+				slidePaneLayout.openPane();
+			}
+			else {
+				slidePaneLayout.closePane();
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
 }

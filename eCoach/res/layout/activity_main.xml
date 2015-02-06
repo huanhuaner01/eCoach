@@ -5,6 +5,7 @@
     tools:context=".MainActivity" >
 
     <android.support.v4.widget.SlidingPaneLayout
+        android:id="@+id/main_slidepane"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <include layout="@layout/layout_personal_center"/>
