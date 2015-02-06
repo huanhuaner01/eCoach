@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:imgctrl="http://schemas.android.com/apk/res-auto"  
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bkg_personal_center"
      >
 
-    <ImageView
+    <!-- 使用圆形头像 -->
+    <com.huishen.ecoach.widget.RoundImageView
         android:id="@+id/pcenter_avatar"
         android:layout_width="@dimen/pcenter_avatar_width"
         android:layout_height="@dimen/pcenter_avatar_height"
