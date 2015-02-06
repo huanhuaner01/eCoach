@@ -22,4 +22,7 @@
     <!-- slide bar dimensions -->
     <dimen name="pcenter_avatar_width">80dp</dimen>
     <dimen name="pcenter_avatar_height">80dp</dimen>
+    
+    <!-- page specified dimensions -->
+    <dimen name="main_ordernumtv_padding_horizontal">5dp</dimen>
 </resources>
