@@ -13,7 +13,7 @@
         android:layout_width="@dimen/pcenter_avatar_width"
         android:layout_height="@dimen/pcenter_avatar_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/default_personal_avatar"
         android:contentDescription="@string/app_name" />
 
@@ -106,18 +106,21 @@
         <!-- Warning:this layout require picture as same size! -->
 
         <TextView
+            android:id="@+id/pcenter_tv_userguide"
             style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
             android:text="@string/str_pcenter_userguide" />
 
         <TextView
+            android:id="@+id/pcenter_tv_recommend"
             style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
             android:text="@string/str_pcenter_recommend" />
 
         <TextView
+            android:id="@+id/pcenter_tv_setting"
             style="@style/style_pcenter_menu_itemtv"
             android:drawableLeft="@drawable/ic_launcher"
             android:drawableStart="@drawable/ic_launcher"
@@ -143,10 +146,14 @@
             android:textSize="@dimen/txtsize_default" />
 
         <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/pcenter_tgb_msgpush"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:textOn="@string/str_null"
+            android:textOff="@string/str_null"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:background="@drawable/sel_pcenter_msgbtn"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp" />
     </RelativeLayout>

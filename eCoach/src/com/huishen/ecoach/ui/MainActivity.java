@@ -12,8 +12,11 @@ import android.text.SpannableStringBuilder;
 import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.app.Activity;
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -21,6 +24,10 @@ public class MainActivity extends Activity implements OnClickListener{
 	private SlidingPaneLayout slidePaneLayout;
 	private TextView tvDate;
 	private ImageButton btnMe;
+	
+	//--- Slide Pane Widgets
+	private TextView tvUserGuide, tvRecommend, tvSetting;
+	private ToggleButton tgbMsgPush;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +45,25 @@ public class MainActivity extends Activity implements OnClickListener{
 		slidePaneLayout = (SlidingPaneLayout)findViewById(R.id.main_slidepane);
 		tvDate = (TextView) findViewById(R.id.main_tv_date);
 		btnMe = (ImageButton)findViewById(R.id.main_btn_me);
+		tvRecommend = (TextView)findViewById(R.id.pcenter_tv_recommend);
+		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
+		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
+		tgbMsgPush = (ToggleButton)findViewById(R.id.pcenter_tgb_msgpush);
 	}
 	
 	private void addListeners(){
 		btnMe.setOnClickListener(this);
+		tvRecommend.setOnClickListener(this);
+		tvSetting.setOnClickListener(this);
+		tvUserGuide.setOnClickListener(this);
+		
+		tgbMsgPush.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+			}
+		});
 	}
 	
 	private void displayDate(){
