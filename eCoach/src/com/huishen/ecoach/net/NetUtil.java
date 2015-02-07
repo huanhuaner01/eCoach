@@ -16,6 +16,9 @@ public final class NetUtil {
 	 */
 	public static final void requestStringData(String relativePath,
 			Listener<String> listener) {
+		if (relativePath==null || listener==null){
+			throw new NullPointerException("params cannot be null!");
+		}
 		MainApp.getInstance().addNetworkRequest(new AbsStringRequest(relativePath, listener));
 	}
 }
