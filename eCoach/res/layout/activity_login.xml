@@ -44,7 +44,8 @@
             style="@style/style_login_form"
             android:layout_marginTop="@dimen/margin_micro"
             android:background="@drawable/bkg_login_form"
-            android:hint="@string/str_login_hint_password" />
+            android:hint="@string/str_login_hint_password"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/login_btn_login"
