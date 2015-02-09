@@ -46,4 +46,7 @@
     
     <dimen name="login_item_margin_horizontal">@dimen/margin_middle</dimen>
     <dimen name="login_item_textsize">@dimen/txtsize_xlarge</dimen>
+    <dimen name="verify_phone_margin_left">25dp</dimen>
+    <dimen name="verify_phone_margin_right">25dp</dimen>
+    <dimen name="verify_phone_margin_vertical">20dp</dimen>
 </resources>

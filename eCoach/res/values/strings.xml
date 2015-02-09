@@ -7,8 +7,8 @@
     <string name="str_null"></string>
     <string name="str_activity_main_title">e驾学车</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_verify_phone">VerifyPhoneActivity</string>
     <string name="str_frag_snapup_title">抢  单</string>
-    
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
     <string name="str_pcenter_stat_dimen_praiserates">好评率</string>
@@ -23,7 +23,6 @@
     <string name="str_pcenter_setting">设　　置</string>
     <string name="str_pcenter_pushmsg">消息提醒</string>
     <string name="str_pcenter_coach_score_level">%1$d积分，升级还需要%2$d积分</string>
-    
     <string name="str_main_todayorder">今日订单总数</string>
     <string name="str_main_default_todayorder">0</string>
     <string name="str_main_myorder">我的订单</string>
@@ -31,11 +30,20 @@
     <string name="str_main_menu_book_manage">预约管理</string>
     <string name="str_main_menu_begin_snapup">我要\n抢单</string>
     <string name="str_main_menu_recruit_manage">招生管理</string>
-    
-	<string name="str_login_forget_pwd">忘记密码？</string>
-	<string name="str_login_no_account">还没有账号？</string>
-	<string name="str_login_register">马上注册</string>
-	<string name="str_login_hint_username">用户名</string>
-	<string name="str_login_hint_password">密码</string>
-	<string name="str_login_login">登录</string>
+    <string name="str_login_forget_pwd">忘记密码？</string>
+    <string name="str_login_no_account">还没有账号？</string>
+    <string name="str_login_register">马上注册</string>
+    <string name="str_login_hint_username">用户名</string>
+    <string name="str_login_hint_password">密码</string>
+    <string name="str_login_login">登录</string>
+    <string name="str_verify_phone_title">验证手机</string>
+    <string name="str_verify_phone_purpose">为了方便学员联系您，请验证手机</string>
+    <string name="str_verify_phone_btn_verify">验证</string>
+    <string name="str_verify_phone_countdown">%1$dS</string>
+    <string name="str_verify_phone_btn_start">开始</string>
+    <string name="str_verify_phone_hint_phonenum">手机号</string>
+    <string name="str_verify_phone_hint_verifycode">验证码</string>
+    <string name="str_verify_phone_protocal_prefix">点击开始，即表示同意</string>
+    <string name="str_verify_phone_protocal_name">《e驾学车用户协议》</string>
+
 </resources>

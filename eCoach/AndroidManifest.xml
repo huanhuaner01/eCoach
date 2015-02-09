@@ -31,8 +31,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.login.VerifyPhoneActivity"
+            android:label="@string/title_activity_verify_phone" >
         </activity>
     </application>
 
