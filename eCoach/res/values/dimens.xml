@@ -12,6 +12,21 @@
     <dimen name="txtsize_large">18dp</dimen>
     <dimen name="txtsize_xlarge">20dp</dimen>
     <dimen name="txtsize_xxlarge">22dp</dimen>
+    
+    <!-- common widget paddings & margins -->
+    <dimen name="padding_micro">2dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_middle">10dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    
+    <dimen name="margin_micro">2dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_middle">10dp</dimen>
+    <dimen name="margin_large">15dp</dimen>
+    <dimen name="margin_xlarge">20dp</dimen>
+    <dimen name="margin_xxlarge">30dp</dimen>
+    
+    
 
     <!-- common widget dimensions -->
     <dimen name="common_titlebar_height">60dp</dimen>

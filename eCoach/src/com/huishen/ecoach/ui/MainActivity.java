@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 
 public class MainActivity extends Activity implements OnClickListener{
 
@@ -28,6 +30,11 @@ public class MainActivity extends Activity implements OnClickListener{
 	//--- Slide Pane Widgets
 	private TextView tvUserGuide, tvRecommend, tvSetting;
 	private ToggleButton tgbMsgPush;
+	
+	protected static final Intent getIntent(Context context){
+		Intent intent = new Intent(context, MainActivity.class);
+		return intent;
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
