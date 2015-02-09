@@ -10,6 +10,7 @@
     <color name="color_lighter_gray">#E8E8E8</color>
     <color name="color_deeper_gray">#7F7F7F</color>
     <color name="color_theme_orange">#FF6600</color>
+    <color name="color_lighter_orange">#FF9944</color>
     
     <!-- page specified colors -->
     <color name="color_pcenter_textcolor">@android:color/white</color>

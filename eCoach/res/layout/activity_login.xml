@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/login_app_icon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_login_app_icon" />
+
+    <ImageView
+        android:id="@+id/login_app_icon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_app_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_login_app_name" />
+
+    <LinearLayout
+        android:id="@+id/login_ll_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_app_icon_name"
+        android:layout_marginTop="@dimen/margin_large"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/login_edit_username"
+            style="@style/style_login_form"
+            android:layout_marginTop="@dimen/margin_micro"
+            android:background="@drawable/bkg_login_form"
+            android:hint="@string/str_login_hint_username" />
+
+        <EditText
+            android:id="@+id/login_edit_pwd"
+            style="@style/style_login_form"
+            android:layout_marginTop="@dimen/margin_micro"
+            android:background="@drawable/bkg_login_form"
+            android:hint="@string/str_login_hint_password" />
+
+        <Button
+            android:id="@+id/login_btn_login"
+            style="@style/style_login_form"
+            android:layout_marginTop="@dimen/margin_micro"
+            android:background="@drawable/bkg_login_btn_login"
+            android:text="@string/str_login_login"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login_btn_forgetpwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/login_ll_form"
+        android:layout_marginEnd="@dimen/margin_middle"
+        android:layout_marginRight="@dimen/margin_middle"
+        android:layout_marginTop="@dimen/margin_micro"
+        android:text="@string/str_login_forget_pwd"
+        android:textColor="@color/color_lighter_gray"
+        android:textSize="@dimen/txtsize_default" />
+
+    <Button
+        android:id="@+id/login_btn_register"
+        style="@style/style_login_form"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:background="@drawable/bkg_login_btn_register"
+        android:text="@string/str_login_register"
+        android:textColor="@color/color_deeper_gray" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_btn_register"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_middle"
+        android:layout_marginStart="@dimen/margin_middle"
+        android:paddingLeft="@dimen/padding_middle"
+        android:paddingRight="@dimen/padding_middle"
+        android:text="@string/str_login_no_account"
+        android:textColor="@color/color_lighter_gray"
+        android:textSize="@dimen/txtsize_default" />
+
+</RelativeLayout>

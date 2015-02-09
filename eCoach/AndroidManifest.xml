@@ -14,21 +14,25 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
-            android:name="com.huishen.ecoach.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.SplashActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:name=".ui.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.login.LoginActivity"
+            android:label="@string/title_activity_login" >
         </activity>
     </application>
 

@@ -26,7 +26,9 @@
     <dimen name="margin_xlarge">20dp</dimen>
     <dimen name="margin_xxlarge">30dp</dimen>
     
-    
+	<dimen name="radius_default">5dp</dimen>
+	<dimen name="radius_large">10dp</dimen>
+	<dimen name="stroke_min_width">1dp</dimen>
 
     <!-- common widget dimensions -->
     <dimen name="common_titlebar_height">60dp</dimen>
@@ -41,4 +43,7 @@
     
     <!-- page specified dimensions -->
     <dimen name="main_ordernumtv_padding_horizontal">5dp</dimen>
+    
+    <dimen name="login_item_margin_horizontal">@dimen/margin_middle</dimen>
+    <dimen name="login_item_textsize">@dimen/txtsize_xlarge</dimen>
 </resources>
