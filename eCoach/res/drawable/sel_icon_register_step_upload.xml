@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/icon_register_step_verifyphone_white" android:state_enabled="true"/>
+    <item android:drawable="@drawable/icon_register_step_upload_black"></item>
+
+</selector>

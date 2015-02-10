@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/register_rl_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_register" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/register_ll_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_rl_titlebar"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/register_tv_step_verify"
+            style="@style/style_register_steptv"
+            android:drawableLeft="@drawable/sel_icon_register_step_verifyphone"
+            android:drawableStart="@drawable/sel_icon_register_step_verifyphone"
+            android:enabled="true"
+            android:text="@string/str_register_step_verifyphone" />
+
+        <TextView
+            android:id="@+id/register_tv_step_profile"
+            style="@style/style_register_steptv"
+            android:drawableLeft="@drawable/sel_icon_register_step_profile"
+            android:drawableStart="@drawable/sel_icon_register_step_profile"
+            android:enabled="false"
+            android:text="@string/str_register_step_fillprofile" />
+
+        <TextView
+            android:id="@+id/register_tv_step_upload"
+            style="@style/style_register_steptv"
+            android:drawableLeft="@drawable/sel_icon_register_step_upload"
+            android:drawableStart="@drawable/sel_icon_register_step_upload"
+            android:enabled="false"
+            android:text="@string/str_register_step_uploadfile" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/register_frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/register_ll_steps"
+        android:layout_marginTop="@dimen/margin_large" >
+    </FrameLayout>
+
+</RelativeLayout>

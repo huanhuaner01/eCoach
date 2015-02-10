@@ -22,6 +22,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 用于登录时验证手机的Activity。
+ * @author Muyangmin
+ * @create 2015-2-10
+ */
 public class VerifyPhoneActivity extends RightSideParentActivity implements
 		OnClickListener {
 
