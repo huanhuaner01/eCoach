@@ -11,7 +11,7 @@
 
         <ImageButton
             android:id="@+id/verify_btn_back"
-            style="@style/style_common_title_leftbtn"
+            style="@style/style_common_title_backbtn"
             android:contentDescription="@null"
             android:src="@drawable/icon_navi_back" />
 
