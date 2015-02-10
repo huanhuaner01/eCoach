@@ -166,6 +166,27 @@
         <item name="android:background">@drawable/bkg_register_steptv</item>
     </style>
     
+    <style name="style_register_fragment_root">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_all_bkg</item>
+        <item name="android:paddingLeft">@dimen/padding_large</item>
+        <item name="android:paddingRight">@dimen/padding_large</item>
+        <item name="android:paddingTop">@dimen/padding_large</item>
+    </style>
+    
+    <style name="style_register_fragbtn_next">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_large</item>
+        <item name="android:background">@drawable/bkg_register_btn_next</item>
+        <item name="android:padding">@dimen/padding_middle</item>
+        <item name="android:text">@string/str_register_step_next</item>
+        <item name="android:textColor">@drawable/sel_register_btn_next_txtcolor</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+        <item name="android:enabled">false</item>
+    </style>
+    
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

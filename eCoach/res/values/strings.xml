@@ -63,5 +63,9 @@
     <string name="str_register_err_vcode_invalid">验证码已过期，请重新获取</string>
     <string name="str_register_fragv_hint_pwd">设置密码</string>
     <string name="str_register_fragv_hint_pwd_confirm">确认密码</string>
+    <string name="str_register_fragp_hint_name">姓　名</string>
+    <string name="str_register_fragp_hint_school">所属驾校</string>
+    <string name="str_register_fragp_hint_carno">车牌号</string>
+    <string name="str_register_fragp_hint_cardno">教练证件号</string>
 
 </resources>

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_all_bkg"
-    android:paddingLeft="@dimen/padding_large"
-    android:paddingRight="@dimen/padding_large"
-    android:paddingTop="@dimen/padding_large" >
+    style="@style/style_register_fragment_root" >
 
     <EditText
         android:id="@+id/register_fragv_edit_number"
@@ -87,14 +82,7 @@
 
     <Button
         android:id="@+id/register_fragv_btn_next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/register_fragv_ll_vcode"
-        android:layout_marginTop="@dimen/margin_large"
-        android:background="@drawable/bkg_register_btn_next"
-        android:padding="@dimen/padding_middle"
-        android:text="@string/str_register_step_next"
-        android:textColor="@drawable/sel_register_btn_next_txtcolor"
-        android:textSize="@dimen/txtsize_large" />
+        style="@style/style_register_fragbtn_next"
+        android:layout_below="@id/register_fragv_ll_vcode" />
 
 </RelativeLayout>

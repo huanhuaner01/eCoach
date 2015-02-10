@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_register_fragment_root" >
+
+    <com.huishen.ecoach.widget.RoundImageView
+        android:id="@+id/register_fragp_img_avatar"
+        android:layout_width="@dimen/pcenter_avatar_width"
+        android:layout_height="@dimen/pcenter_avatar_height"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/default_personal_avatar" />
+
+    <EditText
+        android:id="@+id/register_fragp_edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragp_img_avatar"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:background="@drawable/bkg_login_form"
+        android:gravity="center"
+        android:hint="@string/str_register_fragp_hint_name"
+        android:padding="@dimen/padding_middle" />
+
+    <LinearLayout
+        android:id="@+id/register_fragp_ll_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragp_edit_name"
+        android:layout_marginTop="@dimen/margin_xlarge" >
+
+        <EditText
+            android:id="@+id/register_fragp_edit_school"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bkg_login_form"
+            android:hint="@string/str_register_fragp_hint_school"
+            android:padding="@dimen/padding_middle" />
+
+        <EditText
+            android:id="@+id/register_fragp_edit_carno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_micro"
+            android:layout_marginStart="@dimen/margin_micro"
+            android:layout_weight="1"
+            android:background="@drawable/bkg_login_form"
+            android:hint="@string/str_register_fragp_hint_carno"
+            android:padding="@dimen/padding_middle" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/register_fragp_edit_cardno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragp_ll_school"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:background="@drawable/bkg_login_form"
+        android:hint="@string/str_register_fragp_hint_cardno"
+        android:padding="@dimen/padding_middle" />
+
+    <Button android:id="@+id/register_fragp_btn_next"
+        style="@style/style_register_fragbtn_next"
+        android:layout_below="@id/register_fragp_edit_cardno"/>
+    
+</RelativeLayout>
