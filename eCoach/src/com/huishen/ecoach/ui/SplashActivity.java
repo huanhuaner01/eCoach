@@ -146,7 +146,10 @@ public class SplashActivity extends Activity {
 	}
 	
 	private boolean checkFirstStart(){
-		return Prefs.getBoolean(this, Const.KEY_FIRSTUSE);
+		//首次使用时应为true
+		boolean value = Prefs.getBoolean(this, Const.KEY_FIRSTUSE, true);
+		Prefs.setBoolean(this, Const.KEY_FIRSTUSE, false);	
+		return value;
 	}
 	
 	
