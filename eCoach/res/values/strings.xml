@@ -45,5 +45,7 @@
     <string name="str_verify_phone_hint_verifycode">验证码</string>
     <string name="str_verify_phone_protocal_prefix">点击开始，即表示同意</string>
     <string name="str_verify_phone_protocal_name">《e驾学车用户协议》</string>
+    <string name="str_verify_phone_err_not_valid_number">请输入合适的手机号!</string>
+    <string name="str_verify_phone_err_request_retry">重发</string>
 
 </resources>
