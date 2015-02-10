@@ -31,7 +31,7 @@
 	<dimen name="stroke_min_width">1dp</dimen>
 
     <!-- common widget dimensions -->
-    <dimen name="common_titlebar_height">60dp</dimen>
+    <dimen name="common_titlebar_height">50dp</dimen>
     <dimen name="common_titlebar_backbtn_width">50dp</dimen>
     <dimen name="common_titlebar_horizontal_margin">10dp</dimen>
     <dimen name="common_reddot_width">5dp</dimen>
