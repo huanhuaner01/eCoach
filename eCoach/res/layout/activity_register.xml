@@ -59,6 +59,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/register_ll_steps"
         android:layout_marginTop="@dimen/margin_large" >
+        <fragment class="com.huishen.ecoach.ui.login.VerifyFragment" android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/as123"/>
     </FrameLayout>
 
 </RelativeLayout>

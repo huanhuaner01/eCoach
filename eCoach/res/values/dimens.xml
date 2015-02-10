@@ -49,4 +49,5 @@
     <dimen name="verify_phone_margin_left">25dp</dimen>
     <dimen name="verify_phone_margin_right">25dp</dimen>
     <dimen name="verify_phone_margin_vertical">20dp</dimen>
+    <dimen name="verify_phone_btn_verify_padding_horizontal">22dp</dimen>
 </resources>

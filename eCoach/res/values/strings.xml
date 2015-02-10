@@ -42,6 +42,7 @@
     
     <string name="str_verify_phone_title">验证手机</string>
     <string name="str_verify_phone_purpose">为了方便学员联系您，请验证手机</string>
+    <string name="str_verify_phone_btn_get_vcode">点击获取</string>
     <string name="str_verify_phone_btn_verify">验证</string>
     <string name="str_verify_phone_countdown">%1$dS</string>
     <string name="str_verify_phone_btn_start">开始</string>
@@ -60,5 +61,7 @@
     <string name="str_register_vp_hint_confirmpwd">确认密码</string>
     <string name="str_register_msg_vcode">验证码已发送，请注意查收</string>
     <string name="str_register_err_vcode_invalid">验证码已过期，请重新获取</string>
+    <string name="str_register_fragv_hint_pwd">设置密码</string>
+    <string name="str_register_fragv_hint_pwd_confirm">确认密码</string>
 
 </resources>
