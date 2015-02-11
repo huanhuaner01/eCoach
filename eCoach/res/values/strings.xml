@@ -70,6 +70,8 @@
     <string name="str_register_fragu_btn_rephoto">重新拍摄</string>
     <string name="str_register_fragu_btn_submit">提交审核</string>
     <string name="str_register_fragu_requirements">请把您的四种证件平铺拍摄</string>
+    <string name="str_register_fragv_err_pwd_firstempty">请先输入密码</string>
+    <string name="str_register_fragv_err_pwd_nequal">两次密码不一致</string>
     <!-- 服务协议 -->
     <string name="str_service_info_se">服务条款</string>
     <string name="str_service_info_pri">隐私政策</string>
