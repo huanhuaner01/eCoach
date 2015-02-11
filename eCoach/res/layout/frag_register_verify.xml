@@ -20,7 +20,7 @@
         android:layout_below="@id/register_fragv_edit_number"
         android:layout_marginTop="@dimen/margin_large"
         android:background="@drawable/bkg_login_form"
-        android:hint="@string/str_register_fragv_hint_pwd"
+        android:hint="@string/str_register_hint_setpassword"
         android:inputType="textPassword"
         android:maxLength="@integer/verifycode_valid_length"
         android:padding="@dimen/padding_middle" />
@@ -32,7 +32,7 @@
         android:layout_below="@id/register_fragv_edit_pwd"
         android:layout_marginTop="@dimen/margin_large"
         android:background="@drawable/bkg_login_form"
-        android:hint="@string/str_register_fragv_hint_pwd_confirm"
+        android:hint="@string/str_register_hint_confirmpwd"
         android:inputType="textPassword"
         android:maxLength="@integer/verifycode_valid_length"
         android:padding="@dimen/padding_middle" />
@@ -50,15 +50,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/bkg_verify_btn_verify"
-            android:gravity="center_vertical"
             android:paddingBottom="@dimen/padding_middle"
             android:paddingLeft="@dimen/verify_phone_btn_verify_padding_horizontal"
             android:paddingRight="@dimen/verify_phone_btn_verify_padding_horizontal"
             android:paddingTop="@dimen/padding_middle"
+            android:background="@drawable/bkg_common_theme_btn"
+            android:gravity="center_vertical"
             android:text="@string/str_verify_phone_btn_get_vcode"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/txtsize_large" />
+            android:textColor="@drawable/sel_common_theme_btn_txtcolor"
+            android:textSize="@dimen/txtsize_large"
+            android:enabled="false" />
 
         <EditText
             android:id="@+id/register_fragv_edit_vcode"

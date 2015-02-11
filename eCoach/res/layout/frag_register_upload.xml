@@ -27,11 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/register_fragu_img_photo"
         android:layout_marginTop="@dimen/margin_xlarge"
-        android:background="@drawable/bkg_register_btn_next"
         android:paddingBottom="@dimen/padding_middle"
         android:paddingTop="@dimen/padding_middle"
+        android:background="@drawable/bkg_common_theme_btn"
         android:text="@string/str_register_fragu_btn_takephoto"
-        android:textColor="@drawable/sel_register_btn_next_txtcolor" />
+        android:textColor="@drawable/sel_common_theme_btn_txtcolor" />
 
     <Button
         android:id="@+id/register_fragu_btn_submit"
@@ -39,10 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/register_fragu_btn_takephoto"
         android:layout_marginTop="@dimen/margin_small"
-        android:background="@drawable/bkg_register_btn_next"
         android:paddingBottom="@dimen/padding_middle"
         android:paddingTop="@dimen/padding_middle"
+        android:background="@drawable/bkg_common_theme_btn"
         android:text="@string/str_register_fragu_btn_submit"
-        android:textColor="@drawable/sel_register_btn_next_txtcolor" />
+        android:textColor="@drawable/sel_common_theme_btn_txtcolor" />
 
 </RelativeLayout>

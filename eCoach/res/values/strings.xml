@@ -46,8 +46,8 @@
     <string name="str_verify_phone_btn_verify">验证</string>
     <string name="str_verify_phone_countdown">%1$dS</string>
     <string name="str_verify_phone_btn_start">开始</string>
-    <string name="str_verify_phone_hint_phonenum">手机号</string>
-    <string name="str_verify_phone_hint_verifycode">验证码</string>
+    <string name="str_verify_phone_hint_phonenum">请输入手机号</string>
+    <string name="str_verify_phone_hint_verifycode">请输入验证码</string>
     <string name="str_verify_phone_protocal_prefix">点击开始，即表示同意</string>
     <string name="str_verify_phone_protocal_name">《e驾学车用户协议》</string>
     <string name="str_verify_phone_err_not_valid_number">请输入合适的手机号!</string>
@@ -57,12 +57,10 @@
     <string name="str_register_step_fillprofile">填写资料</string>
     <string name="str_register_step_uploadfile">上传证件</string>
     <string name="str_register_step_next">下一步</string>
-    <string name="str_register_vp_hint_setpassword">设置密码</string>
-    <string name="str_register_vp_hint_confirmpwd">确认密码</string>
+    <string name="str_register_hint_setpassword">请设置密码</string>
+    <string name="str_register_hint_confirmpwd">请确认密码</string>
     <string name="str_register_msg_vcode">验证码已发送，请注意查收</string>
     <string name="str_register_err_vcode_invalid">验证码已过期，请重新获取</string>
-    <string name="str_register_fragv_hint_pwd">设置密码</string>
-    <string name="str_register_fragv_hint_pwd_confirm">确认密码</string>
     <string name="str_register_fragp_hint_name">姓　名</string>
     <string name="str_register_fragp_hint_school">所属驾校</string>
     <string name="str_register_fragp_hint_carno">车牌号</string>

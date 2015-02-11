@@ -39,18 +39,19 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@id/verify_tv_purpose"
+        android:layout_marginTop="@dimen/verify_phone_margin_vertical"
         android:layout_marginEnd="@dimen/verify_phone_margin_right"
         android:layout_marginRight="@dimen/verify_phone_margin_right"
-        android:layout_marginTop="@dimen/verify_phone_margin_vertical"
-        android:background="@drawable/bkg_verify_btn_verify"
-        android:gravity="center_vertical"
         android:paddingBottom="@dimen/padding_middle"
         android:paddingLeft="@dimen/verify_phone_btn_verify_padding_horizontal"
         android:paddingRight="@dimen/verify_phone_btn_verify_padding_horizontal"
         android:paddingTop="@dimen/padding_middle"
-        android:text="@string/str_verify_phone_btn_verify"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/txtsize_large" />
+        android:background="@drawable/bkg_common_theme_btn"
+        android:gravity="center_vertical"
+        android:text="@string/str_verify_phone_btn_get_vcode"
+        android:textColor="@drawable/sel_common_theme_btn_txtcolor"
+        android:textSize="@dimen/txtsize_large"
+        android:enabled="false" />
 
     <EditText
         android:id="@+id/verify_edit_number"
@@ -99,12 +100,12 @@
         android:layout_marginStart="@dimen/verify_phone_margin_left"
         android:layout_marginTop="@dimen/verify_phone_margin_vertical"
         android:background="@drawable/bkg_verify_btn_start"
-        android:enabled="false"
         android:paddingBottom="@dimen/padding_middle"
         android:paddingTop="@dimen/padding_middle"
         android:text="@string/str_verify_phone_btn_start"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/txtsize_large" />
+        android:textSize="@dimen/txtsize_large"
+        android:enabled="false" />
 
     <TextView
         android:id="@+id/verify_tv_protocal"
