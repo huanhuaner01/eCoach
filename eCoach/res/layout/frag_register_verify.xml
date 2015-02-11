@@ -9,8 +9,7 @@
         android:layout_marginTop="@dimen/margin_large"
         android:background="@drawable/bkg_login_form"
         android:hint="@string/str_verify_phone_hint_phonenum"
-        android:inputType="number"
-        android:maxLength="@integer/verifycode_valid_length"
+        android:inputType="phone"
         android:padding="@dimen/padding_middle" />
 
     <EditText
@@ -50,16 +49,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:background="@drawable/bkg_common_theme_btn"
+            android:enabled="false"
+            android:gravity="center_vertical"
             android:paddingBottom="@dimen/padding_middle"
             android:paddingLeft="@dimen/verify_phone_btn_verify_padding_horizontal"
             android:paddingRight="@dimen/verify_phone_btn_verify_padding_horizontal"
             android:paddingTop="@dimen/padding_middle"
-            android:background="@drawable/bkg_common_theme_btn"
-            android:gravity="center_vertical"
             android:text="@string/str_verify_phone_btn_get_vcode"
             android:textColor="@drawable/sel_common_theme_btn_txtcolor"
-            android:textSize="@dimen/txtsize_large"
-            android:enabled="false" />
+            android:textSize="@dimen/txtsize_large" />
 
         <EditText
             android:id="@+id/register_fragv_edit_vcode"
@@ -76,7 +75,8 @@
             android:layout_toStartOf="@id/register_fragv_btn_verify"
             android:background="@drawable/bkg_login_form"
             android:hint="@string/str_verify_phone_hint_verifycode"
-            android:inputType="phone"
+            android:inputType="numberSigned"
+            android:maxLength="@integer/verifycode_valid_length"
             android:paddingLeft="@dimen/padding_middle"
             android:paddingRight="@dimen/padding_middle" />
     </RelativeLayout>
