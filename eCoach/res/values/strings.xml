@@ -9,6 +9,7 @@
     <string name="title_activity_login">登录</string>
     <string name="title_activity_verify_phone">验证手机</string>
     <string name="title_activity_register">注册</string>
+    <string name="title_activity_service_info">ServiceInfoActivity</string>
     <string name="str_frag_snapup_title">抢  单</string>
     
     <string name="str_pcenter_default_coach_name">李文</string>
@@ -71,5 +72,8 @@
     <string name="str_register_fragu_btn_rephoto">重新拍摄</string>
     <string name="str_register_fragu_btn_submit">提交审核</string>
     <string name="str_register_fragu_requirements">请把您的四种证件平铺拍摄</string>
+    <!-- 服务协议 -->
+    <string name="str_service_info_se">服务条款</string>
+    <string name="str_service_info_pri">隐私政策</string>
 
 </resources>
