@@ -32,6 +32,7 @@ public final class VerifyFragment extends Fragment {
 	private Button btnVcode, btnNextStep;
 	
 	private NextStepListener nsListener;
+	private VerifyButtonClickListener vbListener;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,15 +60,9 @@ public final class VerifyFragment extends Fragment {
 		editVcode = (EditText)view.findViewById(R.id.register_fragv_edit_vcode);
 		btnVcode = (Button)view.findViewById(R.id.register_fragv_btn_verify);
 		btnNextStep = (Button)view.findViewById(R.id.register_fragv_btn_next);
-		//验证码按钮逻辑：
-		editVcode.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		//验证码按钮逻辑
+		vbListener = new VerifyButtonClickListener(getActivity(), editPhone, btnVcode);
+		editVcode.setOnClickListener(vbListener);
 		//手机号逻辑：长度大于0时可以发送验证码
 		editPhone.addTextChangedListener(new TextWatcher() {
 			
@@ -161,8 +156,15 @@ public final class VerifyFragment extends Fragment {
 				if (!editConfirmpwd.getText().equals(editPassword.getText())){
 					Toast.makeText(getActivity(), "两次密码填写不一致", Toast.LENGTH_SHORT).show();
 				}
+				//因验证码长度在验证码框已做检查，这里省略
+				//检查验证码有效期
+				if (!vbListener.isVcodeValid()){
+					Log.d(LOG_TAG, "vcode is NOT valid.");
+					Toast.makeText(getActivity(), "验证码已过有效期", Toast.LENGTH_SHORT).show();
+				}
 				//TODO 添加网络操作请求并在成功后才调用以下代码。
 				if (nsListener != null){
+					Log.d(LOG_TAG, "Step verify-phone completed.");
 					nsListener.onVerifyPhoneStepCompleted();
 				}
 			}

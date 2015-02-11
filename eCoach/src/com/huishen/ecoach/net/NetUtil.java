@@ -9,6 +9,12 @@ import com.huishen.ecoach.MainApp;
  * @create 2015-2-7
  */
 public final class NetUtil {
+	
+	/**
+	 * 公用的网络请求日志标签。供匿名类等没有自己的TAG字段的对象使用。
+	 */
+	public static final String REQUEST_LOG_TAG = "NetRequest";
+	
 	/**
 	 * 提交String数据请求。
 	 * @param relativePath 资源的相对位置

@@ -12,4 +12,10 @@ public final class SRL {
 	 * 需要提供的参数有：用户名(username/String)，密码(password/String)。
 	 */
 	public static final String METHOD_LOGIN = "/login.do";
+	
+	/**
+	 * 通过短信获取验证码。
+	 * 返回值:{code:0|1}0:发送成功，1:发送异常
+	 */
+	public static final String METHOD_GET_VERIFY_CODE = "/adr/sendCohVCode?mobile=18782920468";
 }
