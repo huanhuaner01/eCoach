@@ -21,7 +21,6 @@
         android:background="@drawable/bkg_login_form"
         android:hint="@string/str_register_hint_setpassword"
         android:inputType="textPassword"
-        android:maxLength="@integer/verifycode_valid_length"
         android:padding="@dimen/padding_middle" />
 
     <EditText
@@ -33,7 +32,6 @@
         android:background="@drawable/bkg_login_form"
         android:hint="@string/str_register_hint_confirmpwd"
         android:inputType="textPassword"
-        android:maxLength="@integer/verifycode_valid_length"
         android:padding="@dimen/padding_middle" />
 
     <RelativeLayout
