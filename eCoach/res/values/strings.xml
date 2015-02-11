@@ -67,5 +67,9 @@
     <string name="str_register_fragp_hint_school">所属驾校</string>
     <string name="str_register_fragp_hint_carno">车牌号</string>
     <string name="str_register_fragp_hint_cardno">教练证件号</string>
+    <string name="str_register_fragu_btn_takephoto">拍摄证件</string>
+    <string name="str_register_fragu_btn_rephoto">重新拍摄</string>
+    <string name="str_register_fragu_btn_submit">提交审核</string>
+    <string name="str_register_fragu_requirements">请把您的四种证件平铺拍摄</string>
 
 </resources>

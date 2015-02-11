@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_register_fragment_root" >
+
+    <TextView
+        android:id="@+id/register_fragu_tv_requirements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/str_register_fragu_requirements"
+        android:textSize="@dimen/txtsize_large"
+        android:textColor="@color/color_pure_gray" />
+
+    <ImageView
+        android:id="@+id/register_fragu_img_photo"
+        android:layout_width="@dimen/register_fragu_certify_photo_width"
+        android:layout_height="@dimen/register_fragu_certify_photo_height"
+        android:layout_below="@id/register_fragu_tv_requirements"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_centerHorizontal="true"
+        android:background="@color/color_lighter_gray"
+        android:contentDescription="@null" />
+
+    <Button
+        android:id="@+id/register_fragu_btn_takephoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragu_img_photo"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:background="@drawable/bkg_register_btn_next"
+        android:paddingBottom="@dimen/padding_middle"
+        android:paddingTop="@dimen/padding_middle"
+        android:text="@string/str_register_fragu_btn_takephoto"
+        android:textColor="@drawable/sel_register_btn_next_txtcolor" />
+
+    <Button
+        android:id="@+id/register_fragu_btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragu_btn_takephoto"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@drawable/bkg_register_btn_next"
+        android:paddingBottom="@dimen/padding_middle"
+        android:paddingTop="@dimen/padding_middle"
+        android:text="@string/str_register_fragu_btn_submit"
+        android:textColor="@drawable/sel_register_btn_next_txtcolor" />
+
+</RelativeLayout>
