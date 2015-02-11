@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.style.AbsoluteSizeSpan;
+import android.text.style.RelativeSizeSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -22,6 +23,8 @@ import android.content.Context;
 import android.content.Intent;
 
 public class MainActivity extends Activity implements OnClickListener{
+	
+	private static final String LOG_TAG = "MainActivity";
 
 	private SlidingPaneLayout slidePaneLayout;
 	private TextView tvDate;
@@ -72,15 +75,19 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 		});
 	}
-	
-	private void displayDate(){
+
+	private void displayDate() {
 		Calendar calendar = Calendar.getInstance(Locale.CHINA);
 		int dom = calendar.get(Calendar.DAY_OF_MONTH);
-		String tail = new SimpleDateFormat("d日 M月 yyyy", Locale.CHINA).format(calendar.getTime());
-		SpannableStringBuilder builder = new SpannableStringBuilder(tail);
-		builder.setSpan(new AbsoluteSizeSpan(36, true), 0, 1,
-				(dom >= 10) ? Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-						: Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		SpannableStringBuilder builder = new SpannableStringBuilder();
+		String day = String.valueOf(dom);
+		Log.d(LOG_TAG, "dom:"+dom);
+		builder.append(day)
+				.setSpan(new RelativeSizeSpan(2), 0, day.length(),
+						Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		String tail = new SimpleDateFormat("日 M月 yyyy", Locale.CHINA)
+				.format(calendar.getTime());
+		builder.append(tail);
 		tvDate.setText(builder);
 	}
 
