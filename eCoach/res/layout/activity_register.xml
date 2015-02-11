@@ -18,15 +18,20 @@
             android:text="@string/title_activity_register" />
     </RelativeLayout>
 
+    <View
+        android:id="@+id/register_divider_above_steps"
+        style="@style/style_common_view_pxdivider"
+        android:layout_below="@id/register_rl_titlebar"
+        android:layout_marginTop="@dimen/margin_large" />
+
     <LinearLayout
         android:id="@+id/register_ll_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/register_rl_titlebar"
-        android:layout_marginLeft="@dimen/margin_large"
-        android:layout_marginRight="@dimen/margin_large"
-        android:layout_marginTop="@dimen/margin_large"
-        android:orientation="horizontal" >
+        android:layout_below="@id/register_divider_above_steps"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_middle"
+        android:paddingRight="@dimen/padding_middle" >
 
         <TextView
             android:id="@+id/register_tv_step_verify"
@@ -53,13 +58,23 @@
             android:text="@string/str_register_step_uploadfile" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/register_divider_below_steps"
+        style="@style/style_common_view_pxdivider"
+        android:layout_below="@id/register_ll_steps" />
+
     <FrameLayout
         android:id="@+id/register_frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/register_ll_steps"
+        android:layout_below="@id/register_divider_below_steps"
         android:layout_marginTop="@dimen/margin_large" >
-        <fragment class="com.huishen.ecoach.ui.login.VerifyFragment" android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/as123"/>
+
+        <fragment
+            android:id="@+id/as123"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.huishen.ecoach.ui.login.VerifyFragment" />
     </FrameLayout>
 
 </RelativeLayout>

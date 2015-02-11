@@ -46,6 +46,15 @@
         <item name="android:textSize">@dimen/txtsize_micro</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="style_common_view_dpdivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/color_pure_gray</item>
+	</style>
+	<style name="style_common_view_pxdivider" parent="style_common_view_dpdivider">
+        <item name="android:layout_height">1px</item>
+    </style>
+    
     <style name="style_splash_viewpager_dot">
         <item name="android:layout_width">@dimen/common_reddot_width</item>
         <item name="android:layout_height">@dimen/common_reddot_height</item>
@@ -157,11 +166,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@drawable/sel_register_steptv_txtcolor</item>
-        <item name="android:textSize">@dimen/txtsize_xlarge</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
         <item name="android:paddingTop">@dimen/padding_middle</item>
         <item name="android:paddingBottom">@dimen/padding_middle</item>
-        <item name="android:paddingLeft">@dimen/padding_micro</item>
-        <item name="android:paddingRight">@dimen/padding_micro</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:paddingRight">@dimen/padding_small</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bkg_register_steptv</item>
     </style>
