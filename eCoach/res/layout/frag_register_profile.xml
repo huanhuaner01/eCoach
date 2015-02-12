@@ -56,10 +56,12 @@
         android:layout_marginTop="@dimen/margin_xlarge"
         android:background="@drawable/bkg_login_form"
         android:hint="@string/str_register_fragp_hint_cardno"
+        android:maxLength="@integer/coach_certify_valid_length"
         android:padding="@dimen/padding_middle" />
 
     <Button android:id="@+id/register_fragp_btn_next"
         style="@style/style_register_fragbtn_next"
-        android:layout_below="@id/register_fragp_edit_cardno"/>
+        android:layout_below="@id/register_fragp_edit_cardno"
+        android:enabled="true"/>
     
 </RelativeLayout>

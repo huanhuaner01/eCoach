@@ -6,6 +6,8 @@
     <integer name="verifycode_valid_time_seconds">60</integer>
     <!-- 手机验证码的约定位数 -->
     <integer name="verifycode_valid_length">4</integer>
+    <!-- 教练证件号的有效长度 -->
+    <integer name="coach_certify_valid_length">18</integer>
     <array name="splash_image_ids">
         <item >@drawable/pic_splash_1</item>
         <item >@drawable/pic_splash_2</item>

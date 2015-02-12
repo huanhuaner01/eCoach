@@ -17,7 +17,7 @@ public final class UploadCertifyFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.frag_register_upload, container);
+		View view = inflater.inflate(R.layout.frag_register_upload, null);
 		return view;
 	}
 }

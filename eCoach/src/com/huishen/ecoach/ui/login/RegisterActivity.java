@@ -20,7 +20,7 @@ import android.widget.TextView;
  * @create 2015-2-10
  */
 public class RegisterActivity extends RightSideParentActivity implements
-		VerifyFragment.NextStepListener {
+		VerifyFragment.NextStepListener, ProfileFragment.NextStepListener {
 	private static final String LOG_TAG = "RegisterActivity";
 
 	private FragmentManager fragMgr = getFragmentManager();
@@ -70,5 +70,14 @@ public class RegisterActivity extends RightSideParentActivity implements
 		Prefs.setBoolean(this, KEY_STEP_VERIFY_COMPLETED, true);
 		fragMgr.beginTransaction().replace(CONTAINER, new ProfileFragment())
 				.commit();
+	}
+
+	@Override
+	public void onFillProfileStepCompleted() {
+		tvStepProfile.setEnabled(false);
+		tvStepUpload.setEnabled(true);
+		Prefs.setBoolean(this, KEY_STEP_PROFILE_COMPLETED, true);
+		fragMgr.beginTransaction().replace(
+				CONTAINER,new UploadCertifyFragment()).commit();
 	}
 }
