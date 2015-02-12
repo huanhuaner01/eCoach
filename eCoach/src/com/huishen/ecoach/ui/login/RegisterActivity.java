@@ -3,6 +3,7 @@ package com.huishen.ecoach.ui.login;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
+import com.huishen.ecoach.util.MsgEncryption;
 import com.huishen.ecoach.util.Prefs;
 
 import android.app.Fragment;
@@ -67,9 +68,11 @@ public class RegisterActivity extends RightSideParentActivity implements
 	public void onVerifyPhoneStepCompleted(String phoneNumber, String pwd) {
 		tvStepVerify.setEnabled(false);
 		tvStepProfile.setEnabled(true);
-		//TODO add md5 here
+		String md5 = MsgEncryption.md5Encryption(pwd);
+		Log.d(LOG_TAG, md5);
 		Prefs.setString(this, Const.KEY_VERIFIED_PHONE, phoneNumber);
 		Prefs.setString(this, Const.KEY_PASSWORD, pwd);
+		Prefs.setString(this, Const.KEY_PASSWORD_MD5, md5);
 		Prefs.setBoolean(this, KEY_STEP_VERIFY_COMPLETED, true);
 		fragMgr.beginTransaction().replace(CONTAINER, new ProfileFragment())
 				.commit();
