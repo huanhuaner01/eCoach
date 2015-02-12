@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.ui.login.RegisterActivity;
 import com.huishen.ecoach.util.Prefs;
 
 import android.app.Activity;
@@ -86,7 +87,7 @@ public class SplashActivity extends Activity {
 	 * 启动下个Activity并关闭当前Activity。
 	 */
 	private final void startNextActivity(){
-		startActivity(MainActivity.getIntent(SplashActivity.this));
+		startActivity(RegisterActivity.getIntent(SplashActivity.this));
 		finish();
 	}
 	

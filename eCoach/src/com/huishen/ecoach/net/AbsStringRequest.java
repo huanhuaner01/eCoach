@@ -52,6 +52,8 @@ public class AbsStringRequest extends StringRequest {
 			Response.Listener<String> listener) {
 		super(method, ServerAddressProvider.getServerAddress() + relativePath,
 				listener, defaultErrorListener);
+		String url = ServerAddressProvider.getServerAddress() + relativePath;
+		Log.d(LOG_TAG, url);
 	}
 
 	private static final ErrorListener defaultErrorListener = new ErrorListener() {

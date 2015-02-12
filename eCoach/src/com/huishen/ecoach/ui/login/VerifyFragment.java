@@ -62,7 +62,7 @@ public final class VerifyFragment extends Fragment {
 		btnNextStep = (Button)view.findViewById(R.id.register_fragv_btn_next);
 		//验证码按钮逻辑
 		vbListener = new VerifyButtonClickListener(getActivity(), editPhone, btnVcode);
-		editVcode.setOnClickListener(vbListener);
+		btnVcode.setOnClickListener(vbListener);
 		//手机号逻辑：长度大于0时可以发送验证码
 		editPhone.addTextChangedListener(new TextWatcher() {
 			

@@ -1,5 +1,8 @@
 package com.huishen.ecoach.net;
 
+import java.util.Map;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response.Listener;
 import com.huishen.ecoach.MainApp;
 
@@ -26,5 +29,23 @@ public final class NetUtil {
 			throw new NullPointerException("params cannot be null!");
 		}
 		MainApp.getInstance().addNetworkRequest(new AbsStringRequest(relativePath, listener));
+	}
+	/**
+	 * 提交带有参数的String数据请求。
+	 * @param relativePath 资源的相对位置
+	 * @param listener 回调监听器
+	 */
+	public static final void requestStringData(String relativePath,
+			final Map<String, String> params,
+			Listener<String> listener) {
+		if (relativePath==null || params==null || listener==null){
+			throw new NullPointerException("params cannot be null!");
+		}
+		MainApp.getInstance().addNetworkRequest(new AbsStringRequest(relativePath, listener){
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				return params;
+			}
+		});
 	}
 }
