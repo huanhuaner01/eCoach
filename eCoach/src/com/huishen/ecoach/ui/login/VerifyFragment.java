@@ -37,7 +37,7 @@ public final class VerifyFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.frag_register_verify, container);
+		View view = inflater.inflate(R.layout.frag_register_verify, null);
 		initWidgets(view);
 		return view;
 	}
