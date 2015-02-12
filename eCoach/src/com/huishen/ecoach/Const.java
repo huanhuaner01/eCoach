@@ -10,21 +10,44 @@ public final class Const {
 	 */
 	public static final String PREFS_APP = "eCoach";
 	/**
-	 * 检查是否首次使用应用,value为boolean类型。
+	 * 检查是否首次使用应用,其值为boolean类型。
 	 */
 	public static final String KEY_FIRSTUSE = "first";
 	/**
 	 * 设置启动界面最低显示时间，单位为ms。
 	 */
 	public static final int SPLASH_MIN_LENGTH = 1000;
-	
+
 	/**
-	 * 保存已验证过的手机号，value为String类型。
+	 * 保存已验证过的手机号，其值为String类型。
 	 */
 	public static final String KEY_VERIFIED_PHONE = "verifiedPhone";
-	
 	/**
-	 * 检查是否已经注册完毕（即所有注册步骤完成）,value为boolean类型。
+	 * 保存已设置的密码，其值为String类型。
+	 */
+	public static final String KEY_PASSWORD = "pwd";
+	/**
+	 * 保存已设置的密码的MD5值，其值为String类型。
+	 */
+	public static final String KEY_PASSWORD_MD5 = "pwdmd5";
+	/**
+	 * 保存已设置的姓名，其值为String类型。
+	 */
+	public static final String KEY_COACH_NAME = "name";
+	/**
+	 * 保存已设置的驾校，其值为String类型。
+	 */
+	public static final String KEY_COACH_SCHOOL = "school";
+	/**
+	 * 保存已设置的车牌号，其值为String类型。
+	 */
+	public static final String KEY_COACH_CARNO = "carno";
+	/**
+	 * 保存已设置的教练证号，其值为String类型。
+	 */
+	public static final String KEY_COACH_CERTNO = "certno";
+	/**
+	 * 检查是否已经注册完毕（即所有注册步骤完成）,其值为boolean类型。
 	 */
 	public static final String KEY_REGISTER_COMPLETED = "regcomp";
 }

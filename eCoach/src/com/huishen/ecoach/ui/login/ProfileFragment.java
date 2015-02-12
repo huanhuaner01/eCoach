@@ -76,12 +76,13 @@ public final class ProfileFragment extends Fragment implements OnClickListener{
 	}
 	//下一步按钮逻辑：要检查所有的控件。
 	private void nextStep(){
+		final String name = editName.getText().toString();
+		final String school = editSchool.getText().toString();
+		final String carno = editCarno.getText().toString();
 		final String cardno = editCardno.getText().toString();
 		//暂时不检查照片
-		if ( (editName.getText().length() <= 0) 
-				|| (editSchool.getText().length() <= 0)
-				|| (editCarno.getText().length() <= 0)
-				|| (cardno.length() <= 0)){
+		if ((name.length() <= 0) || (school.length() <= 0)
+				|| (carno.length() <= 0) || (cardno.length() <= 0)) {
 			Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
 			return ;
 		}
@@ -93,7 +94,7 @@ public final class ProfileFragment extends Fragment implements OnClickListener{
 		//TODO 添加网络操作请求并在成功后才调用以下代码。
 		if (nsListener != null){
 			Log.d(LOG_TAG, "Step verify-phone completed.");
-			nsListener.onFillProfileStepCompleted();
+			nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
 		}
 	}
 	
@@ -120,8 +121,13 @@ public final class ProfileFragment extends Fragment implements OnClickListener{
 	protected static interface NextStepListener {
 		/**
 		 * 当填写资料步骤完成时调用。
+		 * @param name 姓名
+		 * @param school 驾校
+		 * @param carno 车号
+		 * @param certno 证件号
 		 */
-		void onFillProfileStepCompleted();
+		void onFillProfileStepCompleted(String name, String school,
+				String carno, String certno);
 	}
 
 }

@@ -64,19 +64,26 @@ public class RegisterActivity extends RightSideParentActivity implements
 	}
 
 	@Override
-	public void onVerifyPhoneStepCompleted(String phoneNumber) {
+	public void onVerifyPhoneStepCompleted(String phoneNumber, String pwd) {
 		tvStepVerify.setEnabled(false);
 		tvStepProfile.setEnabled(true);
+		//TODO add md5 here
 		Prefs.setString(this, Const.KEY_VERIFIED_PHONE, phoneNumber);
+		Prefs.setString(this, Const.KEY_PASSWORD, pwd);
 		Prefs.setBoolean(this, KEY_STEP_VERIFY_COMPLETED, true);
 		fragMgr.beginTransaction().replace(CONTAINER, new ProfileFragment())
 				.commit();
 	}
 
 	@Override
-	public void onFillProfileStepCompleted() {
+	public void onFillProfileStepCompleted(String name, String school,
+			String carno, String certno) {
 		tvStepProfile.setEnabled(false);
 		tvStepUpload.setEnabled(true);
+		Prefs.setString(this, Const.KEY_COACH_NAME, name);
+		Prefs.setString(this, Const.KEY_COACH_SCHOOL, school);
+		Prefs.setString(this, Const.KEY_COACH_CARNO, carno);
+		Prefs.setString(this, Const.KEY_COACH_CERTNO, certno);
 		Prefs.setBoolean(this, KEY_STEP_PROFILE_COMPLETED, true);
 		fragMgr.beginTransaction()
 				.replace(CONTAINER, new UploadCertifyFragment()).commit();

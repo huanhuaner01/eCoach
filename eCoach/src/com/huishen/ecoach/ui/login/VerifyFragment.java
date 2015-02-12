@@ -143,11 +143,11 @@ public final class VerifyFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				final String phoneNumber = editPhone.getText().toString();
+				final String pwd = editPassword.getText().toString();
 				//TODO 细化错误提示
-				if ( (phoneNumber.length() <= 0) 
-						|| (editPassword.getText().length() <= 0)
+				if ((phoneNumber.length() <= 0) || (pwd.length() <= 0)
 						|| (editConfirmpwd.getText().length() <= 0)
-						|| (editVcode.getText().length() <= 0)){
+						|| (editVcode.getText().length() <= 0)) {
 					Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
 					return ;
 				}
@@ -164,7 +164,7 @@ public final class VerifyFragment extends Fragment {
 				//TODO 添加网络操作请求并在成功后才调用以下代码。
 				if (nsListener != null){
 					Log.d(LOG_TAG, "Step verify-phone completed.");
-					nsListener.onVerifyPhoneStepCompleted(phoneNumber);
+					nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
 				}
 			}
 		});
@@ -182,7 +182,9 @@ public final class VerifyFragment extends Fragment {
 	protected static interface NextStepListener{
 		/**
 		 * 当验证手机步骤完成时调用，参数值保证不为null。
+		 * @param verifiedPhone 已经过验证的手机号
+		 * @param pwd 密码值
 		 */
-		void onVerifyPhoneStepCompleted(String verifiedPhone);
+		void onVerifyPhoneStepCompleted(String verifiedPhone, String pwd);
 	}
 }
