@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash界面图片的引用 -->
+    <array name="splash_image_ids">
+        <item >@drawable/pic_splash_1</item>
+        <item >@drawable/pic_splash_2</item>
+        <item >@drawable/pic_splash_3</item>
+        <item >@drawable/pic_splash_4</item>
+    </array>
+</resources>

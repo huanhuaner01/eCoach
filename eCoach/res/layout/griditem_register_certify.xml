@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:background="@drawable/bkg_register_upload_frame" >
+
+    <TextView
+        android:id="@+id/griditem_tv_certify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="@dimen/padding_small"
+        android:drawableTop="@drawable/pic_register_upload_add_photo"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/padding_large"
+        android:gravity="center"
+        android:textColor="#646464"
+        android:textSize="@dimen/txtsize_large" />
+
+    <ImageView
+        android:id="@+id/griditem_img_certify"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:contentDescription="@null" />
+
+</FrameLayout>

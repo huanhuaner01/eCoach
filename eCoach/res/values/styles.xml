@@ -6,6 +6,7 @@
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:background">@color/color_titlebar_bkg</item>
     </style>
+
     <style name="style_common_titletv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -13,6 +14,7 @@
         <item name="android:textColor">@color/color_titlebar_txt</item>
         <item name="android:textSize">@dimen/txtsize_xlarge</item>
     </style>
+
     <style name="style_common_title_leftbtn">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -22,12 +24,13 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_marginLeft">@dimen/common_titlebar_horizontal_margin</item>
     </style>
+
     <style name="style_common_title_backbtn" parent="@style/style_common_title_leftbtn">
         <item name="android:src">@drawable/icon_navi_back</item>
         <item name="android:onClick">onBackButtonClicked</item>
     </style>
-    
-     <style name="style_common_title_rightbtn">
+
+    <style name="style_common_title_rightbtn">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">2dp</item>
@@ -35,26 +38,29 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginRight">@dimen/common_titlebar_horizontal_margin</item>
     </style>
-    
+
     <style name="style_common_red_dot">
         <item name="android:layout_width">@dimen/common_reddot_width</item>
         <item name="android:layout_height">@dimen/common_reddot_height</item>
         <item name="android:background">@drawable/bkg_common_reddot</item>
     </style>
+
     <style name="style_texture_red_dot" parent="style_common_red_dot">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/txtsize_micro</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="style_common_view_dpdivider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/color_pure_gray</item>
-	</style>
-	<style name="style_common_view_pxdivider" parent="style_common_view_dpdivider">
+    </style>
+
+    <style name="style_common_view_pxdivider" parent="style_common_view_dpdivider">
         <item name="android:layout_height">1px</item>
     </style>
-    
+
     <style name="style_splash_viewpager_dot">
         <item name="android:layout_width">@dimen/common_reddot_width</item>
         <item name="android:layout_height">@dimen/common_reddot_height</item>
@@ -62,17 +68,17 @@
         <item name="android:layout_marginLeft">@dimen/padding_micro</item>
         <item name="android:layout_marginRight">@dimen/padding_micro</item>
     </style>
-    
-    
+
     <style name="style_pcenter_scoreprg">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/list_pcenter_scoreup</item>
         <item name="android:layout_width">250dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">22dp</item>  
+        <item name="android:minHeight">22dp</item>
         <item name="android:maxHeight">22dp</item>
         <item name="android:max">100</item>
     </style>
+
     <style name="style_pcenter_menu_itemtv">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -91,6 +97,7 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="style_pcenter_stat_linear">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -98,6 +105,7 @@
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingLeft">10dp</item>
     </style>
+
     <style name="style_pcenter_stattv">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -108,14 +116,15 @@
         <item name="android:textSize">@dimen/txtsize_default</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
-    
+
     <style name="style_coach_ratingbar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/list_coach_ratingbar</item>  
-        <item name="android:minHeight">30dp</item>  
-        <item name="android:maxHeight">30dp</item>  
+        <item name="android:progressDrawable">@drawable/list_coach_ratingbar</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
     </style>
-    
+
     <style name="style_main_ordernum_progress">
+
         <!-- this attribute make the progress bar to be horizontal. -->
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/list_main_order</item>
@@ -124,11 +133,11 @@
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
-        <item name="android:minHeight">20dp</item>  
+        <item name="android:minHeight">20dp</item>
         <item name="android:maxHeight">20dp</item>
         <item name="android:max">100</item>
     </style>
-    
+
     <style name="style_main_ordernum_tv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -138,6 +147,7 @@
         <item name="android:paddingLeft">@dimen/main_ordernumtv_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/main_ordernumtv_padding_horizontal</item>
     </style>
+
     <style name="style_main_bottom_menutv">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
@@ -149,7 +159,7 @@
         <item name="android:padding">5dp</item>
         <item name="android:drawablePadding">5dp</item>
     </style>
-    
+
     <style name="style_login_form">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -160,7 +170,7 @@
         <item name="android:layout_marginTop">9dp</item>
         <item name="android:layout_marginBottom">9dp</item>
     </style>
-    
+
     <style name="style_register_steptv">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -174,7 +184,7 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/bkg_register_steptv</item>
     </style>
-    
+
     <style name="style_register_fragment_root">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -183,7 +193,7 @@
         <item name="android:paddingRight">@dimen/padding_large</item>
         <item name="android:paddingTop">@dimen/padding_large</item>
     </style>
-    
+
     <style name="style_register_fragbtn_next">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -195,16 +205,15 @@
         <item name="android:textSize">@dimen/txtsize_large</item>
         <item name="android:enabled">false</item>
     </style>
-    
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 

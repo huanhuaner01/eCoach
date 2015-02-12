@@ -22,4 +22,9 @@ public final class Const {
 	 * 保存已验证过的手机号，value为String类型。
 	 */
 	public static final String KEY_VERIFIED_PHONE = "verifiedPhone";
+	
+	/**
+	 * 检查是否已经注册完毕（即所有注册步骤完成）,value为boolean类型。
+	 */
+	public static final String KEY_REGISTER_COMPLETED = "regcomp";
 }

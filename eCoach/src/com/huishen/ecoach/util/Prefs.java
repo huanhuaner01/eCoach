@@ -52,4 +52,12 @@ public final class Prefs {
 		return context.getSharedPreferences(Const.PREFS_APP,
 				Context.MODE_PRIVATE).getString(key, null);
 	}
+
+	/**
+	 * 删除指定的key-value对。
+	 */
+	public static final void removeKey(Context context, String key) {
+		context.getSharedPreferences(Const.PREFS_APP, Context.MODE_PRIVATE)
+				.edit().remove(key).commit();
+	}
 }

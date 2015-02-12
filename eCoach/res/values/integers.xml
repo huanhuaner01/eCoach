@@ -8,10 +8,4 @@
     <integer name="verifycode_valid_length">4</integer>
     <!-- 教练证件号的有效长度 -->
     <integer name="coach_certify_valid_length">18</integer>
-    <array name="splash_image_ids">
-        <item >@drawable/pic_splash_1</item>
-        <item >@drawable/pic_splash_2</item>
-        <item >@drawable/pic_splash_3</item>
-        <item >@drawable/pic_splash_4</item>
-    </array>
 </resources>
