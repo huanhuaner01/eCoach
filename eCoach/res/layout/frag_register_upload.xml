@@ -11,30 +11,28 @@
         android:textColor="@color/color_pure_gray"
         android:textSize="@dimen/txtsize_large" />
 
+    <GridView
+        android:id="@+id/register_fragu_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_fragu_tv_requirements"
+        android:horizontalSpacing="@dimen/margin_large"
+        android:numColumns="2"
+        android:padding="@dimen/padding_middle"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/margin_large" />
+
     <Button
         android:id="@+id/register_fragu_btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_xxlarge"
+        android:layout_below="@id/register_fragu_grid"
+        android:layout_marginTop="@dimen/margin_large"
         android:background="@drawable/bkg_common_theme_btn"
         android:paddingBottom="@dimen/padding_middle"
         android:paddingTop="@dimen/padding_middle"
         android:text="@string/str_register_fragu_btn_submit"
         android:textColor="@drawable/sel_common_theme_btn_txtcolor"
         android:textSize="@dimen/txtsize_large" />
-
-    <GridView
-        android:id="@+id/register_fragu_grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/register_fragu_btn_submit"
-        android:layout_below="@id/register_fragu_tv_requirements"
-        android:horizontalSpacing="@dimen/margin_large"
-        android:verticalSpacing="@dimen/margin_large"
-        android:numColumns="2"
-        android:scrollbars="none"
-        android:padding="@dimen/padding_middle" />
-    
 
 </RelativeLayout>
