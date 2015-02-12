@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 /**
@@ -18,25 +19,44 @@ import android.util.Log;
  * @author Muyangmin
  * @create 2015-2-12
  */
-final class HttpUploader {
+final class HttpUploadTask extends AsyncTask<Void, Void, String>{
 	private static final String LOG_TAG = "HttpUploader";
 	private static final int TIME_OUT = 10 * 1000; // 超时时间
 	private static final String CHARSET = "utf-8"; // 设置编码
+	
+	private File file;
+	private String requestURL;
+	private UploadResponseListener listener;
+	private int errorHttpCode;
+	
+	//package access
+	HttpUploadTask(File file, String requestURL, UploadResponseListener listener) {
+		super();
+		this.file = file;
+		this.requestURL = requestURL;
+		this.listener = listener;
+	}
+	
+	@Override
+	protected void onPostExecute(String result) {
+		super.onPostExecute(result);
+		if (result==null){
+			listener.onError(errorHttpCode);
+		}
+		else{
+			listener.onSuccess(result);
+		}
+	}
 
-	/**
-	 * 上传文件到服务器。参数不应该为Null。
-	 * @param file 需要上传的文件
-	 * @return 返回响应的内容
-	 */
-	public static int uploadFile(File file, String RequestURL, UploadResponseListener listener) {
+	@Override
+	protected String doInBackground(Void... params) {
 		int res = 0;
-		String result = null;
 		String BOUNDARY = UUID.randomUUID().toString(); // 边界标识 随机生成
 		String PREFIX = "--", LINE_END = "\r\n";
 		String CONTENT_TYPE = "multipart/form-data"; // 内容类型
 
 		try {
-			URL url = new URL(RequestURL);
+			URL url = new URL(requestURL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setReadTimeout(TIME_OUT);
 			conn.setConnectTimeout(TIME_OUT);
@@ -73,8 +93,16 @@ final class HttpUploader {
 				InputStream is = new FileInputStream(file);
 				byte[] bytes = new byte[1024];
 				int len = 0;
+				int progress = 0;//记录百分比，用于通知监听器
+				int hasFinished=0;
 				while ((len = is.read(bytes)) != -1) {
 					dos.write(bytes, 0, len);
+					hasFinished += len;
+					int curprg = (int) (hasFinished*100/(double)file.length());
+					if (curprg != progress && curprg!=100){//避免出现进度100而未成功时导致监听器逻辑混乱
+						progress = curprg;
+						listener.onProgressChanged(progress);
+					}
 				}
 				is.close();
 				dos.write(LINE_END.getBytes());
@@ -93,10 +121,12 @@ final class HttpUploader {
 					while ((ss = input.read()) != -1) {
 						sb1.append((char) ss);
 					}
-					result = sb1.toString();
-					listener.onSuccess(result);
-				} else {
-					listener.onError(res);
+					return sb1.toString();
+				}
+				//else :error, return default null
+				else{
+					errorHttpCode = res;
+					return null;
 				}
 			}
 		} catch (MalformedURLException e) {
@@ -104,6 +134,6 @@ final class HttpUploader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return res;
+		return null;
 	}
 }

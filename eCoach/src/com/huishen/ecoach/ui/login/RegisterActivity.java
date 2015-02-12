@@ -63,6 +63,13 @@ public class RegisterActivity extends RightSideParentActivity implements
 		}
 		fragMgr.beginTransaction().add(CONTAINER, content).commit();
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.i(LOG_TAG, "activity received result " + resultCode + " for "
+				+ requestCode);
+	}
 
 	@Override
 	public void onVerifyPhoneStepCompleted(String phoneNumber, String pwd) {

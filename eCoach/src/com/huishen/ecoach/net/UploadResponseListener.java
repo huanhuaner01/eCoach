@@ -16,4 +16,9 @@ public interface UploadResponseListener {
 	 * @param httpCode HTTP状态码
 	 */
 	void onError(int httpCode);
+	/**
+	 * 监听上传百分比。
+	 * @param hasFinished 已完成的百分比
+	 */
+	void onProgressChanged(int hasFinished);
 }
