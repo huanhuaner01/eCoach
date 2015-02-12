@@ -17,4 +17,9 @@ public final class Const {
 	 * 设置启动界面最低显示时间，单位为ms。
 	 */
 	public static final int SPLASH_MIN_LENGTH = 1000;
+	
+	/**
+	 * 保存已验证过的手机号，value为String类型。
+	 */
+	public static final String KEY_VERIFIED_PHONE = "verifiedPhone";
 }

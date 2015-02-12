@@ -107,16 +107,14 @@ public final class VerifyFragment extends Fragment {
 								Toast.LENGTH_SHORT).show();
 						return ;
 					}
-					if (editConfirmpwd.length() > 0
-							&& (!editConfirmpwd.getText().equals(
-									editPassword.getText()))) {
+					if (editConfirmpwd.length() > 0 && (!checkPwdEqual())) {
 						Toast.makeText(getActivity(),
 								getResources().getString(
 												R.string.str_register_fragv_err_pwd_nequal),
 								Toast.LENGTH_SHORT).show();
-						// clear password 
+						// clear password
 						editConfirmpwd.setText("");
-						return ;
+						return;
 					}
 				}
 			}
@@ -144,8 +142,9 @@ public final class VerifyFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
+				final String phoneNumber = editPhone.getText().toString();
 				//TODO 细化错误提示
-				if ( (editPhone.getText().length() <= 0) 
+				if ( (phoneNumber.length() <= 0) 
 						|| (editPassword.getText().length() <= 0)
 						|| (editConfirmpwd.getText().length() <= 0)
 						|| (editVcode.getText().length() <= 0)){
@@ -153,7 +152,7 @@ public final class VerifyFragment extends Fragment {
 					return ;
 				}
 				//检查密码相等
-				if (!editConfirmpwd.getText().equals(editPassword.getText())){
+				if (!checkPwdEqual()){
 					Toast.makeText(getActivity(), "两次密码填写不一致", Toast.LENGTH_SHORT).show();
 				}
 				//因验证码长度在验证码框已做检查，这里省略
@@ -165,17 +164,25 @@ public final class VerifyFragment extends Fragment {
 				//TODO 添加网络操作请求并在成功后才调用以下代码。
 				if (nsListener != null){
 					Log.d(LOG_TAG, "Step verify-phone completed.");
-					nsListener.onVerifyPhoneStepCompleted();
+					nsListener.onVerifyPhoneStepCompleted(phoneNumber);
 				}
 			}
 		});
 		
 	}
 	
+	//检查两次密码是否相等
+	private final boolean checkPwdEqual(){
+		String confirm = editConfirmpwd.getText().toString();
+		String pwd = editPassword.getText().toString();
+		Log.d(LOG_TAG, "pwd="+pwd+", confirm="+confirm);
+		return confirm.equals(pwd);
+	}
+	
 	protected static interface NextStepListener{
 		/**
-		 * 当验证手机步骤完成时调用。
+		 * 当验证手机步骤完成时调用，参数值保证不为null。
 		 */
-		void onVerifyPhoneStepCompleted();
+		void onVerifyPhoneStepCompleted(String verifiedPhone);
 	}
 }
