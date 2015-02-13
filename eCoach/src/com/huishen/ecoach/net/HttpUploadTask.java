@@ -99,7 +99,7 @@ final class HttpUploadTask extends AsyncTask<Void, Void, String>{
 					dos.write(bytes, 0, len);
 					hasFinished += len;
 					int curprg = (int) (hasFinished*100/(double)file.length());
-					if (curprg != progress && curprg!=100){//避免出现进度100而未成功时导致监听器逻辑混乱
+					if (curprg != progress){
 						progress = curprg;
 						listener.onProgressChanged(progress);
 					}

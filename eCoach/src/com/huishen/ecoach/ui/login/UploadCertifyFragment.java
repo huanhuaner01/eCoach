@@ -1,6 +1,7 @@
 package com.huishen.ecoach.ui.login;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,10 +11,12 @@ import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.net.UploadResponseListener;
 import com.huishen.ecoach.util.BitmapUtil;
 import com.huishen.ecoach.util.FileUtil;
+import com.huishen.ecoach.util.Uris;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -187,10 +190,13 @@ public final class UploadCertifyFragment extends Fragment {
 									startActivityForResult(openCameraIntent,
 											REQUEST_CODE_TAKE_PHOTO + position);
 								} else { // 从相册选择
-
+									Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+				                    openAlbumIntent.setType("image/*");
+									startActivityForResult(openAlbumIntent,
+											REQUEST_CODE_FROM_ALBUM + position);
 								}
 							}
-						}).create().show();
+						}).create()	.show();
 
 	}
 	
@@ -233,22 +239,22 @@ public final class UploadCertifyFragment extends Fragment {
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.d(LOG_TAG, "requestCode="+requestCode+", resultCode="+resultCode);
 		if (resultCode == Activity.RESULT_OK) {
+			final int position;
+			int parentw, parenth;
+			Bitmap bitmap, newBitmap;
 			switch (requestCode) {
 			//统一处理
 			case REQUEST_CODE_TAKE_PHOTO:
-			case REQUEST_CODE_TAKE_PHOTO+1:
-			case REQUEST_CODE_TAKE_PHOTO+2:
-			case REQUEST_CODE_TAKE_PHOTO+3:
-				final int position = requestCode - REQUEST_CODE_TAKE_PHOTO;
+			case REQUEST_CODE_TAKE_PHOTO + 1:
+			case REQUEST_CODE_TAKE_PHOTO + 2:
+			case REQUEST_CODE_TAKE_PHOTO + 3:
+				position = requestCode - REQUEST_CODE_TAKE_PHOTO;
 				File origin = getImageFile(entities.get(position).certname);
 				// 将保存在本地的图片取出并缩小后显示在界面上
-				Bitmap bitmap = BitmapFactory.decodeFile(origin.getAbsolutePath());
-				int parentw = ((ViewGroup) holders.get(position).img.getParent()).getWidth();
-				int parenth = ((ViewGroup) holders.get(position).img.getParent()).getHeight();
-				Log.i(LOG_TAG,
-						"now ready to display the fucking picture!width="
-								+ parentw + ",height=" + parenth);
-				Bitmap newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
+				bitmap = BitmapFactory.decodeFile(origin.getAbsolutePath());
+				parentw = ((ViewGroup) holders.get(position).img.getParent()).getWidth();
+				parenth = ((ViewGroup) holders.get(position).img.getParent()).getHeight();
+				newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
 						parenth);
 				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
 				bitmap.recycle();
@@ -257,6 +263,40 @@ public final class UploadCertifyFragment extends Fragment {
 				holders.get(position).img.setImageBitmap(newBitmap);
 				//上传原图 or 压缩图？
 				uploadPhoto(origin, holders.get(position));
+				break;
+			case REQUEST_CODE_FROM_ALBUM:
+			case REQUEST_CODE_FROM_ALBUM + 1:
+			case REQUEST_CODE_FROM_ALBUM + 2:
+			case REQUEST_CODE_FROM_ALBUM + 3:
+				position = requestCode - REQUEST_CODE_FROM_ALBUM;
+				ContentResolver resolver = getActivity().getContentResolver();
+				// 照片的原始资源地址
+				Uri originalUri = data.getData();
+				try {
+					// 使用ContentProvider通过URI获取原始图片
+					bitmap = MediaStore.Images.Media.getBitmap(resolver,
+							originalUri);
+					if (bitmap != null) {
+						// 为防止原始图片过大导致内存溢出，这里先缩小原图显示，然后释放原始Bitmap占用的内存
+						parentw = ((ViewGroup) holders.get(position).img
+								.getParent()).getWidth();
+						parenth = ((ViewGroup) holders.get(position).img
+								.getParent()).getHeight();
+						newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
+								parenth);
+						// 释放原始图片占用的内存，防止out of memory异常发生
+						bitmap.recycle();
+						holders.get(position).img.setImageBitmap(newBitmap);
+					}
+					//上传图片
+					String path = Uris.getImageFileRealPath(getActivity(), originalUri);
+					Log.d(LOG_TAG, "resolved path:" + path);
+					uploadPhoto(new File(path), holders.get(position));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				break;
 			default:
 				break;
