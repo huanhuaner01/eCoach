@@ -182,19 +182,13 @@ public final class UploadCertifyFragment extends Fragment {
 			case REQUEST_CODE_TAKE_PHOTO:
 				File origin = getImageFile(currentCertName);
 				// 将保存在本地的图片取出并缩小后显示在界面上
-				Bitmap bitmap = BitmapFactory.decodeFile(FileUtil
-						.getTemporaryPhotoPath()
-						+ File.separator
-						+ currentCertName);
+				Bitmap bitmap = BitmapFactory.decodeFile(origin.getAbsolutePath());
 				int parentw = ((ViewGroup) currentImageView.getParent()).getWidth();
 				int parenth = ((ViewGroup) currentImageView.getParent()).getHeight();
 				Log.i(LOG_TAG,
 						"now ready to display the fucking picture!width="
-								+ parentw
-								+ ",height="
-								+ parenth);
-				Bitmap newBitmap = BitmapUtil.scaleBitmap(bitmap,
-						parentw,
+								+ parentw + ",height=" + parenth);
+				Bitmap newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
 						parenth);
 				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
 				bitmap.recycle();
