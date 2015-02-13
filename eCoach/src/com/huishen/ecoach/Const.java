@@ -47,6 +47,10 @@ public final class Const {
 	 */
 	public static final String KEY_COACH_CERTNO = "certno";
 	/**
+	 * 保存已上传的头像文件在服务器上的相对地址，其值为String类型。
+	 */
+	public static final String KEY_COACH_AVATAR = "avatar";
+	/**
 	 * 检查是否已经注册完毕（即所有注册步骤完成）,其值为boolean类型。
 	 */
 	public static final String KEY_REGISTER_COMPLETED = "regcomp";

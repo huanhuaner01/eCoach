@@ -28,7 +28,29 @@ public final class ResponseParser {
 			return code == SRL.RESULT_OK;
 		} catch (JSONException e) {
 			Log.e(LOG_TAG, "Huh, this response may be broken.");
+			handleJSONException(e);
 			return false;
 		}
+	}
+	
+	/**
+	 * 从返回值中取得指定Key的信息。
+	 * @param str 返回的信息
+	 * @param key 要取得的信息
+	 * @return 如果返回的状态码不为默认值或不存在对应的key，返回null
+	 */
+	public static final String getStringFromResult(String str, String key){
+		try {
+			JSONObject json = new JSONObject(str);
+			return json.optString(key, null);
+		} catch (JSONException e) {
+			handleJSONException(e);
+			return null;
+		}
+	}
+	
+	private static final void handleJSONException(JSONException e){
+		Log.e(LOG_TAG, e.getMessage());
+		e.printStackTrace();
 	}
 }

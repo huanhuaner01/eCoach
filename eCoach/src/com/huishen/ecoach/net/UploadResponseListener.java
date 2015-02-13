@@ -8,7 +8,7 @@ package com.huishen.ecoach.net;
  */
 public interface UploadResponseListener {
 	/**
-	 * 处理上传操作返回的结果。
+	 * 处理上传操作返回的结果。该方法被调用意味着服务器端返回了200 状态码。
 	 * 
 	 * @param str 结果
 	 */

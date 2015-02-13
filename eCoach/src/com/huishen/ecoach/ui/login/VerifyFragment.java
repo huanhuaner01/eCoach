@@ -204,7 +204,7 @@ public final class VerifyFragment extends Fragment {
 					if (ResponseParser.isReturnSuccessCode(arg0)){
 						Log.d(LOG_TAG, "Step verify-phone completed.");
 						Toast.makeText(getActivity(), getResources()
-								.getString(R.string.str_register_info_ok),Toast.LENGTH_SHORT)
+								.getString(R.string.str_register_info_register_ok),Toast.LENGTH_SHORT)
 						.show();
 						nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
 					}

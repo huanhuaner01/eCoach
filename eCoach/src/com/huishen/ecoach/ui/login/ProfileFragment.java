@@ -3,12 +3,15 @@ package com.huishen.ecoach.ui.login;
 import java.io.File;
 import java.io.IOException;
 
+import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.net.UploadResponseListener;
 import com.huishen.ecoach.util.BitmapUtil;
 import com.huishen.ecoach.util.FileUtil;
+import com.huishen.ecoach.util.Prefs;
 import com.huishen.ecoach.util.Uris;
 import com.huishen.ecoach.widget.RoundImageView;
 
@@ -101,7 +104,6 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 		final String school = editSchool.getText().toString();
 		final String carno = editCarno.getText().toString();
 		final String cardno = editCardno.getText().toString();
-		// 暂时不检查照片
 		if ((name.length() <= 0) || (school.length() <= 0)
 				|| (carno.length() <= 0) || (cardno.length() <= 0)) {
 			Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
@@ -114,10 +116,12 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 					.show();
 			return;
 		}
-		// TODO 添加网络操作请求并在成功后才调用以下代码。
-		if (nsListener != null) {
-			Log.d(LOG_TAG, "Step verify-phone completed.");
-			nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
+		//检查照片上传状态
+		if (Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR)!=null){
+			if (nsListener != null) {
+				Log.d(LOG_TAG, "Step verify-phone completed.");
+				nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
+			}
 		}
 	}
 
@@ -186,7 +190,11 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 
 					@Override
 					public void onSuccess(String str) {
-						Log.i(LOG_TAG, "cert upload completed." + str);
+						//上传不成功时取得的为null值。
+						String url = ResponseParser.getStringFromResult(str,
+								SRL.RESULT_KEY_URL);
+						Log.i(LOG_TAG, "avatar upload completed." + url);
+						Prefs.setString(getActivity(), Const.KEY_COACH_AVATAR, url);
 					}
 
 					@Override

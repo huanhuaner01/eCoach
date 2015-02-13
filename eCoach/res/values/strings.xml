@@ -72,7 +72,10 @@
     <string name="str_register_err_vcode_invalid">验证码无效</string>
     <string name="str_register_err_register_failed">注册失败，请重试</string>
     <string name="str_register_err_network">网络异常，请稍后重试</string>
-    <string name="str_register_info_ok">注册成功，请进一步完善您的信息</string>
+    <string name="str_register_err_cert_upload_not_finished">请耐心等待图片上传完毕再点击提交</string>
+    <string name="str_register_err_profile_update_failed">很抱歉，资料提交失败，请稍后重试</string>
+    <string name="str_register_info_register_ok">注册成功，请进一步完善您的信息</string>
+    <string name="str_register_info_profile_ok">资料提交成功，我们将在2个工作日内审核</string>
 
     <string-array name="str_register_fragu_certnames">
         <item>驾驶证</item>

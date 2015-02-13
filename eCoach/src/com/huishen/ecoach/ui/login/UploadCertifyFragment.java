@@ -4,13 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.android.volley.Response;
+import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.net.UploadResponseListener;
 import com.huishen.ecoach.util.BitmapUtil;
 import com.huishen.ecoach.util.FileUtil;
+import com.huishen.ecoach.util.Prefs;
 import com.huishen.ecoach.util.Uris;
 
 import android.app.Activity;
@@ -34,6 +39,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 用于注册时上传证件的Fragment。
@@ -83,14 +89,65 @@ public final class UploadCertifyFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				//TODO 添加网络操作请求并在成功后才调用以下代码。
-				if (nsListener != null){
-					Log.d(LOG_TAG, "Step verify-phone completed.");
-					nsListener.onUploadCertifyStepCompleted();
-				}	
+				//检查四张证件是否都已上传完毕
+				boolean uploadFinished = true;
+				for (int i=0; i<entities.size(); i++){
+					if (Prefs.getString(getActivity(), getImagePrefname(i))==null){
+						uploadFinished = false;
+						break;
+					}
+				}
+				if (!uploadFinished){
+					Toast.makeText(getActivity(),getResources().getString(
+											R.string.str_register_err_cert_upload_not_finished),
+							Toast.LENGTH_SHORT).show();
+					return ;
+				}
+				submitLastRequest();
 			}
 		});
 		return view;
+	}
+	
+	private final void submitLastRequest(){
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(SRL.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_VERIFIED_PHONE));
+		params.put(SRL.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_COACH_NAME));
+		params.put(SRL.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_COACH_SCHOOL));
+		params.put(SRL.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_COACH_CARNO));
+		params.put(SRL.PARAM_COACH_CERTNO, Prefs.getString(getActivity(), Const.KEY_COACH_CERTNO));
+		params.put(SRL.PARAM_PATH_AVATAR, Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR));
+		params.put(SRL.PARAM_PATH_CERT1, Prefs.getString(getActivity(), getImagePrefname(0)));
+		params.put(SRL.PARAM_PATH_CERT2, Prefs.getString(getActivity(), getImagePrefname(1)));
+		params.put(SRL.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));
+		params.put(SRL.PARAM_PATH_CERT4, Prefs.getString(getActivity(), getImagePrefname(3)));
+		//XXX 添加进度条以增强友好度和健壮性
+		NetUtil.requestStringData(SRL.METHOD_FINISH_REGISTER, params,
+				new Response.Listener<String>() {
+
+					@Override
+					public void onResponse(String arg0) {
+						if (ResponseParser.isReturnSuccessCode(arg0)) {
+							if (nsListener != null) {
+								Log.d(LOG_TAG, "Step verify-phone completed.");
+								Toast.makeText(
+										getActivity(),
+										getResources()
+												.getString(
+														R.string.str_register_info_profile_ok),
+										Toast.LENGTH_SHORT).show();
+								nsListener.onUploadCertifyStepCompleted();
+							}
+						} else {
+							Toast.makeText(
+									getActivity(),
+									getResources()
+											.getString(
+													R.string.str_register_err_cert_upload_not_finished),
+									Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
 	}
 	
 	//与Activity进行通信的接口
@@ -238,12 +295,20 @@ public final class UploadCertifyFragment extends Fragment {
 		return target;
 	}
 	
-	private final void uploadPhoto(File file, final ViewHolder holder){
+	private final String getImagePrefname(int position){
+		return "certimg" + position;
+	}
+	
+	private final void uploadPhoto(File file, final int position){
 		NetUtil.requestUploadFile(file, SRL.METHOD_UPLOAD_CERTIFICATES, new UploadResponseListener() {
 			
 			@Override
 			public void onSuccess(String str) {
-				Log.i(LOG_TAG, "cert upload completed."+str);
+				//上传不成功时取得的为null值。
+				String url = ResponseParser.getStringFromResult(str,
+						SRL.RESULT_KEY_URL);
+				Log.i(LOG_TAG, "avatar upload completed." + url);
+				Prefs.setString(getActivity(), getImagePrefname(position), url);
 			}
 			
 			@Override
@@ -289,7 +354,7 @@ public final class UploadCertifyFragment extends Fragment {
 				//记忆图片位置
 				entities.get(position).photoPath = origin.getAbsolutePath();
 				//上传图片
-				uploadPhoto(origin, holders.get(position));
+				uploadPhoto(origin, position);
 				break;
 			case REQUEST_CODE_FROM_ALBUM:
 			case REQUEST_CODE_FROM_ALBUM + 1:
@@ -321,7 +386,7 @@ public final class UploadCertifyFragment extends Fragment {
 					String path = Uris.getImageFileRealPath(getActivity(), originalUri);
 					entities.get(position).photoPath = path;
 					Log.d(LOG_TAG, "resolved path:" + path);
-					uploadPhoto(new File(path), holders.get(position));
+					uploadPhoto(new File(path), position);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

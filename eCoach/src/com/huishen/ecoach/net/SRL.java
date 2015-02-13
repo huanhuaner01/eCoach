@@ -20,6 +20,10 @@ public final class SRL {
 	 * 通用返回参数，代表请求结果。
 	 */
 	protected static final String RESULT_KEY_CODE = "code";
+	/**
+	 * 上传文件、图片等时服务器返回的代表相对位置的Key。
+	 */
+	public static final String RESULT_KEY_URL = "url";
 
 	/**
 	 * 用户登录方法。 需要提供的参数有：用户名(username/String)，密码(password/String)。
@@ -36,13 +40,10 @@ public final class SRL {
 	 * 验证注册码 参数:vcode:4456 返回值:{code:0|1} 0:匹配成功，1:匹配失败
 	 */
 	public static final String METHOD_VERIFY_VCODE = "/adr/cohVcode";
-	
+
 	/**
-	 * 提交注册的信息（第一步）
-	 * 参数:
-		mobile:18782920468;//手机号
-		password:e10adc3949ba59abbe56e057f20f883e;//密码,(先加密再传-md5)
-	 * 返回值:{code:0|1}
+	 * 提交注册的信息（第一步） 参数: mobile:18782920468;//手机号
+	 * password:e10adc3949ba59abbe56e057f20f883e;//密码,(先加密再传-md5) 返回值:{code:0|1}
 	 * 0:注册成功，1:注册异常
 	 */
 	public static final String METHOD_REGISTER_COACH = "/adr/registerCoh";
@@ -77,7 +78,7 @@ public final class SRL {
 	 * mobile:18782920468;//手机号<br/>
 	 * username:王贵;//用户名<br/>
 	 * school:九洲驾校;//所属驾校<br/>
-	 * busNumber:K1052a;//车牌号<br/>
+	 * busNumber: K1052a;//车牌号<br/>
 	 * certificateNo:510902199403150891;//证件号<br/>
 	 * headImg:'/attachment/coh-head/2015122593483.jpg';//头像相对路径<br/>
 	 * vouImg1:'/attachment/coh-voucher/2015122593483.jpg';//驾驶证<br/>
@@ -90,6 +91,31 @@ public final class SRL {
 	 * </p>
 	 */
 	public static final String METHOD_FINISH_REGISTER = "/adr/updateCoh";
+	/**
+	 * 教练姓名参数。
+	 */
+	public static final String PARAM_USERNAME = "username";
+	/**
+	 * 所属驾校参数。
+	 */
+	public static final String PARAM_SCHOOL = "school";
+	/**
+	 * 车牌号参数。
+	 */
+	public static final String PARAM_CARNO = "busNumber";
+	/**
+	 * 教练证号码参数。
+	 */
+	public static final String PARAM_COACH_CERTNO = "certificateNo";
+	/**
+	 * 教练头像参数。
+	 */
+	public static final String PARAM_PATH_AVATAR = "headImg";
+	/* 以下四行为其他证件参数。 */
+	public static final String PARAM_PATH_CERT1 = "vouImg1";
+	public static final String PARAM_PATH_CERT2 = "vouImg2";
+	public static final String PARAM_PATH_CERT3 = "vouImg3";
+	public static final String PARAM_PATH_CERT4 = "vouImg4";
 
 	// ---------------------------------教练注册模块END-------------------------------------------
 }
