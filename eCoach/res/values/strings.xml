@@ -9,9 +9,9 @@
     <string name="title_activity_login">登录</string>
     <string name="title_activity_verify_phone">验证手机</string>
     <string name="title_activity_register">注册</string>
-    <string name="title_activity_service_info">ServiceInfoActivity</string>
+    <string name="title_activity_service_info">服务协议</string>
+    <string name="title_activity_image_browse">查看大图</string>
     <string name="str_frag_snapup_title">抢  单</string>
-    
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
     <string name="str_pcenter_stat_dimen_praiserates">好评率</string>
@@ -26,7 +26,6 @@
     <string name="str_pcenter_setting">设　　置</string>
     <string name="str_pcenter_pushmsg">消息提醒</string>
     <string name="str_pcenter_coach_score_level">%1$d积分，升级还需要%2$d积分</string>
-    
     <string name="str_main_todayorder">今日订单总数</string>
     <string name="str_main_default_todayorder">0</string>
     <string name="str_main_myorder">我的订单</string>
@@ -40,7 +39,6 @@
     <string name="str_login_hint_username">用户名</string>
     <string name="str_login_hint_password">密码</string>
     <string name="str_login_login">登录</string>
-    
     <string name="str_verify_phone_title">验证手机</string>
     <string name="str_verify_phone_purpose">为了方便学员联系您，请验证手机</string>
     <string name="str_verify_phone_btn_get_vcode">点击获取</string>
@@ -53,7 +51,6 @@
     <string name="str_verify_phone_protocal_name">《e驾学车用户协议》</string>
     <string name="str_verify_phone_err_not_valid_number">请输入合适的手机号!</string>
     <string name="str_verify_phone_err_request_retry">重发</string>
-    
     <string name="str_register_step_verifyphone">验证手机</string>
     <string name="str_register_step_fillprofile">填写资料</string>
     <string name="str_register_step_uploadfile">上传证件</string>
@@ -72,16 +69,26 @@
     <string name="str_register_fragu_requirements">请将驾驶证、行驶证、运营证、教练证平铺拍摄</string>
     <string name="str_register_fragv_err_pwd_firstempty">请先输入密码</string>
     <string name="str_register_fragv_err_pwd_nequal">两次密码不一致</string>
+
     <string-array name="str_register_fragu_certnames">
-        <item >驾驶证</item>
-        <item >行驶证</item>
-        <item >运营证</item>
-        <item >教练证</item>
+        <item>驾驶证</item>
+        <item>行驶证</item>
+        <item>运营证</item>
+        <item>教练证</item>
     </string-array>
+
     <string name="str_register_photo_select_source">选择照片来源</string>
+
     <string-array name="str_register_photo_source">
-        <item >拍照</item>
-        <item >从相册选择</item>
+        <item>拍照</item>
+        <item>从相册选择</item>
+    </string-array>
+
+    <string name="str_register_photo_alreay_added">已有照片</string>
+
+    <string-array name="str_register_photo_operations">
+        <item>查看大图</item>
+        <item>删除并重传</item>
     </string-array>
     <!-- 服务协议 -->
     <string name="str_service_info_se">服务条款</string>

@@ -104,9 +104,11 @@ public final class UploadCertifyFragment extends Fragment {
 	private final class CertEntity{
 		String certname;		//标记该位置的证件名称
 		boolean hasPhoto;		//标记该位置已经有照片
+		String photoPath;		//如已有照片，该字段用于记忆文件的路径
 		CertEntity(String certname, boolean hasPhoto) {
 			this.certname = certname;
 			this.hasPhoto = hasPhoto;
+			this.photoPath = null;
 		}
 	}
 	//GridView的ViewHolder。
@@ -162,16 +164,38 @@ public final class UploadCertifyFragment extends Fragment {
 					final CertEntity certEntity = list.get(position);
 					String certname = certEntity.certname;
 					if (certEntity.hasPhoto){	//已有照片，显示或重传
-						
+						Log.d(LOG_TAG, "photo exists, delete or browse?");
+						browseOrChooseAnother(certname, position);	
 					}
 					else{
-						Log.d(LOG_TAG, "Now ready to take " + certname);
+						Log.d(LOG_TAG, "ready to add photo:" + certname);
 						takePhoto(certname, position);						
 					}
 				}
 			});
 			return convertView;
 		}
+
+	}
+	
+	//处理已有照片时的操作
+	private final void browseOrChooseAnother(final String certname,final int position) {
+		new AlertDialog.Builder(getActivity())
+				.setTitle(R.string.str_register_photo_alreay_added)
+				.setItems(R.array.str_register_photo_operations,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (which == 0) { // 查看大图
+									getActivity().startActivity(ImageBrowseActivity.getIntent(
+											getActivity(),entities.get(position).photoPath));
+								} else { // 重传
+									holders.get(position).img.setImageBitmap(null);
+									entities.get(position).hasPhoto = false;
+									takePhoto(certname, position);
+								}
+							}
+						}).create()	.show();
 
 	}
 
@@ -259,9 +283,12 @@ public final class UploadCertifyFragment extends Fragment {
 				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
 				bitmap.recycle();
 				// 将处理过的图片显示在界面上
-				//FIXME 完成图片的圆角操作
 				holders.get(position).img.setImageBitmap(newBitmap);
-				//上传原图 or 压缩图？
+				//置标记位为true
+				entities.get(position).hasPhoto = true;
+				//记忆图片位置
+				entities.get(position).photoPath = origin.getAbsolutePath();
+				//上传图片
 				uploadPhoto(origin, holders.get(position));
 				break;
 			case REQUEST_CODE_FROM_ALBUM:
@@ -287,9 +314,12 @@ public final class UploadCertifyFragment extends Fragment {
 						// 释放原始图片占用的内存，防止out of memory异常发生
 						bitmap.recycle();
 						holders.get(position).img.setImageBitmap(newBitmap);
+						//置标记位为true
+						entities.get(position).hasPhoto = true;
 					}
 					//上传图片
 					String path = Uris.getImageFileRealPath(getActivity(), originalUri);
+					entities.get(position).photoPath = path;
 					Log.d(LOG_TAG, "resolved path:" + path);
 					uploadPhoto(new File(path), holders.get(position));
 				} catch (FileNotFoundException e) {
