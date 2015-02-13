@@ -1,8 +1,16 @@
 package com.huishen.ecoach.ui.login;
 
+import java.util.HashMap;
+
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.VolleyError;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.logical.PasswordValidator;
 import com.huishen.ecoach.logical.PasswordValidator.ValidateResult;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.SRL;
+import com.huishen.ecoach.util.MsgEncryption;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -144,7 +152,6 @@ public final class VerifyFragment extends Fragment {
 			public void onClick(View v) {
 				final String phoneNumber = editPhone.getText().toString();
 				final String pwd = editPassword.getText().toString();
-				//TODO 细化错误提示
 				if ((phoneNumber.length() <= 0) || (pwd.length() <= 0)
 						|| (editConfirmpwd.getText().length() <= 0)
 						|| (editVcode.getText().length() <= 0)) {
@@ -154,21 +161,54 @@ public final class VerifyFragment extends Fragment {
 				//检查密码相等
 				if (!checkPwdEqual()){
 					Toast.makeText(getActivity(), "两次密码填写不一致", Toast.LENGTH_SHORT).show();
+					return ;
 				}
 				//因验证码长度在验证码框已做检查，这里省略
 				//检查验证码有效期
 				if (!vbListener.isVcodeValid()){
 					Log.d(LOG_TAG, "vcode is NOT valid.");
-					Toast.makeText(getActivity(), "验证码已过有效期", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "验证码无效", Toast.LENGTH_SHORT).show();
+					return ;
 				}
-				//TODO 添加网络操作请求并在成功后才调用以下代码。
+				NetUtil.requestStringData(SRL.METHOD_VERIFY_VCODE, new Response.Listener<String>() {
+
+					@Override
+					public void onResponse(String arg0) {
+						Log.d(LOG_TAG, "verify code correct.now registering...");
+						registerCoach();
+					}
+					
+				});
+				
+			}
+		});
+		
+	}
+	
+	//注册操作
+	private final void registerCoach(){
+		final String phoneNumber = editPhone.getText().toString();
+		final String pwd = editPassword.getText().toString();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put(SRL.PARAM_MOBILE_NUMBER, phoneNumber);
+		map.put(SRL.PARAM_PASSWORD, MsgEncryption.md5Encryption(pwd));
+		Log.d(LOG_TAG, "params:"+map.toString());
+		NetUtil.requestStringData(SRL.METHOD_REGISTER_COACH, map, new Response.Listener<String>() {
+
+			@Override
+			public void onResponse(String arg0) {
 				if (nsListener != null){
 					Log.d(LOG_TAG, "Step verify-phone completed.");
 					nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
 				}
 			}
+		}, new ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError arg0) {
+				Toast.makeText(getActivity(), "注册失败，请重试", Toast.LENGTH_SHORT).show();
+			}
 		});
-		
 	}
 	
 	//检查两次密码是否相等

@@ -5,6 +5,7 @@ import org.apache.http.protocol.HTTP;
 import android.util.Log;
 
 import com.android.volley.Response;
+import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
@@ -21,7 +22,8 @@ import com.huishen.ecoach.BuildConfig;
  * @author Muyangmin
  * @create 2015-2-7
  */
-public class AbsStringRequest extends StringRequest {
+// package access
+class AbsStringRequest extends StringRequest {
 
 	private static final String LOG_TAG = AbsStringRequest.class
 			.getSimpleName();
@@ -29,13 +31,28 @@ public class AbsStringRequest extends StringRequest {
 	/**
 	 * 创建一个新的String网络访问请求，使用POST方式提交参数。
 	 * 
-	 * @param relativePath
-	 *            服务器资源的相对位置。
+	 * @param url
+	 *            服务器资源的绝对位置。
 	 * @param listener
 	 *            处理结果的回调监听器。
 	 */
-	public AbsStringRequest(String relativePath, Listener<String> listener) {
-		this(Method.POST, relativePath, listener);
+	public AbsStringRequest(String url, Listener<String> listener) {
+		this(Method.POST, url, listener);
+	}
+
+	/**
+	 * 创建一个新的String网络访问请求。
+	 * 
+	 * @param url
+	 *            服务器资源的绝对位置。
+	 * @param listener
+	 *            处理结果的回调监听器。
+	 * @param errListener
+	 *            处理异常事件的监听器。
+	 */
+	public AbsStringRequest(String url, Response.Listener<String> listener,
+			Response.ErrorListener errListener) {
+		super(Method.POST, url, listener, errListener);
 	}
 
 	/**
@@ -43,19 +60,38 @@ public class AbsStringRequest extends StringRequest {
 	 * 
 	 * @param method
 	 *            参数的提交方式，应当使用 {@link Method}中的常量。
-	 * @param relativePath
-	 *            服务器资源的相对位置。
+	 * @param url
+	 *            服务器资源的绝对位置。
 	 * @param listener
 	 *            处理结果的回调监听器。
 	 */
-	public AbsStringRequest(int method, String relativePath,
+	public AbsStringRequest(int method, String url,
 			Response.Listener<String> listener) {
-		super(method, ServerAddressProvider.getServerAddress() + relativePath,
-				listener, defaultErrorListener);
-		String url = ServerAddressProvider.getServerAddress() + relativePath;
-		Log.d(LOG_TAG, url);
+		super(method, url, listener, defaultErrorListener);
 	}
 
+	/**
+	 * 创建一个新的String网络访问请求。
+	 * 
+	 * @param method
+	 *            参数的提交方式，应当使用 {@link Method}中的常量。
+	 * @param url
+	 *            服务器资源的绝对位置。
+	 * @param listener
+	 *            处理结果的回调监听器。
+	 * @param errListener
+	 *            处理异常事件的监听器。
+	 */
+	public AbsStringRequest(int method, String url,
+			Response.Listener<String> listener,
+			Response.ErrorListener errListener) {
+		super(method, url, listener, errListener);
+	}
+
+	/**
+	 * 默认的异常监听器。由于客户端代码不传递ErrorListener时才会使用这个监听器，
+	 * 故认为用户并不关心本次请求中发生的异常，因此只打印堆栈信息，不做其他操作。
+	 */
 	private static final ErrorListener defaultErrorListener = new ErrorListener() {
 
 		@Override

@@ -94,7 +94,7 @@ class VerifyButtonClickListener implements OnClickListener {
 
 					@Override
 					public void onResponse(String arg0) {
-						Log.d(NetUtil.REQUEST_LOG_TAG, arg0);
+						Log.d(LOG_TAG, arg0);
 					}
 				});
 	}

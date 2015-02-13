@@ -47,6 +47,10 @@ public final class SRL {
 	 */
 	public static final String PARAM_MOBILE_NUMBER = "mobile";
 	/**
+	 * 密文密码。
+	 */
+	public static final String PARAM_PASSWORD = "pwd";
+	/**
 	 * 上传教练头像。 参数：无。 返回值:{code:0|1,url:'/attachment/coh-head/2015122593484.jpg'}
 	 * 0:上传成功，1:上传异常,url:状态为0时的头像路径
 	 */
