@@ -72,18 +72,17 @@
     <string name="str_register_fragu_requirements">请将驾驶证、行驶证、运营证、教练证平铺拍摄</string>
     <string name="str_register_fragv_err_pwd_firstempty">请先输入密码</string>
     <string name="str_register_fragv_err_pwd_nequal">两次密码不一致</string>
-
     <string-array name="str_register_fragu_certnames">
         <item >驾驶证</item>
         <item >行驶证</item>
         <item >运营证</item>
         <item >教练证</item>
-<!--         <string name="str_register_fragu_cert_driver">驾驶证</string>
-        <string name="str_register_fragu_cert_driving">行驶证</string>
-        <string name="str_register_fragu_cert_operation">运营证</string>
-        <string name="str_register_fragu_cert_coach">教练证</string> -->
     </string-array>
-
+    <string name="str_register_photo_select_source">选择照片来源</string>
+    <string-array name="str_register_photo_source">
+        <item >拍照</item>
+        <item >从相册选择</item>
+    </string-array>
     <!-- 服务协议 -->
     <string name="str_service_info_se">服务条款</string>
     <string name="str_service_info_pri">隐私政策</string>
