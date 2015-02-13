@@ -1,5 +1,10 @@
 package com.huishen.ecoach.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 
@@ -48,5 +53,39 @@ public final class BitmapUtil {
 		Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
 				bitmap.getHeight(), matrix, true);
 		return newbmp;
+	}
+	/**
+	 * 保存Bitmap到文件。
+	 * @param path 文件的绝对路径。
+	 * @param bitmap 要保存的Bitmap。
+	 */
+	public static void saveBitmapToFile(String path, Bitmap bitmap) {
+		File dir = new File(path).getParentFile();
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		File photoFile = new File(path); // 在指定路径下创建文件
+		FileOutputStream fileOutputStream = null;
+		try {
+			fileOutputStream = new FileOutputStream(photoFile);
+			if (bitmap != null) {
+				if (bitmap.compress(Bitmap.CompressFormat.PNG, 100,
+						fileOutputStream)) {
+					fileOutputStream.flush();
+				}
+			}
+		} catch (FileNotFoundException e) {
+			photoFile.delete();
+			e.printStackTrace();
+		} catch (IOException e) {
+			photoFile.delete();
+			e.printStackTrace();
+		} finally {
+			try {
+				fileOutputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

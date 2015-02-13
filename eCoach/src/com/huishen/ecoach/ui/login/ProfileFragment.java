@@ -1,7 +1,6 @@
 package com.huishen.ecoach.ui.login;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.huishen.ecoach.R;
@@ -16,11 +15,9 @@ import com.huishen.ecoach.widget.RoundImageView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -48,6 +45,7 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 	private Button btnNextStep;
 	private static final int REQUEST_CODE_TAKE_PHOTO = 0x2001;
 	private static final int REQUEST_CODE_FROM_ALBUM = 0x2101;
+	private static final int REQUEST_CODE_CROP_PHOTO = 0x2201;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -123,6 +121,22 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 		}
 	}
 
+	private final void cropPhoto(File imgFile) {
+		Uri mUri = Uri.fromFile(imgFile);
+		Intent intent = new Intent();
+		intent.setAction("com.android.camera.action.CROP");
+		intent.setDataAndType(mUri, "image/*");// mUri是已经选择的图片Uri
+		intent.putExtra("crop", "true");
+		intent.putExtra("aspectX", 1);// 裁剪框比例
+		intent.putExtra("aspectY", 1);
+		intent.putExtra("outputX",
+				getResources().getInteger(R.integer.avatar_width));// 输出图片大小
+		intent.putExtra("outputY",
+				getResources().getInteger(R.integer.avatar_height));
+		intent.putExtra("return-data", true);
+		startActivityForResult(intent, REQUEST_CODE_CROP_PHOTO);
+	}
+
 	private final void takePhotoOrFromAlbum() {
 		new AlertDialog.Builder(getActivity())
 				.setTitle(R.string.str_register_photo_select_source)
@@ -194,52 +208,29 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 		Log.d(LOG_TAG, "requestCode=" + requestCode + ", resultCode="
 				+ resultCode);
 		if (resultCode == Activity.RESULT_OK) {
-			int parentw, parenth;
-			Bitmap bitmap, newBitmap;
 			switch (requestCode) {
 			// 统一处理
 			case REQUEST_CODE_TAKE_PHOTO:
 				File origin = getAvatarFile();
-				// 将保存在本地的图片取出并缩小后显示在界面上
-				bitmap = BitmapFactory.decodeFile(origin.getAbsolutePath());
-				parentw = imgAvatar.getWidth();
-				parenth = imgAvatar.getHeight();
-				newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw, parenth);
-				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
-				bitmap.recycle();
-				// 将处理过的图片显示在界面上
-				imgAvatar.setImageBitmap(newBitmap);
-				// 上传图片
-				uploadPhoto(origin);
+				cropPhoto(origin);
 				break;
 			case REQUEST_CODE_FROM_ALBUM:
-				ContentResolver resolver = getActivity().getContentResolver();
 				// 照片的原始资源地址
 				Uri originalUri = data.getData();
-				try {
-					// 使用ContentProvider通过URI获取原始图片
-					bitmap = MediaStore.Images.Media.getBitmap(resolver,
-							originalUri);
-					if (bitmap != null) {
-						// 为防止原始图片过大导致内存溢出，这里先缩小原图显示，然后释放原始Bitmap占用的内存
-						parentw = imgAvatar.getWidth();
-						parenth = imgAvatar.getHeight();
-						newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
-								parenth);
-						// 释放原始图片占用的内存，防止out of memory异常发生
-						bitmap.recycle();
-						imgAvatar.setImageBitmap(newBitmap);
-					}
-					// 上传图片
-					String path = Uris.getImageFileRealPath(getActivity(),
-							originalUri);
-					Log.d(LOG_TAG, "resolved path:" + path);
-					uploadPhoto(new File(path));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				origin = new File(Uris.getImageFileRealPath(getActivity(),
+						originalUri));
+				cropPhoto(origin);
+				break;
+			case REQUEST_CODE_CROP_PHOTO:
+				// 拿到剪切数据
+				Bitmap cropedBitmap = data.getParcelableExtra("data");
+				// 显示剪切的图像
+				imgAvatar.setImageBitmap(cropedBitmap);
+				// 图像保存到文件中
+				BitmapUtil.saveBitmapToFile(getAvatarFile().getAbsolutePath(),
+						cropedBitmap);
+				File cropedFile = getAvatarFile();
+				uploadPhoto(cropedFile);
 				break;
 			default:
 				break;
