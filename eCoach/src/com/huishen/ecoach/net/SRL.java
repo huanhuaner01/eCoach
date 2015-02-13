@@ -16,6 +16,10 @@ public final class SRL {
 	 * 通用返回值，代表成功信息。
 	 */
 	public static final int RESULT_OK = 0;
+	/**
+	 * 通用返回参数，代表请求结果。
+	 */
+	protected static final String RESULT_KEY_CODE = "code";
 
 	/**
 	 * 用户登录方法。 需要提供的参数有：用户名(username/String)，密码(password/String)。

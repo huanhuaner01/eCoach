@@ -27,16 +27,17 @@ class VerifyButtonClickListener implements OnClickListener {
 	private static final String LOG_TAG = "VerifyButtonClickListener";
 
 	private Context context;
-	private EditText editPhoneNumber;
+	private EditText editPhoneNumber, editVcode;
 	private Button btnVerify;
 	private boolean vcodeValid;
 	private final int VALID_TIME;
 
 	public VerifyButtonClickListener(Context context, EditText phone,
-			Button verify) {
+			Button verify, EditText vcode) {
 		this.context = context;
 		this.editPhoneNumber = phone;
 		this.btnVerify = verify;
+		this.editVcode = vcode;
 		this.VALID_TIME = context.getResources().getInteger(
 				R.integer.verifycode_valid_time_seconds);
 	}
@@ -62,6 +63,8 @@ class VerifyButtonClickListener implements OnClickListener {
 		btnVerify.setEnabled(false);
 		// 设置初始值为true
 		vcodeValid = true;
+		//UI优化：自动清除验证码框原有的内容
+		editVcode.setText("");
 		// maybe should be a class field to support cancel
 		new CountDownTimer(VALID_TIME * 1000, 1000) {
 

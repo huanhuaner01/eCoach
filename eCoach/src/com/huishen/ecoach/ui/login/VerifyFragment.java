@@ -9,6 +9,7 @@ import com.huishen.ecoach.R;
 import com.huishen.ecoach.logical.PasswordValidator;
 import com.huishen.ecoach.logical.PasswordValidator.ValidateResult;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.util.MsgEncryption;
 
@@ -69,7 +70,7 @@ public final class VerifyFragment extends Fragment {
 		btnVcode = (Button)view.findViewById(R.id.register_fragv_btn_verify);
 		btnNextStep = (Button)view.findViewById(R.id.register_fragv_btn_next);
 		//验证码按钮逻辑
-		vbListener = new VerifyButtonClickListener(getActivity(), editPhone, btnVcode);
+		vbListener = new VerifyButtonClickListener(getActivity(), editPhone, btnVcode, editVcode);
 		btnVcode.setOnClickListener(vbListener);
 		//手机号逻辑：长度大于0时可以发送验证码
 		editPhone.addTextChangedListener(new TextWatcher() {
@@ -111,14 +112,14 @@ public final class VerifyFragment extends Fragment {
 					if (editPassword.length()<=0){
 						Toast.makeText(getActivity(),
 								getResources().getString(
-												R.string.str_register_fragv_err_pwd_firstempty),
+												R.string.str_register_err_pwd_firstempty),
 								Toast.LENGTH_SHORT).show();
+						editConfirmpwd.setText("");
 						return ;
 					}
 					if (editConfirmpwd.length() > 0 && (!checkPwdEqual())) {
-						Toast.makeText(getActivity(),
-								getResources().getString(
-												R.string.str_register_fragv_err_pwd_nequal),
+						Toast.makeText(getActivity(),getResources().getString(
+												R.string.str_register_err_pwd_nequal),
 								Toast.LENGTH_SHORT).show();
 						// clear password
 						editConfirmpwd.setText("");
@@ -158,16 +159,19 @@ public final class VerifyFragment extends Fragment {
 					Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
 					return ;
 				}
-				//检查密码相等
-				if (!checkPwdEqual()){
-					Toast.makeText(getActivity(), "两次密码填写不一致", Toast.LENGTH_SHORT).show();
+				// 检查密码相等
+				if (!checkPwdEqual()) {
+					Toast.makeText(getActivity(),getResources().getString(
+									R.string.str_register_err_pwd_nequal),
+							Toast.LENGTH_SHORT).show();
 					return ;
 				}
 				//因验证码长度在验证码框已做检查，这里省略
 				//检查验证码有效期
 				if (!vbListener.isVcodeValid()){
 					Log.d(LOG_TAG, "vcode is NOT valid.");
-					Toast.makeText(getActivity(), "验证码无效", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), getResources().getString(
+							R.string.str_register_err_vcode_invalid), Toast.LENGTH_SHORT).show();
 					return ;
 				}
 				NetUtil.requestStringData(SRL.METHOD_VERIFY_VCODE, new Response.Listener<String>() {
@@ -198,15 +202,23 @@ public final class VerifyFragment extends Fragment {
 			@Override
 			public void onResponse(String arg0) {
 				if (nsListener != null){
-					Log.d(LOG_TAG, "Step verify-phone completed.");
-					nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
+					if (ResponseParser.isReturnSuccessCode(arg0)){
+						Log.d(LOG_TAG, "Step verify-phone completed.");
+						Toast.makeText(getActivity(), getResources()
+								.getString(R.string.str_register_info_ok),Toast.LENGTH_SHORT)
+						.show();
+						nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
+					}
+					
 				}
 			}
 		}, new ErrorListener() {
 
 			@Override
 			public void onErrorResponse(VolleyError arg0) {
-				Toast.makeText(getActivity(), "注册失败，请重试", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), getActivity().getResources()
+						.getString(R.string.str_register_err_network), Toast.LENGTH_SHORT)
+					.show();
 			}
 		});
 	}
