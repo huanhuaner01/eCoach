@@ -53,8 +53,8 @@ public final class UploadCertifyFragment extends Fragment {
 	
 	//拍照和从相册取图的请求码，注意：因请求类型多而复杂，当用户操作较快时容易出现混乱，
 	//使用给两种请求码加position的方式区分证件位置，结合上面两个列表进行UI控制。
-	private static final int REQUEST_CODE_TAKE_PHOTO = 0x1001;
-	private static final int REQUEST_CODE_FROM_ALBUM = 0x1101;
+	private static final int REQUEST_CODE_TAKE_PHOTO = 0x3001;
+	private static final int REQUEST_CODE_FROM_ALBUM = 0x3101;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -169,7 +169,7 @@ public final class UploadCertifyFragment extends Fragment {
 					}
 					else{
 						Log.d(LOG_TAG, "ready to add photo:" + certname);
-						takePhoto(certname, position);						
+						takePhotoOrFromAlbum(certname, position);						
 					}
 				}
 			});
@@ -192,14 +192,14 @@ public final class UploadCertifyFragment extends Fragment {
 								} else { // 重传
 									holders.get(position).img.setImageBitmap(null);
 									entities.get(position).hasPhoto = false;
-									takePhoto(certname, position);
+									takePhotoOrFromAlbum(certname, position);
 								}
 							}
 						}).create()	.show();
 
 	}
 
-	private final void takePhoto(final String certname,final int position) {
+	private final void takePhotoOrFromAlbum(final String certname,final int position) {
 		new AlertDialog.Builder(getActivity())
 				.setTitle(R.string.str_register_photo_select_source)
 				.setItems(R.array.str_register_photo_source,

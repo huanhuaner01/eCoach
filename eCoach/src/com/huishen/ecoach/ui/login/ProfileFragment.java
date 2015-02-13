@@ -1,13 +1,27 @@
 package com.huishen.ecoach.ui.login;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.SRL;
+import com.huishen.ecoach.net.UploadResponseListener;
+import com.huishen.ecoach.util.BitmapUtil;
+import com.huishen.ecoach.util.FileUtil;
+import com.huishen.ecoach.util.Uris;
 import com.huishen.ecoach.widget.RoundImageView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -21,17 +35,20 @@ import android.widget.Toast;
 
 /**
  * 用于注册时填写资料的Fragment。
+ * 
  * @author Muyangmin
  * @create 2015-2-10
  */
-public final class ProfileFragment extends Fragment implements OnClickListener{
+public final class ProfileFragment extends Fragment implements OnClickListener {
 
 	private static final String LOG_TAG = "ProfileFragment";
 	private NextStepListener nsListener;
 	private RoundImageView imgAvatar;
 	private EditText editName, editSchool, editCarno, editCardno;
 	private Button btnNextStep;
-	
+	private static final int REQUEST_CODE_TAKE_PHOTO = 0x2001;
+	private static final int REQUEST_CODE_FROM_ALBUM = 0x2101;
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -50,17 +67,22 @@ public final class ProfileFragment extends Fragment implements OnClickListener{
 		initWidgets(view);
 		return view;
 	}
-	
-	private final void initWidgets(View view){
-		imgAvatar = (RoundImageView)view.findViewById(R.id.register_fragp_img_avatar);
-		editName = (EditText)view.findViewById(R.id.register_fragp_edit_name);
-		editSchool = (EditText)view.findViewById(R.id.register_fragp_edit_school);
-		editCarno = (EditText)view.findViewById(R.id.register_fragp_edit_carno);
-		editCardno = (EditText)view.findViewById(R.id.register_fragp_edit_cardno);
-		btnNextStep = (Button)view.findViewById(R.id.register_fragp_btn_next);
+
+	private final void initWidgets(View view) {
+		imgAvatar = (RoundImageView) view
+				.findViewById(R.id.register_fragp_img_avatar);
+		editName = (EditText) view.findViewById(R.id.register_fragp_edit_name);
+		editSchool = (EditText) view
+				.findViewById(R.id.register_fragp_edit_school);
+		editCarno = (EditText) view
+				.findViewById(R.id.register_fragp_edit_carno);
+		editCardno = (EditText) view
+				.findViewById(R.id.register_fragp_edit_cardno);
+		btnNextStep = (Button) view.findViewById(R.id.register_fragp_btn_next);
 		imgAvatar.setOnClickListener(this);
 		btnNextStep.setOnClickListener(this);
 	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -68,63 +90,175 @@ public final class ProfileFragment extends Fragment implements OnClickListener{
 			nextStep();
 			break;
 		case R.id.register_fragp_img_avatar:
-			selectPhoto();
+			takePhotoOrFromAlbum();
 			break;
 		default:
 			break;
 		}
 	}
-	//下一步按钮逻辑：要检查所有的控件。
-	private void nextStep(){
+
+	// 下一步按钮逻辑：要检查所有的控件。
+	private void nextStep() {
 		final String name = editName.getText().toString();
 		final String school = editSchool.getText().toString();
 		final String carno = editCarno.getText().toString();
 		final String cardno = editCardno.getText().toString();
-		//暂时不检查照片
+		// 暂时不检查照片
 		if ((name.length() <= 0) || (school.length() <= 0)
 				|| (carno.length() <= 0) || (cardno.length() <= 0)) {
 			Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
-			return ;
+			return;
 		}
-		//检查教练证位数
-		if (cardno.length()!=getResources().getInteger(R.integer.coach_certify_valid_length)){
-			Toast.makeText(getActivity(), "教练证号码长度可能不正确", Toast.LENGTH_SHORT).show();
-			return ;
+		// 检查教练证位数
+		if (cardno.length() != getResources().getInteger(
+				R.integer.coach_certify_valid_length)) {
+			Toast.makeText(getActivity(), "教练证号码长度可能不正确", Toast.LENGTH_SHORT)
+					.show();
+			return;
 		}
-		//TODO 添加网络操作请求并在成功后才调用以下代码。
-		if (nsListener != null){
+		// TODO 添加网络操作请求并在成功后才调用以下代码。
+		if (nsListener != null) {
 			Log.d(LOG_TAG, "Step verify-phone completed.");
 			nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
 		}
 	}
-	
-	private final void selectPhoto(){
-		CharSequence[] items = {"相册", "相机"};  
-	    new AlertDialog.Builder(getActivity())
-		    .setTitle("选择图片来源")
-		    .setItems(items, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					if( which == 0 ){
-						Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-						intent.addCategory(Intent.CATEGORY_OPENABLE);
-						intent.setType("image/*");
-						startActivityForResult(Intent.createChooser(intent, "选择图片"), 1001); 
-			        }else{
-			        	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);  
-			        	startActivityForResult(intent, 1002);  
-			        }
+
+	private final void takePhotoOrFromAlbum() {
+		new AlertDialog.Builder(getActivity())
+				.setTitle(R.string.str_register_photo_select_source)
+				.setItems(R.array.str_register_photo_source,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (which == 0) { // 拍照
+									// 将拍得的照片先保存在本地，指定照片保存路径（SD卡）
+									Uri imageUri = Uri
+											.fromFile(getAvatarFile());
+									Intent openCameraIntent = new Intent(
+											MediaStore.ACTION_IMAGE_CAPTURE);
+									openCameraIntent.putExtra(
+											MediaStore.EXTRA_OUTPUT, imageUri);
+									startActivityForResult(openCameraIntent,
+											REQUEST_CODE_TAKE_PHOTO);
+								} else { // 从相册选择
+									Intent openAlbumIntent = new Intent(
+											Intent.ACTION_GET_CONTENT);
+									openAlbumIntent.setType("image/*");
+									startActivityForResult(openAlbumIntent,
+											REQUEST_CODE_FROM_ALBUM);
+								}
+							}
+						}).create().show();
+
+	}
+
+	private final File getAvatarFile() {
+		File target = new File(FileUtil.getTemporaryPhotoPath(), "avatar.jpg");
+		if (!target.exists()) {
+			Log.d(LOG_TAG, "target doesnot exist.create it.");
+			target.getParentFile().mkdirs(); // 避免将末尾的文件名命名为文件夹
+			try {
+				target.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return target;
+	}
+
+	private final void uploadPhoto(File file) {
+		NetUtil.requestUploadFile(file, SRL.METHOD_UPLOAD_AVATAR,
+				new UploadResponseListener() {
+
+					@Override
+					public void onSuccess(String str) {
+						Log.i(LOG_TAG, "cert upload completed." + str);
+					}
+
+					@Override
+					public void onError(int httpCode) {
+						Log.e(LOG_TAG, "upload fail!");
+					}
+
+					@Override
+					public void onProgressChanged(int hasFinished) {
+						Log.d(LOG_TAG, "uploading...finished " + hasFinished
+								+ "%");
+					}
+				});
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.d(LOG_TAG, "requestCode=" + requestCode + ", resultCode="
+				+ resultCode);
+		if (resultCode == Activity.RESULT_OK) {
+			int parentw, parenth;
+			Bitmap bitmap, newBitmap;
+			switch (requestCode) {
+			// 统一处理
+			case REQUEST_CODE_TAKE_PHOTO:
+				File origin = getAvatarFile();
+				// 将保存在本地的图片取出并缩小后显示在界面上
+				bitmap = BitmapFactory.decodeFile(origin.getAbsolutePath());
+				parentw = imgAvatar.getWidth();
+				parenth = imgAvatar.getHeight();
+				newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw, parenth);
+				// 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
+				bitmap.recycle();
+				// 将处理过的图片显示在界面上
+				imgAvatar.setImageBitmap(newBitmap);
+				// 上传图片
+				uploadPhoto(origin);
+				break;
+			case REQUEST_CODE_FROM_ALBUM:
+				ContentResolver resolver = getActivity().getContentResolver();
+				// 照片的原始资源地址
+				Uri originalUri = data.getData();
+				try {
+					// 使用ContentProvider通过URI获取原始图片
+					bitmap = MediaStore.Images.Media.getBitmap(resolver,
+							originalUri);
+					if (bitmap != null) {
+						// 为防止原始图片过大导致内存溢出，这里先缩小原图显示，然后释放原始Bitmap占用的内存
+						parentw = imgAvatar.getWidth();
+						parenth = imgAvatar.getHeight();
+						newBitmap = BitmapUtil.scaleBitmap(bitmap, parentw,
+								parenth);
+						// 释放原始图片占用的内存，防止out of memory异常发生
+						bitmap.recycle();
+						imgAvatar.setImageBitmap(newBitmap);
+					}
+					// 上传图片
+					String path = Uris.getImageFileRealPath(getActivity(),
+							originalUri);
+					Log.d(LOG_TAG, "resolved path:" + path);
+					uploadPhoto(new File(path));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			})
-			.create().show(); 
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	protected static interface NextStepListener {
 		/**
 		 * 当填写资料步骤完成时调用。
-		 * @param name 姓名
-		 * @param school 驾校
-		 * @param carno 车号
-		 * @param certno 证件号
+		 * 
+		 * @param name
+		 *            姓名
+		 * @param school
+		 *            驾校
+		 * @param carno
+		 *            车号
+		 * @param certno
+		 *            证件号
 		 */
 		void onFillProfileStepCompleted(String name, String school,
 				String carno, String certno);
