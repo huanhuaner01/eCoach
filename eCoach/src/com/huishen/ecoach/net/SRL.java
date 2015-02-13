@@ -32,6 +32,16 @@ public final class SRL {
 	 * 验证注册码 参数:vcode:4456 返回值:{code:0|1} 0:匹配成功，1:匹配失败
 	 */
 	public static final String METHOD_VERIFY_VCODE = "/adr/cohVcode";
+	
+	/**
+	 * 提交注册的信息（第一步）
+	 * 参数:
+		mobile:18782920468;//手机号
+		password:e10adc3949ba59abbe56e057f20f883e;//密码,(先加密再传-md5)
+	 * 返回值:{code:0|1}
+	 * 0:注册成功，1:注册异常
+	 */
+	public static final String METHOD_REGISTER_COACH = "/adr/registerCoh";
 	/**
 	 * 手机号参数。
 	 */
@@ -53,11 +63,10 @@ public final class SRL {
 	public static final String METHOD_VERIFY_IF_NUMBER_EXIST = "/adr/vcohMob";
 
 	/**
-	 * 提交注册的信息。
+	 * 完善注册信息(第三步保存操作)
 	 * <p>
 	 * 参数:<br/>
 	 * mobile:18782920468;//手机号<br/>
-	 * password:e10adc3949ba59abbe56e057f20f883e;//密码,(先加密再传-md5)<br/>
 	 * username:王贵;//用户名<br/>
 	 * school:九洲驾校;//所属驾校<br/>
 	 * busNumber:K1052a;//车牌号<br/>
@@ -72,7 +81,7 @@ public final class SRL {
 	 * 返回值:{code:0|1} 0:注册成功，1:注册异常
 	 * </p>
 	 */
-	public static final String METHOD_FINISH_REGISTER = "/adr/registerCoh";
+	public static final String METHOD_FINISH_REGISTER = "/adr/updateCoh";
 
 	// ---------------------------------教练注册模块END-------------------------------------------
 }
