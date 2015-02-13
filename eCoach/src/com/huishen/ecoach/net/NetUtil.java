@@ -67,7 +67,7 @@ public final class NetUtil {
 		if (relativePath == null || params == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
 		}
-		
+		Log.d(LOG_TAG, "request params:"+params);
 		MainApp.getInstance().addNetworkRequest(
 				new AbsStringRequest(getAbsolutePath(relativePath), listener) {
 					@Override
@@ -96,6 +96,7 @@ public final class NetUtil {
 		if (relativePath == null || params == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
 		}
+		Log.d(LOG_TAG, "request params:"+params);
 		MainApp.getInstance().addNetworkRequest(
 				new AbsStringRequest(getAbsolutePath(relativePath), listener, errlisListener) {
 					@Override

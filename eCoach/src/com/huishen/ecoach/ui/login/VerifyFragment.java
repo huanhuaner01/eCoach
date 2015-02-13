@@ -196,7 +196,6 @@ public final class VerifyFragment extends Fragment {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put(SRL.PARAM_MOBILE_NUMBER, phoneNumber);
 		map.put(SRL.PARAM_PASSWORD, MsgEncryption.md5Encryption(pwd));
-		Log.d(LOG_TAG, "params:"+map.toString());
 		NetUtil.requestStringData(SRL.METHOD_REGISTER_COACH, map, new Response.Listener<String>() {
 
 			@Override
