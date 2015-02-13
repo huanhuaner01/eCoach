@@ -57,6 +57,7 @@
         android:background="@drawable/bkg_login_form"
         android:hint="@string/str_register_fragp_hint_cardno"
         android:maxLength="@integer/coach_certify_valid_length"
+        android:inputType="number"
         android:padding="@dimen/padding_middle" />
 
     <Button android:id="@+id/register_fragp_btn_next"
