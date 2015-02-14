@@ -19,16 +19,20 @@ public final class SRL {
 	/**
 	 * 通用返回参数，代表请求结果。
 	 */
-	protected static final String RESULT_KEY_CODE = "code";
+	public static final String RESULT_KEY_CODE = "code";
 	/**
 	 * 上传文件、图片等时服务器返回的代表相对位置的Key。
 	 */
-	public static final String RESULT_KEY_URL = "url";
+	public static final String RESULT_KEY_URI = "uri";
+	/**
+	 * 通用信息返回参数，用于登录等。
+	 */
+	public static final String RESULT_KEY_INFO = "info";
 
 	/**
 	 * 用户登录方法。 需要提供的参数有：用户名(username/String)，密码(password/String)。
 	 */
-	public static final String METHOD_LOGIN = "/login.do";
+	public static final String METHOD_LOGIN = "/adr/cohLogin";
 
 	// ----------------------------------教练注册模块BEGIN-------------------------------------------
 
@@ -118,4 +122,9 @@ public final class SRL {
 	public static final String PARAM_PATH_CERT4 = "vouImg4";
 
 	// ---------------------------------教练注册模块END-------------------------------------------
+	
+	public static final class ErrorCode{
+		public static final int ERR_LOGIN_WRONGPWD = 1;
+		public static final int ERR_LOGIN_ACCOUNT_FORBIDDEN = 2;
+	}
 }

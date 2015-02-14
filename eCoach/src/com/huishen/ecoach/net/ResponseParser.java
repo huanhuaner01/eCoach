@@ -41,6 +41,7 @@ public final class ResponseParser {
 	 */
 	public static final String getStringFromResult(String str, String key){
 		try {
+			Log.d(LOG_TAG, "parsing result[key=" + key + "]:" + str);
 			JSONObject json = new JSONObject(str);
 			return json.optString(key, null);
 		} catch (JSONException e) {
