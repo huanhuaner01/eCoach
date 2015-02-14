@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import com.android.volley.Response;
 import com.huishen.ecoach.Const;
+import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.SRL;
@@ -78,7 +79,7 @@ public class LoginActivity extends RightSideParentActivity implements OnClickLis
 					}
 					else{	//success
 						Uis.toastShort(LoginActivity.this, R.string.str_login_info_success);
-						Coach coach = getLoginCoachInfo(arg0);
+						MainApp.getInstance().setLoginCoach(getLoginCoachInfo(arg0));
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
 						finish();
 					}

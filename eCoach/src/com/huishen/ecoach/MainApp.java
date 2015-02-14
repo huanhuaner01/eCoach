@@ -3,6 +3,7 @@ package com.huishen.ecoach;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.huishen.ecoach.ui.login.Coach;
 
 import android.app.Application;
 
@@ -14,6 +15,8 @@ import android.app.Application;
 public final class MainApp extends Application {
 	
 	private static MainApp instance;
+	private Coach loginCoach;
+	
 	private RequestQueue requestQueue;
 	
 	//Singleton
@@ -41,5 +44,13 @@ public final class MainApp extends Application {
 		if (requestQueue != null){
 			requestQueue.add(request);
 		}
+	}
+
+	public Coach getLoginCoach() {
+		return loginCoach;
+	}
+
+	public void setLoginCoach(Coach loginCoach) {
+		this.loginCoach = loginCoach;
 	}
 }
