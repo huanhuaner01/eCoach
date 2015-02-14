@@ -12,6 +12,7 @@ import com.huishen.ecoach.net.UploadResponseListener;
 import com.huishen.ecoach.util.BitmapUtil;
 import com.huishen.ecoach.util.FileUtil;
 import com.huishen.ecoach.util.Prefs;
+import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.util.Uris;
 import com.huishen.ecoach.widget.RoundImageView;
 
@@ -117,11 +118,12 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 			return;
 		}
 		//检查照片上传状态
-		if (Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR)!=null){
-			if (nsListener != null) {
-				Log.d(LOG_TAG, "Step verify-phone completed.");
-				nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
-			}
+		if (Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR)==null){
+			Uis.toastShort(getActivity(), R.string.str_register_err_noavatar);
+		}
+		if (nsListener != null) {
+			Log.d(LOG_TAG, "Step verify-phone completed.");
+			nsListener.onFillProfileStepCompleted(name, school, carno, cardno);
 		}
 	}
 

@@ -72,6 +72,7 @@
     <string name="str_register_fragu_btn_rephoto">重新拍摄</string>
     <string name="str_register_fragu_btn_submit">提交审核</string>
     <string name="str_register_fragu_requirements">请将驾驶证、行驶证、运营证、教练证平铺拍摄</string>
+    <string name="str_register_err_noavatar">您还未上传头像</string>
     <string name="str_register_err_vcode_outofdate">验证码已过期，请重新获取</string>
     <string name="str_register_err_pwd_firstempty">请先输入密码</string>
     <string name="str_register_err_pwd_nequal">两次密码不一致</string>
