@@ -24,5 +24,17 @@
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         android:contentDescription="@null" />
+    
+    <ProgressBar
+        android:id="@+id/griditem_prg_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="false"
+        android:layout_gravity="center"
+        android:progressDrawable="@drawable/list_pcenter_scoreup"
+        android:progress="0"
+        android:max="100"
+        android:maxHeight="2dp"
+        android:minHeight="2dp" />
 
 </FrameLayout>

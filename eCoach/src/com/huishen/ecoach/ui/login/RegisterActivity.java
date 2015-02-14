@@ -2,6 +2,7 @@ package com.huishen.ecoach.ui.login;
 
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.ui.MainActivity;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import com.huishen.ecoach.util.MsgEncryption;
 import com.huishen.ecoach.util.Prefs;
@@ -105,5 +106,13 @@ public class RegisterActivity extends RightSideParentActivity implements
 		Prefs.removeKey(this, KEY_STEP_PROFILE_COMPLETED);
 		Prefs.removeKey(this, KEY_STEP_VERIFY_COMPLETED);
 		Prefs.setBoolean(this, Const.KEY_REGISTER_COMPLETED, true);
+		Log.d(LOG_TAG, "removing old register data...");
+		Prefs.removeKey(this, Const.KEY_COACH_NAME);
+		Prefs.removeKey(this, Const.KEY_COACH_SCHOOL);
+		Prefs.removeKey(this, Const.KEY_COACH_CARNO);
+		Prefs.removeKey(this, Const.KEY_COACH_CERTNO);
+		Prefs.removeKey(this, Const.KEY_COACH_AVATAR);
+		startActivity(MainActivity.getIntent(this));
+		finish();
 	}
 }

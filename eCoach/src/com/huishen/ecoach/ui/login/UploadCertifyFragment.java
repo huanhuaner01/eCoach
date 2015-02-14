@@ -16,6 +16,7 @@ import com.huishen.ecoach.net.UploadResponseListener;
 import com.huishen.ecoach.util.BitmapUtil;
 import com.huishen.ecoach.util.FileUtil;
 import com.huishen.ecoach.util.Prefs;
+import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.util.Uris;
 
 import android.app.Activity;
@@ -38,8 +39,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 用于注册时上传证件的Fragment。
@@ -98,9 +99,8 @@ public final class UploadCertifyFragment extends Fragment {
 					}
 				}
 				if (!uploadFinished){
-					Toast.makeText(getActivity(),getResources().getString(
-											R.string.str_register_err_cert_upload_not_finished),
-							Toast.LENGTH_SHORT).show();
+					Uis.toastShort(getActivity(),
+							R.string.str_register_err_cert_upload_not_finished);
 					return ;
 				}
 				submitLastRequest();
@@ -121,7 +121,6 @@ public final class UploadCertifyFragment extends Fragment {
 		params.put(SRL.PARAM_PATH_CERT2, Prefs.getString(getActivity(), getImagePrefname(1)));
 		params.put(SRL.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));
 		params.put(SRL.PARAM_PATH_CERT4, Prefs.getString(getActivity(), getImagePrefname(3)));
-		//XXX 添加进度条以增强友好度和健壮性
 		NetUtil.requestStringData(SRL.METHOD_FINISH_REGISTER, params,
 				new Response.Listener<String>() {
 
@@ -130,21 +129,16 @@ public final class UploadCertifyFragment extends Fragment {
 						if (ResponseParser.isReturnSuccessCode(arg0)) {
 							if (nsListener != null) {
 								Log.d(LOG_TAG, "Step verify-phone completed.");
-								Toast.makeText(
-										getActivity(),
-										getResources()
-												.getString(
-														R.string.str_register_info_profile_ok),
-										Toast.LENGTH_SHORT).show();
+								Uis.toastShort(getActivity(),
+										R.string.str_register_info_profile_ok);
+								for (int i=0; i<4 ; i++){
+									Prefs.removeKey(getActivity(), getImagePrefname(i));
+								}
 								nsListener.onUploadCertifyStepCompleted();
 							}
 						} else {
-							Toast.makeText(
-									getActivity(),
-									getResources()
-											.getString(
-													R.string.str_register_err_cert_upload_not_finished),
-									Toast.LENGTH_SHORT).show();
+							Uis.toastShort(getActivity(),
+									R.string.str_register_err_cert_upload_not_finished);
 						}
 					}
 				});
@@ -170,7 +164,7 @@ public final class UploadCertifyFragment extends Fragment {
 	}
 	//GridView的ViewHolder。
 	private class ViewHolder {
-//		ProgressBar prg;
+		ProgressBar prg;
 		TextView tv;
 		ImageView img;
 	}
@@ -208,6 +202,7 @@ public final class UploadCertifyFragment extends Fragment {
 						.findViewById(R.id.griditem_tv_certify);
 				holder.img = (ImageView) convertView
 						.findViewById(R.id.griditem_img_certify);
+				holder.prg = (ProgressBar)convertView.findViewById(R.id.griditem_prg_upload);
 				holders.add(holder);
 				convertView.setTag(holder);
 			} else {
@@ -306,9 +301,10 @@ public final class UploadCertifyFragment extends Fragment {
 			public void onSuccess(String str) {
 				//上传不成功时取得的为null值。
 				String url = ResponseParser.getStringFromResult(str,
-						SRL.RESULT_KEY_URL);
+						SRL.RESULT_KEY_URI);
 				Log.i(LOG_TAG, "avatar upload completed." + url);
 				Prefs.setString(getActivity(), getImagePrefname(position), url);
+				holders.get(position).prg.setVisibility(View.INVISIBLE);
 			}
 			
 			@Override
@@ -319,6 +315,7 @@ public final class UploadCertifyFragment extends Fragment {
 			@Override
 			public void onProgressChanged(int hasFinished) {
 				Log.d(LOG_TAG, "uploading...finished " + hasFinished+"%");
+				holders.get(position).prg.setProgress(hasFinished);
 			}
 		});
 	}

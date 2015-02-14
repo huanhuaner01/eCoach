@@ -192,7 +192,7 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 					public void onSuccess(String str) {
 						//上传不成功时取得的为null值。
 						String url = ResponseParser.getStringFromResult(str,
-								SRL.RESULT_KEY_URL);
+								SRL.RESULT_KEY_URI);
 						Log.i(LOG_TAG, "avatar upload completed." + url);
 						Prefs.setString(getActivity(), Const.KEY_COACH_AVATAR, url);
 					}
