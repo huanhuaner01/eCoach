@@ -40,6 +40,7 @@
     <string name="str_login_hint_username">用户名</string>
     <string name="str_login_hint_password">密码</string>
     <string name="str_login_login">登录</string>
+    <string name="str_login_info_success">登录成功</string>
     <string name="str_login_err_nouser">未填写用户名</string>
     <string name="str_login_err_nopwd">未填写密码</string>
     <string name="str_login_err_account_forbidden">您的账户已被禁用，请联系客服处理</string>

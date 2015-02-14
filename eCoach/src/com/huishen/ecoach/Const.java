@@ -14,6 +14,11 @@ public final class Const {
 	 */
 	public static final String KEY_FIRSTUSE = "first";
 	/**
+	 * 检查是否允许自动登录,其值为boolean类型。
+	 */
+	public static final String KEY_AUTO_LOGIN = "autologin";
+	
+	/**
 	 * 设置启动界面最低显示时间，单位为ms。
 	 */
 	public static final int SPLASH_MIN_LENGTH = 1000;

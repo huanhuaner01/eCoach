@@ -1,22 +1,133 @@
 package com.huishen.ecoach.ui.login;
 
-import com.huishen.ecoach.R;
+import java.util.HashMap;
 
-import android.app.Activity;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.Response;
+import com.huishen.ecoach.Const;
+import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.SRL;
+import com.huishen.ecoach.ui.MainActivity;
+import com.huishen.ecoach.ui.parent.RightSideParentActivity;
+import com.huishen.ecoach.util.Prefs;
+import com.huishen.ecoach.util.Uis;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends RightSideParentActivity implements OnClickListener{
+	
+	private EditText editUsername, editPassword;
+	private Button btnLogin, btnRegister, btnForgetPwd;
 	
 	public static final Intent getIntent(Context context){
 		Intent intent = new Intent(context, LoginActivity.class);
 		return intent;
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		initWidgets();
+		if (Prefs.getBoolean(this, Const.KEY_AUTO_LOGIN)){
+			String phone = Prefs.getString(this, Const.KEY_VERIFIED_PHONE);
+			String pwd = Prefs.getString(this, Const.KEY_PASSWORD);
+			Log.d("LoginActivity", "autologin[" + phone + "," + pwd + "]...");
+			performLogin(phone, pwd);
+		}
+	}
+	private final void initWidgets(){
+		editUsername = (EditText)findViewById(R.id.login_edit_username);
+		editPassword = (EditText)findViewById(R.id.login_edit_pwd);
+		btnLogin = (Button)findViewById(R.id.login_btn_login);
+		btnRegister = (Button)findViewById(R.id.login_btn_register);
+		btnForgetPwd = (Button)findViewById(R.id.login_btn_forgetpwd);
+		btnLogin.setOnClickListener(this);
+		btnRegister.setOnClickListener(this);
+		btnForgetPwd.setOnClickListener(this);
+	}
+	
+	//处理登录逻辑
+	private final void performLogin(String user, String pwd){
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(SRL.PARAM_USERNAME, user);
+		params.put(SRL.PARAM_PASSWORD, pwd);
+		NetUtil.requestStringData(SRL.METHOD_LOGIN, params, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String arg0) {
+				try {
+					JSONObject json = new JSONObject(arg0);
+					int code = json.getInt(SRL.RESULT_KEY_CODE);
+					if (code==SRL.ErrorCode.ERR_LOGIN_ACCOUNT_FORBIDDEN){
+						Uis.toastShort(LoginActivity.this, R.string.str_login_err_account_forbidden);
+						return ;
+					}
+					else if (code==SRL.ErrorCode.ERR_LOGIN_WRONGPWD){
+						Uis.toastShort(LoginActivity.this, R.string.str_login_err_wrongpwd);
+						return ;
+					}
+					else{	//success
+						Uis.toastShort(LoginActivity.this, R.string.str_login_info_success);
+						Coach coach = getLoginCoachInfo(arg0);
+						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
+						finish();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	private final Coach getLoginCoachInfo(String str){
+		Coach coach = new Coach();
+		//TODO resolve login info
+		return coach;
+	}
+	
+	private final void performRegister(){
+		startActivity(RegisterActivity.getIntent(this));
+		//DO NOT finish this activity.
+	}
+	
+	private final void performForgetPwd(){
+		Uis.toastShort(this, R.string.str_feature_unsupported);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.login_btn_login:
+			final String username = editUsername.getText().toString();
+			final String pwd = editPassword.getText().toString();
+			if (username.equals("")){
+				Uis.toastShort(this, R.string.str_login_err_nouser);
+				return ;
+			}
+			if (pwd.equals("")){
+				Uis.toastShort(this, R.string.str_login_err_nopwd);
+				return ;
+			}
+			performLogin(username, pwd);
+			break;
+		case R.id.login_btn_forgetpwd:
+			performForgetPwd();
+			break;
+		case R.id.login_btn_register:
+			performRegister();
+			break;
+		default:
+			break;
+		}
 	}
 }
