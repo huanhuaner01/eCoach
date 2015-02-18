@@ -13,6 +13,8 @@
     <color name="color_theme_orange">#FF6600</color>
     <color name="color_theme_btn_pressed">#EA5402</color>
     <color name="color_lighter_orange">#FF9944</color>
+    <color name="color_bkg_gray">#ECECEC</color>
+    <color name="color_txt_gray">#CCCCCC</color>
     
     <!-- page specified colors -->
     <color name="color_pcenter_textcolor">@android:color/white</color>

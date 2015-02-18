@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingEnd="@dimen/margin_xxlarge"
+    android:paddingRight="@dimen/margin_xxlarge"
+    android:paddingLeft="@dimen/margin_xlarge"
+    android:paddingStart="@dimen/margin_xlarge"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/padding_middle"
+    android:paddingTop="@dimen/padding_middle" >
+
+    <TextView
+        android:id="@+id/listitem_userguide_tv_times"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/color_txt_gray"
+        android:textSize="@dimen/txtsize_default" />
+
+    <TextView
+        android:id="@+id/listitem_userguide_tv_solutions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/color_txt_gray"
+        android:textSize="@dimen/txtsize_default" />
+
+</LinearLayout>

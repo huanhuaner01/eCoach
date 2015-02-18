@@ -59,8 +59,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.login.ImageBrowseActivity"
+            android:name=".ui.login.ImageBrowseActivity"
             android:label="@string/title_activity_image_browse" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.pcenter.UserGuideActivity"
+            android:label="@string/title_activity_user_guide" >
         </activity>
     </application>
 
