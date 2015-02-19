@@ -61,7 +61,13 @@
                 <TextView style="@style/style_setting_menuitem_tv"
                     android:text="@string/str_setting_menuitem_orderprompt"
                     android:drawableLeft="@drawable/icon_setting_order_prompt"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                <ToggleButton 
+                    android:id="@+id/setting_tgb_orderprompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_small"/>
             </RelativeLayout>
         </LinearLayout>
         <TextView style="@style/style_setting_menugrp_header"
