@@ -150,7 +150,6 @@
         <Button
             android:id="@+id/setting_btn_logout"
             style="@style/style_common_theme_btn"
-            android:layout_width="match_parent"
             android:layout_marginTop="@dimen/margin_xlarge"
             android:text="@string/str_setting_logout" />
     </LinearLayout>

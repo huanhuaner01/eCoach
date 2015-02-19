@@ -71,8 +71,12 @@
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.pcenter.ViewProfileActivity"
+            android:name=".ui.pcenter.ViewProfileActivity"
             android:label="@string/title_activity_view_profile" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.pcenter.ModifyPasswordActivity"
+            android:label="@string/title_activity_modify_password" >
         </activity>
     </application>
 

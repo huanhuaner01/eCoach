@@ -76,7 +76,7 @@
     </style>
     
     <style name="style_common_theme_btn">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/bkg_common_theme_btn</item>
         <item name="android:textColor">@drawable/sel_common_theme_btn_txtcolor</item>
@@ -310,6 +310,12 @@
         <item name="android:layout_marginLeft">@dimen/margin_small</item>
         <item name="android:layout_marginRight">@dimen/margin_small</item>
     </style>
+    <style name="style_modifypwd_form" parent="@style/style_common_macth_wrap">
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">@dimen/login_item_textsize</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+    
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
