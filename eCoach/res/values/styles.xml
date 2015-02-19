@@ -254,6 +254,9 @@
         <!-- TODO 添加正确的向右箭头 -->
         <item name="android:src">@drawable/icon_navi_back</item>
     </style>
+    <style name="style_setting_menuitem_divider" parent="@style/style_common_view_dpdivider">
+        <item name="android:background">#DDDDDD</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

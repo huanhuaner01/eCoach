@@ -134,7 +134,7 @@
 	<string name="str_setting_menuitem_viewprofile">查看个人资料</string>
 	<string name="str_setting_menuitem_modifypwd">修改密码</string>
 	<string name="str_setting_header_system">系统设置</string>
-	<string name="str_setting_menuitem_autoorderalarm">订单自动弹出</string>
+	<string name="str_setting_menuitem_orderprompt">订单自动弹出</string>
 	<string name="str_setting_header_other">其他设置</string>
 	<string name="str_setting_menuitem_update_software">软件升级</string>
 	<string name="str_setting_menuitem_feedback">意见反馈</string>
