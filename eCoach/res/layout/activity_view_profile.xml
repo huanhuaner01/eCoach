@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/viewprofile_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_view_profile" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewprofile_titlebar"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/viewprofile_rl_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:background="@drawable/bkg_setting_menugrp"
+            android:padding="@dimen/padding_middle" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/viewprofile_item_paddingleft"
+                android:layout_marginStart="@dimen/viewprofile_item_paddingleft"
+                android:text="@string/str_viewprofile_avatar"
+                android:textColor="@color/color_deeper_gray"
+                android:textSize="@dimen/txtsize_large" />
+
+            <com.huishen.ecoach.widget.RoundImageView
+                android:id="@+id/viewprofile_rimg_avatar"
+                android:layout_width="@dimen/pcenter_avatar_width"
+                android:layout_height="@dimen/pcenter_avatar_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/default_personal_avatar" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/viewprofile_ll_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/bkg_setting_menugrp"
+            android:orientation="vertical" >
+
+            <LinearLayout style="@style/style_view_profile_detail_item" >
+
+                <TextView
+                    style="@style/style_viewprofile_detail_tvkey"
+                    android:text="@string/str_viewprofile_name" />
+
+                <TextView style="@style/style_viewprofile_detail_tvkey" />
+            </LinearLayout>
+
+            <View style="@style/style_view_profile_detail_divider" />
+
+            <LinearLayout style="@style/style_view_profile_detail_item" >
+
+                <TextView
+                    style="@style/style_viewprofile_detail_tvkey"
+                    android:text="@string/str_viewprofile_school" />
+
+                <TextView style="@style/style_viewprofile_detail_tvkey" />
+            </LinearLayout>
+
+            <View style="@style/style_view_profile_detail_divider" />
+
+            <LinearLayout style="@style/style_view_profile_detail_item" >
+
+                <TextView
+                    style="@style/style_viewprofile_detail_tvkey"
+                    android:text="@string/str_viewprofile_carno" />
+
+                <TextView style="@style/style_viewprofile_detail_tvkey" />
+            </LinearLayout>
+
+            <View style="@style/style_view_profile_detail_divider" />
+
+            <LinearLayout style="@style/style_view_profile_detail_item" >
+
+                <TextView
+                    style="@style/style_viewprofile_detail_tvkey"
+                    android:text="@string/str_viewprofile_phone" />
+
+                <TextView style="@style/style_viewprofile_detail_tvkey" />
+            </LinearLayout>
+
+            <View style="@style/style_view_profile_detail_divider" />
+
+            <LinearLayout style="@style/style_view_profile_detail_item" >
+
+                <TextView
+                    style="@style/style_viewprofile_detail_tvkey"
+                    android:text="@string/str_viewprofile_certno" />
+
+                <TextView style="@style/style_viewprofile_detail_tvkey" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:text="@string/str_viewprofile_modify_tips"
+            android:textColor="@color/color_deeper_gray"
+            android:textSize="@dimen/txtsize_large" />
+    </LinearLayout>
+
+</RelativeLayout>

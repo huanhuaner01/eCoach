@@ -67,8 +67,12 @@
             android:label="@string/title_activity_user_guide" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.pcenter.SettingActivity"
+            android:name=".ui.pcenter.SettingActivity"
             android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.pcenter.ViewProfileActivity"
+            android:label="@string/title_activity_view_profile" >
         </activity>
     </application>
 

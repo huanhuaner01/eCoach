@@ -57,4 +57,6 @@
     <!-- 设置界面菜单图标及分割线左边距 -->
     <dimen name="setting_menugrp_padding_left">@dimen/padding_middle</dimen>
     <dimen name="setting_menugrp_padding_right">35dp</dimen>
+    <!-- 个人资料界面左侧内边距 -->
+    <dimen name="viewprofile_item_paddingleft">35dp</dimen>
 </resources>

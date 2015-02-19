@@ -14,6 +14,7 @@
     <string name="title_activity_image_browse">查看大图</string>
     <string name="title_activity_user_guide">e驾学车指南</string>
     <string name="title_activity_setting">设置</string>
+    <string name="title_activity_view_profile">查看个人资料</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -130,15 +131,22 @@
     </string-array>
 
     <string name="str_userguide_tips">【温馨提醒】</string>
-	<string name="str_setting_header_personal">个人设置</string>
-	<string name="str_setting_menuitem_viewprofile">查看个人资料</string>
-	<string name="str_setting_menuitem_modifypwd">修改密码</string>
-	<string name="str_setting_header_system">系统设置</string>
-	<string name="str_setting_menuitem_orderprompt">订单自动弹出</string>
-	<string name="str_setting_header_other">其他设置</string>
-	<string name="str_setting_menuitem_update_software">软件升级</string>
-	<string name="str_setting_menuitem_feedback">意见反馈</string>
-	<string name="str_setting_menuitem_contactus">联系我们：4000&#8211;838&#8211;760</string>
-	<string name="str_setting_menuitem_aboutus">关于我们</string>
-	<string name="str_setting_logout">退出登录</string>
+    <string name="str_setting_header_personal">个人设置</string>
+    <string name="str_setting_menuitem_viewprofile">查看个人资料</string>
+    <string name="str_setting_menuitem_modifypwd">修改密码</string>
+    <string name="str_setting_header_system">系统设置</string>
+    <string name="str_setting_menuitem_orderprompt">订单自动弹出</string>
+    <string name="str_setting_header_other">其他设置</string>
+    <string name="str_setting_menuitem_update_software">软件升级</string>
+    <string name="str_setting_menuitem_feedback">意见反馈</string>
+    <string name="str_setting_menuitem_contactus">联系我们：4000&#8211;838&#8211;760</string>
+    <string name="str_setting_menuitem_aboutus">关于我们</string>
+    <string name="str_setting_logout">退出登录</string>
+	<string name="str_viewprofile_avatar">头　像</string>
+	<string name="str_viewprofile_name">姓　　名：</string>
+	<string name="str_viewprofile_school">驾　　校：</string>
+	<string name="str_viewprofile_carno">车　　牌：</string>
+	<string name="str_viewprofile_phone">手　　机：</string>
+	<string name="str_viewprofile_certno">教练证号：</string>
+	<string name="str_viewprofile_modify_tips">如需修改，请致电客服</string>
 </resources>

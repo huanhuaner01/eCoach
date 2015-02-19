@@ -1,5 +1,19 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 常见的布局的样式 。-->
+    <style name="style_common_wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="style_common_macth_match">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="style_common_macth_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
     <style name="style_common_titlebar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/common_titlebar_height</item>
@@ -264,13 +278,37 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">@dimen/margin_small</item>
-        <!-- TODO 添加正确的向右箭头 -->
         <item name="android:src">@drawable/icon_navi_back</item>
     </style>
     <style name="style_setting_menuitem_divider" parent="@style/style_common_view_dpdivider">
         <item name="android:background">#DDDDDD</item>
         <item name="android:layout_marginLeft">@dimen/setting_menugrp_padding_left</item>
         <item name="android:layout_marginRight">@dimen/setting_menugrp_padding_right</item>
+    </style>
+    <style name="style_viewprofile_detail_tvkey">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_middle</item>
+        <item name="android:paddingLeft">@dimen/padding_large</item>
+        <item name="android:textColor">@color/color_deeper_gray</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+    </style>
+    <style name="style_viewprofile_detail_tvvalue">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+    </style>
+    <style name="style_view_profile_detail_item" parent="@style/style_common_macth_wrap">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+    <style name="style_view_profile_detail_divider" parent="@style/style_common_view_pxdivider">
+        <item name="android:layout_marginLeft">@dimen/margin_small</item>
+        <item name="android:layout_marginRight">@dimen/margin_small</item>
     </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
