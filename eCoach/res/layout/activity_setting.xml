@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context="${relativePackage}.${activityClass}"
+    tools:ignore="ContentDescription" >
+
+    <RelativeLayout
+        android:id="@+id/setting_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_setting" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/setting_titlebar"
+        android:layout_marginEnd="@dimen/margin_xlarge"
+        android:layout_marginLeft="@dimen/margin_xxlarge"
+        android:layout_marginRight="@dimen/margin_xlarge"
+        android:layout_marginStart="@dimen/margin_xxlarge"
+        android:orientation="vertical" >
+        <TextView style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_personal"/>
+        <LinearLayout style="@style/style_setting_menugrp">
+            <RelativeLayout
+                android:id="@+id/setting_ll_viewprofile" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_viewprofile"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/setting_ll_modifypwd" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_modifypwd"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_system"/>
+        <LinearLayout style="@style/style_setting_menugrp">
+
+            <RelativeLayout
+                android:id="@+id/setting_ll_autoorder"
+                style="@style/style_setting_menuitem"
+                tools:ignore="UselessParent" >
+
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_autoorderalarm"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_other"/>
+        <LinearLayout style="@style/style_setting_menugrp">
+            <RelativeLayout
+                android:id="@+id/setting_ll_update_software" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_update_software"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/setting_ll_feedback" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_feedback"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/setting_ll_contactus" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_contactus"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/setting_ll_aboutus" 
+                style="@style/style_setting_menuitem">
+                <TextView style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_setting_menuitem_aboutus"/>
+                <ImageView style="@style/style_setting_menuitem_imgright"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

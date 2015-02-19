@@ -54,4 +54,7 @@
     <dimen name="register_fragu_certify_photo_width">400px</dimen>
     <!-- 拍摄证件照的高度 -->
     <dimen name="register_fragu_certify_photo_height">300px</dimen>
+    <!-- 设置界面菜单图标及分割线左边距 -->
+    <dimen name="setting_menugrp_padding_left">@dimen/padding_middle</dimen>
+    <dimen name="setting_menugrp_padding_right">35dp</dimen>
 </resources>

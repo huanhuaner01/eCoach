@@ -63,8 +63,12 @@
             android:label="@string/title_activity_image_browse" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.pcenter.UserGuideActivity"
+            android:name=".ui.pcenter.UserGuideActivity"
             android:label="@string/title_activity_user_guide" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.pcenter.SettingActivity"
+            android:label="@string/title_activity_setting" >
         </activity>
     </application>
 

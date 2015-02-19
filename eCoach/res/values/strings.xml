@@ -13,6 +13,7 @@
     <string name="title_activity_service_info">服务协议</string>
     <string name="title_activity_image_browse">查看大图</string>
     <string name="title_activity_user_guide">e驾学车指南</string>
+    <string name="title_activity_setting">设置</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -84,7 +85,7 @@
     <string name="str_register_err_profile_update_failed">很抱歉，资料提交失败，请稍后重试</string>
     <string name="str_register_info_register_ok">注册成功，请进一步完善您的信息</string>
     <string name="str_register_info_profile_ok">资料提交成功，我们将在2个工作日内审核</string>
-<!-- 注册界面需要上传的证件名称列表 -->
+    <!-- 注册界面需要上传的证件名称列表 -->
     <string-array name="str_register_fragu_certnames">
         <item>驾驶证</item>
         <item>行驶证</item>
@@ -93,7 +94,7 @@
     </string-array>
 
     <string name="str_register_photo_select_source">选择照片来源</string>
-<!-- 照片来源选择 -->
+    <!-- 照片来源选择 -->
     <string-array name="str_register_photo_source">
         <item>拍照</item>
         <item>从相册选择</item>
@@ -112,19 +113,32 @@
     <string name="str_userguide_punish_content">这是一个简单的应用程序以至于程序员花了三个月的时间来完成它。</string>
     <string name="str_userguide_list_header_times">近10次订单中爽约次数</string>
     <string name="str_userguide_list_header_solutions">处罚方法</string>
+
     <string-array name="str_userguide_list_times">
-        <item >1次</item>
-        <item >2次</item>
-        <item >3次</item>
-        <item >4次</item>
-        <item >5次</item>
+        <item>1次</item>
+        <item>2次</item>
+        <item>3次</item>
+        <item>4次</item>
+        <item>5次</item>
     </string-array>
     <string-array name="str_userguide_list_solutions">
-        <item >书面警告</item>
-        <item >记过</item>
-        <item >记大过</item>
-        <item >留校察看</item>
-        <item >开除</item>
+        <item>书面警告</item>
+        <item>记过</item>
+        <item>记大过</item>
+        <item>留校察看</item>
+        <item>开除</item>
     </string-array>
-	<string name="str_userguide_tips">【温馨提醒】</string>
+
+    <string name="str_userguide_tips">【温馨提醒】</string>
+	<string name="str_setting_header_personal">个人设置</string>
+	<string name="str_setting_menuitem_viewprofile">查看个人资料</string>
+	<string name="str_setting_menuitem_modifypwd">修改密码</string>
+	<string name="str_setting_header_system">系统设置</string>
+	<string name="str_setting_menuitem_autoorderalarm">订单自动弹出</string>
+	<string name="str_setting_header_other">其他设置</string>
+	<string name="str_setting_menuitem_update_software">软件升级</string>
+	<string name="str_setting_menuitem_feedback">意见反馈</string>
+	<string name="str_setting_menuitem_contactus">联系我们：4000&#8211;838&#8211;760</string>
+	<string name="str_setting_menuitem_aboutus">关于我们</string>
+	<string name="str_setting_logout">退出登录</string>
 </resources>

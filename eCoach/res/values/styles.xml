@@ -205,6 +205,55 @@
         <item name="android:textSize">@dimen/txtsize_large</item>
         <item name="android:enabled">false</item>
     </style>
+    
+    <!-- 设置界面的菜单组样式，应该使用在LinearLayout上。 -->
+    <style name="style_setting_menugrp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/setting_menugrp_padding_left</item>
+        <item name="android:paddingRight">@dimen/setting_menugrp_padding_right</item>
+        <item name="android:background">@drawable/bkg_setting_menugrp</item>
+    </style>
+    <!-- 设置界面的菜单组名称样式，应该使用在TextView上。 -->
+    <style name="style_setting_menugrp_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_middle</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_middle</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/color_deeper_gray</item>
+        <item name="android:textSize">@dimen/txtsize_default</item>
+    </style>
+    <!-- 设置界面的菜单项样式，应该使用在RelativeLayout上。 -->
+    <style name="style_setting_menuitem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- 设置界面菜单名称样式，应该使用在TextView上。 -->
+    <style name="style_setting_menuitem_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_middle</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/color_deeper_gray</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+        <item name="android:drawablePadding">@dimen/padding_middle</item>
+    </style>
+    <!-- 设置界面菜单箭头，应该使用在ImageView上。 -->
+    <style name="style_setting_menuitem_imgright">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/margin_small</item>
+        <!-- TODO 添加正确的向右箭头 -->
+        <item name="android:src">@drawable/icon_navi_back</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
