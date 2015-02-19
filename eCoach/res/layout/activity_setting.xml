@@ -28,86 +28,131 @@
         android:layout_marginRight="@dimen/margin_xlarge"
         android:layout_marginStart="@dimen/margin_xxlarge"
         android:orientation="vertical" >
-        <TextView style="@style/style_setting_menugrp_header"
-            android:text="@string/str_setting_header_personal"/>
-        <LinearLayout style="@style/style_setting_menugrp">
+
+        <TextView
+            style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_personal" />
+
+        <LinearLayout style="@style/style_setting_menugrp" >
+
             <RelativeLayout
-                android:id="@+id/setting_ll_viewprofile" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_viewprofile"
-                    android:drawableLeft="@drawable/icon_setting_view_profile"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                android:id="@+id/setting_ll_viewprofile"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_view_profile"
+                    android:text="@string/str_setting_menuitem_viewprofile" />
+
+                <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
-            <View style="@style/style_setting_menuitem_divider"/>
+
+            <View style="@style/style_setting_menuitem_divider" />
+
             <RelativeLayout
-                android:id="@+id/setting_ll_modifypwd" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_modifypwd"
-                    android:drawableLeft="@drawable/icon_setting_modifypwd"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                android:id="@+id/setting_ll_modifypwd"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_modifypwd"
+                    android:text="@string/str_setting_menuitem_modifypwd" />
+
+                <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
         </LinearLayout>
-        <TextView style="@style/style_setting_menugrp_header"
-            android:text="@string/str_setting_header_system"/>
-        <LinearLayout style="@style/style_setting_menugrp">
+
+        <TextView
+            style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_system" />
+
+        <LinearLayout style="@style/style_setting_menugrp" >
 
             <RelativeLayout
                 android:id="@+id/setting_ll_orderprompt"
                 style="@style/style_setting_menuitem"
                 tools:ignore="UselessParent" >
 
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_orderprompt"
-                    android:drawableLeft="@drawable/icon_setting_order_prompt"/>
-                <ToggleButton 
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_order_prompt"
+                    android:text="@string/str_setting_menuitem_orderprompt" />
+
+                <ToggleButton
                     android:id="@+id/setting_tgb_orderprompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_small"/>
+                    android:layout_marginRight="@dimen/margin_small" />
             </RelativeLayout>
         </LinearLayout>
-        <TextView style="@style/style_setting_menugrp_header"
-            android:text="@string/str_setting_header_other"/>
-        <LinearLayout style="@style/style_setting_menugrp">
+
+        <TextView
+            style="@style/style_setting_menugrp_header"
+            android:text="@string/str_setting_header_other" />
+
+        <LinearLayout style="@style/style_setting_menugrp" >
+
             <RelativeLayout
-                android:id="@+id/setting_ll_update_software" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_update_software"
-                    android:drawableLeft="@drawable/icon_setting_updatesoftware"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                android:id="@+id/setting_ll_update_software"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_updatesoftware"
+                    android:text="@string/str_setting_menuitem_update_software" />
+
+                <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
-            <View style="@style/style_setting_menuitem_divider"/>
+
+            <View style="@style/style_setting_menuitem_divider" />
+
             <RelativeLayout
-                android:id="@+id/setting_ll_feedback" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_feedback"
-                    android:drawableLeft="@drawable/icon_setting_feedback"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                android:id="@+id/setting_ll_feedback"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_feedback"
+                    android:text="@string/str_setting_menuitem_feedback" />
+
+                <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
-            <View style="@style/style_setting_menuitem_divider"/>
+
+            <View style="@style/style_setting_menuitem_divider" />
+
             <RelativeLayout
-                android:id="@+id/setting_ll_contactus" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_contactus"
-                    android:drawableLeft="@drawable/icon_setting_contactus"/>
+                android:id="@+id/setting_ll_contactus"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_contactus"
+                    android:text="@string/str_setting_menuitem_contactus" />
             </RelativeLayout>
-            <View style="@style/style_setting_menuitem_divider"/>
+
+            <View style="@style/style_setting_menuitem_divider" />
+
             <RelativeLayout
-                android:id="@+id/setting_ll_aboutus" 
-                style="@style/style_setting_menuitem">
-                <TextView style="@style/style_setting_menuitem_tv"
-                    android:text="@string/str_setting_menuitem_aboutus"
-                    android:drawableLeft="@drawable/icon_setting_aboutus"/>
-                <ImageView style="@style/style_setting_menuitem_imgright"/>
+                android:id="@+id/setting_ll_aboutus"
+                style="@style/style_setting_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_aboutus"
+                    android:text="@string/str_setting_menuitem_aboutus" />
+
+                <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/setting_btn_logout"
+            style="@style/style_common_theme_btn"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:text="@string/str_setting_logout" />
     </LinearLayout>
 
 </RelativeLayout>
