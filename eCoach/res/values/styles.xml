@@ -52,6 +52,10 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginRight">@dimen/common_titlebar_horizontal_margin</item>
     </style>
+    <style name="style_common_title_righttv" parent="@style/style_common_title_rightbtn">
+        <item name="android:textColor">@color/color_titlebar_txt</item>
+        <item name="android:textSize">@dimen/txtsize_xlarge</item>
+    </style>
 
     <style name="style_common_red_dot">
         <item name="android:layout_width">@dimen/common_reddot_width</item>

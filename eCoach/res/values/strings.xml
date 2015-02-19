@@ -150,9 +150,12 @@
     <string name="str_viewprofile_phone">手　　机：</string>
     <string name="str_viewprofile_certno">教练证号：</string>
     <string name="str_viewprofile_modify_tips">如需修改，请致电客服</string>
-	<string name="str_modifypwd_hint_oldpwd">请输入旧密码</string>
-	<string name="str_modifypwd_hint_newpwd">请输入新密码</string>
-	<string name="str_modifypwd_hint_cfmpwd">请确认新密码</string>
-	<string name="str_modifypwd_btn_confirm">确认修改</string>
-	
+    <string name="str_modifypwd_hint_oldpwd">请输入旧密码</string>
+    <string name="str_modifypwd_hint_newpwd">请输入新密码</string>
+    <string name="str_modifypwd_hint_cfmpwd">请确认新密码</string>
+    <string name="str_modifypwd_btn_confirm">确认修改</string>
+    <string name="title_activity_feedback">意见反馈</string>
+    <string name="str_feedback_hint_feed">留下您的意见和建议吧</string>
+    <string name="str_feedback_btn_commit">提交</string>
+
 </resources>

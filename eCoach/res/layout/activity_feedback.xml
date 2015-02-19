@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context=".FeedbackActivity" >
+
+    <RelativeLayout
+        android:id="@+id/feedback_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_feedback" />
+
+        <TextView
+            style="@style/style_common_title_righttv"
+            android:text="@string/str_feedback_btn_commit" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/feedback_edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bkg_setting_menugrp"
+        android:layout_below="@id/feedback_titlebar"
+        android:layout_marginLeft="@dimen/margin_xlarge"
+        android:layout_marginRight="@dimen/margin_xlarge"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:padding="8dp"
+        android:hint="@string/str_feedback_hint_feed"
+        android:lines="4" />
+
+</RelativeLayout>
