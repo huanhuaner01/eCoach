@@ -2,8 +2,9 @@ package com.huishen.ecoach.ui.login;
 
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
-
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.RadioGroup;
@@ -12,6 +13,11 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class ServiceInfoActivity extends RightSideParentActivity {
 	private WebView webview;
 	private RadioGroup group;
+
+	public static final Intent getIntent(Context context) {
+		Intent intent = new Intent(context, ServiceInfoActivity.class);
+		return intent;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

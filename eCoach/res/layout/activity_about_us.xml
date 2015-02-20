@@ -68,12 +68,14 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/aboutus_rl_service_protocal"
             style="@style/style_common_macth_wrap"
             android:layout_below="@id/aboutus_rl_version"
             android:layout_marginTop="@dimen/margin_xlarge"
             android:background="@drawable/bkg_setting_menugrp" >
 
             <TextView
+                android:id="@+id/aboutus_tv_service_protocal"
                 style="@style/style_setting_menuitem_tv"
                 android:background="@android:color/transparent"
                 android:text="@string/str_aboutus_service_protocal" />
