@@ -83,8 +83,12 @@
             android:label="@string/title_activity_feedback" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.pcenter.AboutUsActivity"
+            android:name=".ui.pcenter.AboutUsActivity"
             android:label="@string/title_activity_about_us" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.msg.MessageActivity"
+            android:label="@string/title_activity_message" >
         </activity>
     </application>
 
