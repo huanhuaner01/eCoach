@@ -36,7 +36,7 @@
         <LinearLayout style="@style/style_setting_menugrp" >
 
             <RelativeLayout
-                android:id="@+id/setting_ll_viewprofile"
+                android:id="@+id/setting_rl_viewprofile"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
@@ -50,7 +50,7 @@
             <View style="@style/style_setting_menuitem_divider" />
 
             <RelativeLayout
-                android:id="@+id/setting_ll_modifypwd"
+                android:id="@+id/setting_rl_modifypwd"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
@@ -69,7 +69,7 @@
         <LinearLayout style="@style/style_setting_menugrp" >
 
             <RelativeLayout
-                android:id="@+id/setting_ll_orderprompt"
+                android:id="@+id/setting_rl_orderprompt"
                 style="@style/style_setting_menuitem"
                 tools:ignore="UselessParent" >
 
@@ -95,7 +95,7 @@
         <LinearLayout style="@style/style_setting_menugrp" >
 
             <RelativeLayout
-                android:id="@+id/setting_ll_update_software"
+                android:id="@+id/setting_rl_update_software"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
@@ -109,7 +109,7 @@
             <View style="@style/style_setting_menuitem_divider" />
 
             <RelativeLayout
-                android:id="@+id/setting_ll_feedback"
+                android:id="@+id/setting_rl_feedback"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
@@ -123,7 +123,7 @@
             <View style="@style/style_setting_menuitem_divider" />
 
             <RelativeLayout
-                android:id="@+id/setting_ll_contactus"
+                android:id="@+id/setting_rl_contactus"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
@@ -135,7 +135,7 @@
             <View style="@style/style_setting_menuitem_divider" />
 
             <RelativeLayout
-                android:id="@+id/setting_ll_aboutus"
+                android:id="@+id/setting_rl_aboutus"
                 style="@style/style_setting_menuitem" >
 
                 <TextView
