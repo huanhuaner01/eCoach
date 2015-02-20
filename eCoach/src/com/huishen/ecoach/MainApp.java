@@ -15,7 +15,7 @@ import android.app.Application;
 public final class MainApp extends Application {
 	
 	private static MainApp instance;
-	private Coach loginCoach;
+	private Coach loginCoach = null;
 	
 	private RequestQueue requestQueue;
 	
@@ -46,6 +46,9 @@ public final class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * 获取当前已登录的教练的信息。如果没有设置，返回null。
+	 */
 	public Coach getLoginCoach() {
 		return loginCoach;
 	}

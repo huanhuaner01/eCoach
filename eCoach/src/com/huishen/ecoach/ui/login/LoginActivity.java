@@ -25,7 +25,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends RightSideParentActivity implements OnClickListener{
+public class LoginActivity extends RightSideParentActivity implements
+		OnClickListener {
+	private static final String LOG_TAG = "LoginActivity";
 	
 	private EditText editUsername, editPassword;
 	private Button btnLogin, btnRegister, btnForgetPwd;
@@ -92,7 +94,18 @@ public class LoginActivity extends RightSideParentActivity implements OnClickLis
 	
 	private final Coach getLoginCoachInfo(String str){
 		Coach coach = new Coach();
-		//TODO resolve login info
+		try {
+			JSONObject shell = new JSONObject(str);
+			JSONObject json = shell.getJSONObject(SRL.RESULT_KEY_INFO);
+			coach.setCarno(json.getString(SRL.ReturnField.FIELD_COACH_CARNO));
+			coach.setCertno(json.getString(SRL.ReturnField.FIELD_COACH_CERTNO));
+			coach.setName(json.getString(SRL.ReturnField.FIELD_COACH_NAME));
+			coach.setPhoneNumber(json.getString(SRL.ReturnField.FIELD_COACH_PHONE));
+			coach.setSchool(json.getString(SRL.ReturnField.FIELD_COACH_SCHOOL));
+		} catch (JSONException e) {
+			Log.e(LOG_TAG, "Fail to resolve server response.");
+			e.printStackTrace();
+		}
 		return coach;
 	}
 	

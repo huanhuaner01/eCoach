@@ -67,7 +67,9 @@
                     style="@style/style_viewprofile_detail_tvkey"
                     android:text="@string/str_viewprofile_name" />
 
-                <TextView style="@style/style_viewprofile_detail_tvkey" />
+                <TextView
+                    android:id="@+id/viewprofile_tv_name"
+                    style="@style/style_viewprofile_detail_tvkey" />
             </LinearLayout>
 
             <View style="@style/style_view_profile_detail_divider" />
@@ -78,7 +80,9 @@
                     style="@style/style_viewprofile_detail_tvkey"
                     android:text="@string/str_viewprofile_school" />
 
-                <TextView style="@style/style_viewprofile_detail_tvkey" />
+                <TextView
+                    android:id="@+id/viewprofile_tv_school"
+                    style="@style/style_viewprofile_detail_tvkey" />
             </LinearLayout>
 
             <View style="@style/style_view_profile_detail_divider" />
@@ -89,7 +93,9 @@
                     style="@style/style_viewprofile_detail_tvkey"
                     android:text="@string/str_viewprofile_carno" />
 
-                <TextView style="@style/style_viewprofile_detail_tvkey" />
+                <TextView
+                    android:id="@+id/viewprofile_tv_carno"
+                    style="@style/style_viewprofile_detail_tvkey" />
             </LinearLayout>
 
             <View style="@style/style_view_profile_detail_divider" />
@@ -100,7 +106,9 @@
                     style="@style/style_viewprofile_detail_tvkey"
                     android:text="@string/str_viewprofile_phone" />
 
-                <TextView style="@style/style_viewprofile_detail_tvkey" />
+                <TextView
+                    android:id="@+id/viewprofile_tv_phone"
+                    style="@style/style_viewprofile_detail_tvkey" />
             </LinearLayout>
 
             <View style="@style/style_view_profile_detail_divider" />
@@ -111,7 +119,9 @@
                     style="@style/style_viewprofile_detail_tvkey"
                     android:text="@string/str_viewprofile_certno" />
 
-                <TextView style="@style/style_viewprofile_detail_tvkey" />
+                <TextView
+                    android:id="@+id/viewprofile_tv_certno"
+                    style="@style/style_viewprofile_detail_tvkey" />
             </LinearLayout>
         </LinearLayout>
 

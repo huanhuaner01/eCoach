@@ -34,6 +34,15 @@ public final class SRL {
 	 */
 	public static final String METHOD_LOGIN = "/adr/cohLogin";
 
+	/**
+	 * 存放服务器上可调用的方法名称。 
+	 * @author Muyangmin
+	 * @create 2015-2-20
+	 */
+	public static final class Method{
+		
+	}
+	
 	// ----------------------------------教练注册模块BEGIN-------------------------------------------
 
 	/**
@@ -123,8 +132,47 @@ public final class SRL {
 
 	// ---------------------------------教练注册模块END-------------------------------------------
 	
+	/**
+	 * 存放错误返回码信息。
+	 * @author Muyangmin
+	 * @create 2015-2-20
+	 */
 	public static final class ErrorCode{
+		/**
+		 * 登录返回值：密码错误。
+		 */
 		public static final int ERR_LOGIN_WRONGPWD = 1;
+		/**
+		 * 登录返回值：帐户被禁用。
+		 */
 		public static final int ERR_LOGIN_ACCOUNT_FORBIDDEN = 2;
+	}
+	
+	/**
+	 * 存放返回值字段信息。
+	 * @author Muyangmin
+	 * @create 2015-2-20
+	 */
+	public static final class ReturnField{
+		/**
+		 * 登录返回字段：教练姓名。
+		 */
+		public static final String FIELD_COACH_NAME = "name";
+		/**
+		 * 登录返回字段：教练所属驾校。
+		 */
+		public static final String FIELD_COACH_SCHOOL = "school";
+		/**
+		 * 登录返回字段：教练车牌号。
+		 */
+		public static final String FIELD_COACH_CARNO = "carno";
+		/**
+		 * 登录返回字段：教练手机。
+		 */
+		public static final String FIELD_COACH_PHONE = "phone";
+		/**
+		 * 登录返回字段：教练证号。
+		 */
+		public static final String FIELD_COACH_CERTNO = "certno";
 	}
 }
