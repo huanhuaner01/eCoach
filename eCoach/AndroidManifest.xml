@@ -87,8 +87,12 @@
             android:label="@string/title_activity_about_us" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.msg.MessageActivity"
+            android:name=".ui.msg.MessageActivity"
             android:label="@string/title_activity_message" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.order.OrderListActivity"
+            android:label="@string/title_activity_order_list" >
         </activity>
     </application>
 

@@ -20,6 +20,7 @@
     <string name="title_activity_modify_password">修改密码</string>
     <string name="title_activity_about_us">关于我们</string>
     <string name="title_activity_message">消息</string>
+    <string name="title_activity_order_list">我的订单</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -166,5 +167,6 @@
     <string name="str_feedback_toast_commit">您的意见已经提交成功，感谢您的反馈</string>
     <string name="str_aboutus_version">版本号</string>
     <string name="str_aboutus_service_protocal">服务条款</string>
+    <string name="str_orderlist_cancel_protocal">已取消，已和学员达成协议</string>
 
 </resources>

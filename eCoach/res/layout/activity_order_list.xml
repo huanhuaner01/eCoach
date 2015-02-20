@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/orderlist_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_order_list" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/orderlist_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderlist_titlebar"
+        android:layout_marginLeft="@dimen/margin_xlarge"
+        android:layout_marginRight="@dimen/margin_xlarge"
+        android:scrollbars="none"
+        android:divider="@null" />
+
+</RelativeLayout>
