@@ -32,7 +32,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * 用于注册时填写资料的Fragment。
@@ -107,14 +106,13 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 		final String cardno = editCardno.getText().toString();
 		if ((name.length() <= 0) || (school.length() <= 0)
 				|| (carno.length() <= 0) || (cardno.length() <= 0)) {
-			Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
+			Uis.toastShort(getActivity(), R.string.str_err_requiredinfo_not_completed);
 			return;
 		}
 		// 检查教练证位数
 		if (cardno.length() != getResources().getInteger(
 				R.integer.coach_certify_valid_length)) {
-			Toast.makeText(getActivity(), "教练证号码长度可能不正确", Toast.LENGTH_SHORT)
-					.show();
+			Uis.toastShort(getActivity(), R.string.str_register_err_cert_wronglength);
 			return;
 		}
 		//检查照片上传状态

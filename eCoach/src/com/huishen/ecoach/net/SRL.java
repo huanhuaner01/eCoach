@@ -74,6 +74,10 @@ public final class SRL {
 		 * 验证注册码 参数:vcode:4456 返回值:{code:0|1} 0:匹配成功，1:匹配失败
 		 */
 		public static final String METHOD_VERIFY_VCODE = "/adr/cohVcode";
+		/**
+		 * 修改用户的登录密码。
+		 */
+		public static final String METHOD_MODIFY_PASSWORD="";
 		
 	}
 	
@@ -117,12 +121,15 @@ public final class SRL {
 		 * 教练姓名参数。
 		 */
 		public static final String PARAM_USERNAME = "username";
-		
+		/**
+		 * 修改密码时使用，旧密码。
+		 */
+		public static final String PARAM_OLDPWD = PARAM_PASSWORD;
+		/**
+		 * 修改密码时使用，新密码。
+		 */
+		public static final String PARAM_NEWPWD = "newpwd";
 	}
-
-	
-
-	// ---------------------------------教练注册模块END-------------------------------------------
 	
 	/**
 	 * 存放返回码（多为错误代码）信息。
