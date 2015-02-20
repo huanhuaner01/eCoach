@@ -47,12 +47,15 @@
     <style name="style_common_title_rightbtn">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">2dp</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+        <item name="android:paddingLeft">@dimen/padding_middle</item>
+        <item name="android:paddingRight">@dimen/padding_middle</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginRight">@dimen/common_titlebar_horizontal_margin</item>
-    </style>
-    <style name="style_common_title_righttv" parent="@style/style_common_title_rightbtn">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/color_titlebar_txt</item>
         <item name="android:textSize">@dimen/txtsize_xlarge</item>
     </style>

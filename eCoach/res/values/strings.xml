@@ -162,6 +162,7 @@
     <string name="title_activity_feedback">意见反馈</string>
     <string name="str_feedback_hint_feed">留下您的意见和建议吧</string>
     <string name="str_feedback_btn_commit">提交</string>
+    <string name="str_feedback_toast_commit">您的意见已经提交成功，感谢您的反馈</string>
 	<string name="str_aboutus_version">版本号</string>
 	<string name="str_aboutus_service_protocal">服务条款</string>
 	

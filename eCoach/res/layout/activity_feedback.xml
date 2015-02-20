@@ -17,8 +17,9 @@
             style="@style/style_common_titletv"
             android:text="@string/title_activity_feedback" />
 
-        <TextView
-            style="@style/style_common_title_righttv"
+        <Button
+            android:id="@+id/feedback_btn_submit"
+            style="@style/style_common_title_rightbtn"
             android:text="@string/str_feedback_btn_commit" />
     </RelativeLayout>
 

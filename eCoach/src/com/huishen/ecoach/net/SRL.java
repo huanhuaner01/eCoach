@@ -77,8 +77,11 @@ public final class SRL {
 		/**
 		 * 修改用户的登录密码。
 		 */
-		public static final String METHOD_MODIFY_PASSWORD="";
-		
+		public static final String METHOD_MODIFY_PASSWORD = "";
+		/**
+		 * 提交用户的意见反馈。
+		 */
+		public static final String METHOD_FEEDBACK = "";
 	}
 	
 	/**
@@ -129,6 +132,10 @@ public final class SRL {
 		 * 修改密码时使用，新密码。
 		 */
 		public static final String PARAM_NEWPWD = "newpwd";
+		/**
+		 * 提交意见反馈时使用，信息内容。
+		 */
+		public static final String PARAM_FEEDBACK_CONTENT = "content";
 	}
 	
 	/**
