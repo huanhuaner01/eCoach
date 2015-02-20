@@ -63,23 +63,23 @@ public class LoginActivity extends RightSideParentActivity implements
 	//处理登录逻辑
 	private final void performLogin(String user, String pwd){
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.PARAM_USERNAME, user);
-		params.put(SRL.PARAM_PASSWORD, pwd);
-		NetUtil.requestStringData(SRL.METHOD_LOGIN, params, new Response.Listener<String>() {
+		params.put(SRL.Param.PARAM_USERNAME, user);
+		params.put(SRL.Param.PARAM_PASSWORD, pwd);
+		NetUtil.requestStringData(SRL.Method.METHOD_LOGIN, params, new Response.Listener<String>() {
 			@Override
 			public void onResponse(String arg0) {
 				try {
 					JSONObject json = new JSONObject(arg0);
-					int code = json.getInt(SRL.RESULT_KEY_CODE);
-					if (code==SRL.ErrorCode.ERR_LOGIN_ACCOUNT_FORBIDDEN){
+					int code = json.getInt(SRL.ReturnField.FIELD_RETURN_CODE);
+					if (code==SRL.ReturnCode.ERR_LOGIN_ACCOUNT_FORBIDDEN){
 						Uis.toastShort(LoginActivity.this, R.string.str_login_err_account_forbidden);
 						return ;
 					}
-					else if (code==SRL.ErrorCode.ERR_LOGIN_WRONGPWD){
+					else if (code==SRL.ReturnCode.ERR_LOGIN_WRONGPWD){
 						Uis.toastShort(LoginActivity.this, R.string.str_login_err_wrongpwd);
 						return ;
 					}
-					else{	//success
+					else{	// assume success
 						Uis.toastShort(LoginActivity.this, R.string.str_login_info_success);
 						MainApp.getInstance().setLoginCoach(getLoginCoachInfo(arg0));
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
@@ -96,7 +96,7 @@ public class LoginActivity extends RightSideParentActivity implements
 		Coach coach = new Coach();
 		try {
 			JSONObject shell = new JSONObject(str);
-			JSONObject json = shell.getJSONObject(SRL.RESULT_KEY_INFO);
+			JSONObject json = shell.getJSONObject(SRL.ReturnField.FIELD_INFO);
 			coach.setCarno(json.getString(SRL.ReturnField.FIELD_COACH_CARNO));
 			coach.setCertno(json.getString(SRL.ReturnField.FIELD_COACH_CERTNO));
 			coach.setName(json.getString(SRL.ReturnField.FIELD_COACH_NAME));

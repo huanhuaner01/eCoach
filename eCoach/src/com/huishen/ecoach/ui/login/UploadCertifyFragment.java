@@ -111,17 +111,17 @@ public final class UploadCertifyFragment extends Fragment {
 	
 	private final void submitLastRequest(){
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_VERIFIED_PHONE));
-		params.put(SRL.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_COACH_NAME));
-		params.put(SRL.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_COACH_SCHOOL));
-		params.put(SRL.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_COACH_CARNO));
-		params.put(SRL.PARAM_COACH_CERTNO, Prefs.getString(getActivity(), Const.KEY_COACH_CERTNO));
-		params.put(SRL.PARAM_PATH_AVATAR, Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR));
-		params.put(SRL.PARAM_PATH_CERT1, Prefs.getString(getActivity(), getImagePrefname(0)));
-		params.put(SRL.PARAM_PATH_CERT2, Prefs.getString(getActivity(), getImagePrefname(1)));
-		params.put(SRL.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));
-		params.put(SRL.PARAM_PATH_CERT4, Prefs.getString(getActivity(), getImagePrefname(3)));
-		NetUtil.requestStringData(SRL.METHOD_FINISH_REGISTER, params,
+		params.put(SRL.Param.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_VERIFIED_PHONE));
+		params.put(SRL.Param.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_COACH_NAME));
+		params.put(SRL.Param.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_COACH_SCHOOL));
+		params.put(SRL.Param.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_COACH_CARNO));
+		params.put(SRL.Param.PARAM_COACH_CERTNO, Prefs.getString(getActivity(), Const.KEY_COACH_CERTNO));
+		params.put(SRL.Param.PARAM_PATH_AVATAR, Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR));
+		params.put(SRL.Param.PARAM_PATH_CERT1, Prefs.getString(getActivity(), getImagePrefname(0)));
+		params.put(SRL.Param.PARAM_PATH_CERT2, Prefs.getString(getActivity(), getImagePrefname(1)));
+		params.put(SRL.Param.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));
+		params.put(SRL.Param.PARAM_PATH_CERT4, Prefs.getString(getActivity(), getImagePrefname(3)));
+		NetUtil.requestStringData(SRL.Method.METHOD_FINISH_REGISTER, params,
 				new Response.Listener<String>() {
 
 					@Override
@@ -295,13 +295,13 @@ public final class UploadCertifyFragment extends Fragment {
 	}
 	
 	private final void uploadPhoto(File file, final int position){
-		NetUtil.requestUploadFile(file, SRL.METHOD_UPLOAD_CERTIFICATES, new UploadResponseListener() {
+		NetUtil.requestUploadFile(file, SRL.Method.METHOD_UPLOAD_CERTIFICATES, new UploadResponseListener() {
 			
 			@Override
 			public void onSuccess(String str) {
 				//上传不成功时取得的为null值。
 				String url = ResponseParser.getStringFromResult(str,
-						SRL.RESULT_KEY_URI);
+						SRL.ReturnField.FIELD_URI);
 				Log.i(LOG_TAG, "avatar upload completed." + url);
 				Prefs.setString(getActivity(), getImagePrefname(position), url);
 				holders.get(position).prg.setVisibility(View.INVISIBLE);

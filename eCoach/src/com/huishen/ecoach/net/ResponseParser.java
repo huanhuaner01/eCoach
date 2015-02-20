@@ -24,8 +24,8 @@ public final class ResponseParser {
 		try {
 			JSONObject json = new JSONObject(str);
 			// 因为opt方式的默认值是0，为避免和正常值0混淆，使用get方式。
-			int code = json.getInt(SRL.RESULT_KEY_CODE);
-			return code == SRL.RESULT_OK;
+			int code = json.getInt(SRL.ReturnField.FIELD_RETURN_CODE);
+			return code == SRL.ReturnCode.RESULT_OK;
 		} catch (JSONException e) {
 			Log.e(LOG_TAG, "Huh, this response may be broken.");
 			handleJSONException(e);

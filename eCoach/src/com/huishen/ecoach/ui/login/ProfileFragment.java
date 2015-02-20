@@ -187,14 +187,14 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 	}
 
 	private final void uploadPhoto(File file) {
-		NetUtil.requestUploadFile(file, SRL.METHOD_UPLOAD_AVATAR,
+		NetUtil.requestUploadFile(file, SRL.Method.METHOD_UPLOAD_AVATAR,
 				new UploadResponseListener() {
 
 					@Override
 					public void onSuccess(String str) {
 						//上传不成功时取得的为null值。
 						String url = ResponseParser.getStringFromResult(str,
-								SRL.RESULT_KEY_URI);
+								SRL.ReturnField.FIELD_URI);
 						Log.i(LOG_TAG, "avatar upload completed." + url);
 						Prefs.setString(getActivity(), Const.KEY_COACH_AVATAR, url);
 					}

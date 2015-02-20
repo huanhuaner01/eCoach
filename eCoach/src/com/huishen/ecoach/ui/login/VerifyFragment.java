@@ -174,7 +174,7 @@ public final class VerifyFragment extends Fragment {
 							R.string.str_register_err_vcode_invalid), Toast.LENGTH_SHORT).show();
 					return ;
 				}
-				NetUtil.requestStringData(SRL.METHOD_VERIFY_VCODE, new Response.Listener<String>() {
+				NetUtil.requestStringData(SRL.Method.METHOD_VERIFY_VCODE, new Response.Listener<String>() {
 
 					@Override
 					public void onResponse(String arg0) {
@@ -194,9 +194,9 @@ public final class VerifyFragment extends Fragment {
 		final String phoneNumber = editPhone.getText().toString();
 		final String pwd = editPassword.getText().toString();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(SRL.PARAM_MOBILE_NUMBER, phoneNumber);
-		map.put(SRL.PARAM_PASSWORD, MsgEncryption.md5Encryption(pwd));
-		NetUtil.requestStringData(SRL.METHOD_REGISTER_COACH, map, new Response.Listener<String>() {
+		map.put(SRL.Param.PARAM_MOBILE_NUMBER, phoneNumber);
+		map.put(SRL.Param.PARAM_PASSWORD, MsgEncryption.md5Encryption(pwd));
+		NetUtil.requestStringData(SRL.Method.METHOD_REGISTER_COACH, map, new Response.Listener<String>() {
 
 			@Override
 			public void onResponse(String arg0) {

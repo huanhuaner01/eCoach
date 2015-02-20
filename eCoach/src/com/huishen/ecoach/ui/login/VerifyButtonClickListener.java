@@ -91,8 +91,8 @@ class VerifyButtonClickListener implements OnClickListener {
 	 */
 	private final void getVerifyCode(String mobileNumber) {
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.PARAM_MOBILE_NUMBER, mobileNumber);
-		NetUtil.requestStringData(SRL.METHOD_GET_VERIFY_CODE, params,
+		params.put(SRL.Param.PARAM_MOBILE_NUMBER, mobileNumber);
+		NetUtil.requestStringData(SRL.Method.METHOD_GET_VERIFY_CODE, params,
 				new Response.Listener<String>() {
 
 					@Override
