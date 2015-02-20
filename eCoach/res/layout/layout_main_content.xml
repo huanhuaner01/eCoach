@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_all_bkg" >
@@ -8,20 +9,28 @@
         android:id="@+id/main_title"
         style="@style/style_common_titlebar" >
 
-        <ImageButton android:id="@+id/main_btn_me"
+        <ImageButton
+            android:id="@+id/main_btn_me"
             style="@style/style_common_title_leftbtn"
-            android:src="@drawable/icon_main_me"
             android:contentDescription="@null"
-            />
-        
+            android:src="@drawable/icon_main_me" />
+
         <TextView
             style="@style/style_common_titletv"
             android:text="@string/str_activity_main_title" />
-        <ImageButton android:id="@+id/main_btn_msg"
+
+        <ImageButton
+            android:id="@+id/main_btn_msg"
             style="@style/style_common_title_rightbtn"
-            android:src="@drawable/ic_launcher"
             android:contentDescription="@null"
-            />
+            android:src="@drawable/icon_main_btn_msg" />
+
+        <TextView
+            style="@style/style_common_texture_red_dot"
+            android:layout_alignRight="@id/main_btn_msg"
+            android:layout_alignTop="@id/main_btn_msg"
+            android:layout_marginRight="@dimen/margin_micro"
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -102,8 +111,8 @@
             <TextView
                 android:id="@+id/main_tv_myorder_value"
                 style="@style/style_main_ordernum_tv"
-                android:layout_alignTop="@id/main_prg_myordernum"
                 android:layout_alignBottom="@id/main_prg_myordernum"
+                android:layout_alignTop="@id/main_prg_myordernum"
                 android:layout_toEndOf="@id/main_prg_ordernum"
                 android:layout_toRightOf="@id/main_prg_ordernum"
                 android:text="@string/str_main_default_myorder" />
@@ -119,28 +128,32 @@
             android:textColor="@color/color_theme_orange"
             android:textSize="108sp"
             android:textStyle="bold" />
-        <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:padding="10dp"
-	    android:layout_marginBottom="20dp"
-	    android:orientation="horizontal" >
 
-		<TextView 
-		    android:id="@+id/main_tv_book_manage"
-		    style="@style/style_main_bottom_menutv"
-		    android:text="@string/str_main_menu_book_manage"
-		    android:drawableTop="@drawable/ic_launcher" />
-		<TextView 
-		    android:id="@+id/main_tv_begin_snapup"
-		    style="@style/style_main_bottom_menutv"
-		    android:text="@string/str_main_menu_begin_snapup" />
-		<TextView 
-		    android:id="@+id/main_tv_recruit_manage"
-		    style="@style/style_main_bottom_menutv"
-		    android:drawableTop="@drawable/ic_launcher"
-		    android:text="@string/str_main_menu_recruit_manage" />
-	</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/main_tv_book_manage"
+                style="@style/style_main_bottom_menutv"
+                android:drawableTop="@drawable/sel_icon_main_bookmanage"
+                android:text="@string/str_main_menu_book_manage" />
+
+            <TextView
+                android:id="@+id/main_tv_begin_snapup"
+                style="@style/style_main_bottom_menutv"
+                android:text="@string/str_main_menu_begin_snapup" />
+
+            <TextView
+                android:id="@+id/main_tv_recruit_manage"
+                style="@style/style_main_bottom_menutv"
+                android:drawableTop="@drawable/sel_icon_main_recruitmanage"
+                android:text="@string/str_main_menu_recruit_manage" />
+        </LinearLayout>
     </RelativeLayout>
+
 </RelativeLayout>

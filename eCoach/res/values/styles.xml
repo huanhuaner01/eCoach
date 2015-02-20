@@ -66,7 +66,9 @@
         <item name="android:background">@drawable/bkg_common_reddot</item>
     </style>
 
-    <style name="style_texture_red_dot" parent="style_common_red_dot">
+    <style name="style_common_texture_red_dot" parent="@style/style_common_wrap_wrap">
+        <item name="android:padding">1dp</item>
+        <item name="android:background">@drawable/bkg_red_dot</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/txtsize_micro</item>
         <item name="android:gravity">center</item>
@@ -78,7 +80,7 @@
         <item name="android:background">@color/color_pure_gray</item>
     </style>
 
-    <style name="style_common_view_pxdivider" parent="style_common_view_dpdivider">
+    <style name="style_common_view_pxdivider" parent="@style/style_common_view_dpdivider">
         <item name="android:layout_height">1px</item>
     </style>
     
@@ -189,6 +191,8 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">5dp</item>
         <item name="android:drawablePadding">5dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:longClickable">true</item>
     </style>
 
     <style name="style_login_form">

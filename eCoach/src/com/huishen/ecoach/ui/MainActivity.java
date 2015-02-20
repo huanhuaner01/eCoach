@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
 
@@ -31,7 +32,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private SlidingPaneLayout slidePaneLayout;
 	private TextView tvDate;
-	private ImageButton btnMe;
+	private ImageButton btnMe, btnMsg;
 	
 	//--- Slide Pane Widgets
 	private TextView tvUserGuide, tvRecommend, tvSetting;
@@ -58,6 +59,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		slidePaneLayout = (SlidingPaneLayout)findViewById(R.id.main_slidepane);
 		tvDate = (TextView) findViewById(R.id.main_tv_date);
 		btnMe = (ImageButton)findViewById(R.id.main_btn_me);
+		btnMsg = (ImageButton)findViewById(R.id.main_btn_msg);
 		tvRecommend = (TextView)findViewById(R.id.pcenter_tv_recommend);
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
@@ -66,6 +68,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	private void addListeners(){
 		btnMe.setOnClickListener(this);
+		btnMsg.setOnClickListener(this);
 		tvRecommend.setOnClickListener(this);
 		tvSetting.setOnClickListener(this);
 		tvUserGuide.setOnClickListener(this);
@@ -104,6 +107,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			else {
 				slidePaneLayout.closePane();
 			}
+			break;
+		case R.id.main_btn_msg:
+			startActivity(MessageActivity.getIntent(this));
 			break;
 		case R.id.pcenter_tv_userguide:
 			startActivity(UserGuideActivity.getIntent(this));
