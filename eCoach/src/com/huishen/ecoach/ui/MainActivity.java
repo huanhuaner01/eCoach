@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.ui.pcenter.SettingActivity;
+import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.text.Spannable;
@@ -94,7 +97,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.main_btn_me:
+		case R.id.main_btn_me://主页左上角me按钮
 			if (!slidePaneLayout.isOpen()){
 				slidePaneLayout.openPane();
 			}
@@ -102,7 +105,12 @@ public class MainActivity extends Activity implements OnClickListener{
 				slidePaneLayout.closePane();
 			}
 			break;
-
+		case R.id.pcenter_tv_userguide:
+			startActivity(UserGuideActivity.getIntent(this));
+			break;
+		case R.id.pcenter_tv_setting:
+			startActivity(SettingActivity.getIntent(this));
+			break;
 		default:
 			break;
 		}
