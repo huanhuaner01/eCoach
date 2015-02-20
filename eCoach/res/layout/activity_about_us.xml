@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context=".AboutUsActivity" >
+
+    <RelativeLayout
+        android:id="@+id/aboutus_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_about_us" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/style_common_macth_match"
+        android:layout_below="@id/aboutus_titlebar"
+        android:layout_marginLeft="@dimen/margin_xlarge"
+        android:layout_marginRight="@dimen/margin_xlarge" >
+
+        <ImageView
+            android:id="@+id/aboutus_app_icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_login_app_icon" />
+
+        <ImageView
+            android:id="@+id/aboutus_app_icon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aboutus_app_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_login_app_name" />
+
+        <RelativeLayout
+            android:id="@+id/aboutus_rl_version"
+            style="@style/style_common_macth_wrap"
+            android:layout_below="@id/aboutus_app_icon_name"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:background="@drawable/bkg_setting_menugrp" >
+
+            <TextView
+                style="@style/style_setting_menuitem_tv"
+                android:background="@android:color/transparent"
+                android:text="@string/str_aboutus_version" />
+            <TextView
+                android:id="@+id/aboutus_tv_version"
+                style="@style/style_common_wrap_wrap"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_xlarge"
+                android:layout_marginEnd="@dimen/margin_xlarge"
+                android:gravity="center_vertical"
+                android:textColor="@drawable/sel_setting_menuitem_txtcolor"
+                android:textSize="@dimen/txtsize_large" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/style_common_macth_wrap"
+            android:layout_below="@id/aboutus_rl_version"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:background="@drawable/bkg_setting_menugrp" >
+
+            <TextView
+                style="@style/style_setting_menuitem_tv"
+                android:background="@android:color/transparent"
+                android:text="@string/str_aboutus_service_protocal" />
+
+            <ImageView
+                style="@style/style_setting_menuitem_imgright"
+                android:contentDescription="@null" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

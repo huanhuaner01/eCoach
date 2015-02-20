@@ -6,8 +6,8 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="style_common_macth_match">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
     <style name="style_common_macth_wrap">
         <item name="android:layout_width">match_parent</item>
@@ -255,9 +255,7 @@
         <item name="android:background">@drawable/bkg_setting_menugrp</item>
     </style>
     <!-- 设置界面的菜单项样式，应该使用在RelativeLayout上。 -->
-    <style name="style_setting_menuitem">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="style_setting_menuitem" parent="@style/style_common_macth_wrap">
     </style>
     <!-- 设置界面菜单名称样式，应该使用在TextView上。 -->
     <style name="style_setting_menuitem_tv">
@@ -275,7 +273,7 @@
         <item name="android:longClickable">true</item>
         <item name="android:drawablePadding">@dimen/padding_middle</item>
     </style>
-    <!-- 设置界面菜单箭头，应该使用在ImageView上。 -->
+    <!-- 设置界面菜单箭头，应该使用在RelativeLayout中的ImageView。 -->
     <style name="style_setting_menuitem_imgright">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
