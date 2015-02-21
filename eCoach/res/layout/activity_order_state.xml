@@ -1,0 +1,181 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context="${relativePackage}.${activityClass}"
+    tools:ignore="RtlHardcoded" >
+
+    <RelativeLayout
+        android:id="@+id/orderstate_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/orderstate_tv_title"
+            style="@style/style_common_titletv"
+            android:text="@string/str_orderstate_cancelled" />
+
+        <Button
+            android:id="@+id/orderstate_btn_complaint"
+            style="@style/style_common_title_rightbtn"
+            android:text="@string/str_orderstate_complaint"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/orderstate_rl_description"
+        style="@style/style_common_macth_wrap"
+        android:layout_below="@id/orderstate_titlebar"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/orderstate_padding_horizontal"
+        android:paddingRight="@dimen/orderstate_padding_horizontal" >
+
+        <TextView
+            android:id="@+id/orderstate_tv_stu_postiion"
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawablePadding="@dimen/padding_micro"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/color_txt_gray"
+            android:textSize="@dimen/txtsize_large" />
+
+        <TextView
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/orderstate_tv_stu_postiion"
+            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawablePadding="@dimen/padding_micro"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/color_txt_gray"
+            android:textSize="@dimen/txtsize_large" />
+
+        <ImageButton
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@android:color/transparent"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_orderstate_call" />
+    </RelativeLayout>
+
+    <FrameLayout
+        style="@style/style_common_macth_match"
+        android:layout_below="@id/orderstate_rl_description"
+        android:layout_marginTop="@dimen/margin_small" >
+
+        <LinearLayout
+            android:id="@+id/orderstate_ll_cancelled"
+            style="@style/style_common_macth_match"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <ImageView
+                style="@style/style_common_wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:src="@drawable/pic_order_state_detail" />
+
+            <ImageView
+                style="@style/style_common_wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:src="@drawable/pic_order_state_cancel" />
+
+            <TextView
+                android:id="@+id/orderstate_tv_cancel_reason"
+                style="@style/style_common_wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/color_txt_gray"
+                android:textSize="@dimen/txtsize_large" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/orderstate_ll_evaluated"
+            style="@style/style_common_macth_match"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                style="@style/style_common_macth_wrap"
+                android:paddingBottom="@dimen/padding_middle"
+                android:paddingLeft="@dimen/orderstate_padding_horizontal"
+                android:paddingRight="@dimen/orderstate_padding_horizontal"
+                android:paddingTop="@dimen/padding_middle" >
+
+                <TextView
+                    android:id="@+id/orderstate_tv_evaldate"
+                    style="@style/style_common_largetext"
+                    android:layout_alignParentLeft="true" />
+
+                <TextView
+                    android:id="@+id/orderstate_tv_evaltime"
+                    style="@style/style_common_largetext"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_toRightOf="@id/orderstate_tv_evaldate" />
+
+                <TextView
+                    android:id="@+id/orderstate_tv_evalphone"
+                    style="@style/style_common_largetext"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/margin_middle" />
+            </RelativeLayout>
+
+            <View style="@style/style_common_view_pxdivider" />
+
+            <TextView
+                android:id="@+id/orderstate_tv_content"
+                style="@style/style_common_largetext"
+                android:padding="@dimen/padding_middle" />
+
+            <View style="@style/style_common_view_pxdivider" />
+
+            <LinearLayout style="@style/style_common_wrap_wrap" >
+
+                <TextView
+                    style="@style/style_common_largetext"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_orderstate_evalitem_attitude" />
+
+                <RatingBar
+                    android:id="@+id/orderstate_rtb_attitude"
+                    style="@style/style_orderstate_ratingbar" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_common_wrap_wrap" >
+
+                <TextView
+                    style="@style/style_common_largetext"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_orderstate_evalitem_environment" />
+
+                <RatingBar
+                    android:id="@+id/orderstate_rtb_environment"
+                    style="@style/style_orderstate_ratingbar" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_common_wrap_wrap" >
+
+                <TextView
+                    style="@style/style_common_largetext"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/str_orderstate_evalitem_traffic" />
+
+                <RatingBar
+                    android:id="@+id/orderstate_rtb_traffic"
+                    style="@style/style_orderstate_ratingbar" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

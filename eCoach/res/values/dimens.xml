@@ -59,4 +59,6 @@
     <dimen name="setting_menugrp_padding_right">35dp</dimen>
     <!-- 个人资料界面左侧内边距 -->
     <dimen name="viewprofile_item_paddingleft">35dp</dimen>
+    <!-- 订单状态界面内边距 -->
+    <dimen name="orderstate_padding_horizontal">@dimen/padding_small</dimen>
 </resources>
