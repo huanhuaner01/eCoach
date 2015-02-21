@@ -80,7 +80,7 @@ public class OrderListActivity extends RightSideParentActivity {
 			holder.tvDate.setText(dateSdf.format(new Date(order.getTime())));
 			holder.tvTime.setText(timeSdf.format(new Date(order.getTime())));
 			holder.tvStudentPostion.setText(order.getStudentPosition());
-			holder.tvTargetPosition.setText(order.getTargetPosition());
+			holder.tvTargetPosition.setText(order.getStudyPosition());
 			if (order.isCancelled()){
 				holder.rtbEvaluation.setVisibility(View.INVISIBLE);
 				holder.tvcancel.setVisibility(View.VISIBLE);

@@ -22,8 +22,7 @@
         <Button
             android:id="@+id/orderstate_btn_complaint"
             style="@style/style_common_title_rightbtn"
-            android:text="@string/str_orderstate_complaint"
-            android:visibility="invisible" />
+            android:text="@string/str_orderstate_complaint" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -48,6 +47,7 @@
             android:textSize="@dimen/txtsize_large" />
 
         <TextView
+            android:id="@+id/orderstate_tv_coach_postiion"
             style="@style/style_common_wrap_wrap"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/orderstate_tv_stu_postiion"
