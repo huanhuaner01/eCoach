@@ -336,7 +336,13 @@
     
     <style name="style_orderstate_ratingbar" parent="@style/style_common_wrap_wrap">
     </style>
-    
+    <style name="style_complaint_reasons" parent="@style/style_common_macth_wrap">
+        <item name="android:padding">@dimen/padding_middle</item>
+        <item name="android:drawableLeft">@drawable/icon_complaint_annoy</item>
+        <item name="android:drawablePadding">@dimen/padding_small</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+        <item name="android:textColor">@color/color_txt_gray</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

@@ -22,6 +22,7 @@
     <string name="title_activity_message">消息</string>
     <string name="title_activity_order_list">我的订单</string>
     <string name="title_activity_order_state">订单状态</string>
+    <string name="title_activity_complaint">投诉</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -169,10 +170,16 @@
     <string name="str_aboutus_version">版本号</string>
     <string name="str_aboutus_service_protocal">服务条款</string>
     <string name="str_orderlist_cancel_protocal">已取消，已和学员达成协议</string>
-	<string name="str_orderstate_cancelled">已取消</string>
-	<string name="str_orderstate_evaluated">已评价</string>
-	<string name="str_orderstate_complaint">投诉</string>
-	<string name="str_orderstate_evalitem_attitude">态度</string>
-	<string name="str_orderstate_evalitem_environment">环境</string>
-	<string name="str_orderstate_evalitem_traffic">交通</string>
+    <string name="str_orderstate_cancelled">已取消</string>
+    <string name="str_orderstate_evaluated">已评价</string>
+    <string name="str_orderstate_complaint">投诉</string>
+    <string name="str_orderstate_evalitem_attitude">态度</string>
+    <string name="str_orderstate_evalitem_environment">环境</string>
+    <string name="str_orderstate_evalitem_traffic">交通</string>
+    <string name="str_complaint_reason_disturb">多次咨询，无学车打算</string>
+    <string name="str_complaint_reason_destination">谎报目的地</string>
+    <string name="str_complaint_reason_attitude">态度恶劣</string>
+    <string name="str_complaint_reason_other">其他投诉理由</string>
+    <string name="str_complaint_confirm_complaint">确认投诉</string>
+
 </resources>

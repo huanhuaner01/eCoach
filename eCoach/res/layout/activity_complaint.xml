@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/complaint_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton style="@style/style_common_title_backbtn" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_complaint" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/style_common_macth_wrap"
+        android:layout_below="@id/complaint_titlebar"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/complaint_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none" />
+
+        <Button
+            android:id="@+id/complaint_btn_confirm"
+            style="@style/style_common_theme_btn"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:text="@string/str_complaint_confirm_complaint"/>
+    </LinearLayout>
+
+</RelativeLayout>

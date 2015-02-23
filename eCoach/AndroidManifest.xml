@@ -95,8 +95,12 @@
             android:label="@string/title_activity_order_list" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.order.OrderStateActivity"
+            android:name=".ui.order.OrderStateActivity"
             android:label="@string/title_activity_order_state" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.order.ComplaintActivity"
+            android:label="@string/title_activity_complaint" >
         </activity>
     </application>
 
