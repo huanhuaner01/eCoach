@@ -28,7 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/margin_middle" />
 
         <Button
             android:id="@+id/complaint_btn_confirm"

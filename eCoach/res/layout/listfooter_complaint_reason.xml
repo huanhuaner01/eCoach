@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/margin_small" >
+
+    <EditText
+        android:id="@+id/listfooter_edit_other_reason"
+        style="@style/style_complaint_reasons"
+        android:background="@drawable/bkg_complaint_reason"
+        android:hint="@string/str_complaint_reason_other"
+        android:lines="3" />
+
+</RelativeLayout>
