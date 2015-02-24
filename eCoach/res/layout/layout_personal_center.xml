@@ -108,22 +108,22 @@
         <TextView
             android:id="@+id/pcenter_tv_userguide"
             style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:drawableStart="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/icon_pcenter_userguide"
+            android:drawableStart="@drawable/icon_pcenter_userguide"
             android:text="@string/str_pcenter_userguide" />
 
         <TextView
             android:id="@+id/pcenter_tv_recommend"
             style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:drawableStart="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/icon_pcenter_recommend"
+            android:drawableStart="@drawable/icon_pcenter_recommend"
             android:text="@string/str_pcenter_recommend" />
 
         <TextView
             android:id="@+id/pcenter_tv_setting"
             style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:drawableStart="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/icon_pcenter_setting"
+            android:drawableStart="@drawable/icon_pcenter_setting"
             android:text="@string/str_pcenter_setting" />
     </LinearLayout>
 
