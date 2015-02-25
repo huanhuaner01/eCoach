@@ -268,6 +268,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
         <item name="android:background">@drawable/bkg_setting_menugrp</item>
+        <item name="android:paddingLeft">@dimen/setting_menugrp_padding_left</item>
+        <item name="android:paddingRight">@dimen/setting_menugrp_padding_right</item>
     </style>
     <!-- 设置界面的菜单项样式，应该使用在RelativeLayout上。 -->
     <style name="style_setting_menuitem" parent="@style/style_common_macth_wrap">
@@ -280,8 +282,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">@dimen/padding_middle</item>
         <item name="android:paddingBottom">@dimen/padding_middle</item>
-        <item name="android:paddingLeft">@dimen/setting_menugrp_padding_left</item>
-        <item name="android:paddingRight">@dimen/setting_menugrp_padding_right</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/bkg_setting_menuitem</item>
         <item name="android:textColor">@drawable/sel_setting_menuitem_txtcolor</item>
@@ -300,8 +300,6 @@
     </style>
     <style name="style_setting_menuitem_divider" parent="@style/style_common_view_dpdivider">
         <item name="android:background">#DDDDDD</item>
-        <item name="android:layout_marginLeft">@dimen/setting_menugrp_padding_left</item>
-        <item name="android:layout_marginRight">@dimen/setting_menugrp_padding_right</item>
     </style>
     <style name="style_viewprofile_detail_tvkey">
         <item name="android:layout_width">0dp</item>
