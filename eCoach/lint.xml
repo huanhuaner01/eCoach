@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
     <issue id="ContentDescription">
+        <ignore path="res/layout/activity_calendar.xml" />
         <ignore path="res/layout/activity_complaint.xml" />
         <ignore path="res/layout/listitem_complaint_reason.xml" />
     </issue>
     <issue id="InflateParams" severity="ignore" />
+    <issue id="RtlHardcoded">
+        <ignore path="res/layout/activity_calendar.xml" />
+    </issue>
 </lint>

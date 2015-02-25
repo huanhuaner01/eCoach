@@ -341,6 +341,17 @@
         <item name="android:textSize">@dimen/txtsize_large</item>
         <item name="android:textColor">@color/color_deeper_gray</item>
     </style>
+    
+    <!-- 用于LinearLayout里的TextView。 -->
+    <style name="style_calendar_weekday_tv">
+      	<item name="android:layout_width">0dp</item>
+      	<item name="android:layout_height">wrap_content</item>
+      	<item name="android:layout_weight">1</item>
+      	<item name="android:gravity">center</item>
+      	<item name="android:padding">@dimen/calendar_padding_weekday</item>
+      	<item name="android:textColor">@color/color_calendar_week</item>
+      	<item name="android:textSize">@dimen/calendar_txtsize_weekday</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

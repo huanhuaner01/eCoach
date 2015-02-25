@@ -23,6 +23,7 @@
     <string name="title_activity_order_list">我的订单</string>
     <string name="title_activity_order_state">订单状态</string>
     <string name="title_activity_complaint">投诉</string>
+    <string name="title_activity_calendar">预约选课</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -181,10 +182,15 @@
         <item >谎报目的地</item>
         <item >态度恶劣</item>
     </string-array>
-<!--     <string name="str_complaint_reason_disturb">多次咨询，无学车打算</string>
-    <string name="str_complaint_reason_destination">谎报目的地</string>
-    <string name="str_complaint_reason_attitude">态度恶劣</string> -->
     <string name="str_complaint_reason_other">其他投诉理由</string>
     <string name="str_complaint_confirm_complaint">确认投诉</string>
+    <string name="str_calendar_weekday_1">一</string>
+    <string name="str_calendar_weekday_2">二</string>
+    <string name="str_calendar_weekday_3">三</string>
+    <string name="str_calendar_weekday_4">四</string>
+    <string name="str_calendar_weekday_5">五</string>
+    <string name="str_calendar_weekday_6">六</string>
+    <string name="str_calendar_weekday_7">日</string>
 
+    <string name="sub_title">学员预约课程</string>
 </resources>

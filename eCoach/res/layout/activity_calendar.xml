@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appointment_bgcolor"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/style_common_titlebar" >
+        <ImageButton style="@style/style_common_title_backbtn"/>
+        <TextView style="@style/style_common_titletv"
+            android:text="@string/title_activity_calendar"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/calendar_title_size"
+        android:background="@color/color_calendar_title_background" >
+
+        <ImageButton
+            android:id="@+id/calendar_month_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/sel_calendar_default_btn"
+            android:paddingLeft="@dimen/calendar_padding_large"
+            android:paddingRight="@dimen/calendar_padding_large"
+            android:src="@drawable/icon_calendar_previous" />
+
+        <TextView
+            android:id="@+id/calendar_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textSize="@dimen/txtsize_large" />
+
+        <ImageButton
+            android:id="@+id/calendar_month_next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/sel_calendar_default_btn"
+            android:paddingLeft="@dimen/calendar_padding_large"
+            android:paddingRight="@dimen/calendar_padding_large"
+            android:src="@drawable/icon_calendar_next" />
+    </RelativeLayout>
+
+    <include layout="@layout/layout_calendar_week" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_calendar_gray"
+                tools:ignore="UselessParent" >
+
+                <include layout="@layout/layout_calendar_subject" />
+            </LinearLayout>
+        </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

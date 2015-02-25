@@ -41,6 +41,14 @@
     <dimen name="pcenter_avatar_width">80dp</dimen>
     <dimen name="pcenter_avatar_height">80dp</dimen>
     
+    <!-- library dimens -->
+    <dimen name="calendar_padding_middle">7dp</dimen>
+    <dimen name="calendar_padding_large">12dp</dimen>
+    <dimen name="calendar_padding_weekday">12dp</dimen>
+    <dimen name="calendar_txtsize_weekday">12sp</dimen>
+    <dimen name="calendar_sub_height">45dp</dimen>
+    <dimen name="calendar_title_size">45dp</dimen>
+    
     <!-- page specified dimensions -->
     <dimen name="main_ordernumtv_padding_horizontal">5dp</dimen>
     
@@ -61,4 +69,5 @@
     <dimen name="viewprofile_item_paddingleft">35dp</dimen>
     <!-- 订单状态界面内边距 -->
     <dimen name="orderstate_padding_horizontal">@dimen/padding_small</dimen>
+    
 </resources>
