@@ -17,6 +17,8 @@ import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -33,6 +35,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	private SlidingPaneLayout slidePaneLayout;
 	private TextView tvDate;
 	private ImageButton btnMe, btnMsg;
+	private TextView tvBookManage, tvSnapup, tvSnapAnimBkg, tvRecruitManage;
+	private boolean isSnaping = false;
+	private Animation rotateAnimation = null;
 	
 	//--- Slide Pane Widgets
 	private TextView tvUserGuide, tvRecommend, tvSetting;
@@ -60,6 +65,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvDate = (TextView) findViewById(R.id.main_tv_date);
 		btnMe = (ImageButton)findViewById(R.id.main_btn_me);
 		btnMsg = (ImageButton)findViewById(R.id.main_btn_msg);
+		tvBookManage = (TextView)findViewById(R.id.main_tv_book_manage);
+		tvSnapup = (TextView)findViewById(R.id.main_tv_snapup);
+		tvSnapAnimBkg = (TextView)findViewById(R.id.main_tv_snapup_animbkg);
+		tvRecruitManage = (TextView)findViewById(R.id.main_tv_recruit_manage);
 		tvRecommend = (TextView)findViewById(R.id.pcenter_tv_recommend);
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
@@ -69,10 +78,11 @@ public class MainActivity extends Activity implements OnClickListener{
 	private void addListeners(){
 		btnMe.setOnClickListener(this);
 		btnMsg.setOnClickListener(this);
+		tvBookManage.setOnClickListener(this);
+		tvSnapup.setOnClickListener(this);
 		tvRecommend.setOnClickListener(this);
 		tvSetting.setOnClickListener(this);
 		tvUserGuide.setOnClickListener(this);
-		
 		tgbMsgPush.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -110,6 +120,23 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.main_btn_msg:
 			startActivity(MessageActivity.getIntent(this));
+			break;
+		case R.id.main_tv_book_manage:
+			
+			break;
+		case R.id.main_tv_snapup:
+			if (isSnaping){
+				tvSnapAnimBkg.clearAnimation();
+			}
+			else {
+				if (rotateAnimation==null){
+					rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.main_btn_rotate);
+				}
+				tvSnapAnimBkg.startAnimation(rotateAnimation);
+			}
+			isSnaping = !isSnaping;
+			break;
+		case R.id.main_tv_recruit_manage:
 			break;
 		case R.id.pcenter_tv_userguide:
 			startActivity(UserGuideActivity.getIntent(this));

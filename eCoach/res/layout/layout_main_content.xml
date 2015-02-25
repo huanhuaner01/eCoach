@@ -143,10 +143,30 @@
                 android:drawableTop="@drawable/sel_icon_main_bookmanage"
                 android:text="@string/str_main_menu_book_manage" />
 
-            <TextView
-                android:id="@+id/main_tv_begin_snapup"
-                style="@style/style_main_bottom_menutv"
-                android:text="@string/str_main_menu_begin_snapup" />
+            <FrameLayout
+                android:layout_width="90dp"
+                android:layout_height="90dp" >
+
+                <TextView
+                    android:id="@+id/main_tv_snapup_animbkg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bkg_main_btn_snapup_active" />
+
+                <TextView
+                    android:id="@+id/main_tv_snapup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:padding="5dp"
+                    android:text="@string/str_main_menu_begin_snapup"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txtsize_large" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/main_tv_recruit_manage"

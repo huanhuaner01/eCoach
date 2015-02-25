@@ -4,7 +4,7 @@
     <!-- common colors -->
     <color name="color_all_bkg">@android:color/white</color>
     <color name="color_titlebar_bkg">#323A45</color>
-    <color name="color_titlebar_txt">@android:color/white</color>
+    <color name="color_titlebar_txt">#666666</color>
 
     <!-- useful colors -->
     <color name="color_red">#FF0000</color>

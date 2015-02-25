@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <!-- use angle=270 for top-bottom vertical gradient. -->
-    <gradient android:startColor="#88ADD0" android:endColor="#2653A6" android:angle="270"/>
+    <gradient
+        android:angle="270"
+        android:endColor="@color/color_theme_orange"
+        android:startColor="@color/color_theme_orange" />
 
 </shape>
