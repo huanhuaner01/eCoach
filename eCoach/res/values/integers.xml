@@ -12,4 +12,6 @@
     <integer name="avatar_width">80</integer>
    	<!-- 头像的高度 -->
     <integer name="avatar_height">80</integer>
+    <!-- 个人中心教练默认评分 -->
+    <integer name="ratingbar_default_rating">3</integer>
 </resources>

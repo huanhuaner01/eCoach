@@ -1,161 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:imgctrl="http://schemas.android.com/apk/res-auto"  
+    xmlns:imgctrl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bkg_personal_center"
-     >
-
-    <!-- 使用圆形头像 -->
-    <com.huishen.ecoach.widget.RoundImageView
-        android:id="@+id/pcenter_avatar"
-        android:layout_width="@dimen/pcenter_avatar_width"
-        android:layout_height="@dimen/pcenter_avatar_height"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/default_personal_avatar"
-        android:contentDescription="@string/app_name" />
-
-    <TextView
-        android:id="@+id/pcenter_coachname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_avatar"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
-        android:text="@string/str_pcenter_default_coach_name"
-        android:textColor="@color/color_pcenter_textcolor"
-        android:textSize="@dimen/txtsize_xxlarge" />
-
-    <RatingBar
-        android:id="@+id/pcenter_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_coachname"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        style="@style/style_coach_ratingbar"
-        android:layout_centerHorizontal="true"
-        android:isIndicator="true"
-        android:rating="3.0"
-        android:stepSize="1" />
-    <FrameLayout
-        android:id="@+id/pcenter_frm_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/pcenter_rating" >
-
-        <ProgressBar
-            android:id="@+id/pcenter_scoreprg"
-            style="@style/style_pcenter_scoreprg"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:progress="30" />
-
-        <TextView
-            android:id="@+id/pcenter_scoreup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@android:color/transparent"
-            android:text="@string/str_pcenter_coach_score_level"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/txtsize_middle" />
-    </FrameLayout>
-
-    <LinearLayout 
-        android:id="@+id/pcenter_statll_dimen"
-        style="@style/style_pcenter_stat_linear"
-        android:layout_below="@id/pcenter_frm_score">
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_dimen_ordernum"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_dimen_praiserates"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_dimen_range"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_dimen_recommend"/>
-    </LinearLayout>
-    <LinearLayout 
-        android:id="@+id/pcenter_statll_value"
-        style="@style/style_pcenter_stat_linear"
-        android:layout_below="@id/pcenter_statll_dimen">
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_default_ordernum"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_default_praiserates"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_default_range"/>
-        <TextView style="@style/style_pcenter_stattv"
-            android:text="@string/str_pcenter_stat_default_recommend"/>
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/pcenter_menubar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_statll_value"
-        android:layout_marginTop="2dp"
-        android:orientation="vertical" >
-
-        <!-- Warning:this layout require picture as same size! -->
-
-        <TextView
-            android:id="@+id/pcenter_tv_userguide"
-            style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/icon_pcenter_userguide"
-            android:drawableStart="@drawable/icon_pcenter_userguide"
-            android:text="@string/str_pcenter_userguide" />
-
-        <TextView
-            android:id="@+id/pcenter_tv_recommend"
-            style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/icon_pcenter_recommend"
-            android:drawableStart="@drawable/icon_pcenter_recommend"
-            android:text="@string/str_pcenter_recommend" />
-
-        <TextView
-            android:id="@+id/pcenter_tv_setting"
-            style="@style/style_pcenter_menu_itemtv"
-            android:drawableLeft="@drawable/icon_pcenter_setting"
-            android:drawableStart="@drawable/icon_pcenter_setting"
-            android:text="@string/str_pcenter_setting" />
-    </LinearLayout>
+    tools:ignore="RtlHardcoded" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pcenter_menubar"
-        android:layout_marginTop="30dp" >
+        android:id="@+id/pcenter_rl_basicinfo"
+        style="@style/style_common_macth_wrap"
+        android:background="@drawable/pic_bkg_pcenter_basicinfo"
+        android:paddingBottom="@dimen/padding_large" >
+
+        <!-- 使用圆形头像 -->
+
+        <com.huishen.ecoach.widget.RoundImageView
+            android:id="@+id/pcenter_avatar"
+            android:layout_width="@dimen/pcenter_avatar_width"
+            android:layout_height="@dimen/pcenter_avatar_height"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/default_personal_avatar"
+            imgctrl:border_outside_color="#3A898989"
+            imgctrl:border_thickness="4dp" />
 
         <TextView
+            android:id="@+id/pcenter_coachname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_centerVertical="true"
-            android:text="@string/str_pcenter_pushmsg"
-            android:textColor="@color/color_titlebar_txt"
-            android:textSize="@dimen/txtsize_default" />
+            android:layout_below="@id/pcenter_avatar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="@string/str_pcenter_default_coach_name"
+            android:textColor="@color/color_pcenter_textcolor"
+            android:textSize="@dimen/txtsize_xxlarge" />
 
-        <ToggleButton
-            android:id="@+id/pcenter_tgb_msgpush"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:textOn="@string/str_null"
-            android:textOff="@string/str_null"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/sel_pcenter_msgbtn"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp" />
+        <RatingBar
+            android:id="@+id/pcenter_rating"
+            style="@style/style_coach_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pcenter_coachname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:isIndicator="true"
+            android:rating="3"
+            android:stepSize="1" />
+
+        <TextView
+            style="@style/style_common_wrap_wrap"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toRightOf="@id/pcenter_rating"
+            android:textSize="@dimen/txtsize_large" />
     </RelativeLayout>
+
+    <LinearLayout
+        style="@style/style_common_macth_match"
+        android:layout_below="@id/pcenter_rl_basicinfo"
+        android:background="#FBFBFB"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/pcenter_ll_stats"
+            style="@style/style_common_macth_wrap"
+            android:orientation="horizontal" >
+
+            <LinearLayout style="@style/style_pcenter_stat_linear" >
+
+                <TextView
+                    style="@style/style_pcenter_stat_keytv"
+                    android:text="@string/str_pcenter_stat_dimen_ordernum" />
+
+                <TextView
+                    style="@style/style_pcenter_stat_valuetv"
+                    android:text="@string/str_pcenter_stat_default_ordernum" />
+            </LinearLayout>
+
+            <View style="@style/style_pcenter_stat_divider" />
+
+            <View style="@style/style_pcenter_stat_divider_white" />
+
+            <LinearLayout style="@style/style_pcenter_stat_linear" >
+
+                <TextView
+                    style="@style/style_pcenter_stat_keytv"
+                    android:text="@string/str_pcenter_stat_dimen_range" />
+
+                <TextView
+                    style="@style/style_pcenter_stat_valuetv"
+                    android:text="@string/str_pcenter_stat_default_range" />
+            </LinearLayout>
+
+            <View style="@style/style_pcenter_stat_divider" />
+
+            <View style="@style/style_pcenter_stat_divider_white" />
+
+            <LinearLayout style="@style/style_pcenter_stat_linear" >
+
+                <TextView
+                    style="@style/style_pcenter_stat_keytv"
+                    android:text="@string/str_pcenter_stat_dimen_recommend" />
+
+                <TextView
+                    style="@style/style_pcenter_stat_valuetv"
+                    android:text="@string/str_pcenter_stat_default_recommend" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pcenter_menubar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View style="@style/style_pcenter_menubar_divider" />
+
+            <!-- Warning:this layout require picture as same size! -->
+
+            <TextView
+                android:id="@+id/pcenter_tv_userguide"
+                style="@style/style_pcenter_menu_itemtv"
+                android:drawableLeft="@drawable/icon_pcenter_userguide"
+                android:drawableStart="@drawable/icon_pcenter_userguide"
+                android:text="@string/str_pcenter_userguide" />
+
+            <View style="@style/style_pcenter_menubar_divider" />
+
+            <TextView
+                android:id="@+id/pcenter_tv_recommend"
+                style="@style/style_pcenter_menu_itemtv"
+                android:drawableLeft="@drawable/icon_pcenter_recommend"
+                android:drawableStart="@drawable/icon_pcenter_recommend"
+                android:text="@string/str_pcenter_recommend" />
+
+            <View style="@style/style_pcenter_menubar_divider" />
+
+            <TextView
+                android:id="@+id/pcenter_tv_setting"
+                style="@style/style_pcenter_menu_itemtv"
+                android:drawableLeft="@drawable/icon_pcenter_setting"
+                android:drawableStart="@drawable/icon_pcenter_setting"
+                android:text="@string/str_pcenter_setting" />
+
+            <View style="@style/style_pcenter_menubar_divider" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="@dimen/padding_middle"
+                android:paddingBottom="@dimen/padding_middle"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:text="@string/str_pcenter_pushmsg"
+                android:textColor="@color/color_pcenter_textcolor"
+                android:textSize="@dimen/txtsize_default" />
+
+            <ToggleButton
+                android:id="@+id/pcenter_tgb_msgpush"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/sel_pcenter_msgbtn"
+                android:textOff="@string/str_null"
+                android:textOn="@string/str_null" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -38,8 +38,8 @@
     <dimen name="common_reddot_height">5dp</dimen>
     
     <!-- slide bar dimensions -->
-    <dimen name="pcenter_avatar_width">80dp</dimen>
-    <dimen name="pcenter_avatar_height">80dp</dimen>
+    <dimen name="pcenter_avatar_width">85dp</dimen>
+    <dimen name="pcenter_avatar_height">85dp</dimen>
     
     <!-- library dimens -->
     <dimen name="calendar_padding_middle">7dp</dimen>

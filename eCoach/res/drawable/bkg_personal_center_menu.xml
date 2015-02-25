@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_focused="true">
-        <shape>
+    <item android:state_pressed="true"><shape>
             <solid android:color="@color/color_deeper_gray" />
-<!--             <stroke android:width="1dp" android:color="@color/color_theme_orange" /> -->
-        </shape>
-    </item>
-    
-    <item android:state_pressed="true">
-        <shape>
-            <solid android:color="@color/color_deeper_gray" />
-<!--             <stroke android:width="1dp" android:color="@color/color_theme_orange" /> -->
-        </shape>
-    </item>
-    
-    <!-- default background-->
-    <item>
-        <shape>
+        </shape></item>
+    <item><shape>
             <solid android:color="@android:color/transparent" />
-
-            <stroke android:width="1dp" android:color="@android:color/white" />
-        </shape>
-    </item>
+        </shape></item>
 
 </selector>
