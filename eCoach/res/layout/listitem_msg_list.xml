@@ -7,6 +7,8 @@
 
     <LinearLayout
         style="@style/style_common_wrap_wrap"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
         android:orientation="horizontal" >
 
         <TextView
@@ -41,6 +43,7 @@
             android:id="@+id/listitem_msg_tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/padding_middle"
             android:textColor="@color/color_lighter_gray"
             android:textSize="@dimen/txtsize_default" />
     </RelativeLayout>

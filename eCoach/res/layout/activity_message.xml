@@ -28,6 +28,7 @@
         android:layout_marginRight="@dimen/margin_middle"
         android:layout_marginTop="@dimen/margin_small"
         android:divider="@null"
+        android:dividerHeight="@dimen/margin_small"
         android:scrollbars="none" />
 
 </RelativeLayout>
