@@ -192,5 +192,6 @@
     <string name="str_calendar_weekday_6">六</string>
     <string name="str_calendar_weekday_7">日</string>
 
-    <string name="sub_title">学员预约课程</string>
+    <string name="str_calendar_sub_title">学员预约课程</string>
+    <string name="str_calendar_subject_limits">已选%1$d人/限选%2$d人</string>
 </resources>

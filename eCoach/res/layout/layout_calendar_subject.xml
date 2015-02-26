@@ -23,7 +23,9 @@
             android:drawableLeft="@drawable/icon_calendar_sub"
             android:drawableStart="@drawable/icon_calendar_sub"
             android:gravity="center_vertical"
-            android:text="@string/sub_title" />
+            android:textColor="@color/color_calendar_subject"
+            android:textSize="@dimen/txtsize_default"
+            android:text="@string/str_calendar_sub_title" />
     </LinearLayout>
 
     <View
@@ -32,9 +34,13 @@
         android:background="@color/color_calendar_wegroup_item_line" />
 
     <ExpandableListView
-        android:id="@+id/sub_list"
+        android:id="@+id/calendar_sub_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:groupIndicator="@null"
+        android:divider="@color/color_calendar_appoint_divider"
+        android:dividerHeight="1dp"
+        android:cacheColorHint="@android:color/transparent"
         android:drawSelectorOnTop="false" />
 
 </LinearLayout>

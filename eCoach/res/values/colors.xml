@@ -35,6 +35,12 @@
     <color name="color_calendar_week">#545454</color>
     <color name="color_calendar_gray">#f5f5f5</color>
     <color name="color_calendar_gray_line">#d8d8d8</color>
+    <color name="color_calendar_subject">#333333</color>
+    <color name="color_calendar_ampm">@color/color_calendar_subject</color>
+    <color name="color_calendar_ampm_desc">#8A8A8A</color>
+    <color name="color_calendar_student">#737373</color>
+    <color name="color_calendar_appoint_divider">#D2D2D2</color>
+    <color name="color_calendar_appointlist_content">@android:color/white</color>
 
     <!-- 约课管理界面 -->
     <color name="appointment_bgcolor">#ececec</color>

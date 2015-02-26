@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.ui.appointment.CalendarActivity;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
@@ -122,7 +123,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(MessageActivity.getIntent(this));
 			break;
 		case R.id.main_tv_book_manage:
-			
+			startActivity(CalendarActivity.getIntent(this));
 			break;
 		case R.id.main_tv_snapup:
 			if (isSnaping){

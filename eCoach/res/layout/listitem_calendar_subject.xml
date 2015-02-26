@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_calendar_appointlist_content"
+    tools:ignore="RtlHardcoded" >
+
+    <TextView
+        android:id="@+id/listitem_calendar_tv_subject"
+        style="@style/style_common_wrap_wrap"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/margin_xlarge"
+        android:paddingBottom="@dimen/padding_middle"
+        android:paddingTop="@dimen/padding_middle"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_calendar_subject"
+        android:textSize="@dimen/txtsize_xlarge" />
+    <ImageView
+        android:id="@+id/listitem_calendar_img_subject_indicator" 
+        style="@style/style_common_wrap_wrap"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_centerVertical="true"
+        android:contentDescription="@null"
+        />
+    <TextView
+        android:id="@+id/listitem_calendar_tv_subject_limits"
+        style="@style/style_common_wrap_wrap"
+        android:layout_toLeftOf="@id/listitem_calendar_img_subject_indicator"
+        android:layout_marginRight="@dimen/margin_middle"
+        android:layout_centerVertical="true"
+        android:paddingBottom="@dimen/padding_middle"
+        android:paddingTop="@dimen/padding_middle"
+        android:textColor="@color/color_calendar_student"
+        android:textSize="@dimen/txtsize_large"
+        
+         />
+</RelativeLayout>

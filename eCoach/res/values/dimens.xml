@@ -69,5 +69,7 @@
     <dimen name="viewprofile_item_paddingleft">35dp</dimen>
     <!-- 订单状态界面内边距 -->
     <dimen name="orderstate_padding_horizontal">@dimen/padding_small</dimen>
+    <!-- 约课列表的右边距，包括Group和item。 -->
+    <dimen name="calendar_appointlist_margin_right">@dimen/margin_xlarge</dimen>
     
 </resources>
