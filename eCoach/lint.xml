@@ -5,6 +5,8 @@
         <ignore path="res/layout/activity_complaint.xml" />
         <ignore path="res/layout/listitem_complaint_reason.xml" />
     </issue>
+    <issue id="ExportedReceiver" severity="ignore" />
+    <issue id="ExportedService" severity="ignore" />
     <issue id="InflateParams" severity="ignore" />
     <issue id="RtlHardcoded">
         <ignore path="res/layout/activity_calendar.xml" />
