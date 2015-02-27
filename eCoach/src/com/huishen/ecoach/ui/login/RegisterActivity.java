@@ -103,16 +103,24 @@ public class RegisterActivity extends RightSideParentActivity implements
 	@Override
 	public void onUploadCertifyStepCompleted() {
 		Log.d(LOG_TAG, "all step completed. removing old keys...");
-		Prefs.removeKey(this, KEY_STEP_PROFILE_COMPLETED);
-		Prefs.removeKey(this, KEY_STEP_VERIFY_COMPLETED);
+		clearRegisterInformation(this);
 		Prefs.setBoolean(this, Const.KEY_REGISTER_COMPLETED, true);
-		Log.d(LOG_TAG, "removing old register data...");
-		Prefs.removeKey(this, Const.KEY_COACH_NAME);
-		Prefs.removeKey(this, Const.KEY_COACH_SCHOOL);
-		Prefs.removeKey(this, Const.KEY_COACH_CARNO);
-		Prefs.removeKey(this, Const.KEY_COACH_CERTNO);
-		Prefs.removeKey(this, Const.KEY_COACH_AVATAR);
 		startActivity(MainActivity.getIntent(this));
 		finish();
+	}
+	
+	/**
+	 * 清除所有的注册信息。
+	 * @param context 上下文信息
+	 */
+	protected static final void clearRegisterInformation(Context context){
+		Log.d(LOG_TAG, "removing old register data, context=" + context.getClass().getSimpleName());
+		Prefs.removeKey(context, KEY_STEP_PROFILE_COMPLETED);
+		Prefs.removeKey(context, KEY_STEP_VERIFY_COMPLETED);
+		Prefs.removeKey(context, Const.KEY_COACH_NAME);
+		Prefs.removeKey(context, Const.KEY_COACH_SCHOOL);
+		Prefs.removeKey(context, Const.KEY_COACH_CARNO);
+		Prefs.removeKey(context, Const.KEY_COACH_CERTNO);
+		Prefs.removeKey(context, Const.KEY_COACH_AVATAR);
 	}
 }

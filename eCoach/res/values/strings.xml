@@ -34,6 +34,7 @@
     <string name="str_pcenter_stat_default_praiserates">0%</string>
     <string name="str_pcenter_stat_default_range">9999</string>
     <string name="str_pcenter_stat_default_recommend">0</string>
+    <string name="str_pcenter_star_unit">分</string>
     <string name="str_pcenter_userguide">使用指南</string>
     <string name="str_pcenter_recommend">推　　荐</string>
     <string name="str_pcenter_setting">设　　置</string>

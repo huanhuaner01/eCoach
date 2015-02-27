@@ -4,8 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.ui.appointment.CalendarActivity;
+import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.app.Activity;
@@ -41,7 +45,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Animation rotateAnimation = null;
 	
 	//--- Slide Pane Widgets
+	private TextView tvOrdernum, tvRange, tvRecomIndex, tvStarLevel;
 	private TextView tvUserGuide, tvRecommend, tvSetting;
+	private RatingBar rtbStar;
 	private ToggleButton tgbMsgPush;
 	
 	public static final Intent getIntent(Context context){
@@ -55,7 +61,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		retrieveWidgets();
 		addListeners();
-		displayDate();
+		displayLoginInfo();
 	}
 	
 	/**
@@ -74,6 +80,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
 		tgbMsgPush = (ToggleButton)findViewById(R.id.pcenter_tgb_msgpush);
+		tvStarLevel = (TextView)findViewById(R.id.pcenter_tv_starnum);
+		tvOrdernum = (TextView)findViewById(R.id.pcenter_tv_ordernum);
+		tvRange = (TextView)findViewById(R.id.pcenter_tv_range);
+		tvRecomIndex = (TextView)findViewById(R.id.pcenter_tv_recomindex);
+		rtbStar = (RatingBar)findViewById(R.id.pcenter_rating);
 	}
 	
 	private void addListeners(){
@@ -93,10 +104,32 @@ public class MainActivity extends Activity implements OnClickListener{
 		});
 	}
 
-	private void displayDate() {
+	private void displayLoginInfo() {
+		//展示登录信息
+		final Coach coach = MainApp.getInstance().getLoginCoach();
+		Log.d(LOG_TAG, coach.toString());
+		tvStarLevel.setText(buildCoachStarString(coach.getStarLevel()));
+		tvOrdernum.setText(String.valueOf(coach.getOrderCount()));
+		tvRange.setText(String.valueOf(coach.getRange()));
+		tvRecomIndex.setText(String.valueOf(coach.getRecommendIndex()));
+		tvDate.setText(buildDateString());
+		rtbStar.setRating(coach.getStarLevel());
+	}
+	
+	private final CharSequence buildCoachStarString(float rate){
+		SpannableStringBuilder ssb = new SpannableStringBuilder(String.valueOf(rate));
+		ForegroundColorSpan span = new ForegroundColorSpan(getResources()
+				.getColor(R.color.color_pcenter_coach_star));
+		ssb.setSpan(span, 0, ssb.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		ssb.append(getResources().getString(R.string.str_pcenter_star_unit));
+		return ssb;
+	}
+	
+	//构建主页面的日期显示字符串
+	private final CharSequence buildDateString(){
+		SpannableStringBuilder builder = new SpannableStringBuilder();
 		Calendar calendar = Calendar.getInstance(Locale.CHINA);
 		int dom = calendar.get(Calendar.DAY_OF_MONTH);
-		SpannableStringBuilder builder = new SpannableStringBuilder();
 		String day = String.valueOf(dom);
 		Log.d(LOG_TAG, "dom:"+dom);
 		builder.append(day)
@@ -105,7 +138,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		String tail = new SimpleDateFormat("日 M月 yyyy", Locale.CHINA)
 				.format(calendar.getTime());
 		builder.append(tail);
-		tvDate.setText(builder);
+		return builder;
 	}
 
 	@Override

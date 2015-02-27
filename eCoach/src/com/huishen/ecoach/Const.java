@@ -17,6 +17,12 @@ public final class Const {
 	 * 检查是否允许自动登录,其值为boolean类型。
 	 */
 	public static final String KEY_AUTO_LOGIN = "autologin";
+
+	/**
+	 * 保存最新登录成功的手机号。同一个设备上验证的手机号不允许多于一个，
+	 * 因此每次都应该替换掉原来的手机号。注意区分该字段和{@link #KEY_VERIFIED_PHONE}的区别。
+	 */
+	public static final String KEY_LAST_LOGIN_PHONE = "lastLogin";
 	
 	/**
 	 * 设置启动界面最低显示时间，单位为ms。
@@ -25,7 +31,7 @@ public final class Const {
 
 	/**
 	 * 保存已验证过的手机号，其值为String类型。同一个设备上验证的手机号不允许多于一个，
-	 * 因此每次都应该替换掉原来的手机好。
+	 * 因此每次都应该替换掉原来的手机号。
 	 */
 	public static final String KEY_VERIFIED_PHONE = "verifiedPhone";
 	/**

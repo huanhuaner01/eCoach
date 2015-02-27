@@ -175,17 +175,21 @@ public final class SRL {
 		 */
 		public static final String FIELD_MOBILE_FLAG = "mobileFlag";
 		/**
+		 * 登录返回字段：教练ID。
+		 */
+		public static final String FIELD_COACH_ID = "id";
+		/**
 		 * 登录返回字段：教练姓名。
 		 */
 		public static final String FIELD_COACH_NAME = "coachName";
 		/**
 		 * 登录返回字段：教练所属驾校。
 		 */
-		public static final String FIELD_COACH_SCHOOL = "school";
+		public static final String FIELD_COACH_SCHOOL = "schoolName";
 		/**
 		 * 登录返回字段：教练车牌号。
 		 */
-		public static final String FIELD_COACH_CARNO = "carno";
+		public static final String FIELD_COACH_CARNO = "busNumber";
 		/**
 		 * 登录返回字段：教练手机。
 		 */
@@ -193,15 +197,31 @@ public final class SRL {
 		/**
 		 * 登录返回字段：教练证号。
 		 */
-		public static final String FIELD_COACH_CERTNO = "licenceCode";
+		public static final String FIELD_COACH_CERTNO = "certificateNo";
 		/**
 		 * 登录返回字段：头像地址。
 		 */
-		public static final String FIELD_COACH_AVATAR = "picId";
+		public static final String FIELD_COACH_AVATAR = "head";
 		/**
 		 * 登录返回字段：审核状态。
 		 */
 		public static final String FIELD_COACH_AUDIT_STATUS = "status";
+		/**
+		 * 登录返回字段：评星。
+		 */
+		public static final String FIELD_COACH_STAR_LEVEL = "score";
+		/**
+		 * 登录返回字段：订单总数。
+		 */
+		public static final String FIELD_COACH_ORDER_COUNT = "orderNum";
+		/**
+		 * 登录返回字段：排行榜。
+		 */
+		public static final String FIELD_COACH_RANGE = "sort";
+		/**
+		 * 登录返回字段：推荐指数。
+		 */
+		public static final String FIELD_COACH_RECOMMEND_INDEX = "recom";
 		/**
 		 * 通用信息返回参数，用于登录等。
 		 */

@@ -43,7 +43,7 @@ public class LoginActivity extends RightSideParentActivity implements
 		setContentView(R.layout.activity_login);
 		initWidgets();
 		if (Prefs.getBoolean(this, Const.KEY_AUTO_LOGIN)){
-			String phone = Prefs.getString(this, Const.KEY_VERIFIED_PHONE);
+			String phone = Prefs.getString(this, Const.KEY_LAST_LOGIN_PHONE);
 			String pwd = Prefs.getString(this, Const.KEY_PASSWORD);
 			Log.d("LoginActivity", "autologin[" + phone + "," + pwd + "]...");
 			performLogin(phone, pwd);
@@ -58,10 +58,15 @@ public class LoginActivity extends RightSideParentActivity implements
 		btnLogin.setOnClickListener(this);
 		btnRegister.setOnClickListener(this);
 		btnForgetPwd.setOnClickListener(this);
+		//读取保存的用户名
+		String lastLogin = Prefs.getString(LoginActivity.this, Const.KEY_LAST_LOGIN_PHONE);
+		if (lastLogin!=null){
+			editUsername.setText(lastLogin);
+		}
 	}
 	
 	//处理登录逻辑
-	private final void performLogin(String user, String pwd){
+	private final void performLogin(final String user, String pwd){
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_USERNAME, user);
 		params.put(SRL.Param.PARAM_PASSWORD, pwd);
@@ -71,7 +76,12 @@ public class LoginActivity extends RightSideParentActivity implements
 					@Override
 					protected void onSuccess(String arg0) {
 						Uis.toastShort(LoginActivity.this, R.string.str_login_info_success);
-						MainApp.getInstance().setLoginCoach(getLoginCoachInfo(arg0));
+						//设置全局变量
+						MainApp.getInstance().setLoginCoach(parseLoginCoachInfo(arg0));
+						//保存弱登录信息，清除注册信息
+						Prefs.setString(LoginActivity.this, Const.KEY_LAST_LOGIN_PHONE, user);
+						RegisterActivity.clearRegisterInformation(LoginActivity.this);
+						//执行页面跳转
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
 						finish();
 					}
@@ -98,18 +108,25 @@ public class LoginActivity extends RightSideParentActivity implements
 	 * 解析登录教练的信息。
 	 * @param str 服务器的原始返回字符串
 	 */
-	private final Coach getLoginCoachInfo(String str){
+	private final Coach parseLoginCoachInfo(String str){
 		Coach coach = new Coach();
 		try {
+			//使用get强制有值时才做解析操作
 			JSONObject shell = new JSONObject(str);
 			JSONObject json = shell.getJSONObject(SRL.ReturnField.FIELD_INFO);
-			coach.setCarno(json.getString(SRL.ReturnField.FIELD_COACH_CARNO));
-			coach.setCertno(json.getString(SRL.ReturnField.FIELD_COACH_CERTNO));
-			coach.setName(json.getString(SRL.ReturnField.FIELD_COACH_NAME));
-			coach.setPhoneNumber(json.getString(SRL.ReturnField.FIELD_COACH_PHONE));
-			coach.setSchool(json.getString(SRL.ReturnField.FIELD_COACH_SCHOOL));
-			coach.setAuditStatus(json.getInt(SRL.ReturnField.FIELD_COACH_AUDIT_STATUS));
-			coach.setAvatarId(json.getString(SRL.ReturnField.FIELD_COACH_AVATAR));
+			//使用opt避免空指针等问题
+			coach.setId(json.optLong(SRL.ReturnField.FIELD_COACH_ID));
+			coach.setCarno(json.optString(SRL.ReturnField.FIELD_COACH_CARNO));
+			coach.setCertno(json.optString(SRL.ReturnField.FIELD_COACH_CERTNO));
+			coach.setName(json.optString(SRL.ReturnField.FIELD_COACH_NAME));
+			coach.setPhoneNumber(json.optString(SRL.ReturnField.FIELD_COACH_PHONE));
+			coach.setSchool(json.optString(SRL.ReturnField.FIELD_COACH_SCHOOL));
+			coach.setAuditStatus(json.optInt(SRL.ReturnField.FIELD_COACH_AUDIT_STATUS));
+			coach.setAvatarId(json.optString(SRL.ReturnField.FIELD_COACH_AVATAR));
+			coach.setOrderCount(json.optInt(SRL.ReturnField.FIELD_COACH_ORDER_COUNT));
+			coach.setRange(json.optInt(SRL.ReturnField.FIELD_COACH_RANGE));
+			coach.setRecommendIndex(json.optInt(SRL.ReturnField.FIELD_COACH_RECOMMEND_INDEX));
+			coach.setStarLevel((float) json.optDouble(SRL.ReturnField.FIELD_COACH_STAR_LEVEL));
 			//保存flag
 			Prefs.setString(LoginActivity.this, Const.KEY_MOBILE_FLAG,
 					json.getString(SRL.ReturnField.FIELD_MOBILE_FLAG));

@@ -28,13 +28,18 @@ public final class Coach implements Serializable {
 	 */
 	public static final int STATUS_AUDIT_FAIL = 2;
 
-	private String phoneNumber; // 手机号
-	private String name; // 教练姓名
-	private String school; // 所属驾校
-	private String carno; // 车牌号
-	private String certno; // 证件号
-	private int auditStatus;	//审核状态
+	private long id;			//在服务器上的ID
+	private String phoneNumber; //手机号
+	private String name; 		//教练姓名
+	private String school; 		//所属驾校
+	private String carno; 		//车牌号
+	private String certno; 		//证件号
 	private String avatarId;	//头像地址
+	private int auditStatus;	//审核状态
+	private int range;			//排行榜
+	private int orderCount;		//订单总数
+	private int recommendIndex;	//推荐指数
+	private float starLevel;	//评星等级
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -76,16 +81,6 @@ public final class Coach implements Serializable {
 		this.certno = certno;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Coach [phoneNumber=").append(phoneNumber)
-				.append(", name=").append(name).append(", school=")
-				.append(school).append(", carno=").append(carno)
-				.append(", certno=").append(certno).append("]");
-		return builder.toString();
-	}
-
 	public int getAuditStatus() {
 		return auditStatus;
 	}
@@ -103,6 +98,62 @@ public final class Coach implements Serializable {
 
 	public void setAvatarId(String avatarId) {
 		this.avatarId = avatarId;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
+	public int getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
+
+	public int getRecommendIndex() {
+		return recommendIndex;
+	}
+
+	public void setRecommendIndex(int recommendIndex) {
+		this.recommendIndex = recommendIndex;
+	}
+
+	public float getStarLevel() {
+		return starLevel;
+	}
+
+	public void setStarLevel(float starLevel) {
+		this.starLevel = starLevel;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Coach [id=").append(id).append(", phoneNumber=")
+				.append(phoneNumber).append(", name=").append(name)
+				.append(", school=").append(school).append(", carno=")
+				.append(carno).append(", certno=").append(certno)
+				.append(", avatarId=").append(avatarId)
+				.append(", auditStatus=").append(auditStatus)
+				.append(", range=").append(range).append(", orderCount=")
+				.append(orderCount).append(", recommendIndex=")
+				.append(recommendIndex).append(", starLevel=")
+				.append(starLevel).append("]");
+		return builder.toString();
 	}
 
 }
