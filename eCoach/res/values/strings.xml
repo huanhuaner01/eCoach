@@ -197,6 +197,7 @@
     <string name="str_calendar_weekday_7">日</string>
     <string name="str_calendar_sub_title">学员预约课程</string>
     <string name="str_calendar_subject_limits">已选%1$d人/限选%2$d人</string>
+	<string name="str_forgetpwd_hint">请先验证您的手机号后重置密码！</string>
 	<string name="str_forgetpwd_confirm_reset">确认重置</string>
 	<string name="str_forgetpwd_err_phone_notexist">该手机号并不存在，请检查后重试</string>
 	<string name="str_forgetpwd_info_reset_success">重置密码成功，请重新登录</string>
