@@ -30,7 +30,7 @@ final class ServerAddressProvider {
 
 		@Override
 		public String getServerAddress() {
-			return "http://118.123.13.229/enrollSystem";
+			return "http://192.168.0.8:8080/enrollsystem";
 		}
 		
 	}

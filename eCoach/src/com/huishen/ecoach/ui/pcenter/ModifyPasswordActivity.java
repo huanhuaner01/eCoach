@@ -2,10 +2,9 @@ package com.huishen.ecoach.ui.pcenter;
 
 import java.util.HashMap;
 
-import com.android.volley.Response;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
-import com.huishen.ecoach.net.ResponseParser;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import com.huishen.ecoach.util.Uis;
@@ -63,15 +62,18 @@ public class ModifyPasswordActivity extends RightSideParentActivity {
 				params.put(SRL.Param.PARAM_OLDPWD, oldpwd);
 				params.put(SRL.Param.PARAM_NEWPWD, newpwd);
 				NetUtil.requestStringData(SRL.Method.METHOD_MODIFY_PASSWORD,
-						new Response.Listener<String>() {
-
-					@Override
-					public void onResponse(String arg0) {
-								Uis.toastShort(ModifyPasswordActivity.this,
-										ResponseParser.isReturnSuccessCode(arg0) ? R.string.str_operation_success
-												: R.string.str_modifypwd_error_toast);
-					}
-				});
+						new ResponseListener() {
+							
+							@Override
+							protected void onSuccess(String arg0) {
+								Uis.toastShort(ModifyPasswordActivity.this, R.string.str_operation_success);
+							}
+							
+							@Override
+							protected void onReturnBadResult(int errorCode, String arg0) {
+								Uis.toastShort(ModifyPasswordActivity.this,R.string.str_modifypwd_error_toast);
+							}
+						});
 			}
 		});
 	}

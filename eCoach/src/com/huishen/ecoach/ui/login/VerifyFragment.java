@@ -2,16 +2,16 @@ package com.huishen.ecoach.ui.login;
 
 import java.util.HashMap;
 
-import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.logical.PasswordValidator;
 import com.huishen.ecoach.logical.PasswordValidator.ValidateResult;
 import com.huishen.ecoach.net.NetUtil;
-import com.huishen.ecoach.net.ResponseParser;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.util.MsgEncryption;
+import com.huishen.ecoach.util.Uis;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -174,52 +174,58 @@ public final class VerifyFragment extends Fragment {
 							R.string.str_register_err_vcode_invalid), Toast.LENGTH_SHORT).show();
 					return ;
 				}
-				NetUtil.requestStringData(SRL.Method.METHOD_VERIFY_VCODE, new Response.Listener<String>() {
-
-					@Override
-					public void onResponse(String arg0) {
-						Log.d(LOG_TAG, "verify code correct.now registering...");
-						registerCoach();
-					}
-					
-				});
-				
+				NetUtil.requestStringData(SRL.Method.METHOD_VERIFY_VCODE, 
+						new ResponseListener() {
+							
+							@Override
+							protected void onSuccess(String arg0) {
+								Log.d(LOG_TAG, "verify code correct.now registering...");
+								registerCoach();
+							}
+							
+							@Override
+							protected void onReturnBadResult(int errorCode, String arg0) {
+								//FIXME 
+							}
+						});
 			}
 		});
 		
 	}
-	
-	//注册操作
-	private final void registerCoach(){
+
+	// 注册操作
+	private final void registerCoach() {
 		final String phoneNumber = editPhone.getText().toString();
 		final String pwd = editPassword.getText().toString();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put(SRL.Param.PARAM_MOBILE_NUMBER, phoneNumber);
 		map.put(SRL.Param.PARAM_PASSWORD, MsgEncryption.md5Encryption(pwd));
-		NetUtil.requestStringData(SRL.Method.METHOD_REGISTER_COACH, map, new Response.Listener<String>() {
+		NetUtil.requestStringData(SRL.Method.METHOD_REGISTER_COACH, map,
+				new ResponseListener() {
 
-			@Override
-			public void onResponse(String arg0) {
-				if (nsListener != null){
-					if (ResponseParser.isReturnSuccessCode(arg0)){
-						Log.d(LOG_TAG, "Step verify-phone completed.");
-						Toast.makeText(getActivity(), getResources()
-								.getString(R.string.str_register_info_register_ok),Toast.LENGTH_SHORT)
-						.show();
-						nsListener.onVerifyPhoneStepCompleted(phoneNumber, pwd);
+					@Override
+					protected void onSuccess(String arg0) {
+						if (nsListener != null) {
+							Log.d(LOG_TAG, "Step verify-phone completed.");
+							Uis.toastShort(getActivity(),
+									R.string.str_register_info_register_ok);
+							nsListener.onVerifyPhoneStepCompleted(phoneNumber,
+									pwd);
+						}
 					}
-					
-				}
-			}
-		}, new ErrorListener() {
 
-			@Override
-			public void onErrorResponse(VolleyError arg0) {
-				Toast.makeText(getActivity(), getActivity().getResources()
-						.getString(R.string.str_register_err_network), Toast.LENGTH_SHORT)
-					.show();
-			}
-		});
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						// FIXME
+					}
+				}, new ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						Uis.toastShort(getActivity(),
+								R.string.str_register_err_network);
+					}
+				});
 	}
 	
 	//检查两次密码是否相等

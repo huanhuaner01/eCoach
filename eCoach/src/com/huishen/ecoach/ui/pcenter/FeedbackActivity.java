@@ -2,10 +2,9 @@ package com.huishen.ecoach.ui.pcenter;
 
 import java.util.HashMap;
 
-import com.android.volley.Response;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
-import com.huishen.ecoach.net.ResponseParser;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import com.huishen.ecoach.util.Uis;
@@ -52,16 +51,21 @@ public class FeedbackActivity extends RightSideParentActivity implements OnClick
 		}
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_FEEDBACK_CONTENT, content);
-		NetUtil.requestStringData(SRL.Method.METHOD_FEEDBACK, params, new Response.Listener<String>() {
-
-			@Override
-			public void onResponse(String arg0) {
-				if (!ResponseParser.isReturnSuccessCode(arg0)){
-					Log.w(FeedbackActivity.class.getSimpleName(), "Fail to send feed information.");
-				}
-				Uis.toastShort(FeedbackActivity.this, R.string.str_feedback_toast_commit);
-			}
-		});
+		NetUtil.requestStringData(SRL.Method.METHOD_FEEDBACK, params,
+				new ResponseListener() {
+					
+					@Override
+					protected void onSuccess(String arg0) {
+						Uis.toastShort(FeedbackActivity.this, R.string.str_feedback_toast_commit);
+					}
+					
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						Log.w(FeedbackActivity.class.getSimpleName(), "Fail to send feed information.");
+						//即使提交失败，也让用户觉得提交成功了
+						Uis.toastShort(FeedbackActivity.this, R.string.str_feedback_toast_commit);
+					}
+				});
 	}
 	
 }

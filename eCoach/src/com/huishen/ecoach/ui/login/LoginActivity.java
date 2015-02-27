@@ -5,11 +5,11 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.Response;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.MainActivity;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
@@ -65,33 +65,39 @@ public class LoginActivity extends RightSideParentActivity implements
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_USERNAME, user);
 		params.put(SRL.Param.PARAM_PASSWORD, pwd);
-		NetUtil.requestStringData(SRL.Method.METHOD_LOGIN, params, new Response.Listener<String>() {
-			@Override
-			public void onResponse(String arg0) {
-				try {
-					JSONObject json = new JSONObject(arg0);
-					int code = json.getInt(SRL.ReturnField.FIELD_RETURN_CODE);
-					if (code==SRL.ReturnCode.ERR_LOGIN_ACCOUNT_FORBIDDEN){
-						Uis.toastShort(LoginActivity.this, R.string.str_login_err_account_forbidden);
-						return ;
-					}
-					else if (code==SRL.ReturnCode.ERR_LOGIN_WRONGPWD){
-						Uis.toastShort(LoginActivity.this, R.string.str_login_err_wrongpwd);
-						return ;
-					}
-					else{	// assume success
+		NetUtil.requestStringData(SRL.Method.METHOD_LOGIN, params,
+				new ResponseListener() {
+					
+					@Override
+					protected void onSuccess(String arg0) {
 						Uis.toastShort(LoginActivity.this, R.string.str_login_info_success);
 						MainApp.getInstance().setLoginCoach(getLoginCoachInfo(arg0));
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
 						finish();
 					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		});
+					
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						switch (errorCode) {
+						case SRL.ReturnCode.ERR_LOGIN_ACCOUNT_FORBIDDEN:
+							Uis.toastShort(LoginActivity.this,
+									R.string.str_login_err_account_forbidden);
+							return;
+						case SRL.ReturnCode.ERR_LOGIN_WRONGPWD:
+							Uis.toastShort(LoginActivity.this,
+									R.string.str_login_err_wrongpwd);
+							return;
+						default:
+							break;
+						}
+					}
+				});
 	}
 	
+	/**
+	 * 解析登录教练的信息。
+	 * @param str 服务器的原始返回字符串
+	 */
 	private final Coach getLoginCoachInfo(String str){
 		Coach coach = new Coach();
 		try {
@@ -102,6 +108,11 @@ public class LoginActivity extends RightSideParentActivity implements
 			coach.setName(json.getString(SRL.ReturnField.FIELD_COACH_NAME));
 			coach.setPhoneNumber(json.getString(SRL.ReturnField.FIELD_COACH_PHONE));
 			coach.setSchool(json.getString(SRL.ReturnField.FIELD_COACH_SCHOOL));
+			coach.setAuditStatus(json.getInt(SRL.ReturnField.FIELD_COACH_AUDIT_STATUS));
+			coach.setAvatarId(json.getString(SRL.ReturnField.FIELD_COACH_AVATAR));
+			//保存flag
+			Prefs.setString(LoginActivity.this, Const.KEY_MOBILE_FLAG,
+					json.getString(SRL.ReturnField.FIELD_MOBILE_FLAG));
 		} catch (JSONException e) {
 			Log.e(LOG_TAG, "Fail to resolve server response.");
 			e.printStackTrace();

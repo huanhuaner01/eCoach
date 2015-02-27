@@ -14,12 +14,27 @@ import java.io.Serializable;
 public final class Coach implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 教练状态：审核中。
+	 */
+	public static final int STATUS_AUDITING = 0;
+	/**
+	 * 教练状态：审核通过。
+	 */
+	public static final int STATUS_AUDIT_PASS = 1;
+	/**
+	 * 教练状态：审核未通过。
+	 */
+	public static final int STATUS_AUDIT_FAIL = 2;
 
 	private String phoneNumber; // 手机号
 	private String name; // 教练姓名
 	private String school; // 所属驾校
 	private String carno; // 车牌号
 	private String certno; // 证件号
+	private int auditStatus;	//审核状态
+	private String avatarId;	//头像地址
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -69,6 +84,25 @@ public final class Coach implements Serializable {
 				.append(school).append(", carno=").append(carno)
 				.append(", certno=").append(certno).append("]");
 		return builder.toString();
+	}
+
+	public int getAuditStatus() {
+		return auditStatus;
+	}
+
+	public void setAuditStatus(int auditStatus) {
+		if (auditStatus < 0 || auditStatus > 2) {
+			throw new IllegalArgumentException("status must in range of 0~2");
+		}
+		this.auditStatus = auditStatus;
+	}
+
+	public String getAvatarId() {
+		return avatarId;
+	}
+
+	public void setAvatarId(String avatarId) {
+		this.avatarId = avatarId;
 	}
 
 }

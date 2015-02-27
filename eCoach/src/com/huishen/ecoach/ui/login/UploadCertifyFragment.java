@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.android.volley.Response;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.net.UploadResponseListener;
@@ -122,24 +122,25 @@ public final class UploadCertifyFragment extends Fragment {
 		params.put(SRL.Param.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));
 		params.put(SRL.Param.PARAM_PATH_CERT4, Prefs.getString(getActivity(), getImagePrefname(3)));
 		NetUtil.requestStringData(SRL.Method.METHOD_FINISH_REGISTER, params,
-				new Response.Listener<String>() {
-
+				new ResponseListener() {
+					
 					@Override
-					public void onResponse(String arg0) {
-						if (ResponseParser.isReturnSuccessCode(arg0)) {
-							if (nsListener != null) {
-								Log.d(LOG_TAG, "Step verify-phone completed.");
-								Uis.toastShort(getActivity(),
-										R.string.str_register_info_profile_ok);
-								for (int i=0; i<4 ; i++){
-									Prefs.removeKey(getActivity(), getImagePrefname(i));
-								}
-								nsListener.onUploadCertifyStepCompleted();
-							}
-						} else {
+					protected void onSuccess(String arg0) {
+						if (nsListener != null) {
+							Log.d(LOG_TAG, "Step verify-phone completed.");
 							Uis.toastShort(getActivity(),
-									R.string.str_register_err_cert_upload_not_finished);
+									R.string.str_register_info_profile_ok);
+							for (int i=0; i<4 ; i++){
+								Prefs.removeKey(getActivity(), getImagePrefname(i));
+							}
+							nsListener.onUploadCertifyStepCompleted();
 						}
+					}
+					
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						Uis.toastShort(getActivity(),
+								R.string.str_register_err_cert_upload_not_finished);
 					}
 				});
 	}

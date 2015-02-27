@@ -2,9 +2,9 @@ package com.huishen.ecoach.ui.login;
 
 import java.util.HashMap;
 
-import com.android.volley.Response;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 
 import android.content.Context;
@@ -93,11 +93,17 @@ class VerifyButtonClickListener implements OnClickListener {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_MOBILE_NUMBER, mobileNumber);
 		NetUtil.requestStringData(SRL.Method.METHOD_GET_VERIFY_CODE, params,
-				new Response.Listener<String>() {
-
+				new ResponseListener() {
+					
 					@Override
-					public void onResponse(String arg0) {
-						Log.d(LOG_TAG, arg0);
+					protected void onSuccess(String arg0) {
+						//无需处理，用户只需等待短信下达。
+					}
+					
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						Log.d(LOG_TAG, "Fail to send verify code.");
+						//忽略这个请求错误信息，因为用户不应该看到。
 					}
 				});
 	}
