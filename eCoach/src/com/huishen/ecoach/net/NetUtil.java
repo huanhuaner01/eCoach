@@ -1,10 +1,12 @@
 package com.huishen.ecoach.net;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.util.Log;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -34,6 +36,29 @@ public final class NetUtil {
 		Log.d(LOG_TAG, "requesting " + absPath);
 		return absPath;
 	}
+	
+	/**
+	 * 手动解析Cookie中的JESSIONID字段，过滤其他无关的信息。
+	 * @param rawCookie 原始Cookie字符串
+	 * @return 返回解析后的字符串，格式为 【JSESSIONID=[A-Z0-9]+】。
+	 */
+	private static final String resolveUsefulCookie(String rawCookie){
+		if (rawCookie==null){
+			return null;
+		}
+		//以;结尾
+		Pattern pattern = Pattern.compile("JSESSIONID=[A-Z0-9]+");
+		Matcher matcher = pattern.matcher(rawCookie);
+		if (matcher.find()){
+			String finalCookie = matcher.group();
+			Log.d(LOG_TAG, "final Cookie:" + finalCookie);
+			return finalCookie;
+		}
+		else{
+			Log.e(LOG_TAG, "cannnot parse well formatted cookie.");
+			return null;
+		}
+	}
 
 	/**
 	 * 提交String数据请求。
@@ -49,7 +74,23 @@ public final class NetUtil {
 			throw new NullPointerException("params cannot be null!");
 		}
 		MainApp.getInstance().addNetworkRequest(
-				new AbsStringRequest(getAbsolutePath(relativePath), listener));
+				new AbsStringRequest(getAbsolutePath(relativePath), listener){
+					@Override
+					protected void onReadCookie(String cookie) {
+						Log.d(LOG_TAG, "RawCookie:"+cookie);
+						MainApp.getInstance().setSessionId(resolveUsefulCookie(cookie));
+					}
+					@Override
+					public Map<String, String> getHeaders() throws AuthFailureError {
+						String cookie = MainApp.getInstance().getSessionId();
+						if (cookie==null){
+							return super.getHeaders();
+						}
+						HashMap<String, String> localHashMap = new HashMap<String, String>();	
+						localHashMap.put("Cookie", cookie);
+						return localHashMap;
+					}
+				});
 	}
 
 	/**
@@ -74,6 +115,21 @@ public final class NetUtil {
 					protected Map<String, String> getParams()
 							throws AuthFailureError {
 						return params;
+					}
+					@Override
+					protected void onReadCookie(String cookie) {
+						Log.d(LOG_TAG, "RawCookie:"+cookie);
+						MainApp.getInstance().setSessionId(resolveUsefulCookie(cookie));
+					}
+					@Override
+					public Map<String, String> getHeaders() throws AuthFailureError {
+						String cookie = MainApp.getInstance().getSessionId();
+						if (cookie==null){
+							return super.getHeaders();
+						}
+						HashMap<String, String> localHashMap = new HashMap<String, String>();	
+						localHashMap.put("Cookie", cookie);
+						return localHashMap;
 					}
 				});
 	}
@@ -103,6 +159,21 @@ public final class NetUtil {
 					protected Map<String, String> getParams()
 							throws AuthFailureError {
 						return params;
+					}
+					@Override
+					protected void onReadCookie(String cookie) {
+						Log.d(LOG_TAG, "RawCookie:"+cookie);
+						MainApp.getInstance().setSessionId(resolveUsefulCookie(cookie));
+					}
+					@Override
+					public Map<String, String> getHeaders() throws AuthFailureError {
+						String cookie = MainApp.getInstance().getSessionId();
+						if (cookie==null){
+							return super.getHeaders();
+						}
+						HashMap<String, String> localHashMap = new HashMap<String, String>();	
+						localHashMap.put("Cookie", cookie);
+						return localHashMap;
 					}
 				});
 	}

@@ -18,6 +18,7 @@ public final class MainApp extends Application {
 	private Coach loginCoach = null;
 	
 	private RequestQueue requestQueue;
+	private String sessionId;
 	
 	//Singleton
 	public static MainApp getInstance() {
@@ -44,6 +45,20 @@ public final class MainApp extends Application {
 		if (requestQueue != null){
 			requestQueue.add(request);
 		}
+	}
+	/**
+	 * 获得缓存的SessionId。
+	 * @return
+	 */
+	public final String getSessionId(){
+		return sessionId;
+	}
+	/**
+	 * 设置SessionId。
+	 * @param sessionId
+	 */
+	public final void setSessionId(String sessionId){
+		this.sessionId = sessionId;
 	}
 
 	/**
