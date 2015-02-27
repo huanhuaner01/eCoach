@@ -66,7 +66,7 @@ public final class NetUtil {
 	 * @param relativePath
 	 *            资源的相对位置
 	 * @param listener
-	 *            回调监听器
+	 *            回调监听器。强烈建议使用 {@link ResponseListener}而不是原始的  {@link Listener}。
 	 */
 	public static final void requestStringData(String relativePath,
 			Listener<String> listener) {
@@ -101,7 +101,7 @@ public final class NetUtil {
 	 * @param params
 	 *            要提交的参数
 	 * @param listener
-	 *            回调监听器
+	 *            回调监听器。强烈建议使用 {@link ResponseListener}而不是原始的  {@link Listener}。
 	 */
 	public static final void requestStringData(String relativePath,
 			final Map<String, String> params, Listener<String> listener) {
@@ -142,7 +142,7 @@ public final class NetUtil {
 	 * @param params
 	 *            要提交的参数
 	 * @param listener
-	 *            回调监听器
+	 *            回调监听器。强烈建议使用 {@link ResponseListener}而不是原始的  {@link Listener}。
 	 * @param errlisListener
 	 *            网络异常监听器
 	 */
