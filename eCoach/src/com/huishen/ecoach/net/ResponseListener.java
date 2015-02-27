@@ -20,10 +20,12 @@ public abstract class ResponseListener implements Listener<String> {
 	@Override
 	public final void onResponse(String arg0) {
 		Log.d(LOG_TAG, arg0);
-		if (ResponseParser.isReturnSuccessCode(arg0)) {
+		int code = ResponseParser.getReturnCode(arg0);
+		if (code==SRL.ReturnCode.RESULT_OK){
 			onSuccess(arg0);
-		} else {
-			onReturnBadResult(arg0);
+		}
+		else{
+			onReturnBadResult(code, arg0);
 		}
 	}
 
@@ -31,16 +33,16 @@ public abstract class ResponseListener implements Listener<String> {
 	 * 当服务器返回值为默认的正确返回值时调用。
 	 * 
 	 * @param arg0
-	 *            返回的结果。
+	 *            返回的结果。子类无需打印参数字符串，因 {@link #onResponse(String)}中已经做了一次打印。
 	 * @see ResponseParser#isReturnSuccessCode(String)
 	 */
 	protected abstract void onSuccess(String arg0);
 
 	/**
 	 * 当服务器返回值为错误码时调用。
-	 * 
+	 * @param errorCode 错误码。
 	 * @param arg0
-	 *            返回的结果。
+	 *            返回的结果。子类无需打印参数字符串，因 {@link #onResponse(String)}中已经做了一次打印。
 	 */
-	protected abstract void onReturnBadResult(String arg0);
+	protected abstract void onReturnBadResult(int errorCode, String arg0);
 }

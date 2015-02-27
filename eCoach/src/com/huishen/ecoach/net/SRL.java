@@ -38,42 +38,42 @@ public final class SRL {
 		 * 返回值:{code:0|1} 0:注册成功，1:注册异常
 		 * </p>
 		 */
-		public static final String METHOD_FINISH_REGISTER = "/adr/updateCoh";
+		public static final String METHOD_FINISH_REGISTER = "/cohMobile/updateCoh";
 		// ----------------------------------教练注册模块BEGIN-------------------------------------------
 		
 		/**
 		 * 通过短信获取验证码。 参数 : {@link #PARAM_MOBILE_NUMBER} 返回值:{code:0|1}0:发送成功，1:发送异常
 		 */
-		public static final String METHOD_GET_VERIFY_CODE = "/adr/sendCohVCode";
+		public static final String METHOD_GET_VERIFY_CODE = "/cohMobile/sendCohVCode";
 		/**
 		 * 用户登录方法。 需要提供的参数有：用户名(username/String)，密码(password/String)。
 		 */
-		public static final String METHOD_LOGIN = "/adr/cohLogin";
+		public static final String METHOD_LOGIN = "/cohMobile/cohLogin";
 		/**
 		 * 提交注册的信息（第一步） 参数: mobile:18782920468;//手机号
 		 * password:e10adc3949ba59abbe56e057f20f883e;//密码,(先加密再传-md5) 返回值:{code:0|1}
 		 * 0:注册成功，1:注册异常
 		 */
-		public static final String METHOD_REGISTER_COACH = "/adr/registerCoh";
+		public static final String METHOD_REGISTER_COACH = "/cohMobile/registerCoh";
 		/**
 		 * 上传教练头像。 参数：无。 返回值:{code:0|1,url:'/attachment/coh-head/2015122593484.jpg'}
 		 * 0:上传成功，1:上传异常,url:状态为0时的头像路径
 		 */
-		public static final String METHOD_UPLOAD_AVATAR = "/adr/uploadCohHead";
+		public static final String METHOD_UPLOAD_AVATAR = "/cohMobile/uploadCohHead";
 		/**
 		 * 上传教练证件。 参数：无。
 		 * 返回值:{code:0|1,url:'/attachment/coh-voucher/2015122593484.jpg'}
 		 * 0:上传成功，1:上传异常,url:状态为0时的证件路径
 		 */
-		public static final String METHOD_UPLOAD_CERTIFICATES = "/adr/uploadCohVoucher";
+		public static final String METHOD_UPLOAD_CERTIFICATES = "/cohMobile/uploadCohVoucher";
 		/**
 		 * 验证手机号是否存在。 参数:mob=18782920468 返回值:{code:0|1} 0:不存在，1:存在
 		 */
-		public static final String METHOD_VERIFY_IF_NUMBER_EXIST = "/adr/vcohMob";
+		public static final String METHOD_VERIFY_IF_NUMBER_EXIST = "/cohMobile/vcohMob";
 		/**
 		 * 验证注册码 参数:vcode:4456 返回值:{code:0|1} 0:匹配成功，1:匹配失败
 		 */
-		public static final String METHOD_VERIFY_VCODE = "/adr/cohVcode";
+		public static final String METHOD_VERIFY_VCODE = "/cohMobile/cohVcode";
 		/**
 		 * 修改用户的登录密码。
 		 */
@@ -90,6 +90,10 @@ public final class SRL {
 	 * @create 2015-2-20
 	 */
 	public static final class Param{
+		/**
+		 * 通用参数MOBILE_FLAG，用于服务器鉴别Session。
+		 */
+		public static final String PARAM_MOBILE_FLAG = "mobileFlag";
 
 		/**
 		 * 车牌号参数。
@@ -164,10 +168,16 @@ public final class SRL {
 	 * @create 2015-2-20
 	 */
 	public static final class ReturnField{
+		//package access
+		protected static final String FIELD_SESSIONID = "sessionid";
+		/**
+		 * 登录返回字段：MobileFlag
+		 */
+		public static final String FIELD_MOBILE_FLAG = "mobileFlag";
 		/**
 		 * 登录返回字段：教练姓名。
 		 */
-		public static final String FIELD_COACH_NAME = "name";
+		public static final String FIELD_COACH_NAME = "coachName";
 		/**
 		 * 登录返回字段：教练所属驾校。
 		 */
@@ -183,7 +193,15 @@ public final class SRL {
 		/**
 		 * 登录返回字段：教练证号。
 		 */
-		public static final String FIELD_COACH_CERTNO = "certno";
+		public static final String FIELD_COACH_CERTNO = "licenceCode";
+		/**
+		 * 登录返回字段：头像地址。
+		 */
+		public static final String FIELD_COACH_AVATAR = "picId";
+		/**
+		 * 登录返回字段：审核状态。
+		 */
+		public static final String FIELD_COACH_AUDIT_STATUS = "status";
 		/**
 		 * 通用信息返回参数，用于登录等。
 		 */

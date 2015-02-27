@@ -10,7 +10,9 @@ import android.util.Log;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.huishen.ecoach.Const;
 import com.huishen.ecoach.MainApp;
+import com.huishen.ecoach.util.Prefs;
 
 /**
  * 放置与网络相关的快捷方法，并对外隐藏服务器的根地址。
@@ -35,6 +37,16 @@ public final class NetUtil {
 				+ relativePath;
 		Log.d(LOG_TAG, "requesting " + absPath);
 		return absPath;
+	}
+
+	/**
+	 * 获取MobileFlag。
+	 * 
+	 * @return 如果没有获取到，则返回null。
+	 */
+	private static final String getMobileFlag() {
+		return Prefs.getString(MainApp.getInstance().getApplicationContext(),
+				Const.KEY_MOBILE_FLAG);
 	}
 	
 	/**
@@ -73,6 +85,13 @@ public final class NetUtil {
 		if (relativePath == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
 		}
+		HashMap<String, String> params = new HashMap<String, String>();
+		// 添加标记
+		String flag = getMobileFlag();
+		if (flag != null) {
+			params.put(SRL.Param.PARAM_MOBILE_FLAG, flag);
+		}
+		Log.d(LOG_TAG, "request params:"+params);
 		MainApp.getInstance().addNetworkRequest(
 				new AbsStringRequest(getAbsolutePath(relativePath), listener){
 					@Override
@@ -107,6 +126,11 @@ public final class NetUtil {
 			final Map<String, String> params, Listener<String> listener) {
 		if (relativePath == null || params == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
+		}
+		//添加标记
+		String flag = getMobileFlag();
+		if (flag!=null){
+			params.put(SRL.Param.PARAM_MOBILE_FLAG, flag);
 		}
 		Log.d(LOG_TAG, "request params:"+params);
 		MainApp.getInstance().addNetworkRequest(
@@ -151,6 +175,11 @@ public final class NetUtil {
 			ErrorListener errlisListener) {
 		if (relativePath == null || params == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
+		}
+		// 添加标记
+		String flag = getMobileFlag();
+		if (flag != null) {
+			params.put(SRL.Param.PARAM_MOBILE_FLAG, flag);
 		}
 		Log.d(LOG_TAG, "request params:"+params);
 		MainApp.getInstance().addNetworkRequest(
