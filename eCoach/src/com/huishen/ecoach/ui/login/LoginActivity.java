@@ -143,7 +143,8 @@ public class LoginActivity extends RightSideParentActivity implements
 	}
 	
 	private final void performForgetPwd(){
-		Uis.toastShort(this, R.string.str_feature_unsupported);
+		String phone = Prefs.getString(this, Const.KEY_LAST_LOGIN_PHONE);
+		startActivity(ForgetPasswordActivity.getIntent(LoginActivity.this, phone));
 	}
 
 	@Override

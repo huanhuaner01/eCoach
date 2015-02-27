@@ -8,5 +8,6 @@
     <issue id="InflateParams" severity="ignore" />
     <issue id="RtlHardcoded">
         <ignore path="res/layout/activity_calendar.xml" />
+        <ignore path="res/layout/activity_forget_password.xml" />
     </issue>
 </lint>

@@ -67,10 +67,6 @@ public final class SRL {
 		 */
 		public static final String METHOD_UPLOAD_CERTIFICATES = "/cohMobile/uploadCohVoucher";
 		/**
-		 * 验证手机号是否存在。 参数:mob=18782920468 返回值:{code:0|1} 0:不存在，1:存在
-		 */
-		public static final String METHOD_VERIFY_IF_NUMBER_EXIST = "/cohMobile/vcohMob";
-		/**
 		 * 验证注册码 参数:vcode:4456 返回值:{code:0|1} 0:匹配成功，1:匹配失败
 		 */
 		public static final String METHOD_VERIFY_VCODE = "/cohMobile/cohVcode";
@@ -78,6 +74,21 @@ public final class SRL {
 		 * 修改用户的登录密码。
 		 */
 		public static final String METHOD_MODIFY_PASSWORD = "";
+		/**
+		 * 验证手机号是否存在于服务器端，存在则发送短信。 (用于重置密码时发送验证码)
+		 * 参数:mob=18782920468 返回值:{code:0|1|2} 2:手机号不存在,0:发送验证码成功，1:发送验证码异常
+		 */
+		public static final String METHOD_GET_VCODE_IF_EXIST = "/cohMobile/vMobVcode";
+		/**
+		 * 重置用户的登录密码。
+		 * 参数:
+		 * vcode=4526
+		 * password=e10adc3949ba59abbe56e057f20f883e;//加密后再上传-md5
+		 * mobile=18782920468
+		 * 返回值:{code:0|1|2}
+		 * 0:重置成功，1:验证码不匹配,2:重置异常
+		 */
+		public static final String METHOD_RESET_PASSWORD = "/cohMobile/resetCohPwd";
 		/**
 		 * 提交用户的意见反馈。
 		 */
@@ -104,9 +115,13 @@ public final class SRL {
 		 */
 		public static final String PARAM_COACH_CERTNO = "certificateNo";
 		/**
-		 * 手机号参数。
+		 * 通用手机号参数。
 		 */
 		public static final String PARAM_MOBILE_NUMBER = "mobile";
+		/**
+		 * 验证码参数。
+		 */
+		public static final String PARAM_VCODE = "vcode";
 		/**
 		 * 密文密码。
 		 */
@@ -137,6 +152,11 @@ public final class SRL {
 		 */
 		public static final String PARAM_NEWPWD = "newpwd";
 		/**
+		 * 重置密码时获取验证码的手机号参数。
+		 */
+		//为啥不等于mobile？我也不知道。
+		public static final String PARAM_RESETPWD_GETVCODE_MOBILE = "mob";
+		/**
 		 * 提交意见反馈时使用，信息内容。
 		 */
 		public static final String PARAM_FEEDBACK_CONTENT = "content";
@@ -156,6 +176,22 @@ public final class SRL {
 		 * 登录返回值：帐户被禁用。
 		 */
 		public static final int ERR_LOGIN_ACCOUNT_FORBIDDEN = 2;
+		/**
+		 * 发送验证码时返回：发送失败。
+		 */
+		public static final int ERR_GETVCODE_FAILTOSEND = 1;
+		/**
+		 * 发送验证码时返回：手机号码不存在。
+		 */
+		public static final int ERR_GETVCODE_PHONE_NOT_EXIST = 2;
+		/**
+		 * 重置密码时返回：验证码不匹配。
+		 */
+		public static final int ERR_RESETPWD_VCODE_NOTMATCH = 1;
+		/**
+		 * 重置密码时返回：重置失败。
+		 */
+		public static final int ERR_RESETPWD_FAIL = 2;
 		/**
 		 * 通用返回值，代表成功信息。
 		 */

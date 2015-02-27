@@ -24,6 +24,7 @@
     <string name="title_activity_order_state">订单状态</string>
     <string name="title_activity_complaint">投诉</string>
     <string name="title_activity_calendar">预约选课</string>
+    <string name="title_activity_forget_password">忘记密码</string>
     <string name="str_frag_snapup_title">抢  单</string>
     <string name="str_pcenter_default_coach_name">李文</string>
     <string name="str_pcenter_stat_dimen_ordernum">订单数</string>
@@ -178,11 +179,13 @@
     <string name="str_orderstate_evalitem_attitude">态度</string>
     <string name="str_orderstate_evalitem_environment">环境</string>
     <string name="str_orderstate_evalitem_traffic">交通</string>
+
     <string-array name="str_complaint_reasons">
-        <item >多次咨询，无学车打算</item>
-        <item >谎报目的地</item>
-        <item >态度恶劣</item>
+        <item>多次咨询，无学车打算</item>
+        <item>谎报目的地</item>
+        <item>态度恶劣</item>
     </string-array>
+
     <string name="str_complaint_reason_other">其他投诉理由</string>
     <string name="str_complaint_confirm_complaint">确认投诉</string>
     <string name="str_calendar_weekday_1">一</string>
@@ -192,7 +195,11 @@
     <string name="str_calendar_weekday_5">五</string>
     <string name="str_calendar_weekday_6">六</string>
     <string name="str_calendar_weekday_7">日</string>
-
     <string name="str_calendar_sub_title">学员预约课程</string>
     <string name="str_calendar_subject_limits">已选%1$d人/限选%2$d人</string>
+	<string name="str_forgetpwd_confirm_reset">确认重置</string>
+	<string name="str_forgetpwd_err_phone_notexist">该手机号并不存在，请检查后重试</string>
+	<string name="str_forgetpwd_info_reset_success">重置密码成功，请重新登录</string>
+	<string name="str_forgetpwd_err_reset_fail">重置密码失败，请稍后再试</string>
+	<string name="str_forgetpwd_err_vcode_wrong">验证码不匹配，重置密码失败</string>
 </resources>
