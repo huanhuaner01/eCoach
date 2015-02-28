@@ -16,7 +16,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.MainApp;
-import com.huishen.ecoach.R;
 import com.huishen.ecoach.util.Prefs;
 
 /**
@@ -24,6 +23,8 @@ import com.huishen.ecoach.util.Prefs;
  * 
  * @author Muyangmin
  * @create 2015-2-7
+ * @version 1.1 on 2015/02/28 by Muyangmin 增加了加载图片的方法。<br/>
+ * 			1.0 基础版本，包含文字请求和文件下载。
  */
 public final class NetUtil {
 
@@ -212,16 +213,31 @@ public final class NetUtil {
 				});
 	}
 	
+	/**
+	 * 提交加载图片的请求。在提交请求后会暂时显示默认的图片，请求成功后自动替换为所请求的数据。
+	 * 注意，该方法当请求失败后仍会显示默认的图片。如果需要显示错误信息，请考虑使用
+	 * {@link #requestLoadImage(ImageView, String, int, int)}方法代替。
+	 * 
+	 * @param img 要放置图片的控件。
+	 * @param relativePath 图片在服务器上的相对地址。
+	 * @param defaultResid 默认显示的图片。
+	 */
 	public static final void requestLoadImage(ImageView img,
 			String relativePath, int defaultResid) {
-		requestLoadImage(img, relativePath, defaultResid, R.drawable.ic_launcher);
+		requestLoadImage(img, relativePath, defaultResid, defaultResid);
 	}
-
+	
+	/**
+	 * 提交加载图片的请求。
+	 * @param img 要放置图片的控件。
+	 * @param relativePath 图片在服务器上的相对地址。
+	 * @param defaultResid 默认显示的图片。
+	 * @param errResid 发生错误后显示的图片。
+	 */
 	public static final void requestLoadImage(ImageView img,
 			String relativePath, int defaultResid, int errResid) {
 		ImageLoader loader = MainApp.getInstance().getmImageLoader();
 		ImageListener listener = ImageLoader.getImageListener(img, defaultResid, errResid);
-		Log.d(LOG_TAG, "request loading image:"+getAbsolutePath(relativePath));
 		loader.get(getAbsolutePath(relativePath), listener);
 	}
 

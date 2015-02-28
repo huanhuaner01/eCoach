@@ -28,11 +28,14 @@ import com.android.volley.toolbox.StringRequest;
  * 
  * @author Muyangmin
  * @create 2015-2-7
+ * @version 1.1 on 2015/02/28 by Muyangmin 修改了超时策略并增加了对Cookie和部分HTTP响应头的处理。</br>
+ * 			1.0 基础版本。
  */
 // package access
 class AbsStringRequest extends StringRequest {
 	
-	private static final int REQUEST_TIMEOUT = 10 * 1000;
+	//默认的超时时间
+	private static final int REQUEST_TIMEOUT = 15 * 1000;
 	
 	private static final int HTTP_SUCCESS = 200;
 
@@ -111,6 +114,7 @@ class AbsStringRequest extends StringRequest {
 		super(method, url, listener, errListener);
 	}
 
+	//重写超时及重试策略
 	@Override
 	public RetryPolicy getRetryPolicy() {
 		return new DefaultRetryPolicy(REQUEST_TIMEOUT,
