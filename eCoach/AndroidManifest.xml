@@ -133,6 +133,12 @@
             android:name="com.huishen.ecoach.ui.login.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password" >
         </activity>
+        <receiver android:name="com.huishen.ecoach.umeng.DefaultPushDataReceiver">
+            <intent-filter >
+                <action android:name="com.huishen.ecoach.UNKNOWN_PUSHDATA"/>
+            </intent-filter>
+        </receiver>
+        
         <!-- 友盟推送相关组件 BEGIN -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"

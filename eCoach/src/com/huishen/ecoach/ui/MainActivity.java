@@ -19,6 +19,8 @@ import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+import com.huishen.ecoach.umeng.UmengPushConst;
+import com.huishen.ecoach.umeng.UmengServiceProxy;
 import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.widget.RoundImageView;
 
@@ -74,6 +76,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		addListeners();
 		refreshSnapupStatus();
 		displayLoginInfo();
+		UmengServiceProxy.startPushService(this);
 	}
 	
 	/**
