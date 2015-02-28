@@ -129,7 +129,7 @@ public class LoginActivity extends RightSideParentActivity implements
 			coach.setAvatarId(json.optString(SRL.ReturnField.FIELD_COACH_AVATAR));
 			coach.setOrderCount(json.optInt(SRL.ReturnField.FIELD_COACH_ORDER_COUNT));
 			coach.setRange(json.optInt(SRL.ReturnField.FIELD_COACH_RANGE));
-			coach.setRecommendIndex(json.optInt(SRL.ReturnField.FIELD_COACH_RECOMMEND_INDEX));
+			coach.setGoodRate((float) json.optDouble(SRL.ReturnField.FIELD_COACH_RECOMMEND_INDEX));
 			coach.setStarLevel((float) json.optDouble(SRL.ReturnField.FIELD_COACH_STAR_LEVEL));
 			//保存flag
 			Prefs.setString(LoginActivity.this, Const.KEY_MOBILE_FLAG,

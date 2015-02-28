@@ -48,7 +48,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Animation rotateAnimation = null;
 	
 	//--- Slide Pane Widgets
-	private TextView tvName, tvOrdernum, tvRange, tvRecomIndex, tvStarLevel;
+	private TextView tvName, tvOrdernum, tvRange, tvGoodrate, tvStarLevel;
 	private TextView tvUserGuide, tvRecommend, tvSetting;
 	private RoundImageView rimgAvatar;
 	private RatingBar rtbStar;
@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvStarLevel = (TextView)findViewById(R.id.pcenter_tv_starnum);
 		tvOrdernum = (TextView)findViewById(R.id.pcenter_tv_ordernum);
 		tvRange = (TextView)findViewById(R.id.pcenter_tv_range);
-		tvRecomIndex = (TextView)findViewById(R.id.pcenter_tv_recomindex);
+		tvGoodrate = (TextView)findViewById(R.id.pcenter_tv_goodrates);
 		rtbStar = (RatingBar)findViewById(R.id.pcenter_rating);
 	}
 	
@@ -118,7 +118,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvStarLevel.setText(buildCoachStarString(coach.getStarLevel()));
 		tvOrdernum.setText(String.valueOf(coach.getOrderCount()));
 		tvRange.setText(String.valueOf(coach.getRange()));
-		tvRecomIndex.setText(String.valueOf(coach.getRecommendIndex()));
+		tvGoodrate.setText(String.valueOf(coach.getGoodRate())+"%");
 		tvDate.setText(buildDateString());
 		rtbStar.setRating(coach.getStarLevel());
 		NetUtil.requestLoadImage(rimgAvatar, coach.getAvatarId(), R.drawable.default_personal_avatar);

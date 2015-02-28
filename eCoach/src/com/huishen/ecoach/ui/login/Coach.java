@@ -38,7 +38,7 @@ public final class Coach implements Serializable {
 	private int auditStatus;	//审核状态
 	private int range;			//排行榜
 	private int orderCount;		//订单总数
-	private int recommendIndex;	//推荐指数
+	private float goodrate;		//好评率
 	private float starLevel;	//评星等级
 
 	public String getPhoneNumber() {
@@ -124,12 +124,12 @@ public final class Coach implements Serializable {
 		this.orderCount = orderCount;
 	}
 
-	public int getRecommendIndex() {
-		return recommendIndex;
+	public float getGoodRate() {
+		return goodrate;
 	}
 
-	public void setRecommendIndex(int recommendIndex) {
-		this.recommendIndex = recommendIndex;
+	public void setGoodRate(float goodrate) {
+		this.goodrate = goodrate;
 	}
 
 	public float getStarLevel() {
@@ -150,8 +150,8 @@ public final class Coach implements Serializable {
 				.append(", avatarId=").append(avatarId)
 				.append(", auditStatus=").append(auditStatus)
 				.append(", range=").append(range).append(", orderCount=")
-				.append(orderCount).append(", recommendIndex=")
-				.append(recommendIndex).append(", starLevel=")
+				.append(orderCount).append(", goodrate=")
+				.append(goodrate).append(", starLevel=")
 				.append(starLevel).append("]");
 		return builder.toString();
 	}

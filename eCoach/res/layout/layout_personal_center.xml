@@ -110,12 +110,12 @@
 
                 <TextView
                     style="@style/style_pcenter_stat_keytv"
-                    android:text="@string/str_pcenter_stat_dimen_recommend" />
+                    android:text="@string/str_pcenter_stat_dimen_goodrate" />
 
                 <TextView
-                    android:id="@+id/pcenter_tv_recomindex"
+                    android:id="@+id/pcenter_tv_goodrates"
                     style="@style/style_pcenter_stat_valuetv"
-                    android:text="@string/str_pcenter_stat_default_recommend" />
+                    android:text="@string/str_pcenter_stat_default_praiserates" />
             </LinearLayout>
         </LinearLayout>
 
