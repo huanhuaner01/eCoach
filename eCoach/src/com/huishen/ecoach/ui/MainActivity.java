@@ -2,17 +2,24 @@ package com.huishen.ecoach.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
-import com.android.volley.toolbox.ImageLoader;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.volley.Response.Listener;
 import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
+import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.appointment.CalendarActivity;
 import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.widget.RoundImageView;
 
 import android.os.Bundle;
@@ -65,6 +72,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		retrieveWidgets();
 		addListeners();
+		refreshSnapupStatus();
 		displayLoginInfo();
 	}
 	
@@ -91,6 +99,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvRange = (TextView)findViewById(R.id.pcenter_tv_range);
 		tvGoodrate = (TextView)findViewById(R.id.pcenter_tv_goodrates);
 		rtbStar = (RatingBar)findViewById(R.id.pcenter_rating);
+		
+		rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.main_btn_rotate);
 	}
 	
 	private void addListeners(){
@@ -106,6 +116,27 @@ public class MainActivity extends Activity implements OnClickListener{
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
+			}
+		});
+	}
+	
+	//进入页面时查询并刷新抢单状态
+	private final void refreshSnapupStatus(){
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(SRL.Param.PARAM_COACH_ID, String.valueOf(MainApp.getInstance().getLoginCoach().getId()));
+		NetUtil.requestStringData(SRL.Method.METHOD_QUERY_SNAPUP_STATUS, params, new Listener<String>() {
+
+			@Override
+			public void onResponse(String arg0) {
+				try {
+					JSONObject json = new JSONObject(arg0);
+					int code = json.getInt(SRL.ReturnField.FIELD_SNAPUP_STATUS);
+					if (code==SRL.ReturnCode.INFO_STATUS_OPEN){
+						tvSnapAnimBkg.startAnimation(rotateAnimation);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -174,7 +205,34 @@ public class MainActivity extends Activity implements OnClickListener{
 		builder.append(tail);
 		return builder;
 	}
-
+	/**
+	 * 执行切换抢单动作。
+	 * @param open 是否开启抢单模式
+	 */
+	private final void performChangeSnapupStatus(final boolean open){
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(SRL.Param.PARAM_BEGIN_SNAPUP, String.valueOf(open? 1: 0));
+		params.put(SRL.Param.PARAM_COACH_ID, String.valueOf(MainApp.getInstance().getLoginCoach().getId()));
+		NetUtil.requestStringData(SRL.Method.METHOD_SET_SNAPUP_STATUS, params, new ResponseListener() {
+			
+			@Override
+			protected void onSuccess(String arg0) {
+				isSnaping = open;
+				if (isSnaping){
+					tvSnapAnimBkg.startAnimation(rotateAnimation);
+				}
+				else{
+					tvSnapAnimBkg.clearAnimation();
+				}
+			}
+			
+			@Override
+			protected void onReturnBadResult(int errorCode, String arg0) {
+				Uis.toastShort(MainActivity.this, R.string.str_main_err_fail_snapup);
+			}
+		});
+	}
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -193,16 +251,14 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(CalendarActivity.getIntent(this));
 			break;
 		case R.id.main_tv_snapup:
-			if (isSnaping){
-				tvSnapAnimBkg.clearAnimation();
-			}
-			else {
-				if (rotateAnimation==null){
-					rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.main_btn_rotate);
-				}
-				tvSnapAnimBkg.startAnimation(rotateAnimation);
-			}
-			isSnaping = !isSnaping;
+			performChangeSnapupStatus(!isSnaping);
+//			if (isSnaping){
+//				tvSnapAnimBkg.clearAnimation();
+//			}
+//			else {
+//				tvSnapAnimBkg.startAnimation(rotateAnimation);
+//			}
+//			isSnaping = !isSnaping;
 			break;
 		case R.id.main_tv_recruit_manage:
 			break;

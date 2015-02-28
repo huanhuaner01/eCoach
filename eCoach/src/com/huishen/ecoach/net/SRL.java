@@ -97,6 +97,20 @@ public final class SRL {
 		 * 提交用户的意见反馈。
 		 */
 		public static final String METHOD_FEEDBACK = "";
+		
+		/**
+		 * 查询教练的抢单状态。
+		 * 参数:	coachId:3;//教练ID
+		 * 返回值:{model:0|1}0:关闭抢单状态，1:开启抢单状态
+		 */
+		public static final String METHOD_QUERY_SNAPUP_STATUS = "/cohMobile/queryModel";
+		/**
+		 * 参数:
+		 * coachId:3;//教练ID
+		 * model:0|1
+		 * 返回值:{code:0|1}0:切换成功，1:发布异常
+		 */
+		public static final String METHOD_SET_SNAPUP_STATUS = "/cohMobile/ableModel";
 	}
 	
 	/**
@@ -164,6 +178,14 @@ public final class SRL {
 		 * 提交意见反馈时使用，信息内容。
 		 */
 		public static final String PARAM_FEEDBACK_CONTENT = "content";
+		/**
+		 * 查询教练抢单模式状态时使用，教练ID。
+		 */
+		public static final String PARAM_COACH_ID = "coachId";
+		/**
+		 * 切换教练抢单模式状态时使用，是否开始。(0=结束，1=开始)
+		 */
+		public static final String PARAM_BEGIN_SNAPUP = "model";
 	}
 	
 	/**
@@ -196,6 +218,14 @@ public final class SRL {
 		 * 重置密码时返回：重置失败。
 		 */
 		public static final int ERR_RESETPWD_FAIL = 2;
+		/**
+		 * 查询抢单模式时返回：模式已关闭。
+		 */
+		public static final int INFO_STATUS_CLOSED = 0;
+		/**
+		 * 查询抢单模式时返回：模式已开启。
+		 */
+		public static final int INFO_STATUS_OPEN = 1;
 		/**
 		 * 通用返回值，代表成功信息。
 		 */
@@ -262,6 +292,10 @@ public final class SRL {
 		 * 登录返回字段：推荐指数。
 		 */
 		public static final String FIELD_COACH_RECOMMEND_INDEX = "recom";
+		/**
+		 * 查询抢单模式返回字段：模式状态。
+		 */
+		public static final String FIELD_SNAPUP_STATUS = "model";
 		/**
 		 * 通用信息返回参数，用于登录等。
 		 */
