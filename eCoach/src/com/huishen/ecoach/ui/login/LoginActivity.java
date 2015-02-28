@@ -44,9 +44,11 @@ public class LoginActivity extends RightSideParentActivity implements
 		initWidgets();
 		if (Prefs.getBoolean(this, Const.KEY_AUTO_LOGIN)){
 			String phone = Prefs.getString(this, Const.KEY_LAST_LOGIN_PHONE);
-			String pwd = Prefs.getString(this, Const.KEY_PASSWORD);
-			Log.d("LoginActivity", "autologin[" + phone + "," + pwd + "]...");
-			performLogin(phone, pwd);
+			String pwd = Prefs.getString(this, Const.KEY_LAST_LOGIN_PWD);
+			if (pwd != null && pwd.length() > 0) {
+				Log.d("LoginActivity", "autologin[" + phone + "," + pwd + "]...");
+				performLogin(phone, pwd);
+			}
 		}
 	}
 	private final void initWidgets(){
@@ -66,7 +68,7 @@ public class LoginActivity extends RightSideParentActivity implements
 	}
 	
 	//处理登录逻辑
-	private final void performLogin(final String user, String pwd){
+	private final void performLogin(final String user, final String pwd){
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_USERNAME, user);
 		params.put(SRL.Param.PARAM_PASSWORD, pwd);
@@ -80,6 +82,8 @@ public class LoginActivity extends RightSideParentActivity implements
 						MainApp.getInstance().setLoginCoach(parseLoginCoachInfo(arg0));
 						//保存弱登录信息，清除注册信息
 						Prefs.setString(LoginActivity.this, Const.KEY_LAST_LOGIN_PHONE, user);
+						Prefs.setString(LoginActivity.this, Const.KEY_LAST_LOGIN_PWD, pwd);
+						Prefs.setBoolean(LoginActivity.this, Const.KEY_AUTO_LOGIN, true);
 						RegisterActivity.clearRegisterInformation(LoginActivity.this);
 						//执行页面跳转
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));

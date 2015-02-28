@@ -16,7 +16,7 @@
         <!-- 使用圆形头像 -->
 
         <com.huishen.ecoach.widget.RoundImageView
-            android:id="@+id/pcenter_avatar"
+            android:id="@+id/pcenter_rimg_avatar"
             android:layout_width="@dimen/pcenter_avatar_width"
             android:layout_height="@dimen/pcenter_avatar_height"
             android:layout_centerHorizontal="true"
@@ -27,20 +27,20 @@
             imgctrl:border_thickness="4dp" />
 
         <TextView
-            android:id="@+id/pcenter_coachname"
+            android:id="@+id/pcenter_tv_coachname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pcenter_avatar"
+            android:layout_below="@id/pcenter_rimg_avatar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_middle"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
             android:text="@string/str_pcenter_default_coach_name"
-            android:textColor="@color/color_pcenter_textcolor"
-            android:textSize="@dimen/txtsize_xxlarge" />
+            android:textColor="#262C36"
+            android:textSize="@dimen/txtsize_large" />
 
         <LinearLayout style="@style/style_common_wrap_wrap" android:orientation="horizontal"
-            android:layout_below="@id/pcenter_coachname"
+            android:layout_below="@id/pcenter_tv_coachname"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/margin_middle">
             
@@ -58,15 +58,9 @@
             style="@style/style_common_wrap_wrap"
             android:gravity="center_vertical"
             android:textColor="#D6CFCF"
-            android:textSize="@dimen/txtsize_xlarge"
+            android:textSize="@dimen/txtsize_default"
             android:layout_marginLeft="@dimen/margin_middle"/>
         </LinearLayout>
-
-<!--         <TextView
-            style="@style/style_common_wrap_wrap"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_toRightOf="@id/pcenter_rating"
-            android:textSize="@dimen/txtsize_large" /> -->
     </RelativeLayout>
 
     <LinearLayout

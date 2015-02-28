@@ -23,6 +23,10 @@ public final class Const {
 	 * 因此每次都应该替换掉原来的手机号。注意区分该字段和{@link #KEY_VERIFIED_PHONE}的区别。
 	 */
 	public static final String KEY_LAST_LOGIN_PHONE = "lastLogin";
+	/**
+	 * 保存最新登录成功的密码值。当用户手动退出登录后，清除该值。
+	 */
+	public static final String KEY_LAST_LOGIN_PWD = "lastLoginpwd";
 	
 	/**
 	 * 设置启动界面最低显示时间，单位为ms。

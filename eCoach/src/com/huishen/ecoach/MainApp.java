@@ -2,7 +2,9 @@ package com.huishen.ecoach;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.huishen.ecoach.net.LruBitmapCache;
 import com.huishen.ecoach.ui.login.Coach;
 
 import android.app.Application;
@@ -18,6 +20,7 @@ public final class MainApp extends Application {
 	private Coach loginCoach = null;
 	
 	private RequestQueue requestQueue;
+	private ImageLoader mImageLoader;
 	private String sessionId;
 	
 	//Singleton
@@ -31,11 +34,13 @@ public final class MainApp extends Application {
 		instance = this; //this first (and the only) instance created by system.
 		init();
 	}
+	
 	/**
 	 * 初始化各种全局变量和第三方库。	
 	 */
 	private void init(){
 		requestQueue = Volley.newRequestQueue(this);
+		mImageLoader = new ImageLoader(requestQueue, new LruBitmapCache());
 	}
 
 	/**
@@ -46,6 +51,14 @@ public final class MainApp extends Application {
 			requestQueue.add(request);
 		}
 	}
+
+	/**
+	 * 获取ImageLoader对象。
+	 */
+	public final ImageLoader getmImageLoader() {
+		return mImageLoader;
+	}
+	
 	/**
 	 * 获得缓存的SessionId。
 	 * @return
@@ -71,4 +84,5 @@ public final class MainApp extends Application {
 	public void setLoginCoach(Coach loginCoach) {
 		this.loginCoach = loginCoach;
 	}
+
 }

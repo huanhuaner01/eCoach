@@ -182,8 +182,8 @@
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/list_coach_ratingbar</item>
         <item name="android:thumb">@null</item>
-        <item name="android:minHeight">30dp</item>
-        <item name="android:maxHeight">30dp</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:maxHeight">25dp</item>
     </style>
 
     <style name="style_main_ordernum_progress">

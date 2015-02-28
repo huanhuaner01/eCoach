@@ -46,7 +46,11 @@ public final class SRL {
 		 */
 		public static final String METHOD_GET_VERIFY_CODE = "/cohMobile/sendCohVCode";
 		/**
-		 * 用户登录方法。 需要提供的参数有：用户名(username/String)，密码(password/String)。
+		 * 用户登录方法。参数:
+		 * 	username=18782920468
+		 * 	password=123456;//不加密
+		 * 返回值:{code:0|1|2,info:{...}}
+		 * 0:登录成功，1:用户名密码不正确,2:帐号被禁用 info:code为0时，有值 (教练个人信息数据)
 		 */
 		public static final String METHOD_LOGIN = "/cohMobile/cohLogin";
 		/**

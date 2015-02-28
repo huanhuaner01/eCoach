@@ -4,13 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.ui.appointment.CalendarActivity;
 import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+import com.huishen.ecoach.widget.RoundImageView;
 
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
@@ -45,8 +48,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Animation rotateAnimation = null;
 	
 	//--- Slide Pane Widgets
-	private TextView tvOrdernum, tvRange, tvRecomIndex, tvStarLevel;
+	private TextView tvName, tvOrdernum, tvRange, tvRecomIndex, tvStarLevel;
 	private TextView tvUserGuide, tvRecommend, tvSetting;
+	private RoundImageView rimgAvatar;
 	private RatingBar rtbStar;
 	private ToggleButton tgbMsgPush;
 	
@@ -76,8 +80,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvSnapup = (TextView)findViewById(R.id.main_tv_snapup);
 		tvSnapAnimBkg = (TextView)findViewById(R.id.main_tv_snapup_animbkg);
 		tvRecruitManage = (TextView)findViewById(R.id.main_tv_recruit_manage);
+		rimgAvatar = (RoundImageView)findViewById(R.id.pcenter_rimg_avatar);
 		tvRecommend = (TextView)findViewById(R.id.pcenter_tv_recommend);
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
+		tvName = (TextView)findViewById(R.id.pcenter_tv_coachname);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
 		tgbMsgPush = (ToggleButton)findViewById(R.id.pcenter_tgb_msgpush);
 		tvStarLevel = (TextView)findViewById(R.id.pcenter_tv_starnum);
@@ -108,12 +114,40 @@ public class MainActivity extends Activity implements OnClickListener{
 		//展示登录信息
 		final Coach coach = MainApp.getInstance().getLoginCoach();
 		Log.d(LOG_TAG, coach.toString());
+		tvName.setText(buildCoachNameString(coach));
 		tvStarLevel.setText(buildCoachStarString(coach.getStarLevel()));
 		tvOrdernum.setText(String.valueOf(coach.getOrderCount()));
 		tvRange.setText(String.valueOf(coach.getRange()));
 		tvRecomIndex.setText(String.valueOf(coach.getRecommendIndex()));
 		tvDate.setText(buildDateString());
 		rtbStar.setRating(coach.getStarLevel());
+		NetUtil.requestLoadImage(rimgAvatar, coach.getAvatarId(), R.drawable.default_personal_avatar);
+	}
+	
+	private final CharSequence buildCoachNameString(Coach coach){
+		SpannableStringBuilder ssb = new SpannableStringBuilder(coach.getName());
+		int spanColor;
+		int spanTxt;
+		switch (coach.getAuditStatus()) {
+		case Coach.STATUS_AUDITING:
+			spanColor = R.color.color_pcenter_coach_auditing;
+			spanTxt = R.string.str_pcenter_status_auditing;
+			break;
+		case Coach.STATUS_AUDIT_PASS:	//不展示
+			return ssb;
+		case Coach.STATUS_AUDIT_FAIL:
+			spanColor = R.color.color_pcenter_coach_auditfail;
+			spanTxt = R.string.str_pcenter_status_audit_fail;
+			break;
+		default:
+			throw new IllegalStateException("this object has been modified manually.");
+		}
+		final int start = ssb.length();
+		ForegroundColorSpan span = new ForegroundColorSpan(getResources()
+				.getColor(spanColor));
+		ssb.append(getResources().getText(spanTxt));
+		ssb.setSpan(span, start, ssb.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		return ssb;
 	}
 	
 	private final CharSequence buildCoachStarString(float rate){

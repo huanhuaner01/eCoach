@@ -7,11 +7,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.util.Log;
+import android.widget.ImageView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.MainApp;
+import com.huishen.ecoach.R;
 import com.huishen.ecoach.util.Prefs;
 
 /**
@@ -205,6 +210,19 @@ public final class NetUtil {
 						return localHashMap;
 					}
 				});
+	}
+	
+	public static final void requestLoadImage(ImageView img,
+			String relativePath, int defaultResid) {
+		requestLoadImage(img, relativePath, defaultResid, R.drawable.ic_launcher);
+	}
+
+	public static final void requestLoadImage(ImageView img,
+			String relativePath, int defaultResid, int errResid) {
+		ImageLoader loader = MainApp.getInstance().getmImageLoader();
+		ImageListener listener = ImageLoader.getImageListener(img, defaultResid, errResid);
+		Log.d(LOG_TAG, "request loading image:"+getAbsolutePath(relativePath));
+		loader.get(getAbsolutePath(relativePath), listener);
 	}
 
 	/**

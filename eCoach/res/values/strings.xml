@@ -9,6 +9,7 @@
     <string name="str_operation_success">操作成功</string>
     <string name="str_feature_unsupported">敬请期待</string>
     <string name="str_activity_main_title">e驾学车</string>
+    <string name="str_err_unknown_reason">未知错误，请稍后重试</string>
     <string name="title_activity_login">登录</string>
     <string name="title_activity_verify_phone">验证手机</string>
     <string name="title_activity_register">注册</string>
@@ -35,6 +36,9 @@
     <string name="str_pcenter_stat_default_praiserates">0%</string>
     <string name="str_pcenter_stat_default_range">9999</string>
     <string name="str_pcenter_stat_default_recommend">0</string>
+    <string name="str_pcenter_status_auditing">(审核中)</string>
+    <string name="str_pcenter_status_audit_pass">(已审核)</string>
+    <string name="str_pcenter_status_audit_fail">(审核未通过)</string>
     <string name="str_pcenter_star_unit">分</string>
     <string name="str_pcenter_userguide">使用指南</string>
     <string name="str_pcenter_recommend">推　　荐</string>
