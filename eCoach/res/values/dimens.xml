@@ -40,6 +40,8 @@
     <!-- slide bar dimensions -->
     <dimen name="pcenter_avatar_width">100dp</dimen>
     <dimen name="pcenter_avatar_height">100dp</dimen>
+    <dimen name="view_profile_avatar_width">85dp</dimen>
+    <dimen name="view_profile_avatar_height">85dp</dimen>
     
     <!-- library dimens -->
     <dimen name="calendar_padding_middle">7dp</dimen>
@@ -66,7 +68,7 @@
     <dimen name="setting_menugrp_padding_left">@dimen/padding_middle</dimen>
     <dimen name="setting_menugrp_padding_right">35dp</dimen>
     <!-- 个人资料界面左侧内边距 -->
-    <dimen name="viewprofile_item_paddingleft">35dp</dimen>
+    <dimen name="viewprofile_item_paddingleft">30dp</dimen>
     <!-- 订单状态界面内边距 -->
     <dimen name="orderstate_padding_horizontal">@dimen/padding_small</dimen>
     <!-- 约课列表的右边距，包括Group和item。 -->

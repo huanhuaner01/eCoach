@@ -122,8 +122,15 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	//进入页面时查询并刷新抢单状态
 	private final void refreshSnapupStatus(){
+		//如果教练未通过审核，则无需查询
+		final Coach coach = MainApp.getInstance().getLoginCoach();
+		if (coach.getAuditStatus() != Coach.STATUS_AUDIT_PASS){
+			Log.d(LOG_TAG, "This coach hasn't pass audit yet. Skiping query status.");
+			return ;
+		}
+		//否则执行查询并更新
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.Param.PARAM_COACH_ID, String.valueOf(MainApp.getInstance().getLoginCoach().getId()));
+		params.put(SRL.Param.PARAM_COACH_ID, String.valueOf(coach.getId()));
 		NetUtil.requestStringData(SRL.Method.METHOD_QUERY_SNAPUP_STATUS, params, new Listener<String>() {
 
 			@Override
@@ -205,6 +212,18 @@ public class MainActivity extends Activity implements OnClickListener{
 		builder.append(tail);
 		return builder;
 	}
+	
+	/**
+	 * 检查教练的审核状态，如果返回值为true，则可以执行进一步的操作，否则提示用户不能操作。
+	 */
+	private final boolean checkAuditStatus() {
+		if (MainApp.getInstance().getLoginCoach().getAuditStatus()!=Coach.STATUS_AUDIT_PASS){
+			Uis.toastShort(MainActivity.this, R.string.str_main_err_audit_notpassyet);
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * 执行切换抢单动作。
 	 * @param open 是否开启抢单模式
@@ -248,17 +267,14 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(MessageActivity.getIntent(this));
 			break;
 		case R.id.main_tv_book_manage:
-			startActivity(CalendarActivity.getIntent(this));
+			if (checkAuditStatus()){
+				startActivity(CalendarActivity.getIntent(this));
+			}
 			break;
 		case R.id.main_tv_snapup:
-			performChangeSnapupStatus(!isSnaping);
-//			if (isSnaping){
-//				tvSnapAnimBkg.clearAnimation();
-//			}
-//			else {
-//				tvSnapAnimBkg.startAnimation(rotateAnimation);
-//			}
-//			isSnaping = !isSnaping;
+			if (checkAuditStatus()){
+				performChangeSnapupStatus(!isSnaping);
+			}
 			break;
 		case R.id.main_tv_recruit_manage:
 			break;
