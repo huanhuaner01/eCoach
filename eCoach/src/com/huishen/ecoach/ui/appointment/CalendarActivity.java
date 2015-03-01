@@ -317,7 +317,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 
 		@Override
 		public boolean areAllItemsEnabled() {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
@@ -328,7 +327,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 
 		@Override
 		public long getChildId(int groupPosition, int childPosition) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
@@ -365,19 +363,16 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 
 		@Override
 		public long getCombinedChildId(long groupId, long childId) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public long getCombinedGroupId(long groupId) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public Object getGroup(int groupPosition) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
@@ -442,31 +437,26 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 
 		@Override
 		public boolean hasStableIds() {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean isChildSelectable(int groupPosition, int childPosition) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean isEmpty() {
-			// TODO Auto-generated method stub	
 			return false;
 		}
 
 		@Override
 		public void onGroupCollapsed(int groupPosition) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void onGroupExpanded(int groupPosition) {
-			// TODO Auto-generated method stub
 			
 		}
 

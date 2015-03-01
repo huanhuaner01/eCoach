@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * 实时抢单页面，平时无链接指向这里，当且仅当有新订单的推送消息到来时才自动弹出。
@@ -19,6 +21,9 @@ public class RealtimeSnapupActivity extends Activity {
 	private static final String LOG_TAG = "RealtimeSnapupActivity";
 	private static final String EXTRA_NEWORDER = "neworder";
 	
+	private ImageButton btnClose, btnSnapup;
+	private TextView tvContent;
+	
 	public static final Intent getIntent(Context context, NewOrderPushData data){
 		Intent intent = new Intent(context, RealtimeSnapupActivity.class);
 		intent.putExtra(EXTRA_NEWORDER, data);
@@ -29,6 +34,7 @@ public class RealtimeSnapupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_realtime_snapup);
+		Log.d(LOG_TAG, "activity has started.");
 		final NewOrderPushData data;
 		try {
 			data = (NewOrderPushData) getIntent().
@@ -40,6 +46,13 @@ public class RealtimeSnapupActivity extends Activity {
 		} catch (ClassCastException e) {
 			Log.e(LOG_TAG, "FATAL ERROR: extra value must be instance of NewOrderPushData.");
 //			finish();
+			return ;
 		}
+		displayOrderInfo(data);
+	}
+	
+	private void displayOrderInfo(NewOrderPushData data) {
+		tvContent = (TextView) findViewById(R.id.realtime_snapup_tv_demand);
+		tvContent.setText(data.content);
 	}
 }

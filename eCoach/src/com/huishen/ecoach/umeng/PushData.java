@@ -26,12 +26,10 @@ public abstract class PushData implements Serializable {
 	 */
 	public static final int TYPE_NEWORDER = 1001;
 	
-	public final String content; // 消息内容
 	public final int msgType; // 消息类型
 
 	public PushData(Map<String, String> map) {
-		content = null;
-		msgType = TYPE_UNKNOWN;
+		msgType = Integer.parseInt(map.get(UmengPushConst.PARAM_MSG_TYPE));
 	}
 
 	public final int getPushType() {

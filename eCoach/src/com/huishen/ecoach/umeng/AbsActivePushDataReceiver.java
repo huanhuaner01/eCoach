@@ -40,7 +40,9 @@ public abstract class AbsActivePushDataReceiver<T extends PushData> extends
 			Log.w(tag, "receive a non-oredered broadcast, bust it should be. Do nothing.");
 			return ;
 		}
-		abortBroadcast();
+		if (shouldAbortBroadcast()){
+			abortBroadcast();
+		}
 		//由于这里并非公有API，因此默认转换是安全的，不加异常处理。
 		@SuppressWarnings("unchecked")
 		T data = (T) intent.getSerializableExtra(UmengPushConst.EXTRA_PUSHDATA);
@@ -62,6 +64,14 @@ public abstract class AbsActivePushDataReceiver<T extends PushData> extends
 	 * 要处理的广播的ACTION。
 	 */
 	protected abstract String getAction();
+	
+	/**
+	 * 决定是否阻断该有序广播的继续发送，默认返回true。
+	 */
+	protected boolean shouldAbortBroadcast(){
+		return true;
+	}
+	
 	/**
 	 * 获得当前类的IntentFiter。
 	 */

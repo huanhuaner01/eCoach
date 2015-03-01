@@ -141,6 +141,7 @@
         <receiver android:name="com.huishen.ecoach.umeng.DefaultPushDataReceiver">
             <intent-filter >
                 <action android:name="com.huishen.ecoach.UNKNOWN_PUSHDATA"/>
+                <action android:name="com.huishen.ecoach.NEW_ORDER"/>
             </intent-filter>
         </receiver>
         <!-- 友盟推送相关组件 BEGIN -->

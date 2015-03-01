@@ -32,7 +32,8 @@ public final class NewOrderPushData extends PushData {
 		builder.append("NewOrderPushData [orderId=").append(orderId)
 				.append(", versionUID=").append(versionUID)
 				.append(", stuName=").append(stuName).append(", content=")
-				.append(content).append("]");
+				.append(content).append(", msgType=").append(msgType)
+				.append("]");
 		return builder.toString();
 	}
 }

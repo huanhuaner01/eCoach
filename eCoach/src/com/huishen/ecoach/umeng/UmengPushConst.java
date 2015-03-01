@@ -34,7 +34,7 @@ public final class UmengPushConst {
 	protected static final String PARAM_MSG_TYPE = "msgType"; 
 	
 	/**
-	 * 包含推送信息的广播的Action集合。
+	 * 包含推送信息的广播的Action集合。该类中的所有字段都必须注册到AndroidManifest.xml中。
 	 * @author Muyangmin
 	 * @create 2015-2-28
 	 */
@@ -43,6 +43,10 @@ public final class UmengPushConst {
 		 * 未知推送内容。
 		 */
 		public static final String ACTION_UNKNOWN_PUSHDATA = "com.huishen.ecoach.UNKNOWN_PUSHDATA";
+		/**
+		 * 新订单提醒。
+		 */
+		public static final String ACTION_NEWORDER_PUSHDATA = "com.huishen.ecoach.NEW_ORDER";
 	}
 	
 	/**

@@ -3,7 +3,8 @@
  */
 package com.huishen.ecoach.umeng;
 
-import android.app.NotificationManager;
+import com.huishen.ecoach.ui.order.RealtimeSnapupActivity;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,28 +34,43 @@ public final class DefaultPushDataReceiver extends BroadcastReceiver {
 		Log.d(LOG_TAG, "default receiver has get message.");
 		PushData data = (PushData) intent
 				.getSerializableExtra(UmengPushConst.EXTRA_PUSHDATA);
-		NotificationManager nm = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-		// 发送一个跳转到消息列表的广播即可。
-		/*
-		 * 使用消息类型作为该类Notification的Id，以在更新Notification时相区别。
-		 * 此外，在PendingIntent#getActivity中必须指定这个id,否则会出现多个Notification
-		 * 同时存在时只有一个生效且数据错乱的情况。
-		 */
-		// PendingIntent pi = PendingIntent.getActivity(context, typeid,
-		// getAssociatedIntent(context, data),
-		// PendingIntent.FLAG_UPDATE_CURRENT);
-		// NotificationCompat.Builder builder = new
-		// NotificationCompat.Builder(context);
-		// builder.setSmallIcon(R.drawable.notification_icon)
-		// .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-		// R.drawable.ic_launcher))
-		// .setContentTitle(data.title)
-		// .setContentText(Utils.getTransferContent(context, data.content))
-		// .setTicker(data.title)
-		// .setDefaults(Notification.DEFAULT_ALL)
-		// .setAutoCancel(true)
-		// .setContentIntent(pi);
-		// nm.notify(typeid, builder.build());
+		Log.d(LOG_TAG, data.toString());
+		switch (data.msgType) {
+		case PushData.TYPE_NEWORDER:			//直接跳转
+			if (data instanceof NewOrderPushData){
+				intent = RealtimeSnapupActivity.getIntent(context, (NewOrderPushData) data);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				context.startActivity(intent);
+			}
+			Log.d(LOG_TAG, " instanceof check fail.");
+			break;
+
+		default:
+			break;
+		}
 	}
 }
+
+//NotificationManager nm = (NotificationManager) context
+//		.getSystemService(Context.NOTIFICATION_SERVICE);
+// 发送一个跳转到消息列表的广播即可。
+/*
+ * 使用消息类型作为该类Notification的Id，以在更新Notification时相区别。
+ * 此外，在PendingIntent#getActivity中必须指定这个id,否则会出现多个Notification
+ * 同时存在时只有一个生效且数据错乱的情况。
+ */
+// PendingIntent pi = PendingIntent.getActivity(context, typeid,
+// getAssociatedIntent(context, data),
+// PendingIntent.FLAG_UPDATE_CURRENT);
+// NotificationCompat.Builder builder = new
+// NotificationCompat.Builder(context);
+// builder.setSmallIcon(R.drawable.notification_icon)
+// .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+// R.drawable.ic_launcher))
+// .setContentTitle(data.title)
+// .setContentText(Utils.getTransferContent(context, data.content))
+// .setTicker(data.title)
+// .setDefaults(Notification.DEFAULT_ALL)
+// .setAutoCancel(true)
+// .setContentIntent(pi);
+// nm.notify(typeid, builder.build());
