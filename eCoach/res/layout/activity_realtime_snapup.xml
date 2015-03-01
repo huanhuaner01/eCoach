@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    tools:context=".ui.order.RealtimeSnapupActivity" >
+
+    <FrameLayout
+        android:id="@+id/realtime_snapup_fl_region"
+        style="@style/style_common_macth_wrap" >
+
+        <LinearLayout
+            style="@style/style_common_macth_wrap"
+            android:background="#FEA750"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_middle" >
+
+            <TextView
+                style="@style/style_common_macth_wrap"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/padding_micro"
+                android:paddingTop="@dimen/padding_middle"
+                android:text="成都市武侯区"
+                android:textColor="@android:color/white"
+                android:textSize="26sp" />
+
+            <TextView
+                style="@style/style_common_macth_wrap"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/padding_middle"
+                android:paddingTop="@dimen/padding_small"
+                android:text="距您1.4公里"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txtsize_xlarge" />
+        </LinearLayout>
+
+        <com.huishen.ecoach.widget.RotatedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bkg_snapup_realtime_tag"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/padding_middle"
+            android:text="@string/str_realtime_snapup_tag_realtime"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txtsize_default"
+            android:textStyle="bold"
+            app:degrees="315"
+            app:pivotx="0.5"
+            app:pivoty="0.5" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/realtime_snapup_btn_snapup"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_xxlarge"
+        android:background="@drawable/bkg_realtime_snapup_btn_snapup"
+        android:gravity="center"
+        android:padding="@dimen/padding_micro"
+        android:text="抢单中"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/txtsize_large" />
+
+    <LinearLayout
+        style="@style/style_common_macth_wrap"
+        android:layout_above="@id/realtime_snapup_btn_snapup"
+        android:layout_below="@id/realtime_snapup_fl_region" 
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/style_common_macth_wrap"
+            android:layout_marginLeft="@dimen/realtime_snapup_stupos_marginleft"
+            android:layout_marginRight="@dimen/realtime_snapup_stupos_marginleft"
+            android:layout_marginTop="@dimen/realtime_snapup_stupos_margintop"
+            android:padding="@dimen/padding_large" >
+
+            <ImageView
+                android:id="@+id/realtime_snapup_img_stupos"
+                style="@style/style_common_wrap_wrap"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_orderstate_student_position" />
+
+            <TextView
+                android:id="@+id/realtime_snapup_tv_stuposition"
+                style="@style/style_common_wrap_wrap"
+                android:layout_alignTop="@id/realtime_snapup_img_stupos"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/realtime_snapup_img_stupos"
+                android:padding="@dimen/padding_middle"
+                android:text="成都市二环路东一段"
+                android:textColor="#996633"
+                android:textSize="@dimen/txtsize_xxlarge" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/style_common_macth_wrap"
+            android:layout_marginLeft="@dimen/realtime_snapup_stupos_marginleft"
+            android:layout_marginRight="@dimen/realtime_snapup_stupos_marginleft"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:padding="@dimen/padding_large" >
+
+            <ImageView
+                android:id="@+id/realtime_snapup_img_demand"
+                style="@style/style_common_wrap_wrap"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_orderstate_student_position" />
+
+            <TextView
+                android:id="@+id/realtime_snapup_tv_demand"
+                style="@style/style_common_wrap_wrap"
+                android:layout_alignTop="@id/realtime_snapup_img_demand"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/realtime_snapup_img_demand"
+                android:padding="@dimen/padding_middle"
+                android:text="成都市二环路东一段"
+                android:textColor="#996633"
+                android:textSize="@dimen/txtsize_xxlarge" />
+
+            <ImageButton
+                android:id="@+id/realtime_snapup_img_voice"
+                style="@style/style_common_wrap_wrap"
+                android:layout_below="@id/realtime_snapup_tv_demand"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/realtime_snapup_img_demand"
+                android:layout_alignRight="@id/realtime_snapup_tv_demand"
+                android:padding="@dimen/padding_middle"
+                android:text="成都市二环路东一段"
+                android:textColor="#996633"
+                android:textSize="@dimen/txtsize_xxlarge" />
+        </RelativeLayout>
+        <TextView style="@style/style_common_wrap_wrap"
+            android:textSize="@dimen/txtsize_default"/>
+    </LinearLayout>
+
+</RelativeLayout>

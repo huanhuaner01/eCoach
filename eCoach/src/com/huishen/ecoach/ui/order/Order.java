@@ -14,7 +14,7 @@ public final class Order implements Serializable {
 	private long id;
 	private long time;
 	private String studentPosition;
-	private String studyPosition;
+	private String coachPosition;
 	private boolean cancelled;
 	private boolean evaluated;
 
@@ -43,11 +43,11 @@ public final class Order implements Serializable {
 	}
 
 	public String getStudyPosition() {
-		return studyPosition;
+		return coachPosition;
 	}
 
-	public void setTargetPosition(String studyPosition) {
-		this.studyPosition = studyPosition;
+	public void setCoachPosition(String coachPosition) {
+		this.coachPosition = coachPosition;
 	}
 
 	public boolean isCancelled() {
@@ -71,7 +71,7 @@ public final class Order implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Order [id=").append(id).append(", time=").append(time)
 				.append(", studentPosition=").append(studentPosition)
-				.append(", targetPosition=").append(studyPosition)
+				.append(", targetPosition=").append(coachPosition)
 				.append(", cancelled=").append(cancelled)
 				.append(", evaluated=").append(evaluated).append("]");
 		return builder.toString();

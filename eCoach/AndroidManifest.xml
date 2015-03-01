@@ -133,6 +133,10 @@
             android:name="com.huishen.ecoach.ui.login.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password" >
         </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.order.RealtimeSnapupActivity"
+            android:label="@string/title_activity_realtime_snapup" >
+        </activity>
         <!-- 友盟推送相关组件 BEGIN -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
-    <issue id="ContentDescription">
+    <issue id="ContentDescription" severity="ignore">
         <ignore path="res/layout/activity_calendar.xml" />
         <ignore path="res/layout/activity_complaint.xml" />
         <ignore path="res/layout/listitem_complaint_reason.xml" />
@@ -8,8 +8,10 @@
     <issue id="ExportedReceiver" severity="ignore" />
     <issue id="ExportedService" severity="ignore" />
     <issue id="InflateParams" severity="ignore" />
+    <issue id="Overdraw" severity="ignore" />
     <issue id="RtlHardcoded">
         <ignore path="res/layout/activity_calendar.xml" />
         <ignore path="res/layout/activity_forget_password.xml" />
+        <ignore path="res/layout/activity_realtime_snapup.xml" />
     </issue>
 </lint>
