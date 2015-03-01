@@ -9,12 +9,13 @@ import android.util.Log;
 /**
  * 代表所有推送消息的父类，主要提供基本的框架支持。
  * 该类的子类所有的字段都应该仿效该类作为Final字段，方便操作并可以提升性能。
+ * 并且，子类的构造器必须显式调用父类构造器。
  * @author Muyangmin
  * @create 2015-2-28
  */
 public abstract class PushData implements Serializable {
 	
-	protected static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * 未知类型的消息推送。

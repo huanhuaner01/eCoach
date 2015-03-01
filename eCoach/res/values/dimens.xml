@@ -74,7 +74,7 @@
     <!-- 约课列表的右边距，包括Group和item。 -->
     <dimen name="calendar_appointlist_margin_right">@dimen/margin_xlarge</dimen>
     <!-- 新订单页面学员位置离父组件顶部的高度. -->
-    <dimen name="realtime_snapup_stupos_margintop">50dp</dimen>
+    <dimen name="realtime_snapup_stupos_margintop">@dimen/margin_xlarge</dimen>
     <dimen name="realtime_snapup_stupos_marginleft">30dp</dimen>
     
 </resources>

@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_all_bkg"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bkg_realtime_snapup_frame"
+    android:paddingBottom="@dimen/padding_large"
     tools:context=".ui.order.RealtimeSnapupActivity" >
 
     <FrameLayout
@@ -12,7 +13,7 @@
 
         <LinearLayout
             style="@style/style_common_macth_wrap"
-            android:background="#FEA750"
+            android:background="@drawable/bkg_realtime_snapup_region"
             android:orientation="vertical"
             android:padding="@dimen/padding_middle" >
 
@@ -48,67 +49,58 @@
             app:degrees="315"
             app:pivotx="0.5"
             app:pivoty="0.5" />
+        <ImageButton style="@style/style_common_wrap_wrap"
+            android:padding="@dimen/padding_small"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_realtime_snapup_close"/>
     </FrameLayout>
 
-    <Button
-        android:id="@+id/realtime_snapup_btn_snapup"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_xxlarge"
-        android:background="@drawable/bkg_realtime_snapup_btn_snapup"
-        android:gravity="center"
-        android:padding="@dimen/padding_micro"
-        android:text="抢单中"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/txtsize_large" />
-
     <LinearLayout
+        android:id="@+id/realtime_snapup_ll_orderdetail"
         style="@style/style_common_macth_wrap"
-        android:layout_above="@id/realtime_snapup_btn_snapup"
-        android:layout_below="@id/realtime_snapup_fl_region" 
-        android:orientation="vertical">
+        android:layout_below="@id/realtime_snapup_fl_region"
+        android:orientation="vertical" >
 
         <RelativeLayout
             style="@style/style_common_macth_wrap"
             android:layout_marginLeft="@dimen/realtime_snapup_stupos_marginleft"
             android:layout_marginRight="@dimen/realtime_snapup_stupos_marginleft"
-            android:layout_marginTop="@dimen/realtime_snapup_stupos_margintop"
-            android:padding="@dimen/padding_large" >
+            android:layout_marginTop="@dimen/realtime_snapup_stupos_margintop" >
 
             <ImageView
                 android:id="@+id/realtime_snapup_img_stupos"
                 style="@style/style_common_wrap_wrap"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/icon_orderstate_student_position" />
+                android:src="@drawable/icon_realtime_snapup_stupos" />
 
             <TextView
                 android:id="@+id/realtime_snapup_tv_stuposition"
                 style="@style/style_common_wrap_wrap"
-                android:layout_alignTop="@id/realtime_snapup_img_stupos"
-                android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@id/realtime_snapup_img_stupos"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/realtime_snapup_img_stupos"
                 android:padding="@dimen/padding_middle"
                 android:text="成都市二环路东一段"
-                android:textColor="#996633"
+                android:textColor="#262c36"
                 android:textSize="@dimen/txtsize_xxlarge" />
+
         </RelativeLayout>
 
         <RelativeLayout
             style="@style/style_common_macth_wrap"
             android:layout_marginLeft="@dimen/realtime_snapup_stupos_marginleft"
             android:layout_marginRight="@dimen/realtime_snapup_stupos_marginleft"
-            android:layout_marginTop="@dimen/margin_xxlarge"
-            android:padding="@dimen/padding_large" >
+            android:layout_marginTop="@dimen/margin_xlarge" >
 
             <ImageView
                 android:id="@+id/realtime_snapup_img_demand"
                 style="@style/style_common_wrap_wrap"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/icon_orderstate_student_position" />
+                android:src="@drawable/icon_realtime_snapup_demand" />
 
             <TextView
                 android:id="@+id/realtime_snapup_tv_demand"
@@ -118,23 +110,46 @@
                 android:layout_toRightOf="@id/realtime_snapup_img_demand"
                 android:padding="@dimen/padding_middle"
                 android:text="成都市二环路东一段"
-                android:textColor="#996633"
+                android:textColor="#262c36"
                 android:textSize="@dimen/txtsize_xxlarge" />
 
-            <ImageButton
-                android:id="@+id/realtime_snapup_img_voice"
+            <FrameLayout 
                 style="@style/style_common_wrap_wrap"
+                android:layout_alignRight="@id/realtime_snapup_tv_demand"
                 android:layout_below="@id/realtime_snapup_tv_demand"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@id/realtime_snapup_img_demand"
-                android:layout_alignRight="@id/realtime_snapup_tv_demand"
                 android:padding="@dimen/padding_middle"
-                android:text="成都市二环路东一段"
-                android:textColor="#996633"
-                android:textSize="@dimen/txtsize_xxlarge" />
+                android:background="@drawable/bkg_realtime_btn_voice">
+            <ImageButton
+                android:id="@+id/realtime_snapup_img_voice"
+                android:background="@android:color/transparent"
+                style="@style/style_common_wrap_wrap"
+                android:src="@drawable/icon_realtime_snapup_btn_voice"/>
+            </FrameLayout>
         </RelativeLayout>
-        <TextView style="@style/style_common_wrap_wrap"
-            android:textSize="@dimen/txtsize_default"/>
+
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/realtime_snapup_ll_orderdetail"
+        android:background="@android:color/transparent"
+        android:paddingTop="@dimen/padding_large"
+        android:paddingBottom="@dimen/padding_large" >
+
+        <Button
+            android:id="@+id/realtime_snapup_btn_snapup"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bkg_realtime_snapup_btn_snapup"
+            android:gravity="center"
+            android:padding="@dimen/padding_micro"
+            android:text="抢单中"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txtsize_large" />
+    </RelativeLayout>
 
 </RelativeLayout>
