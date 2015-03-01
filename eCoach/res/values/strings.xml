@@ -51,6 +51,7 @@
     <string name="str_main_menu_book_manage">预约管理</string>
     <string name="str_main_menu_begin_snapup">我要\n抢单</string>
     <string name="str_main_menu_recruit_manage">招生管理</string>
+    <string name="str_main_err_audit_notpassyet">抱歉，需要通过审核才能使用该功能</string>
     <string name="str_main_err_fail_snapup">抱歉，状态切换失败，请稍后重试</string>
     <string name="str_login_forget_pwd">忘记密码？</string>
     <string name="str_login_no_account">还没有账号？</string>

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_bkg_gray"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}"
+    tools:ignore="RtlHardcoded,RtlSymmetry" >
 
     <RelativeLayout
         android:id="@+id/viewprofile_titlebar"
@@ -38,18 +39,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/viewprofile_item_paddingleft"
-                android:layout_marginStart="@dimen/viewprofile_item_paddingleft"
+                android:paddingLeft="@dimen/padding_small"
                 android:text="@string/str_viewprofile_avatar"
                 android:textColor="@color/color_deeper_gray"
                 android:textSize="@dimen/txtsize_large" />
 
             <com.huishen.ecoach.widget.RoundImageView
                 android:id="@+id/viewprofile_rimg_avatar"
-                android:layout_width="@dimen/pcenter_avatar_width"
-                android:layout_height="@dimen/pcenter_avatar_height"
+                android:layout_width="@dimen/view_profile_avatar_width"
+                android:layout_height="@dimen/view_profile_avatar_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_middle"
                 android:src="@drawable/default_personal_avatar" />
         </RelativeLayout>
 

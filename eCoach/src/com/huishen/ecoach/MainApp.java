@@ -6,6 +6,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.huishen.ecoach.net.LruBitmapCache;
 import com.huishen.ecoach.ui.login.Coach;
+import com.huishen.ecoach.umeng.CustomUMessageHandler;
+import com.umeng.message.PushAgent;
 
 import android.app.Application;
 
@@ -41,6 +43,7 @@ public final class MainApp extends Application {
 	private void init(){
 		requestQueue = Volley.newRequestQueue(this);
 		mImageLoader = new ImageLoader(requestQueue, new LruBitmapCache());
+		PushAgent.getInstance(instance).setMessageHandler(new CustomUMessageHandler());
 	}
 
 	/**
