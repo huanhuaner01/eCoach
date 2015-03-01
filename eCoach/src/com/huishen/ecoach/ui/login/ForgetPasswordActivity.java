@@ -107,6 +107,24 @@ public class ForgetPasswordActivity extends RightSideParentActivity implements
 				};
 			}
 		});
+		editPhone.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				btnVerify.setEnabled(s.length()>0 ? true : false);
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
 		editCode.addTextChangedListener(new TextWatcher() {
 			
 			@Override
