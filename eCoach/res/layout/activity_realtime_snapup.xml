@@ -51,6 +51,7 @@
             app:pivoty="0.5" />
 
         <ImageButton
+            android:id="@+id/realtime_snapup_imgbtn_close"
             style="@style/style_common_wrap_wrap"
             android:layout_gravity="right|top"
             android:layout_marginRight="@dimen/margin_small"
@@ -125,6 +126,7 @@
             tools:ignore="UseCompoundDrawables" >
 
             <ImageView
+                android:id="@+id/realtime_snapup_img_demand_txtonly"
                 style="@style/style_common_wrap_wrap"
                 android:src="@drawable/icon_realtime_snapup_demand"
                 android:visibility="invisible" />
@@ -154,7 +156,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/bkg_realtime_snapup_btn_snapup"
             android:gravity="center"
-            android:text="抢单中"
+            android:text="@string/str_realtime_snapup_execute_snap"
             android:textColor="@android:color/white"
             android:textSize="@dimen/txtsize_large" />
     </RelativeLayout>

@@ -36,7 +36,7 @@
     <string name="str_pcenter_stat_default_praiserates">0%</string>
     <string name="str_pcenter_stat_default_range">9999</string>
     <string name="str_pcenter_status_auditing">(审核中)</string>
-<!--  当前的设计：已审核的不显示审核状态   <string name="str_pcenter_status_audit_pass">(已审核)</string> -->
+    <!-- 当前的设计：已审核的不显示审核状态   <string name="str_pcenter_status_audit_pass">(已审核)</string> -->
     <string name="str_pcenter_status_audit_fail">(审核未通过)</string>
     <string name="str_pcenter_star_unit">分</string>
     <string name="str_pcenter_userguide">使用指南</string>
@@ -209,6 +209,14 @@
     <string name="str_forgetpwd_err_reset_fail">重置密码失败，请稍后再试</string>
     <string name="str_forgetpwd_err_vcode_wrong">验证码不匹配，重置密码失败</string>
     <string name="str_realtime_snapup_tag_realtime">实时</string>
-    <string name="str_realtime_snapup_tapviewmap">向上滑动查看地图</string>
-
+<!--     <string name="str_realtime_snapup_tapviewmap">向上滑动查看地图</string> -->
+    <string name="str_realtime_snapup_execute_snap">抢单</string>
+    <string name="str_realtime_snapup_err_order_notexist">订单不存在</string>
+    <string name="str_realtime_snapup_err_order_outofdate">订单已过期</string>
+    <string name="str_realtime_snapup_err_order_notvalid">订单已失效</string>
+    <string name="str_realtime_snapup_err_order_cancelled">订单已取消</string>
+    <string name="str_realtime_snapup_err_order_snappedbyother">订单已被抢</string>
+    <string name="str_dialog_btn_iknow">我知道了</string>
+    <string name="title_activity_snap_success">抢单成功</string>
+<string name="str_snap_success_cancelorder">取消订单</string>
 </resources>

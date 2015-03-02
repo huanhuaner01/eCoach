@@ -13,5 +13,6 @@
         <ignore path="res/layout/activity_calendar.xml" />
         <ignore path="res/layout/activity_forget_password.xml" />
         <ignore path="res/layout/activity_realtime_snapup.xml" />
+        <ignore path="res/layout/activity_snap_success.xml" />
     </issue>
 </lint>

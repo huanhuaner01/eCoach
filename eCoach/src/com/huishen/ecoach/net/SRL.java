@@ -111,6 +111,16 @@ public final class SRL {
 		 * 返回值:{code:0|1}0:切换成功，1:发布异常
 		 */
 		public static final String METHOD_SET_SNAPUP_STATUS = "/cohMobile/ableModel";
+		/**
+		 * 教练点击抢单操作。
+		 * 参数:
+		 * tempOrderId=1;//订单ID
+		 * versionUID=8edfaaf37fd14afaaca750b27764b07b;//当前版本号
+		 * coachId=9;//当前教练ID
+		 * 返回值:{code:0|1|2|3|4|5} 
+		 * 0:抢单成功，1:订单不存在,2:订单已过期，3：订单已失效，4：订单已取消，5：订单已被抢
+		 */
+		public static final String METHOD_EXECUTE_SNAPUP = "/cohMobile/gradOrder";
 	}
 	
 	/**
@@ -186,6 +196,22 @@ public final class SRL {
 		 * 切换教练抢单模式状态时使用，是否开始。(0=结束，1=开始)
 		 */
 		public static final String PARAM_BEGIN_SNAPUP = "model";
+		/**
+		 * 参与抢单时使用，订单ID。
+		 */
+		public static final String PARAM_ORDER_ID = "tempOrderId";
+		/**
+		 * 参与抢单时使用，订单版本号。
+		 */
+		public static final String PARAM_ORDER_VERSION = "versionUID";
+		/**
+		 * 参与抢单时使用，教练当前GPS坐标。
+		 */
+		public static final String PARAM_ORDER_COACH_GPS = "cohGps";
+		/**
+		 * 参与抢单时使用，教练当前位置描述。
+		 */
+		public static final String PARAM_ORDER_COACH_POS = "cohAddr";
 	}
 	
 	/**
@@ -226,6 +252,26 @@ public final class SRL {
 		 * 查询抢单模式时返回：模式已开启。
 		 */
 		public static final int INFO_STATUS_OPEN = 1;
+		/**
+		 * 参与抢单时返回：订单不存在。
+		 */
+		public static final int ERR_ORDER_NOT_EXIST = 1;
+		/**
+		 * 参与抢单时返回：订单已过期。
+		 */
+		public static final int ERR_ORDER_OUT_OF_DATE = 2;
+		/**
+		 * 参与抢单时返回：订单已失效。
+		 */
+		public static final int ERR_ORDER_NOT_VALID = 3;
+		/**
+		 * 参与抢单时返回：订单已取消。
+		 */
+		public static final int ERR_ORDER_CANCELED = 4;
+		/**
+		 * 参与抢单时返回：订单已被抢。
+		 */
+		public static final int ERR_ORDER_SNAPPED_BY_OTHER = 5;
 		/**
 		 * 通用返回值，代表成功信息。
 		 */

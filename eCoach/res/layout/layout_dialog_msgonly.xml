@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_middle"
+    android:background="@color/color_all_bkg" >
+
+    <ImageView
+        android:id="@+id/dialog_msg_img"
+        style="@style/style_common_wrap_wrap"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/padding_small"
+        android:background="@drawable/icon_dialog_msgtype_warning"
+        android:layout_marginTop="@dimen/margin_xlarge" />
+
+    <TextView
+        android:id="@+id/dialog_msg_tv"
+        style="@style/style_common_wrap_wrap"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dialog_msg_img"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txtsize_default"/>
+
+    <Button
+        android:id="@+id/dialog_msg_btn"
+        style="@style/style_common_wrap_wrap"
+        android:layout_below="@id/dialog_msg_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_xxlarge"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingLeft="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large"
+        android:background="@drawable/bkg_dialog_msg_btn"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/txtsize_default"
+        android:text="@string/str_dialog_btn_iknow" />
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/snap_success_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton
+            style="@style/style_common_title_backbtn"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/snap_success_tv_title"
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_snap_success" />
+
+        <Button
+            android:id="@+id/snap_success_btn_complaint"
+            style="@style/style_common_title_rightbtn"
+            android:text="@string/str_snap_success_cancelorder" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/snap_success_rl_description"
+        style="@style/style_common_macth_wrap"
+        android:layout_below="@id/snap_success_titlebar"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/orderstate_padding_horizontal"
+        android:paddingRight="@dimen/orderstate_padding_horizontal" >
+
+        <TextView
+            android:id="@+id/snap_success_tv_stu_postiion"
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawablePadding="@dimen/padding_micro"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/color_txt_gray"
+            android:textSize="@dimen/txtsize_large" />
+
+        <TextView
+            android:id="@+id/snap_success_tv_coach_postiion"
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/snap_success_tv_stu_postiion"
+            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawablePadding="@dimen/padding_micro"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_small"
+            android:textColor="@color/color_txt_gray"
+            android:textSize="@dimen/txtsize_large" />
+
+        <ImageButton
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@android:color/transparent"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_orderstate_call" />
+    </RelativeLayout>
+
+</RelativeLayout>

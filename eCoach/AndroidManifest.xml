@@ -130,18 +130,19 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.login.ForgetPasswordActivity"
+            android:name=".ui.login.ForgetPasswordActivity"
             android:label="@string/title_activity_forget_password" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.order.RealtimeSnapupActivity"
-            android:label="@string/title_activity_realtime_snapup" 
-            android:theme="@style/DialogActivityNoTitlebar">
+            android:name=".ui.order.RealtimeSnapupActivity"
+            android:label="@string/title_activity_realtime_snapup"
+            android:theme="@style/DialogActivityNoTitlebar" >
         </activity>
-        <receiver android:name="com.huishen.ecoach.umeng.DefaultPushDataReceiver">
-            <intent-filter >
-                <action android:name="com.huishen.ecoach.UNKNOWN_PUSHDATA"/>
-                <action android:name="com.huishen.ecoach.NEW_ORDER"/>
+
+        <receiver android:name=".umeng.DefaultPushDataReceiver" >
+            <intent-filter>
+                <action android:name="com.huishen.ecoach.UNKNOWN_PUSHDATA" />
+                <action android:name="com.huishen.ecoach.NEW_ORDER" />
             </intent-filter>
         </receiver>
         <!-- 友盟推送相关组件 BEGIN -->
@@ -206,6 +207,10 @@
         <!-- V1.3.0添加的service，负责下载通知的资源 -->
         <service android:name="com.umeng.message.UmengDownloadResourceService" />
         <!-- 友盟推送相关组件 END -->
+        <activity
+            android:name="com.huishen.ecoach.ui.order.SnapSuccessActivity"
+            android:label="@string/title_activity_snap_success" >
+        </activity>
     </application>
 
 </manifest>
