@@ -38,7 +38,7 @@ public final class UmengPushConst {
 	 * @author Muyangmin
 	 * @create 2015-2-28
 	 */
-	public static final class Action{
+	protected static final class Action{
 		/**
 		 * 未知推送内容。
 		 */
