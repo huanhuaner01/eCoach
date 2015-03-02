@@ -50,6 +50,7 @@
     <string name="str_main_default_myorder">0</string>
     <string name="str_main_menu_book_manage">预约管理</string>
     <string name="str_main_menu_begin_snapup">我要\n抢单</string>
+    <string name="str_main_menu_listening_snapup">正在\n听单</string>
     <string name="str_main_menu_recruit_manage">招生管理</string>
     <string name="str_main_err_audit_notpassyet">抱歉，需要通过审核才能使用该功能</string>
     <string name="str_main_err_fail_snapup">抱歉，状态切换失败，请稍后重试</string>
@@ -216,7 +217,9 @@
     <string name="str_realtime_snapup_err_order_notvalid">订单已失效</string>
     <string name="str_realtime_snapup_err_order_cancelled">订单已取消</string>
     <string name="str_realtime_snapup_err_order_snappedbyother">订单已被抢</string>
+    <string name="str_realtime_snapup_unknow_distance">距离获取中&#8230;</string>
+    <string name="str_realtime_snapup_unknow_position">位置获取中&#8230;</string>
     <string name="str_dialog_btn_iknow">我知道了</string>
     <string name="title_activity_snap_success">抢单成功</string>
-<string name="str_snap_success_cancelorder">取消订单</string>
+	<string name="str_snap_success_cancelorder">取消订单</string>
 </resources>

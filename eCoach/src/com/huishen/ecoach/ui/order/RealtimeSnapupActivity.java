@@ -7,13 +7,14 @@ import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.dialog.MsgDialog;
+import com.huishen.ecoach.ui.parent.NewIntentParentActivity;
 import com.huishen.ecoach.umeng.NewOrderPushData;
 import com.huishen.ecoach.util.Uis;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,8 @@ import android.widget.TextView;
  * @author Muyangmin
  * @create 2015-2-28
  */
-public class RealtimeSnapupActivity extends Activity implements android.view.View.OnClickListener{
+public class RealtimeSnapupActivity extends NewIntentParentActivity implements
+		android.view.View.OnClickListener {
 
 	private static final String LOG_TAG = "RealtimeSnapupActivity";
 	private static final String EXTRA_NEWORDER = "neworder";
@@ -60,6 +62,11 @@ public class RealtimeSnapupActivity extends Activity implements android.view.Vie
 			return ;
 		}
 		displayOrderInfo(orderData);
+		//开启震动
+		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		if (vibrator.hasVibrator()){
+			vibrator.vibrate(getResources().getInteger(R.integer.viborator_time_neworder));
+		}
 	}
 	
 	private void displayOrderInfo(NewOrderPushData data) {

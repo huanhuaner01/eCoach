@@ -19,7 +19,6 @@ import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
-import com.huishen.ecoach.umeng.UmengPushConst;
 import com.huishen.ecoach.umeng.UmengServiceProxy;
 import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.widget.RoundImageView;
@@ -31,6 +30,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -143,6 +143,7 @@ public class MainActivity extends Activity implements OnClickListener{
 					int code = json.getInt(SRL.ReturnField.FIELD_SNAPUP_STATUS);
 					if (code==SRL.ReturnCode.INFO_STATUS_OPEN){
 						tvSnapAnimBkg.startAnimation(rotateAnimation);
+						tvSnapup.setText(R.string.str_main_menu_listening_snapup);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -242,9 +243,11 @@ public class MainActivity extends Activity implements OnClickListener{
 				isSnaping = open;
 				if (isSnaping){
 					tvSnapAnimBkg.startAnimation(rotateAnimation);
+					tvSnapup.setText(R.string.str_main_menu_listening_snapup);
 				}
 				else{
 					tvSnapAnimBkg.clearAnimation();
+					tvSnapup.setText(R.string.str_main_menu_begin_snapup);
 				}
 			}
 			
@@ -253,6 +256,17 @@ public class MainActivity extends Activity implements OnClickListener{
 				Uis.toastShort(MainActivity.this, R.string.str_main_err_fail_snapup);
 			}
 		});
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode==KeyEvent.KEYCODE_BACK){
+			if (slidePaneLayout.isOpen()){
+				slidePaneLayout.closePane();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	@Override

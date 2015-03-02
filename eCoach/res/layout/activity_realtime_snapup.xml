@@ -18,22 +18,24 @@
             android:padding="@dimen/padding_middle" >
 
             <TextView
+                android:id="@+id/realtime_snapup_tv_region"
                 style="@style/style_common_macth_wrap"
                 android:gravity="center_horizontal"
                 android:paddingBottom="@dimen/padding_micro"
                 android:paddingTop="@dimen/padding_middle"
-                android:text="成都市武侯区"
                 android:textColor="@android:color/white"
-                android:textSize="26sp" />
+                android:textSize="26sp"
+                android:text="@string/str_realtime_snapup_unknow_position" />
 
             <TextView
+                android:id="@+id/realtime_snapup_tv_distance"
                 style="@style/style_common_macth_wrap"
                 android:gravity="center_horizontal"
                 android:paddingBottom="@dimen/padding_middle"
                 android:paddingTop="@dimen/padding_small"
-                android:text="距您1.4公里"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/txtsize_xlarge" />
+                android:textSize="@dimen/txtsize_xlarge"
+                android:text="@string/str_realtime_snapup_unknow_distance" />
         </LinearLayout>
 
         <com.huishen.ecoach.widget.RotatedTextView
@@ -85,9 +87,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/realtime_snapup_img_stupos"
                 android:padding="@dimen/padding_middle"
-                android:text="成都市二环路东一段"
                 android:textColor="#262c36"
-                android:textSize="@dimen/txtsize_large" />
+                android:textSize="@dimen/txtsize_large"
+                android:text="@string/str_realtime_snapup_unknow_position" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -137,7 +139,6 @@
                 android:id="@+id/realtime_snapup_tv_demand"
                 style="@style/style_common_wrap_wrap"
                 android:padding="@dimen/padding_middle"
-                android:text="成都市二环路东一段"
                 android:textColor="#262c36"
                 android:textSize="@dimen/txtsize_large" />
         </LinearLayout>

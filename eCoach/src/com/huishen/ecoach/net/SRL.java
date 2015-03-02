@@ -121,6 +121,13 @@ public final class SRL {
 		 * 0:抢单成功，1:订单不存在,2:订单已过期，3：订单已失效，4：订单已取消，5：订单已被抢
 		 */
 		public static final String METHOD_EXECUTE_SNAPUP = "/cohMobile/gradOrder";
+		/**
+		 * 查询订单详情。
+		 * 参数:	
+		 * tempBillId=1;//订单ID号
+		 * 返回值:
+		 */
+		public static final String METHOD_QUERY_ORDER_DETAIL = "/cohMobile/queryCohOrderInfo";
 	}
 	
 	/**

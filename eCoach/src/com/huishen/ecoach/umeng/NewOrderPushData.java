@@ -37,10 +37,12 @@ public final class NewOrderPushData extends PushData {
 	private final long getLong(Map<String, String> extra, String key){
 		String value = extra.get(key);
 		long res = -1L;
-		try {
-			res = Long.parseLong(value);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (value!=null){
+			try {
+				res = Long.parseLong(value);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
 		}
 		return res;
 	}
