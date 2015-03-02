@@ -63,6 +63,7 @@ public final class CustomUMessageHandler extends UmengMessageHandler {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private <T extends PushData> void dispatchMessage(Context context, Map<String, String> extra){
 		Intent intent = new Intent();
 		T data;	//附加数据，通过具体消息类型实例化其子类

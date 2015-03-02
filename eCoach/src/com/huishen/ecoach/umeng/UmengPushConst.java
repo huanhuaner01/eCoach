@@ -71,5 +71,17 @@ public final class UmengPushConst {
 		 * 订单需求内容。
 		 */
 		public static final String PARAM_CONTENT = "content";
+		/**
+		 * 订单创建时间。
+		 */
+		public static final String PARAM_CREATETIME = "createTime";
+		/**
+		 * 订单截止时间。
+		 */
+		public static final String PARAM_DEADLINE = "endTime";
+		/**
+		 * 订单语音文件相对位置。
+		 */
+		public static final String PARAM_VOICE_PATH = "voicePath";
 	}
 }

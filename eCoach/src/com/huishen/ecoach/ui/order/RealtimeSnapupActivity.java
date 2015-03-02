@@ -69,6 +69,10 @@ public class RealtimeSnapupActivity extends Activity implements android.view.Vie
 		btnSnapup = (Button)findViewById(R.id.realtime_snapup_btn_snapup);
 		imgbtnClose.setOnClickListener(this);
 		btnSnapup.setOnClickListener(this);
+		if (data.voicePath==null){
+			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
+			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
+		}
 	}
 	
 	//执行抢单操作。

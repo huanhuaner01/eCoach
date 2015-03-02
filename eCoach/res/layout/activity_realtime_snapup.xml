@@ -91,6 +91,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/realtime_snapup_rl_voiceline"
             style="@style/style_common_macth_wrap"
             android:layout_marginLeft="@dimen/realtime_snapup_stupos_marginleft"
             android:layout_marginRight="@dimen/realtime_snapup_stupos_marginleft"
@@ -128,6 +129,7 @@
             <ImageView
                 android:id="@+id/realtime_snapup_img_demand_txtonly"
                 style="@style/style_common_wrap_wrap"
+                android:layout_gravity="center_vertical"
                 android:src="@drawable/icon_realtime_snapup_demand"
                 android:visibility="invisible" />
 
