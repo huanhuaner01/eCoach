@@ -27,7 +27,8 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- 友盟推送所需权限 END -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".MainApp"
         android:allowBackup="true"
@@ -209,8 +210,12 @@
         <service android:name="com.umeng.message.UmengDownloadResourceService" />
         <!-- 友盟推送相关组件 END -->
         <activity
-            android:name="com.huishen.ecoach.ui.order.SnapSuccessActivity"
+            android:name=".ui.order.SnapSuccessActivity"
             android:label="@string/title_activity_snap_success" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.appointment.BookSettingActivity"
+            android:label="@string/title_activity_book_setting" >
         </activity>
     </application>
 

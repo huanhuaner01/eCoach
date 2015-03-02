@@ -210,7 +210,7 @@
     <string name="str_forgetpwd_err_reset_fail">重置密码失败，请稍后再试</string>
     <string name="str_forgetpwd_err_vcode_wrong">验证码不匹配，重置密码失败</string>
     <string name="str_realtime_snapup_tag_realtime">实时</string>
-<!--     <string name="str_realtime_snapup_tapviewmap">向上滑动查看地图</string> -->
+    <!-- <string name="str_realtime_snapup_tapviewmap">向上滑动查看地图</string> -->
     <string name="str_realtime_snapup_execute_snap">抢单</string>
     <string name="str_realtime_snapup_err_order_notexist">订单不存在</string>
     <string name="str_realtime_snapup_err_order_outofdate">订单已过期</string>
@@ -222,5 +222,14 @@
     <string name="str_realtime_snapup_distance">距离您%1$.1f公里</string>
     <string name="str_dialog_btn_iknow">我知道了</string>
     <string name="title_activity_snap_success">抢单成功</string>
-	<string name="str_snap_success_cancelorder">取消订单</string>
+    <string name="str_snap_success_cancelorder">取消订单</string>
+    <string name="title_activity_book_setting">设置</string>
+    <string name="str_booksetting_confirm">完成</string>
+	<string name="str_booksetting_hint_fillcount">请填写人数</string>
+	<string name="str_booksetting_period_am">上午</string>
+	<string name="str_booksetting_period_pm">下午</string>
+	<string name="str_booksetting_period_night">晚上</string>
+	<string name="str_booksetting_time_am">07:00&#8212;&#8212;12:00</string>
+	<string name="str_booksetting_time_pm">13:00&#8212;&#8212;18:00</string>
+	<string name="str_booksetting_time_night">19:00&#8212;&#8212;20:00</string>
 </resources>

@@ -385,6 +385,43 @@
       	<item name="android:textColor">@color/color_calendar_week</item>
       	<item name="android:textSize">@dimen/calendar_txtsize_weekday</item>
     </style>
+    
+    <style name="style_booksetting_rl" parent="@style/style_common_macth_wrap">
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+    </style>
+    
+    <style name="style_booksetting_tv_period" parent="@style/style_common_wrap_wrap">
+        <item name="android:background">@drawable/bkg_theme_rounded_rectangle</item>
+        <item name="android:paddingLeft">@dimen/padding_middle</item>
+        <item name="android:paddingRight">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/txtsize_default</item>
+    </style>
+    <style name="style_booksetting_edit_count" parent="@style/style_common_wrap_wrap">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:paddingRight">@dimen/padding_small</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/txtsize_middle</item>
+        <item name="android:hint">@string/str_booksetting_hint_fillcount</item>
+    </style>
+    <style name="style_booksetting_tv_time" parent="@style/style_common_wrap_wrap">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/margin_middle</item>
+        <item name="android:paddingLeft">@dimen/padding_middle</item>
+        <item name="android:paddingRight">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_small</item>
+        <item name="android:paddingTop">@dimen/padding_small</item>
+        <item name="android:textColor">#D2D2D2</item>
+        <item name="android:textSize">@dimen/txtsize_middle</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

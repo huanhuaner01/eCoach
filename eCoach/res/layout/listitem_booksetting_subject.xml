@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_all_bkg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        style="@style/style_common_macth_wrap"
+        android:padding="@dimen/padding_small" >
+
+        <TextView
+            android:id="@+id/listitem_booksetting_subject"
+            style="@style/style_common_wrap_wrap"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txtsize_large" />
+
+        <TextView
+            style="@style/style_common_wrap_wrap"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_toRightOf="@id/listitem_booksetting_subject"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txtsize_default" />
+
+        <TextView
+            android:id="@+id/listitem_booksetting_limit"
+            style="@style/style_common_wrap_wrap"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/margin_small"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/txtsize_large" />
+    </RelativeLayout>
+
+    <View style="@style/style_common_view_pxdivider" />
+    <RelativeLayout style="@style/style_booksetting_rl" >
+
+        <TextView
+            style="@style/style_booksetting_tv_period"
+            android:text="@string/str_booksetting_period_am" />
+
+        <EditText
+            android:id="@+id/listitem_booksetting_edit_amnum"
+            style="@style/style_booksetting_edit_count" />
+
+        <TextView
+            android:id="@+id/listitem_booksetting_tv_amtime"
+            style="@style/style_booksetting_tv_time"
+            android:text="@string/str_booksetting_time_am" />
+    </RelativeLayout>
+
+    <View style="@style/style_common_view_pxdivider" />
+
+    <RelativeLayout style="@style/style_booksetting_rl" >
+
+        <TextView
+            style="@style/style_booksetting_tv_period"
+            android:text="@string/str_booksetting_period_pm" />
+
+        <EditText
+            android:id="@+id/listitem_booksetting_edit_pmnum"
+            style="@style/style_booksetting_edit_count" />
+
+        <TextView
+            android:id="@+id/listitem_booksetting_tv_pmtime"
+            style="@style/style_booksetting_tv_time"
+            android:text="@string/str_booksetting_time_pm" />
+    </RelativeLayout>
+
+    <View style="@style/style_common_view_pxdivider" />
+
+    <RelativeLayout style="@style/style_booksetting_rl" >
+
+        <TextView
+            style="@style/style_booksetting_tv_period"
+            android:text="@string/str_booksetting_period_night" />
+
+        <EditText
+            android:id="@+id/listitem_booksetting_edit_nightnum"
+            style="@style/style_booksetting_edit_count" />
+
+        <TextView
+            android:id="@+id/listitem_booksetting_tv_nighttime"
+            style="@style/style_booksetting_tv_time"
+            android:text="@string/str_booksetting_time_night" />
+    </RelativeLayout>
+
+</LinearLayout>

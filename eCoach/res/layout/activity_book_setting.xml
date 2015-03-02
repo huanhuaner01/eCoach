@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bkg_gray"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/booksetting_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton style="@style/style_common_title_backbtn" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_book_setting" />
+        <Button style="@style/style_common_title_rightbtn"
+            android:text="@string/str_booksetting_confirm"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/booksetting_listview"
+        style="@style/style_common_macth_match"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/margin_small"
+        android:layout_below="@id/booksetting_titlebar" />
+
+</RelativeLayout>
