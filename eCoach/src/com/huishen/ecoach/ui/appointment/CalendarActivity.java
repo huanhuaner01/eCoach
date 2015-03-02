@@ -4,11 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
+
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
+import com.huishen.ecoach.net.ResponseParser;
+import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentFragmentActivity;
 
 import android.support.v4.view.ViewPager;
@@ -56,7 +63,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	private ExpandableListView expListView;
 	private String beginDate, endDate; // 选区开始时间和结束时间
 	private boolean isSection = false; // 是否使用选区
-
+	
 	/**
 	 * 获得一个没有选区的Intent。
 	 */
@@ -102,6 +109,40 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		registView();
 		init();
 	}
+
+	/**
+	 * 查询指定日期的预约学员列表并刷新列表数据。
+	 * @param year 年
+	 * @param month 月
+	 * @param day 日
+	 */
+	private final void refreshAppointTables(int year, int month, int day){
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(SRL.Param.PARAM_APPOINT_DATE, String.format("%1$d-%2$d-%3$d", year, month, day));
+		NetUtil.requestStringData(SRL.Method.METHOD_QUERY_APPOINT_STULIST, params, new ResponseListener() {
+			
+			@Override
+			protected void onSuccess(String arg0) {
+				//TODO 修改服务器返回字段。
+				try {
+					JSONArray array = new JSONArray(ResponseParser
+							.getStringFromResult(arg0, SRL.ReturnField.FIELD_INFO));
+					ArrayList<AppointTable> appointTables = new ArrayList<CalendarActivity.AppointTable>();
+					appointTables.add(new AppointTable());
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+			}
+			
+			@Override
+			protected void onReturnBadResult(int errorCode, String arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
 
 	/**
 	 * 注册组件

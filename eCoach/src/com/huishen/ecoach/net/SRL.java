@@ -128,6 +128,41 @@ public final class SRL {
 		 * 返回值:
 		 */
 		public static final String METHOD_QUERY_ORDER_DETAIL = "/cohMobile/queryCohOrderInfo";
+		/**
+		 * 预约设置.
+		 * 参数:
+		  `km2MorningLessonLimit` = 20,  科目2上午约课限制
+		  `km2AfternoonLessonLimit` = 10,  科目2下午午约课限制
+		  `km2EveningLessonLimit` = 0,  科目2傍晚约课限制
+		  `km3MorningLessonLimit` = 1,  科目3上午约课限制
+		  `km3AfternoonLessonLimit` = 1,  科目3下午午约课限制
+		  `km3EveningLessonLimit` = 1,  科目3傍晚约课限制
+		  `morningClassTime` = '8:30,12:00',  上午时间段(格式 8:30,12:00)
+		  `afternoonClassTime` = '13:00,18:00',  下午时间段(格式 13:00,18:00)
+		  `eveningClassTime` = '20:00-00:00',  傍晚时间段
+		  `beginLessonTime` = 9,  开始接单时间
+		  `endLessonTime` = 8,  结束接单时间
+		  `weekLessonLimit` = 7,  一周约课限制 (格式：,1,2,3,4,5,6,7,)
+		 * 返回值:{code:0|1}0:更新成功，1：更新异常
+		 */
+		public static final String METHOD_APPOINT_CONFIG = "/cohMobile/orderConfig";
+		/**
+		 * 查询预约配置，返回值的字段和 {@link #METHOD_APPOINT_CONFIG}的参数一样。
+		 */
+		public static final String METHOD_QUERY_APPOINTCFG = "/cohMobile/queryConfig";
+		/**
+		 * 参数:
+		 * lessonDate='2014-05-06'	;//时间点
+		 * 返回值：{code:0,info[{...},{...}]}	0:操作成功
+			info数组元素解释:
+				stuName=刘雷晋;//学生姓名
+				phone=13558657902;//学生电话
+				id=13;//学生ID号
+				lessonTime=1|2|3;//时间段 1-上午 2-中午 3-下午
+				status=1;//  状态 0-预约中 1-预约成功 2-上课完成 3-预约取消
+				subject=1;//科目 1-科目2, 2-科目3
+		 */
+		public static final String METHOD_QUERY_APPOINT_STULIST = "/cohMobile/queryStuInfoByTime";
 	}
 	
 	/**
@@ -219,6 +254,47 @@ public final class SRL {
 		 * 参与抢单时使用，教练当前位置描述。
 		 */
 		public static final String PARAM_ORDER_COACH_POS = "cohAddr";
+		/**
+		 * 查询约课学生列表时使用，指定日期，格式为2014-05-06。
+		 */
+		public static final String PARAM_APPOINT_DATE = "lessonDate";
+		
+		/**
+		 * 预约设置时使用，科目二上午限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM2AMLIMIT="km2MorningLessonLimit";
+		/**
+		 * 预约设置时使用，科目二下午限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM2PMLIMIT="km2AfternoonLessonLimit";
+		/**
+		 * 预约设置时使用，科目二晚上限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM2NTLIMIT="km2EveningLessonLimit";
+		/**
+		 * 预约设置时使用，科目三上午限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM3AMLIMIT="km3MorningLessonLimit";
+		/**
+		 * 预约设置时使用，科目三下午限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM3PMLIMIT="km3AfternoonLessonLimit";
+		/**
+		 * 预约设置时使用，科目三晚上限制。
+		 */
+		public static final String PARAM_APPOINTCFG_KM3NTLIMIT="km3EveningLessonLimit";
+		/**
+		 * 预约设置时使用，上午时间段限制。
+		 */
+		public static final String PARAM_APPOINTCFG_AMPERIOD="morningClassTime";
+		/**
+		 * 预约设置时使用，下午时间段限制。
+		 */
+		public static final String PARAM_APPOINTCFG_PMPERIOD="afternoonClassTime";
+		/**
+		 * 预约设置时使用，晚上时间段限制。
+		 */
+		public static final String PARAM_APPOINTCFG_NTPERIOD="eveningClassTime";
 	}
 	
 	/**
@@ -349,6 +425,7 @@ public final class SRL {
 		 * 查询抢单模式返回字段：模式状态。
 		 */
 		public static final String FIELD_SNAPUP_STATUS = "model";
+		
 		/**
 		 * 通用信息返回参数，用于登录等。
 		 */

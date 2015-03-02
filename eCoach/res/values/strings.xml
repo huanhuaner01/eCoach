@@ -232,4 +232,6 @@
 	<string name="str_booksetting_time_am">07:00&#8212;&#8212;12:00</string>
 	<string name="str_booksetting_time_pm">13:00&#8212;&#8212;18:00</string>
 	<string name="str_booksetting_time_night">19:00&#8212;&#8212;20:00</string>
+	<string name="str_appointment_subject2">科目二</string>
+	<string name="str_appointment_subject3">科目三</string>
 </resources>

@@ -14,7 +14,9 @@
         <TextView
             style="@style/style_common_titletv"
             android:text="@string/title_activity_book_setting" />
-        <Button style="@style/style_common_title_rightbtn"
+        <Button 
+	        android:id="@+id/booksetting_btn_submit"
+            style="@style/style_common_title_rightbtn"
             android:text="@string/str_booksetting_confirm"/>
     </RelativeLayout>
 
