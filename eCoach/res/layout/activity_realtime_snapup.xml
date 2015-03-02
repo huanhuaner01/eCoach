@@ -18,7 +18,7 @@
             android:padding="@dimen/padding_middle" >
 
             <TextView
-                android:id="@+id/realtime_snapup_tv_region"
+                android:id="@+id/realtime_snapup_tv_cityregion"
                 style="@style/style_common_macth_wrap"
                 android:gravity="center_horizontal"
                 android:paddingBottom="@dimen/padding_micro"

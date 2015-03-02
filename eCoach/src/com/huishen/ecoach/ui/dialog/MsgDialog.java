@@ -46,7 +46,7 @@ public class MsgDialog {
 	 *            要显示的文字。
 	 */
 	public static final void showDialog(Context context, int msgid){
-		showDialog(context, TYPE_WARNING);
+		showDialog(context, msgid, TYPE_WARNING);
 	}
 	/**
 	 * 显示默认样式的对话框，消息类型必须为 {@link #TYPE_ERROR}, {@link #TYPE_MESSAGE},

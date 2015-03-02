@@ -22,6 +22,9 @@ public final class NewOrderPushData extends PushData {
 	public final long createTime;		//开始时间
 	public final long deadline;			//截止时间
 	public final String voicePath;		//语音位置
+	public final String city;			//城市区县
+	public final float distance;		//距离
+	public final String detailPosition;	//详细地点
 	
 	public NewOrderPushData(Map<String, String> extra) {
 		super(extra);
@@ -32,6 +35,9 @@ public final class NewOrderPushData extends PushData {
 		createTime = getLong(extra, NewOrder.PARAM_CREATETIME);
 		deadline = getLong(extra, NewOrder.PARAM_DEADLINE);
 		voicePath = extra.get(NewOrder.PARAM_VOICE_PATH);
+		distance = getFloat(extra, NewOrder.PARAM_DISTANCE);
+		city = extra.get(NewOrder.PARAM_CITY);
+		detailPosition = extra.get(NewOrder.PARAM_DETAIL_POSITION);
 	}
 	
 	private final long getLong(Map<String, String> extra, String key){
@@ -40,6 +46,18 @@ public final class NewOrderPushData extends PushData {
 		if (value!=null){
 			try {
 				res = Long.parseLong(value);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	private final float getFloat(Map<String, String> extra, String key){
+		String value = extra.get(key);
+		float res = -1L;
+		if (value!=null){
+			try {
+				res = Float.parseFloat(value);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
@@ -58,8 +76,10 @@ public final class NewOrderPushData extends PushData {
 				.append(content).append(", createTime=")
 				.append(sdf.format(createTime)).append(", deadline=")
 				.append(sdf.format(deadline)).append(", voicePath=")
-				.append(voicePath).append(", msgType=").append(msgType)
-				.append("]");
+				.append(voicePath).append(", city=").append(city)
+				.append(", distance=").append(distance)
+				.append(", detailPosition=").append(detailPosition)
+				.append(", msgType=").append(msgType).append("]");
 		return builder.toString();
 	}
 }

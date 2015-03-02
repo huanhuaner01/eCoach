@@ -42,7 +42,6 @@ public final class DefaultPushDataReceiver extends BroadcastReceiver {
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(intent);
 			}
-			Log.d(LOG_TAG, " instanceof check fail.");
 			break;
 
 		default:

@@ -83,5 +83,17 @@ public final class UmengPushConst {
 		 * 订单语音文件相对位置。
 		 */
 		public static final String PARAM_VOICE_PATH = "voicePath";
+		/**
+		 * 学员所在行政区。
+		 */
+		public static final String PARAM_CITY = "city";
+		/**
+		 * 学员详细位置。
+		 */
+		public static final String PARAM_DETAIL_POSITION = "pos";
+		/**
+		 * 学员距离远近。
+		 */
+		public static final String PARAM_DISTANCE = "distance";
 	}
 }

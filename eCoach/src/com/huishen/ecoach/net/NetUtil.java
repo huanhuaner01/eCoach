@@ -23,13 +23,15 @@ import com.huishen.ecoach.util.Prefs;
  * 
  * @author Muyangmin
  * @create 2015-2-7
- * @version 1.1 on 2015/02/28 by Muyangmin 增加了加载图片的方法。<br/>
- * 			1.0 基础版本，包含文字请求和文件下载。
+ * @version 1.2 on 2015/03/02 by Muyangmin 修改了 {@link #getAbsolutePath(String)}
+ *          的访问权限，使得其他要使用网络路径的地方（例如WebView，NetworkImageView等）也可以使用。<br/>
+ *          1.1 on 2015/02/28 by Muyangmin 增加了加载图片的方法。<br/>
+ *          1.0 基础版本，包含文字请求和文件下载。
  */
 public final class NetUtil {
 
 	/**
-	 * 公用的网络请求日志标签。供匿名类等没有自己的TAG字段的对象使用。
+	 * 网络请求日志标签。
 	 */
 	private static final String LOG_TAG = "NetRequest";
 	
@@ -38,7 +40,7 @@ public final class NetUtil {
 	 * @param relativePath 相对路径
 	 * @return 绝对路径
 	 */
-	private static final String getAbsolutePath(String relativePath){
+	public static final String getAbsolutePath(String relativePath){
 		String absPath = ServerAddressProvider.getServerAddress()
 				+ relativePath;
 		Log.d(LOG_TAG, "requesting " + absPath);

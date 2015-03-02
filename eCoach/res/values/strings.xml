@@ -219,6 +219,7 @@
     <string name="str_realtime_snapup_err_order_snappedbyother">订单已被抢</string>
     <string name="str_realtime_snapup_unknow_distance">距离获取中&#8230;</string>
     <string name="str_realtime_snapup_unknow_position">位置获取中&#8230;</string>
+    <string name="str_realtime_snapup_distance">距离您%1$.1f公里</string>
     <string name="str_dialog_btn_iknow">我知道了</string>
     <string name="title_activity_snap_success">抢单成功</string>
 	<string name="str_snap_success_cancelorder">取消订单</string>

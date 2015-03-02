@@ -7,15 +7,16 @@ import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.dialog.MsgDialog;
-import com.huishen.ecoach.ui.parent.NewIntentParentActivity;
 import com.huishen.ecoach.umeng.NewOrderPushData;
 import com.huishen.ecoach.util.Uis;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,7 +27,7 @@ import android.widget.TextView;
  * @author Muyangmin
  * @create 2015-2-28
  */
-public class RealtimeSnapupActivity extends NewIntentParentActivity implements
+public class RealtimeSnapupActivity extends Activity implements
 		android.view.View.OnClickListener {
 
 	private static final String LOG_TAG = "RealtimeSnapupActivity";
@@ -36,7 +37,7 @@ public class RealtimeSnapupActivity extends NewIntentParentActivity implements
 	
 	private ImageButton imgbtnClose;
 	private Button btnSnapup;
-	private TextView tvContent;
+	private TextView tvContent, tvDistance, tvCity, tvDetailPosition;
 	
 	public static final Intent getIntent(Context context, NewOrderPushData data){
 		Intent intent = new Intent(context, RealtimeSnapupActivity.class);
@@ -48,14 +49,13 @@ public class RealtimeSnapupActivity extends NewIntentParentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_realtime_snapup);
-		Log.d(LOG_TAG, "activity has started.");
+		setFinishOnTouchOutside(false);		//防止误点
 		try {
 			orderData = (NewOrderPushData) getIntent().
 					getSerializableExtra(EXTRA_NEWORDER);	//类型错误时会抛出ClassCastException，但null不会
 			if (orderData == null){
 				throw new ClassCastException();	//Java 6不支持 multi-catch，抛出一个ClassCastException方便处理。
 			}
-			Log.d(LOG_TAG, orderData.toString());
 		} catch (ClassCastException e) {
 			Log.e(LOG_TAG, "FATAL ERROR: extra value must be instance of NewOrderPushData.");
 //			finish();
@@ -71,11 +71,21 @@ public class RealtimeSnapupActivity extends NewIntentParentActivity implements
 	
 	private void displayOrderInfo(NewOrderPushData data) {
 		tvContent = (TextView) findViewById(R.id.realtime_snapup_tv_demand);
-		tvContent.setText(data.content);
+		tvCity = (TextView)findViewById(R.id.realtime_snapup_tv_cityregion);
+		tvDetailPosition = (TextView)findViewById(R.id.realtime_snapup_tv_stuposition);
+		tvDistance = (TextView)findViewById(R.id.realtime_snapup_tv_distance);
 		imgbtnClose = (ImageButton)findViewById(R.id.realtime_snapup_imgbtn_close);
 		btnSnapup = (Button)findViewById(R.id.realtime_snapup_btn_snapup);
+		tvContent.setText(data.content);
 		imgbtnClose.setOnClickListener(this);
 		btnSnapup.setOnClickListener(this);
+		if (data.city != null){
+			tvCity.setText(data.city);
+		}
+		if (data.detailPosition != null){
+			tvDetailPosition.setText(data.detailPosition);
+		}
+		tvDistance.setText(String.format(getString(R.string.str_realtime_snapup_distance), data.distance));
 		if (data.voicePath==null){
 			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
 			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
@@ -95,6 +105,7 @@ public class RealtimeSnapupActivity extends NewIntentParentActivity implements
 			protected void onSuccess(String arg0) {
 				Uis.toastShort(RealtimeSnapupActivity.this, "抢单成功, Mua~");
 				startActivity(SnapSuccessActivity.getIntent(RealtimeSnapupActivity.this));
+				finish();
 			}
 			
 			@Override
@@ -125,8 +136,15 @@ public class RealtimeSnapupActivity extends NewIntentParentActivity implements
 							R.string.str_err_unknown_reason);
 					break;
 				}
+				finish();
 			}
 		});
+	}
+	
+	//屏蔽按键事件（主要是Back键）
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		return true;
 	}
 
 	@Override
