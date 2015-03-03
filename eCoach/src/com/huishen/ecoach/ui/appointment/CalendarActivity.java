@@ -10,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
@@ -17,6 +19,7 @@ import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentFragmentActivity;
+import com.huishen.ecoach.util.Uis;
 
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -64,6 +67,8 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	private String beginDate, endDate; // 选区开始时间和结束时间
 	private boolean isSection = false; // 是否使用选区
 	
+	private ArrayList<SubjectCfg> subjectCfgs;	//保存科目的时间、限约人数等设置。
+	
 	/**
 	 * 获得一个没有选区的Intent。
 	 */
@@ -107,7 +112,59 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			Log.d(LOG_TAG, "beginDate:" + beginDate + ",endDate:" + endDate);
 		}
 		registView();
-		init();
+		initCalendar();
+		getAppointPeriodCfg();
+	}
+	
+	private void getAppointPeriodCfg(){
+		NetUtil.requestStringData(SRL.Method.METHOD_QUERY_APPOINTCFG, new ResponseListener() {
+			
+			@Override
+			protected void onSuccess(String arg0) {
+				try {
+					JSONObject json = new JSONObject(ResponseParser
+									.getStringFromResult(arg0,SRL.ReturnField.FIELD_INFO));
+					parseAppointConfig(json);
+					refreshAppointTables(2015, 3, 3);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			@Override
+			protected void onReturnBadResult(int errorCode, String arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	//解析预约设置。
+	private void parseAppointConfig(JSONObject json){
+		SubjectCfg km2 = subjectCfgs.get(0);
+		km2.setName(getString(R.string.str_appointment_subject2));
+		km2.setAmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2AMLIMIT));
+		km2.setPmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2PMLIMIT));
+		km2.setNtCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2NTLIMIT));
+		km2.setAmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
+				getString(R.string.str_booksetting_time_am)).replace(",", "-"));
+		km2.setPmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
+				getString(R.string.str_booksetting_time_pm)).replace(",", "-"));
+		km2.setNttime(json.optString(SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
+				getString(R.string.str_booksetting_time_night).replace(",", "-")));
+		
+		SubjectCfg km3 = subjectCfgs.get(1);
+		km3.setName(getString(R.string.str_appointment_subject3));
+		km3.setAmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3AMLIMIT));
+		km3.setPmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3PMLIMIT));
+		km3.setNtCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3NTLIMIT));
+		km3.setAmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
+				getString(R.string.str_booksetting_time_am)).replace(",", "-"));
+		km3.setPmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
+				getString(R.string.str_booksetting_time_pm)).replace(",", "-"));
+		km3.setNttime(json.optString(SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
+				getString(R.string.str_booksetting_time_night).replace(",", "-")));
+		Log.d(LOG_TAG, subjectCfgs.toString());
 	}
 
 	/**
@@ -123,24 +180,52 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			
 			@Override
 			protected void onSuccess(String arg0) {
-				//TODO 修改服务器返回字段。
 				try {
 					JSONArray array = new JSONArray(ResponseParser
 							.getStringFromResult(arg0, SRL.ReturnField.FIELD_INFO));
-					ArrayList<AppointTable> appointTables = new ArrayList<CalendarActivity.AppointTable>();
-					appointTables.add(new AppointTable());
-				} catch (Exception e) {
-					// TODO: handle exception
+					buildAppointTableData(array);
+					expListView.setAdapter(buildAppointTableData(array));
+				} catch (JSONException e) {
+					Uis.toastShort(CalendarActivity.this, "Fuck beautiful");
 				}
 				
 			}
-			
 			@Override
 			protected void onReturnBadResult(int errorCode, String arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
+	}
+	
+	private final ExpandableListAdapter buildAppointTableData(JSONArray array) throws JSONException{
+		String[] subjects = getResources().getStringArray(R.array.str_appointment_subjectlist);
+		String[] periods = getResources().getStringArray(R.array.str_appointment_periodlist);
+		ArrayList<AppointSubject> subjectList = new ArrayList<CalendarActivity.AppointSubject>(subjects.length);
+		for (int i=0; i<subjects.length; i++){
+			ArrayList<AppointPeriod> periodList = new ArrayList<CalendarActivity.AppointPeriod>();
+			SubjectCfg cfg = subjectCfgs.get(i);
+			Log.d(LOG_TAG, cfg.toString());
+			String[] descs = new String[]{cfg.amtime, cfg.pmtime, cfg.nttime};
+			for (int j=0; j< periods.length; j++){
+				//添加空的列表，之后统一解析和加入列表。
+				AppointPeriod period = new AppointPeriod(periods[j], descs[j],
+						new ArrayList<CalendarActivity.AppointStudent>());
+				periodList.add(period);
+			}
+			AppointSubject subject = new AppointSubject(subjects[i], cfg.getAppointLimit(), periodList);
+			subjectList.add(subject);
+		}
+		//开始解析数据
+		for (int index=0; index<array.length(); index++){
+			JSONObject json = array.getJSONObject(index);
+			String name = json.optString(SRL.ReturnField.FIELD_APPOINT_STUNAME);
+			String phone = json.optString(SRL.ReturnField.FIELD_APPOINT_PHONE);
+			int periodIndex = json.optInt(SRL.ReturnField.FIELD_APPOINT_PERIOD)-1;
+			int subjectIndex = json.optInt(SRL.ReturnField.FIELD_APPOINT_SUBJECT)-1;
+			subjectList.get(subjectIndex).getPeriodList().get(periodIndex).studentList
+					.add(new AppointStudent(name, phone));
+		}
+		return new AppointmentListAdapter(subjectList);
 	}
 	
 
@@ -154,32 +239,35 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		next = (ImageButton) findViewById(R.id.calendar_month_next);
 		expListView = (ExpandableListView)findViewById(R.id.calendar_sub_list);
 		//test code begin
-		Log.d(LOG_TAG, "adding emulated data...");
-		ArrayList<AppointSubject> subjects = new ArrayList<CalendarActivity.AppointSubject>();
-		subjects.add(new AppointSubject("科目二", 10, 19));
-		subjects.add(new AppointSubject("科目三", 5, 12));
-		ArrayList<AppointTable> appointTables = new ArrayList<CalendarActivity.AppointTable>();
-		String[] ams = new String[]{"上午","下午","晚上"};
-		String[] descs = new String[]{"8:00~12:00","13:00~18:00","20:00~22:00"};
-		for (int i=0;i<3;i++){
-			AppointTable table  = new AppointTable();
-			table.setPeriodName(ams[i]);
-			table.setPerioidDescription(descs[i]);
-			ArrayList<AppointStudent> students = new ArrayList<CalendarActivity.AppointStudent>();
-			for (int j=0; j<5; j++){
-				students.add(new AppointStudent("韩梅梅", "15989897820"));
-			}
-			table.setStudentList(students);
-			appointTables.add(table);
-		}
-		Log.d(LOG_TAG, "adding emulated data...100%.");
-		expListView.setAdapter(new AppointmentListAdapter(subjects, appointTables));
+//		Log.d(LOG_TAG, "adding emulated data...");
+//		ArrayList<AppointSubject> subjects = new ArrayList<CalendarActivity.AppointSubject>();
+//		subjects.add(new AppointSubject("科目二", 10, 19));
+//		subjects.add(new AppointSubject("科目三", 5, 12));
+//		ArrayList<AppointTable> appointTables = new ArrayList<CalendarActivity.AppointTable>();
+//		String[] ams = new String[]{"上午","下午","晚上"};
+//		String[] descs = new String[]{"8:00~12:00","13:00~18:00","20:00~22:00"};
+//		for (int i=0;i<3;i++){
+//			AppointTable table  = new AppointTable();
+//			table.setPeriodName(ams[i]);
+//			table.setPerioidDescription(descs[i]);
+//			ArrayList<AppointStudent> students = new ArrayList<CalendarActivity.AppointStudent>();
+//			for (int j=0; j<5; j++){
+//				students.add(new AppointStudent("韩梅梅", "15989897820"));
+//			}
+//			table.setStudentList(students);
+//			appointTables.add(table);
+//		}
+//		Log.d(LOG_TAG, "adding emulated data...100%.");
+//		expListView.setAdapter(new AppointmentListAdapter(subjects, appointTables));
+		subjectCfgs = new ArrayList<SubjectCfg>();
+		subjectCfgs.add(new SubjectCfg());
+		subjectCfgs.add(new SubjectCfg());
 	}
 
 	/**
 	 * 初始化组件
 	 */
-	private void init() {
+	private void initCalendar() {
 		CalendarPagerAdapter mPagerAdapter = new CalendarPagerAdapter(
 				getSupportFragmentManager(), this);
 
@@ -317,14 +405,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 				holder = (ViewHolder) convertView.getTag();
 			}
 			final AppointStudent student = list.get(position);
-			holder.tvName.setText(student.getName());
-			holder.tvPhone.setText(student.getPhone());
+			holder.tvName.setText(student.name);
+			holder.tvPhone.setText(student.phone);
 			holder.imgCall.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					Log.d(LOG_TAG, "calling" + student.getPhone() + "...");
-					Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+student.getPhone()));
+					Log.d(LOG_TAG, "calling" + student.phone + "...");
+					Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+student.phone));
 					CalendarActivity.this.startActivity(intent);
 				}
 			});
@@ -345,15 +433,12 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	private final class AppointmentListAdapter implements ExpandableListAdapter{
 		
 		private ArrayList<AppointSubject> subjects;		//科目数
-		private ArrayList<AppointTable> appointTables;	//对应的约课列表
 
-		AppointmentListAdapter(ArrayList<AppointSubject> subjects,
-				ArrayList<AppointTable> appointTables) {
-			if (subjects==null || appointTables==null){
+		AppointmentListAdapter(ArrayList<AppointSubject> subjects) {
+			if (subjects==null){
 				throw new NullPointerException("params cannot be null");
 			}
 			this.subjects = subjects;
-			this.appointTables = appointTables;
 		}
 
 		@Override
@@ -363,7 +448,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
-			return appointTables.get(childPosition);
+			return subjects.get(groupPosition).getPeriodList().get(childPosition);
 		}
 
 		@Override
@@ -375,7 +460,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			ChildViewHolder holder = null;
-			AppointTable table = appointTables.get(childPosition);
+			AppointPeriod table = (AppointPeriod) getChild(groupPosition, childPosition);
 			if (convertView==null){
 				convertView = LayoutInflater.from(CalendarActivity.this)
 						.inflate(R.layout.listitem_calendar_periods, null);
@@ -391,15 +476,15 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			else{
 				holder = (ChildViewHolder)convertView.getTag();
 			}
-			holder.tvPeriodName.setText(table.getPeriodName());
-			holder.tvPeriodDescription.setText(table.getPerioidDescription());
-			holder.lvStudents.setAdapter( new StudentListAdapter(table.getStudentList()));
+			holder.tvPeriodName.setText(table.periodName);
+			holder.tvPeriodDescription.setText(table.perioidDescription);
+			holder.lvStudents.setAdapter( new StudentListAdapter(table.studentList));
 			return convertView;
 		}
 
 		@Override
 		public int getChildrenCount(int groupPosition) {
-			return appointTables.size();
+			return subjects.get(groupPosition).periodList.size();
 		}
 
 		@Override
@@ -448,7 +533,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			}
 			AppointSubject subject = subjects.get(groupPosition);
 			holder.tvSubject.setText(subject.getName());
-			holder.tvLimits.setText(buildLimitString(subject.getCurrentAppoint(), subject.getLimits()));
+			holder.tvLimits.setText(buildLimitString(getCurrentAppoint(), subject.getLimits()));
 			if (isExpanded){
 				holder.imgIndicator.setBackgroundResource(R.drawable.icon_calendar_appoint_group_expanded);
 			}
@@ -456,6 +541,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 				holder.imgIndicator.setBackgroundResource(R.drawable.icon_calendar_appoint_group_normal);
 			}
 			return convertView;
+		}
+		
+		private int getCurrentAppoint(){
+			int count =0;
+			for (int i=0; i<subjects.size(); i++){
+				count+= subjects.get(i).periodList.get(i).studentList.size();
+			}
+			return count;
 		}
 		
 		//构造限选字符串并设置样式。
@@ -522,24 +615,25 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		}
 	}
 	//预约科目实体类
-	private final class AppointSubject{
-		private final String name;
-		private final int currentAppoint;
-		private final int limits;
-		AppointSubject(String name, int currentAppoint, int limits) {
+	private class AppointSubject{
+		private String name;
+		private int limits;
+		private ArrayList<AppointPeriod> periodList;
+		AppointSubject(String name, int limits,
+				ArrayList<AppointPeriod> periodList) {
 			super();
 			this.name = name;
-			this.currentAppoint = currentAppoint;
 			this.limits = limits;
+			this.periodList = periodList;
 		}
 		public String getName() {
 			return name;
 		}
-		public int getCurrentAppoint() {
-			return currentAppoint;
-		}
 		public int getLimits() {
 			return limits;
+		}
+		public ArrayList<AppointPeriod> getPeriodList() {
+			return periodList;
 		}
 	}
 	
@@ -551,35 +645,18 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			this.name = name;
 			this.phone = phone;
 		}
-		public String getName() {
-			return name;
-		}
-		public String getPhone() {
-			return phone;
-		}
 	}
 	
 	//预约表实体类
-	private final class AppointTable {
+	private final class AppointPeriod {
 		private String periodName;
 		private String perioidDescription;
 		private ArrayList<AppointStudent> studentList;
-		public String getPeriodName() {
-			return periodName;
-		}
-		public void setPeriodName(String periodName) {
+		AppointPeriod(String periodName, String perioidDescription,
+				ArrayList<AppointStudent> studentList) {
+			super();
 			this.periodName = periodName;
-		}
-		public String getPerioidDescription() {
-			return perioidDescription;
-		}
-		public void setPerioidDescription(String perioidDescription) {
 			this.perioidDescription = perioidDescription;
-		}
-		public ArrayList<AppointStudent> getStudentList() {
-			return studentList;
-		}
-		public void setStudentList(ArrayList<AppointStudent> studentList) {
 			this.studentList = studentList;
 		}
 	}

@@ -43,14 +43,14 @@ public class BookSettingActivity extends RightSideParentActivity {
 				try {
 					JSONObject json = new JSONObject(ResponseParser
 							.getStringFromResult(arg0, SRL.ReturnField.FIELD_INFO));
-					ArrayList<Subject> list = new ArrayList<BookSettingActivity.Subject>();
-					list.add(new Subject("科目二", json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2AMLIMIT),
+					ArrayList<SubjectCfg> list = new ArrayList<SubjectCfg>();
+					list.add(new SubjectCfg("科目二", json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2AMLIMIT),
 							json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2PMLIMIT),
 							json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2NTLIMIT),
 							json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD),
 							json.optString(SRL.Param.PARAM_APPOINTCFG_PMPERIOD),
 							json.optString(SRL.Param.PARAM_APPOINTCFG_NTPERIOD)));
-					list.add(new Subject("科目三", json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3AMLIMIT),
+					list.add(new SubjectCfg("科目三", json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3AMLIMIT),
 							json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3PMLIMIT),
 							json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3NTLIMIT),
 							json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD),
@@ -83,8 +83,8 @@ public class BookSettingActivity extends RightSideParentActivity {
 	
 	private final void performSubmit(){
 		HashMap<String, String> params = new HashMap<String, String>();
-		Subject km2 = ((SubjectAdapter)lvSubjects.getAdapter()).list.get(0);
-		Subject km3 = ((SubjectAdapter)lvSubjects.getAdapter()).list.get(1);
+		SubjectCfg km2 = ((SubjectAdapter)lvSubjects.getAdapter()).list.get(0);
+		SubjectCfg km3 = ((SubjectAdapter)lvSubjects.getAdapter()).list.get(1);
 		params.put(SRL.Param.PARAM_APPOINTCFG_KM2AMLIMIT, String.valueOf(km2.amCount));
 		params.put(SRL.Param.PARAM_APPOINTCFG_KM2PMLIMIT, String.valueOf(km2.pmCount));
 		params.put(SRL.Param.PARAM_APPOINTCFG_KM2NTLIMIT, String.valueOf(km2.ntCount));
@@ -109,34 +109,12 @@ public class BookSettingActivity extends RightSideParentActivity {
 		});
 	}
 	
-	private final class Subject{
-		protected final String name;
-		protected final int amCount;
-		protected final int pmCount;
-		protected final int ntCount;
-		protected final String amtime;
-		protected final String pmtime;
-		protected final String nttime;
-		
-		Subject(String name, int amCount, int pmCount, int nightCount,
-				String amtime, String pmtime, String nttime) {
-			super();
-			this.name = name;
-			this.amCount = amCount;
-			this.pmCount = pmCount;
-			this.ntCount = nightCount;
-			this.amtime = amtime;
-			this.pmtime = pmtime;
-			this.nttime = nttime;
-		}
-	}
-	
 	//原有的设计是将每个科目都当成一个完整独立的对象来看待，因此对于当前的API来说可能比较难以适配。
 	private class SubjectAdapter extends BaseAdapter{
 		
-		private ArrayList<Subject> list;
+		private ArrayList<SubjectCfg> list;
 
-		SubjectAdapter(ArrayList<Subject> list) {
+		SubjectAdapter(ArrayList<SubjectCfg> list) {
 			super();
 			this.list = list;
 		}
@@ -183,7 +161,7 @@ public class BookSettingActivity extends RightSideParentActivity {
 			else{
 				holder = (ViewHolder) convertView.getTag();
 			}
-			Subject subject = list.get(position);
+			SubjectCfg subject = list.get(position);
 			holder.tvSubjectName.setText(subject.name);
 			holder.tvAmCount.setText(subject.amCount);
 			holder.tvPmCount.setText(subject.pmCount);
