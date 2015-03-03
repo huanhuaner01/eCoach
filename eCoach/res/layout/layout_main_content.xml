@@ -29,6 +29,7 @@
             style="@style/style_common_texture_red_dot"
             android:layout_alignRight="@id/main_btn_msg"
             android:layout_alignTop="@id/main_btn_msg"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginRight="@dimen/margin_micro"
             tools:ignore="RtlHardcoded" />
     </RelativeLayout>
