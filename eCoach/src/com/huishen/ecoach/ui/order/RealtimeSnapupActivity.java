@@ -2,6 +2,14 @@ package com.huishen.ecoach.ui.order;
 
 import java.util.HashMap;
 
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult.AddressComponent;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
@@ -37,7 +45,7 @@ public class RealtimeSnapupActivity extends Activity implements
 	
 	private ImageButton imgbtnClose;
 	private Button btnSnapup;
-	private TextView tvContent, tvDistance, tvCity, tvDetailPosition;
+	private TextView tvContent, tvDistance, tvDistrict, tvDetailPosition;
 	
 	public static final Intent getIntent(Context context, NewOrderPushData data){
 		Intent intent = new Intent(context, RealtimeSnapupActivity.class);
@@ -58,7 +66,7 @@ public class RealtimeSnapupActivity extends Activity implements
 			}
 		} catch (ClassCastException e) {
 			Log.e(LOG_TAG, "FATAL ERROR: extra value must be instance of NewOrderPushData.");
-//			finish();
+			finish();
 			return ;
 		}
 		displayOrderInfo(orderData);
@@ -71,7 +79,7 @@ public class RealtimeSnapupActivity extends Activity implements
 	
 	private void displayOrderInfo(NewOrderPushData data) {
 		tvContent = (TextView) findViewById(R.id.realtime_snapup_tv_demand);
-		tvCity = (TextView)findViewById(R.id.realtime_snapup_tv_cityregion);
+		tvDistrict = (TextView)findViewById(R.id.realtime_snapup_tv_cityregion);
 		tvDetailPosition = (TextView)findViewById(R.id.realtime_snapup_tv_stuposition);
 		tvDistance = (TextView)findViewById(R.id.realtime_snapup_tv_distance);
 		imgbtnClose = (ImageButton)findViewById(R.id.realtime_snapup_imgbtn_close);
@@ -79,17 +87,56 @@ public class RealtimeSnapupActivity extends Activity implements
 		tvContent.setText(data.content);
 		imgbtnClose.setOnClickListener(this);
 		btnSnapup.setOnClickListener(this);
-		if (data.city != null){
-			tvCity.setText(data.city);
-		}
-		if (data.detailPosition != null){
-			tvDetailPosition.setText(data.detailPosition);
-		}
+//		if (data.detailPosition != null){
+//			tvDetailPosition.setText(data.detailPosition);
+//		}
 		tvDistance.setText(String.format(getString(R.string.str_realtime_snapup_distance), data.distance));
 		if (data.voicePath==null){
 			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
 			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
 		}
+		if (Double.isNaN(data.latitude)){
+			Log.w(LOG_TAG, "no valid latitude found, skipping reversegeo.");
+			return ;
+		}
+		queryDistrict(data.latitude, data.longitude);
+	}
+
+	/**
+	 * 执行反地理编码
+	 * @param ltg 纬度
+	 * @param lng 经度
+	 */
+	private void queryDistrict(double ltg, double lng) {
+		// 创建地理编码检索实例
+		GeoCoder geoCoder = GeoCoder.newInstance();
+		//
+		OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+			// 反地理编码查询结果回调函数
+			@Override
+			public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+				if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+					// 没有检测到结果
+				}
+				AddressComponent addr = result.getAddressDetail();
+				tvDistrict.setText(addr.city+" "+addr.district);
+				tvDetailPosition.setText(result.getAddress());
+			}
+
+			// 地理编码查询结果回调函数
+			@Override
+			public void onGetGeoCodeResult(GeoCodeResult result) {
+				if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+					// 没有检测到结果
+				}
+			}
+		};
+		// 设置地理编码检索监听者
+		geoCoder.setOnGetGeoCodeResultListener(listener);
+		//
+		geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(new LatLng(ltg, lng)));
+		// 释放地理编码检索实例
+		// geoCoder.destroy();
 	}
 	
 	//执行抢单操作。

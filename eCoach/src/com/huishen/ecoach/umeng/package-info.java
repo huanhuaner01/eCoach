@@ -26,8 +26,9 @@
  * CustomUMessageHandler收到消息后会根据消息类型发送其中一个出来供Receiver接收。请注意，在每次增加消息类型时，你需要：
  * <ul>
  * 	<li>在UmengPushConst里面增加一个子类，其中放置服务器下发的字段名。强烈建议将该类的访问权限置为protected.</li>
- * 	<li>在UmengPushConst#Action类中，增加一个新的ACTION字段。</li>
- * <li>在AndroidManifest文件中，为DefaultPushDataReceiver增加该Action。在onReceive方法中，重写必要逻辑。</li>
+ * 	<li>在UmengPushConst.Action类中，增加一个新的ACTION字段。</li>
+ *  <li>在AndroidManifest文件中，为DefaultPushDataReceiver增加该Action。在onReceive方法中，重写必要逻辑。</li>
+ *  <li>在CustomUMessageHandler中，增加新ACTION的发送。</li>
  *  <li>在本包下新增一个类继承自PushData，强烈建议也使用不可变类的设计。</li>
  * <ul>
  * 本包在提交的时候保留了两个样例类 {@link com.huishen.edrive.umeng.NewOrderPushData}, 

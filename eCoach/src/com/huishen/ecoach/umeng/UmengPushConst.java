@@ -84,9 +84,13 @@ public final class UmengPushConst {
 		 */
 		public static final String PARAM_VOICE_PATH = "voicePath";
 		/**
-		 * 学员所在行政区。
+		 * 学员所在纬度。
 		 */
-		public static final String PARAM_CITY = "city";
+		public static final String PARAM_LATITUDE = "lat";/**
+		/*
+		 * 学员所在经度。
+		 */
+		public static final String PARAM_LONGITUDE = "lng";
 		/**
 		 * 学员详细位置。
 		 */

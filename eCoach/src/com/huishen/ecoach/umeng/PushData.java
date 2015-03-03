@@ -51,4 +51,51 @@ public abstract class PushData implements Serializable {
 		}
 		return type;
 	}
+	/**
+	 * 从Map中取出相关的值，默认返回 -1。
+	 */
+	protected final long getLong(Map<String, String> extra, String key){
+		String value = extra.get(key);
+		long res = -1L;
+		if (value!=null){
+			try {
+				res = Long.parseLong(value);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+
+	/**
+	 * 从Map中取出相关的值，默认返回 {@link Float#NaN}。
+	 */
+	protected final float getFloat(Map<String, String> extra, String key){
+		String value = extra.get(key);
+		float res = Float.NaN;
+		if (value!=null){
+			try {
+				res = Float.parseFloat(value);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+	/**
+	 * 从Map中取出相关的值，默认返回 {@link Double#NaN}。
+	 */
+	protected final double getDouble(Map<String, String> extra, String key){
+		String value = extra.get(key);
+		double res = Double.NaN;
+		if (value!=null){
+			try {
+				res = Double.parseDouble(value);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+
 }

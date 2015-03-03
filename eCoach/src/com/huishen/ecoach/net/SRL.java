@@ -457,5 +457,31 @@ public final class SRL {
 		 * 上传文件、图片等时服务器返回的代表相对位置的Key。
 		 */
 		public static final String FIELD_URI = "uri";
+		/**
+		 * 查询选课列表时返回，学生姓名。
+		 */
+		public static final String FIELD_APPOINT_STUNAME = "stuName";
+		/**
+		 * 查询选课列表时返回，学生手机号。
+		 */
+		public static final String FIELD_APPOINT_PHONE = "phone";
+
+		/**
+		 * 查询选课列表时返回，学生ID。
+		 */
+		public static final String FIELD_APPOINT_STUID = "id";
+
+		/**
+		 * 查询选课列表时返回，预约时段。
+		 */
+		public static final String FIELD_APPOINT_PERIOD = "lessonTime";
+		/**
+		 * 查询选课列表时返回，状态信息。
+		 */
+		public static final String FIELD_APPOINT_STATUS = "status";
+		/**
+		 * 查询选课列表时返回，科目索引。
+		 */
+		public static final String FIELD_APPOINT_SUBJECT = "subject";
 	}
 }

@@ -22,9 +22,10 @@ public final class NewOrderPushData extends PushData {
 	public final long createTime;		//开始时间
 	public final long deadline;			//截止时间
 	public final String voicePath;		//语音位置
-	public final String city;			//城市区县
+	public final double latitude; 		//纬度
+	public final double longitude; 		//经度
 	public final float distance;		//距离
-	public final String detailPosition;	//详细地点
+//	public final String detailPosition;	//详细地点
 	
 	public NewOrderPushData(Map<String, String> extra) {
 		super(extra);
@@ -36,35 +37,10 @@ public final class NewOrderPushData extends PushData {
 		deadline = getLong(extra, NewOrder.PARAM_DEADLINE);
 		voicePath = extra.get(NewOrder.PARAM_VOICE_PATH);
 		distance = getFloat(extra, NewOrder.PARAM_DISTANCE);
-		city = extra.get(NewOrder.PARAM_CITY);
-		detailPosition = extra.get(NewOrder.PARAM_DETAIL_POSITION);
+		latitude = getDouble(extra, NewOrder.PARAM_LATITUDE);
+		longitude = getDouble(extra, NewOrder.PARAM_LONGITUDE);
 	}
 	
-	private final long getLong(Map<String, String> extra, String key){
-		String value = extra.get(key);
-		long res = -1L;
-		if (value!=null){
-			try {
-				res = Long.parseLong(value);
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			}
-		}
-		return res;
-	}
-	private final float getFloat(Map<String, String> extra, String key){
-		String value = extra.get(key);
-		float res = -1L;
-		if (value!=null){
-			try {
-				res = Float.parseFloat(value);
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			}
-		}
-		return res;
-	}
-
 	@Override
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
@@ -73,13 +49,12 @@ public final class NewOrderPushData extends PushData {
 		builder.append("NewOrderPushData [orderId=").append(orderId)
 				.append(", versionUID=").append(versionUID)
 				.append(", stuName=").append(stuName).append(", content=")
-				.append(content).append(", createTime=")
-				.append(sdf.format(createTime)).append(", deadline=")
-				.append(sdf.format(deadline)).append(", voicePath=")
-				.append(voicePath).append(", city=").append(city)
-				.append(", distance=").append(distance)
-				.append(", detailPosition=").append(detailPosition)
-				.append(", msgType=").append(msgType).append("]");
+				.append(content).append(", createTime=").append(sdf.format(createTime))
+				.append(", deadline=").append(sdf.format(deadline)).append(", voicePath=")
+				.append(voicePath).append(", latitude=").append(latitude)
+				.append(", longitude=").append(longitude).append(", distance=")
+				.append(distance).append(", msgType=").append(msgType)
+				.append("]");
 		return builder.toString();
 	}
 }

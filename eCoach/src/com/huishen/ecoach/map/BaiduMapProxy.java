@@ -24,7 +24,7 @@ public final class BaiduMapProxy {
 	private static final String LOG_TAG = "BaiduMapProxy";
 
 	private static final BaiduMapProxy instance = new BaiduMapProxy();
-	private static final int LOCATE_PERIOD = 30 * 1000;// 设置发起定位请求的间隔时间
+	private static final int LOCATE_PERIOD = 5 * 60 * 1000;// 设置发起定位请求的间隔时间
 
 	private BDLocation mCachedLocation;
 	private LocationClient mLocationClient;
