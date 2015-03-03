@@ -93,7 +93,7 @@ public final class NetUtil {
 		if (relativePath == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
 		}
-		HashMap<String, String> params = new HashMap<String, String>();
+		final HashMap<String, String> params = new HashMap<String, String>();
 		// 添加标记
 		String flag = getMobileFlag();
 		if (flag != null) {
@@ -116,6 +116,12 @@ public final class NetUtil {
 						HashMap<String, String> localHashMap = new HashMap<String, String>();	
 						localHashMap.put("Cookie", cookie);
 						return localHashMap;
+					}
+					
+					@Override
+					protected Map<String, String> getParams()
+							throws AuthFailureError {
+						return params;
 					}
 				});
 	}
