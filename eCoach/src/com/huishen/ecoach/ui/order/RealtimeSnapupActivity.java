@@ -2,6 +2,7 @@ package com.huishen.ecoach.ui.order;
 
 import java.util.HashMap;
 
+import com.baidu.location.BDLocation;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -11,6 +12,8 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult.AddressComponent;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.map.BaiduMapProxy;
+import com.huishen.ecoach.map.DistanceCalculator;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
@@ -46,6 +49,8 @@ public class RealtimeSnapupActivity extends Activity implements
 	private ImageButton imgbtnClose;
 	private Button btnSnapup;
 	private TextView tvContent, tvDistance, tvDistrict, tvDetailPosition;
+	
+	private String reverseGeoAddr;	//订单反编码的位置数据
 	
 	public static final Intent getIntent(Context context, NewOrderPushData data){
 		Intent intent = new Intent(context, RealtimeSnapupActivity.class);
@@ -87,10 +92,13 @@ public class RealtimeSnapupActivity extends Activity implements
 		tvContent.setText(data.content);
 		imgbtnClose.setOnClickListener(this);
 		btnSnapup.setOnClickListener(this);
-//		if (data.detailPosition != null){
-//			tvDetailPosition.setText(data.detailPosition);
-//		}
-		tvDistance.setText(String.format(getString(R.string.str_realtime_snapup_distance), data.distance));
+		BDLocation currentLocation = BaiduMapProxy.getInstance().getCachedLocation();
+		double distanceMeters = DistanceCalculator.GetLongDistance(
+				orderData.longitude, orderData.latitude,
+				currentLocation.getLongitude(), currentLocation.getLatitude());
+		tvDistance.setText(String.format(
+				getString(R.string.str_realtime_snapup_distance),
+				distanceMeters / 1000));
 		if (data.voicePath==null){
 			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
 			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
@@ -120,7 +128,8 @@ public class RealtimeSnapupActivity extends Activity implements
 				}
 				AddressComponent addr = result.getAddressDetail();
 				tvDistrict.setText(addr.city+" "+addr.district);
-				tvDetailPosition.setText(result.getAddress());
+				reverseGeoAddr = result.getAddress();
+				tvDetailPosition.setText(reverseGeoAddr);
 			}
 
 			// 地理编码查询结果回调函数
@@ -151,7 +160,8 @@ public class RealtimeSnapupActivity extends Activity implements
 			@Override
 			protected void onSuccess(String arg0) {
 				Uis.toastShort(RealtimeSnapupActivity.this, "抢单成功, Mua~");
-				startActivity(SnapSuccessActivity.getIntent(RealtimeSnapupActivity.this));
+				startActivity(SnapSuccessActivity.getIntent(RealtimeSnapupActivity.this,
+						orderData, reverseGeoAddr));
 				finish();
 			}
 			

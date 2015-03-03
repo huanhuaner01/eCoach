@@ -38,7 +38,7 @@
             style="@style/style_common_wrap_wrap"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawableLeft="@drawable/icon_snapup_success_stupos"
             android:drawablePadding="@dimen/padding_micro"
             android:gravity="center_vertical"
             android:padding="@dimen/padding_small"
@@ -50,7 +50,7 @@
             style="@style/style_common_wrap_wrap"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/snap_success_tv_stu_postiion"
-            android:drawableLeft="@drawable/icon_orderstate_student_position"
+            android:drawableLeft="@drawable/icon_snapup_success_coachpos"
             android:drawablePadding="@dimen/padding_micro"
             android:gravity="center_vertical"
             android:padding="@dimen/padding_small"
@@ -68,5 +68,9 @@
             android:contentDescription="@null"
             android:src="@drawable/icon_orderstate_call" />
     </RelativeLayout>
-
+    <com.baidu.mapapi.map.MapView 
+        android:id="@+id/snap_success_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/snap_success_rl_description"/>
 </RelativeLayout>
