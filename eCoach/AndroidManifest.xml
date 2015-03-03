@@ -27,6 +27,22 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- 友盟推送所需权限 END -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 百度地图所需权限 -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 百度地图所需权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -209,6 +225,18 @@
         <!-- V1.3.0添加的service，负责下载通知的资源 -->
         <service android:name="com.umeng.message.UmengDownloadResourceService" />
         <!-- 友盟推送相关组件 END -->
+        <!-- 百度地图相关组件 BEGIN -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="8S8kdIocF7LvaPhwbj7sTfEd" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+        </service>
+        <!-- 百度地图相关组件 END -->
+
         <activity
             android:name=".ui.order.SnapSuccessActivity"
             android:label="@string/title_activity_snap_success" >

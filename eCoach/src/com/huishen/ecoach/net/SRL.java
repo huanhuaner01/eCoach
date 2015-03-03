@@ -163,6 +163,17 @@ public final class SRL {
 				subject=1;//科目 1-科目2, 2-科目3
 		 */
 		public static final String METHOD_QUERY_APPOINT_STULIST = "/cohMobile/queryStuInfoByTime";
+		
+		/**
+		 * 同步GPS信息。
+		 * 参数:
+		 * coachId:9;//教练ID
+		 * lng:104.065706;//经度
+		 * lat:30.5777;//纬度
+		 * 返回值:{code:0|1|2}
+		 * 0:同步成功，1:同步异常
+		 */
+		public static final String METHOD_SYNC_GPS = "/cohMobile/refreshGps";
 	}
 	
 	/**
@@ -295,6 +306,14 @@ public final class SRL {
 		 * 预约设置时使用，晚上时间段限制。
 		 */
 		public static final String PARAM_APPOINTCFG_NTPERIOD="eveningClassTime";
+		/**
+		 * 同步教练地理位置时使用，纬度信息。
+		 */
+		public static final String PARAM_SYNCGPS_LAT = "lat"; 
+		/**
+		 * 同步教练地理位置时使用，经度信息。
+		 */
+		public static final String PARAM_SYNCGPS_LNG = "lng";
 	}
 	
 	/**

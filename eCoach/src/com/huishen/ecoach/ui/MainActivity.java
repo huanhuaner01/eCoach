@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.android.volley.Response.Listener;
 import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.map.BaiduMapProxy;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
@@ -77,6 +78,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		refreshSnapupStatus();
 		displayLoginInfo();
 		UmengServiceProxy.startPushService(this);
+		BaiduMapProxy.getInstance().startLocate(this);
 	}
 	
 	/**

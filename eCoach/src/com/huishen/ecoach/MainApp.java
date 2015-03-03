@@ -4,6 +4,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.baidu.mapapi.SDKInitializer;
 import com.huishen.ecoach.net.LruBitmapCache;
 import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.umeng.CustomUMessageHandler;
@@ -40,10 +41,12 @@ public final class MainApp extends Application {
 	/**
 	 * 初始化各种全局变量和第三方库。	
 	 */
-	private void init(){
-		requestQueue = Volley.newRequestQueue(this);
-		mImageLoader = new ImageLoader(requestQueue, new LruBitmapCache());
-		PushAgent.getInstance(instance).setMessageHandler(new CustomUMessageHandler());
+	private void init() {
+		requestQueue = Volley.newRequestQueue(this); // Volley框架
+		mImageLoader = new ImageLoader(requestQueue, new LruBitmapCache());// Volley框架
+		PushAgent.getInstance(instance).setMessageHandler(
+				new CustomUMessageHandler());// 友盟推送
+		SDKInitializer.initialize(this); // 初始化百度地图
 	}
 
 	/**
