@@ -493,4 +493,19 @@ public final class SRL {
 		 */
 		public static final String FIELD_APPOINT_SUBJECT = "subject";
 	}
+	
+	public static final class StaticWebPage{
+		/**
+		 * 用户指南页面。
+		 */
+		public static final String PAGE_USER_GUIDE = "/static/services/guide.html";
+		/**
+		 * 服务条款页面。
+		 */
+		public static final String PAGE_SERVICE_PROTOCAL = "/static/services/clause.html";
+		/**
+		 * 隐私政策页面。
+		 */
+		public static final String PAGE_PRIVATE_POLICY = "/static/services/policy.html";
+	}
 }

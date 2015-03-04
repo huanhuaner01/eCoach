@@ -1,6 +1,8 @@
 package com.huishen.ecoach.ui.login;
 
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -45,10 +47,10 @@ public class ServiceInfoActivity extends RightSideParentActivity {
 			public void onCheckedChanged(RadioGroup g, int checkedId) {
 				switch (checkedId) {
 				case R.id.service_info_se:
-					openUrl("http://www.baidu.com");
+					openUrl(NetUtil.getAbsolutePath(SRL.StaticWebPage.PAGE_SERVICE_PROTOCAL));
 					break;
 				case R.id.service_info_pri:
-					openUrl("http://www.jd.com");
+					openUrl(NetUtil.getAbsolutePath(SRL.StaticWebPage.PAGE_PRIVATE_POLICY));
 					break;
 				}
 			}

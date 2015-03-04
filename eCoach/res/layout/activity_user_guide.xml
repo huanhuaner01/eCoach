@@ -17,82 +17,9 @@
             style="@style/style_common_titletv"
             android:text="@string/title_activity_user_guide" />
     </RelativeLayout>
-
-    <RelativeLayout
+    <WebView 
+        android:id="@+id/userguide_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/userguide_titlebar"
-        android:background="@color/color_bkg_gray" >
-
-        <LinearLayout
-            android:id="@+id/userguide_ll_tips"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/margin_xxlarge"
-            android:background="@color/color_all_bkg"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_small" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padding_middle"
-                android:paddingTop="@dimen/padding_middle"
-                android:text="@string/str_userguide_tips"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/txtsize_xlarge" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_middle"
-                android:paddingRight="@dimen/padding_middle"
-                android:text="@string/str_userguide_punish_content"
-                android:textColor="@color/color_lighter_gray"
-                android:textSize="@dimen/txtsize_large" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/userguide_ll_punish"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/margin_large"
-            android:background="@color/color_all_bkg"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_small" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padding_middle"
-                android:paddingTop="@dimen/padding_middle"
-                android:text="@string/str_userguide_punish"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/txtsize_xlarge" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_middle"
-                android:paddingRight="@dimen/padding_middle"
-                android:text="@string/str_userguide_punish_content"
-                android:textColor="@color/color_lighter_gray"
-                android:textSize="@dimen/txtsize_large" />
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/userguide_listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/userguide_ll_tips"
-            android:layout_below="@id/userguide_ll_punish"
-            android:layout_marginTop="@dimen/margin_middle"
-            android:layout_marginBottom="@dimen/margin_middle"
-            android:scrollbars="none"
-            android:divider="@android:color/black"
-            android:background="@color/color_all_bkg" />
-    </RelativeLayout>
-
+        android:layout_below="@id/userguide_titlebar"/>
 </RelativeLayout>

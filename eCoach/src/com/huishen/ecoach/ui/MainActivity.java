@@ -169,6 +169,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvGoodrate.setText(String.valueOf(coach.getGoodRate())+"%");
 		tvDate.setText(buildDateString());
 		rtbStar.setRating(coach.getStarLevel());
+		String avatar = coach.getAvatarId();
+		//如果没有头像，则将导致直接访问网站首页浪费大量流量，故优化之
+		if (avatar==null || avatar.equals("") || avatar.equals("null")){
+			Log.d(LOG_TAG, "avatar is null, skipping load image.");
+		}
 		NetUtil.requestLoadImage(rimgAvatar, coach.getAvatarId(), R.drawable.default_personal_avatar);
 	}
 	
