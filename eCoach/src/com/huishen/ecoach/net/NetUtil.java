@@ -261,9 +261,35 @@ public final class NetUtil {
 	 */
 	public static final void requestUploadFile(final File file,
 			final String relativePath, final UploadResponseListener listener) {
+		final HashMap<String, String> params = new HashMap<String, String>();
+		// 添加标记
+		String flag = getMobileFlag();
+		if (flag != null) {
+			params.put(SRL.Param.PARAM_MOBILE_FLAG, flag);
+		}
+		requestUploadFile(file, relativePath, params, listener);
+	}
+
+	/**
+	 * 请求上传文件。
+	 * 
+	 * @param file
+	 *            要上传的文件
+	 * @param relativePath
+	 *            服务器的目标相对路径
+	 * @param params
+	 *            请求参数
+	 * @param listener
+	 *            回调监听器
+	 */
+	public static final void requestUploadFile(final File file,
+			final String relativePath, Map<String, String> params,
+			final UploadResponseListener listener) {
 		if (relativePath == null || listener == null) {
 			throw new NullPointerException("params cannot be null!");
 		}
-		new HttpUploadTask(file, getAbsolutePath(relativePath), listener).execute();
+		Log.d(LOG_TAG, "request params:"+params);
+		new HttpUploadTask(file, getAbsolutePath(relativePath), params, listener)
+				.execute();
 	}
 }
