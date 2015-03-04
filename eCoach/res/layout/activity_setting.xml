@@ -84,7 +84,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_small" />
+                    android:textOn=""
+                    android:textOff=""
+                    android:layout_marginRight="@dimen/margin_small"
+                android:background="@drawable/sel_common_togglebtn" />
             </RelativeLayout>
         </LinearLayout>
 

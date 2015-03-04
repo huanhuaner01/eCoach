@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_bkg_gray"
-    tools:context="${relativePackage}.${activityClass}"
+    tools:context=".ui.pcenter.ViewProfileActivity"
     tools:ignore="RtlHardcoded,RtlSymmetry" >
 
     <RelativeLayout
@@ -50,7 +50,7 @@
                 android:layout_height="@dimen/view_profile_avatar_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/margin_middle"
+                android:layout_marginRight="@dimen/margin_xlarge"
                 android:src="@drawable/default_personal_avatar" />
         </RelativeLayout>
 

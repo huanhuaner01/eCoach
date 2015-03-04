@@ -106,9 +106,20 @@ public class RealtimeSnapupActivity extends Activity implements
 		tvDistance.setText(String.format(
 				getString(R.string.str_realtime_snapup_distance),
 				distanceMeters / 1000));
-		if (data.voicePath==null){
+		if (Double.isNaN(data.latitude)){
+			Log.w(LOG_TAG, "no valid latitude found, skipping reversegeo.");
+		}
+		else {
+			queryDistrict(data.latitude, data.longitude);
+		}
+		downloadAudio(data);
+	}
+	
+	private void downloadAudio(NewOrderPushData data){
+		if (data.voicePath==null || data.voicePath.equals("") || data.voicePath.equals("null")){
 			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
 			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
+			return ;
 		}
 		final Button btnAudio = (Button) findViewById(R.id.realtime_snapup_imgbtn_voice);
 		btnAudio.setText("请稍候，正在下载订单音频...");
@@ -136,11 +147,6 @@ public class RealtimeSnapupActivity extends Activity implements
 				Log.d(LOG_TAG, "downloader onTick : "+progress);
 			}
 		});
-		if (Double.isNaN(data.latitude)){
-			Log.w(LOG_TAG, "no valid latitude found, skipping reversegeo.");
-			return ;
-		}
-		queryDistrict(data.latitude, data.longitude);
 	}
 
 	/**
