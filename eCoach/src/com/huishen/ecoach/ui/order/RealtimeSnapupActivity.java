@@ -19,6 +19,7 @@ import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.dialog.MsgDialog;
 import com.huishen.ecoach.umeng.NewOrderPushData;
+import com.huishen.ecoach.util.SimpleAudioPlayer;
 import com.huishen.ecoach.util.Uis;
 
 import android.app.Activity;
@@ -75,6 +76,8 @@ public class RealtimeSnapupActivity extends Activity implements
 			return ;
 		}
 		displayOrderInfo(orderData);
+		//播放语音提醒
+		SimpleAudioPlayer.getInstance().playAssetsAudio(this, "ring_neworder.wav");
 		//开启震动
 		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 		if (vibrator.hasVibrator()){
@@ -125,6 +128,7 @@ public class RealtimeSnapupActivity extends Activity implements
 			public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
 				if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
 					// 没有检测到结果
+					Uis.toastShort(RealtimeSnapupActivity.this, "位置查询失败");
 				}
 				AddressComponent addr = result.getAddressDetail();
 				tvDistrict.setText(addr.city+" "+addr.district);
@@ -135,33 +139,34 @@ public class RealtimeSnapupActivity extends Activity implements
 			// 地理编码查询结果回调函数
 			@Override
 			public void onGetGeoCodeResult(GeoCodeResult result) {
-				if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-					// 没有检测到结果
-				}
+				//忽略
 			}
 		};
 		// 设置地理编码检索监听者
 		geoCoder.setOnGetGeoCodeResultListener(listener);
-		//
 		geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(new LatLng(ltg, lng)));
 		// 释放地理编码检索实例
-		// geoCoder.destroy();
+		geoCoder.destroy();
 	}
 	
 	//执行抢单操作。
 	private final void performSnapup() {
+		BDLocation currentLocation = BaiduMapProxy.getInstance().getCachedLocation();
+		final double distanceMeters = DistanceCalculator.GetLongDistance(
+				orderData.longitude, orderData.latitude,
+				currentLocation.getLongitude(), currentLocation.getLatitude());
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put(SRL.Param.PARAM_ORDER_ID, orderData.orderId);
 		map.put(SRL.Param.PARAM_ORDER_VERSION, orderData.versionUID);
-		map.put(SRL.Param.PARAM_ORDER_COACH_GPS, "104.065656,30.577716");
-		map.put(SRL.Param.PARAM_ORDER_COACH_POS, "成都市环球中心W8");
+		map.put(SRL.Param.PARAM_ORDER_COACH_GPS, currentLocation.getLatitude()+","+currentLocation.getLongitude());
+		map.put(SRL.Param.PARAM_ORDER_COACH_POS, currentLocation.getAddrStr());
 		NetUtil.requestStringData(SRL.Method.METHOD_EXECUTE_SNAPUP, map, new ResponseListener() {
 			
 			@Override
 			protected void onSuccess(String arg0) {
 				Uis.toastShort(RealtimeSnapupActivity.this, "抢单成功, Mua~");
 				startActivity(SnapSuccessActivity.getIntent(RealtimeSnapupActivity.this,
-						orderData, reverseGeoAddr));
+						orderData, reverseGeoAddr, distanceMeters));
 				finish();
 			}
 			

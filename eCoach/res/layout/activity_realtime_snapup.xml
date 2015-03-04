@@ -66,6 +66,8 @@
     <LinearLayout
         android:id="@+id/realtime_snapup_ll_orderdetail"
         style="@style/style_common_macth_wrap"
+        android:paddingTop="@dimen/padding_middle"
+        android:paddingBottom="@dimen/padding_middle"
         android:orientation="vertical" >
 
         <RelativeLayout

@@ -29,6 +29,7 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 	
 	private static final String EXTRA_PUSHDATA = "succorder";
 	private static final String EXTRA_STUPOSITION = "stupos";
+	private static final String EXTRA_DISTANCE = "distance";
 	
 	private TextView tvStuPosition, tvCoachPosition;
 	private Button btnComplaint;
@@ -36,18 +37,22 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 	private BaiduMap mBaiduMap;
 	private NewOrderPushData orderPushData;
 	private String stuPosition;
+	private double distance;
 	
 	/**
 	 * 获取启动该Activity的Intent。
 	 * @param context 上下文信息
 	 * @param pushData 订单基础数据
 	 * @param stuPosition 学员地址的文字描述
+	 * @param distanceMeters 两者的距离，单位为米
 	 * @return 返回封装的Intent。 
 	 */
 	public static final Intent getIntent(Context context,
-			NewOrderPushData pushData, String stuPosition) {
+			NewOrderPushData pushData, String stuPosition, double distanceMeters) {
 		Intent intent = new Intent(context, SnapSuccessActivity.class);
 		intent.putExtra(EXTRA_PUSHDATA, pushData);
+		intent.putExtra(EXTRA_STUPOSITION, stuPosition);
+		intent.putExtra(EXTRA_DISTANCE, distanceMeters);
 		return intent;
 	}
 
@@ -57,6 +62,7 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 		setContentView(R.layout.activity_snap_success);
 		orderPushData = (NewOrderPushData) getIntent().getSerializableExtra(EXTRA_PUSHDATA);
 		stuPosition = getIntent().getStringExtra(EXTRA_STUPOSITION);
+		distance = getIntent().getDoubleExtra(EXTRA_DISTANCE, 0.0);
 		initWidgets();
 	}
 	
@@ -76,6 +82,7 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 		BDLocation location = BaiduMapProxy.getInstance().getCachedLocation();
 		tvCoachPosition.setText(location.getAddrStr());
 		
+		//绘制地图
 		mMapView = (MapView) findViewById(R.id.snap_success_mapview);
 		mBaiduMap = mMapView.getMap();
 		mBaiduMap.setMyLocationEnabled(true);
@@ -85,16 +92,39 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 				.longitude(location.getLongitude()).build();
 		mBaiduMap.setMyLocationData(locData);
 		LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-		MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll,13);	//15表示比例尺单位为500米
+		MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll,getScaleRate(distance));	
 		mBaiduMap.animateMapStatus(u);
+		//加入学员图标覆盖物
 		LatLng stuPosLatLng = new LatLng(orderPushData.latitude, orderPushData.longitude);
 		BitmapDescriptor bdA = BitmapDescriptorFactory
 				.fromResource(R.drawable.icon_snapup_success_stumarker);
 		OverlayOptions ooA = new MarkerOptions().position(stuPosLatLng).icon(bdA)
 				.zIndex(9).draggable(true);
 		mBaiduMap.addOverlay(ooA);
+		//加入教练图标覆盖物
+		LatLng cohPosLatLng = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		BitmapDescriptor bdB = BitmapDescriptorFactory
+				.fromResource(R.drawable.icon_snapup_success_coachmarker);
+		OverlayOptions ooB = new MarkerOptions().position(cohPosLatLng)
+				.icon(bdB).zIndex(9).draggable(true);
+		mBaiduMap.addOverlay(ooB);
 		//add marker to set mark listener
 	}
+	
+	private int getScaleRate(double distance){
+		if (distance < 1000){
+			return 15;			//15表示比例尺单位为500米
+		}
+		else if (distance < 3000){
+			return 13;
+		}
+		else if (distance < 8000){
+			return 12;
+		}
+		return 10;
+	}
+	
 	@Override
 	protected void onPause() {
 		super.onPause();

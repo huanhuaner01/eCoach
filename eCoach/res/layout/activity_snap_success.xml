@@ -42,7 +42,7 @@
             android:drawablePadding="@dimen/padding_micro"
             android:gravity="center_vertical"
             android:padding="@dimen/padding_small"
-            android:textColor="@color/color_txt_gray"
+            android:textColor="#4D4D4D"
             android:textSize="@dimen/txtsize_large" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:drawablePadding="@dimen/padding_micro"
             android:gravity="center_vertical"
             android:padding="@dimen/padding_small"
-            android:textColor="@color/color_txt_gray"
+            android:textColor="#4D4D4D"
             android:textSize="@dimen/txtsize_large" />
 
         <ImageButton
@@ -66,7 +66,7 @@
             android:layout_marginTop="@dimen/margin_small"
             android:background="@android:color/transparent"
             android:contentDescription="@null"
-            android:src="@drawable/icon_orderstate_call" />
+            android:src="@drawable/icon_snapup_success_call" />
     </RelativeLayout>
     <com.baidu.mapapi.map.MapView 
         android:id="@+id/snap_success_mapview"
