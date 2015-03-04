@@ -54,7 +54,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/color_main_text_normal"
+            android:textColor="@color/color_main_txtcolor"
             android:textSize="@dimen/txtsize_default" />
 
         <RelativeLayout
@@ -89,6 +89,7 @@
                 android:layout_alignTop="@id/main_prg_ordernum"
                 android:layout_toEndOf="@id/main_prg_ordernum"
                 android:layout_toRightOf="@id/main_prg_ordernum"
+                android:layout_marginLeft="@dimen/margin_middle"
                 android:text="@string/str_main_default_todayorder" />
 
             <ProgressBar
@@ -97,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/main_prg_ordernum"
                 android:layout_alignStart="@id/main_prg_ordernum"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_below="@+id/main_prg_ordernum"
                 android:progress="10" />
 
@@ -116,6 +118,7 @@
                 android:layout_alignTop="@id/main_prg_myordernum"
                 android:layout_toEndOf="@id/main_prg_ordernum"
                 android:layout_toRightOf="@id/main_prg_ordernum"
+                android:layout_marginLeft="@dimen/margin_middle"
                 android:text="@string/str_main_default_myorder" />
         </RelativeLayout>
 
@@ -126,9 +129,8 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/str_main_default_todayorder"
-            android:textColor="@color/color_theme_orange"
-            android:textSize="108sp"
-            android:textStyle="bold" />
+            android:textColor="@color/color_main_txtcolor"
+            android:textSize="108sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

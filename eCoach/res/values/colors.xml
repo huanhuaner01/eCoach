@@ -21,6 +21,7 @@
 
     <!-- page specified colors -->
     <!-- 主界面及个人中心 -->
+    <color name="color_main_txtcolor">#262C36</color>
     <color name="color_pcenter_textcolor">#262C36</color>
     <color name="color_main_text_normal">#666666</color>
     <color name="color_main_text_emphasize">#323232</color>

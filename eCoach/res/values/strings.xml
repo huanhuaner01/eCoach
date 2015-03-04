@@ -44,7 +44,7 @@
     <string name="str_pcenter_setting">设　　置</string>
     <string name="str_pcenter_pushmsg">消息提醒</string>
     <!-- <string name="str_pcenter_coach_score_level">%1$d积分，升级还需要%2$d积分</string> -->
-    <string name="str_main_todayorder">今日订单总数</string>
+    <string name="str_main_todayorder">今日订单</string>
     <string name="str_main_default_todayorder">0</string>
     <string name="str_main_myorder">我的订单</string>
     <string name="str_main_default_myorder">0</string>
