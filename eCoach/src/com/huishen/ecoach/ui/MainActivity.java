@@ -64,6 +64,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	private RatingBar rtbStar;
 	private ToggleButton tgbOrderAutoAlert;
 	
+	private static final int REQUEST_CODE_SETTING = 1001;
+	public static final int RESULT_CODE_LOGOUT = 1002;
+	
 	public static final Intent getIntent(Context context){
 		Intent intent = new Intent(context, MainActivity.class);
 		return intent;
@@ -305,10 +308,19 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(UserGuideActivity.getIntent(this));
 			break;
 		case R.id.pcenter_tv_setting:
-			startActivity(SettingActivity.getIntent(this));
+			startActivityForResult(SettingActivity.getIntent(this), REQUEST_CODE_SETTING);
 			break;
 		default:
 			break;
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUEST_CODE_SETTING){
+			if (resultCode== RESULT_CODE_LOGOUT){
+				finish();
+			}
 		}
 	}
 }

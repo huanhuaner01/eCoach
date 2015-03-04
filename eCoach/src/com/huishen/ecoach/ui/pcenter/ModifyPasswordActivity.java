@@ -38,6 +38,7 @@ public class ModifyPasswordActivity extends RightSideParentActivity {
 		editCfmpwd = (EditText) findViewById(R.id.modifypwd_edit_cfmpwd);
 		editNewpwd = (EditText) findViewById(R.id.modifypwd_edit_newpwd);
 		editOldpwd = (EditText) findViewById(R.id.modifypwd_edit_oldpwd);
+		btnSubmit = (Button)findViewById(R.id.modifypwd_btn_confirm);
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			
 			@Override

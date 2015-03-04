@@ -87,14 +87,13 @@ public final class UmengServiceProxy {
 	 */
 	public static void stopPushService(final Context context) {
 		final PushAgent mPushAgent = PushAgent.getInstance(context);
-
+		performRemoveTagAndAlias(context);
 		mPushAgent.setUnregisterCallback(new IUmengUnregisterCallback() {
 			@Override
 			public void onUnregistered(String arg0) {
 				Log.d(LOG_TAG, "Unregistered device: " + arg0);
 			}
 		});
-		performRemoveTagAndAlias(context);
 		mPushAgent.disable();
 	}
 
@@ -108,9 +107,8 @@ public final class UmengServiceProxy {
 			protected Void doInBackground(Void... params) {
 				try {
 					// mPushAgent.getTagManager().delete(getPushTag(data));
-					// mPushAgent.removeAlias(getPushAlias(data),
-					// UmengPushConst.UPLOAD_ALIAS_TDB);
-					// Log.d(LOG_TAG, "tag and alias removed.");
+					 PushAgent.getInstance(context).removeAlias(getPushAlias(), UmengPushConst.ALIAS_TYPE);
+					 Log.d(LOG_TAG, "tag and alias removed.");
 				} catch (Exception e) {
 					Log.w(LOG_TAG, "fail to remove tag and alias .");
 					e.printStackTrace();

@@ -174,6 +174,11 @@ public final class SRL {
 		 * 0:同步成功，1:同步异常
 		 */
 		public static final String METHOD_SYNC_GPS = "/cohMobile/refreshGps";
+		
+		/**
+		 * 执行下线操作。
+		 */
+		public static final String METHOD_LOGOUT = "/cohMobile/cohLoginOut";
 	}
 	
 	/**
