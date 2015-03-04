@@ -156,7 +156,7 @@ public class RealtimeSnapupActivity extends Activity implements
 	 */
 	private void queryDistrict(double ltg, double lng) {
 		// 创建地理编码检索实例
-		GeoCoder geoCoder = GeoCoder.newInstance();
+		final GeoCoder geoCoder = GeoCoder.newInstance();
 		//
 		OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
 			// 反地理编码查询结果回调函数
@@ -171,6 +171,8 @@ public class RealtimeSnapupActivity extends Activity implements
 				tvDistrict.setText(addr.city+" "+addr.district);
 				reverseGeoAddr = result.getAddress();
 				tvDetailPosition.setText(reverseGeoAddr);
+				// 释放地理编码检索实例
+				geoCoder.destroy();
 			}
 
 			// 地理编码查询结果回调函数
@@ -182,8 +184,6 @@ public class RealtimeSnapupActivity extends Activity implements
 		// 设置地理编码检索监听者
 		geoCoder.setOnGetGeoCodeResultListener(listener);
 		geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(new LatLng(ltg, lng)));
-		// 释放地理编码检索实例
-		geoCoder.destroy();
 	}
 	
 	//执行抢单操作。
