@@ -42,7 +42,7 @@
     <string name="str_pcenter_userguide">使用指南</string>
     <string name="str_pcenter_recommend">推　　荐</string>
     <string name="str_pcenter_setting">设　　置</string>
-    <string name="str_pcenter_pushmsg">消息提醒</string>
+    <string name="str_pcenter_neworder_autoalert">新订单自动弹出</string>
     <!-- <string name="str_pcenter_coach_score_level">%1$d积分，升级还需要%2$d积分</string> -->
     <string name="str_main_todayorder">今日订单</string>
     <string name="str_main_default_todayorder">0</string>

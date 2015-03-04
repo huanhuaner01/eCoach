@@ -112,11 +112,11 @@ public final class UploadCertifyFragment extends Fragment {
 	private final void submitLastRequest(){
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put(SRL.Param.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_VERIFIED_PHONE));
-		params.put(SRL.Param.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_COACH_NAME));
-		params.put(SRL.Param.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_COACH_SCHOOL));
-		params.put(SRL.Param.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_COACH_CARNO));
-		params.put(SRL.Param.PARAM_COACH_CERTNO, Prefs.getString(getActivity(), Const.KEY_COACH_CERTNO));
-		params.put(SRL.Param.PARAM_PATH_AVATAR, Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR));
+		params.put(SRL.Param.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_NAME));
+		params.put(SRL.Param.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_SCHOOL));
+		params.put(SRL.Param.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_CARNO));
+		params.put(SRL.Param.PARAM_COACH_CERTNO, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_CERTNO));
+		params.put(SRL.Param.PARAM_PATH_AVATAR, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_AVATAR));
 		params.put(SRL.Param.PARAM_PATH_CERT1, Prefs.getString(getActivity(), getImagePrefname(0)));
 		params.put(SRL.Param.PARAM_PATH_CERT2, Prefs.getString(getActivity(), getImagePrefname(1)));
 		params.put(SRL.Param.PARAM_PATH_CERT3, Prefs.getString(getActivity(), getImagePrefname(2)));

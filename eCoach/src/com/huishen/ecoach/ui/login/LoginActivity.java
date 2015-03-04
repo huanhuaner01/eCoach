@@ -42,9 +42,9 @@ public class LoginActivity extends RightSideParentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		initWidgets();
-		if (Prefs.getBoolean(this, Const.KEY_AUTO_LOGIN)){
-			String phone = Prefs.getString(this, Const.KEY_LAST_LOGIN_PHONE);
-			String pwd = Prefs.getString(this, Const.KEY_LAST_LOGIN_PWD);
+		if (Prefs.getBoolean(this, Const.KEY_LOGIN_AUTOLOGIN)){
+			String phone = Prefs.getString(this, Const.KEY_LOGIN_LASTLOGIN_PHONE);
+			String pwd = Prefs.getString(this, Const.KEY_LOGIN_LASTLOGIN_PWD);
 			if (pwd != null && pwd.length() > 0) {
 				Log.d("LoginActivity", "autologin[" + phone + "," + pwd + "]...");
 				performLogin(phone, pwd);
@@ -61,7 +61,7 @@ public class LoginActivity extends RightSideParentActivity implements
 		btnRegister.setOnClickListener(this);
 		btnForgetPwd.setOnClickListener(this);
 		//读取保存的用户名
-		String lastLogin = Prefs.getString(LoginActivity.this, Const.KEY_LAST_LOGIN_PHONE);
+		String lastLogin = Prefs.getString(LoginActivity.this, Const.KEY_LOGIN_LASTLOGIN_PHONE);
 		if (lastLogin!=null){
 			editUsername.setText(lastLogin);
 		}
@@ -81,9 +81,9 @@ public class LoginActivity extends RightSideParentActivity implements
 						//设置全局变量
 						MainApp.getInstance().setLoginCoach(parseLoginCoachInfo(arg0));
 						//保存弱登录信息，清除注册信息
-						Prefs.setString(LoginActivity.this, Const.KEY_LAST_LOGIN_PHONE, user);
-						Prefs.setString(LoginActivity.this, Const.KEY_LAST_LOGIN_PWD, pwd);
-						Prefs.setBoolean(LoginActivity.this, Const.KEY_AUTO_LOGIN, true);
+						Prefs.setString(LoginActivity.this, Const.KEY_LOGIN_LASTLOGIN_PHONE, user);
+						Prefs.setString(LoginActivity.this, Const.KEY_LOGIN_LASTLOGIN_PWD, pwd);
+						Prefs.setBoolean(LoginActivity.this, Const.KEY_LOGIN_AUTOLOGIN, true);
 						RegisterActivity.clearRegisterInformation(LoginActivity.this);
 						//执行页面跳转
 						LoginActivity.this.startActivity(MainActivity.getIntent(LoginActivity.this));
@@ -147,7 +147,7 @@ public class LoginActivity extends RightSideParentActivity implements
 	}
 	
 	private final void performForgetPwd(){
-		String phone = Prefs.getString(this, Const.KEY_LAST_LOGIN_PHONE);
+		String phone = Prefs.getString(this, Const.KEY_LOGIN_LASTLOGIN_PHONE);
 		startActivity(ForgetPasswordActivity.getIntent(LoginActivity.this, phone));
 	}
 

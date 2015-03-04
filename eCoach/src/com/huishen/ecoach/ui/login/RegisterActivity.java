@@ -79,8 +79,8 @@ public class RegisterActivity extends RightSideParentActivity implements
 		String md5 = MsgEncryption.md5Encryption(pwd);
 		Log.d(LOG_TAG, md5);
 		Prefs.setString(this, Const.KEY_VERIFIED_PHONE, phoneNumber);
-		Prefs.setString(this, Const.KEY_PASSWORD, pwd);
-		Prefs.setString(this, Const.KEY_PASSWORD_MD5, md5);
+		Prefs.setString(this, Const.KEY_REGISTER_PASSWORD, pwd);
+		Prefs.setString(this, Const.KEY_REGISTER_PASSWORD_MD5, md5);
 		Prefs.setBoolean(this, KEY_STEP_VERIFY_COMPLETED, true);
 		fragMgr.beginTransaction().replace(CONTAINER, new ProfileFragment())
 				.commit();
@@ -91,10 +91,10 @@ public class RegisterActivity extends RightSideParentActivity implements
 			String carno, String certno) {
 		tvStepProfile.setEnabled(false);
 		tvStepUpload.setEnabled(true);
-		Prefs.setString(this, Const.KEY_COACH_NAME, name);
-		Prefs.setString(this, Const.KEY_COACH_SCHOOL, school);
-		Prefs.setString(this, Const.KEY_COACH_CARNO, carno);
-		Prefs.setString(this, Const.KEY_COACH_CERTNO, certno);
+		Prefs.setString(this, Const.KEY_REGISTER_COACH_NAME, name);
+		Prefs.setString(this, Const.KEY_REGISTER_COACH_SCHOOL, school);
+		Prefs.setString(this, Const.KEY_REGISTER_COACH_CARNO, carno);
+		Prefs.setString(this, Const.KEY_REGISTER_COACH_CERTNO, certno);
 		Prefs.setBoolean(this, KEY_STEP_PROFILE_COMPLETED, true);
 		fragMgr.beginTransaction()
 				.replace(CONTAINER, new UploadCertifyFragment()).commit();
@@ -117,10 +117,10 @@ public class RegisterActivity extends RightSideParentActivity implements
 		Log.d(LOG_TAG, "removing old register data, context=" + context.getClass().getSimpleName());
 		Prefs.removeKey(context, KEY_STEP_PROFILE_COMPLETED);
 		Prefs.removeKey(context, KEY_STEP_VERIFY_COMPLETED);
-		Prefs.removeKey(context, Const.KEY_COACH_NAME);
-		Prefs.removeKey(context, Const.KEY_COACH_SCHOOL);
-		Prefs.removeKey(context, Const.KEY_COACH_CARNO);
-		Prefs.removeKey(context, Const.KEY_COACH_CERTNO);
-		Prefs.removeKey(context, Const.KEY_COACH_AVATAR);
+		Prefs.removeKey(context, Const.KEY_REGISTER_COACH_NAME);
+		Prefs.removeKey(context, Const.KEY_REGISTER_COACH_SCHOOL);
+		Prefs.removeKey(context, Const.KEY_REGISTER_COACH_CARNO);
+		Prefs.removeKey(context, Const.KEY_REGISTER_COACH_CERTNO);
+		Prefs.removeKey(context, Const.KEY_REGISTER_COACH_AVATAR);
 	}
 }

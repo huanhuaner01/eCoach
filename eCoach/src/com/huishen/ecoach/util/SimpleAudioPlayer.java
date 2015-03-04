@@ -69,6 +69,11 @@ public class SimpleAudioPlayer {
 			Log.w(LOG_TAG, "failed to play ring:"+abspath+";"+e.getMessage());
 		}
 	}
+	/**
+	 * 播放Assets下的音效。
+	 * @param context 上下文信息。
+	 * @param assets 要播放的音频文件名。
+	 */
 	public final void playAssetsAudio(Context context, final String assets){
 		try {
 			AssetManager am = context.getAssets();

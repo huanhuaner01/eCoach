@@ -47,7 +47,8 @@ public class SplashActivity extends Activity {
 		if (!firstuse){
 			viewPager.setVisibility(View.INVISIBLE);
 			findViewById(R.id.splash_ll_dots).setVisibility(View.INVISIBLE);
-			handler.sendEmptyMessageDelayed(SplashHandler.MSG_JUMP_TO_NEXT, Const.SPLASH_MIN_LENGTH);
+			handler.sendEmptyMessageDelayed(SplashHandler.MSG_JUMP_TO_NEXT,
+					getResources().getInteger(R.integer.splash_min_displaytime));
 		}
 		else{
 			initViewPager();

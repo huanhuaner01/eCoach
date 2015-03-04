@@ -116,7 +116,7 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 			return;
 		}
 		//检查照片上传状态
-		if (Prefs.getString(getActivity(), Const.KEY_COACH_AVATAR)==null){
+		if (Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_AVATAR)==null){
 			Uis.toastShort(getActivity(), R.string.str_register_err_noavatar);
 		}
 		if (nsListener != null) {
@@ -194,7 +194,7 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 						String url = ResponseParser.getStringFromResult(str,
 								SRL.ReturnField.FIELD_URI);
 						Log.i(LOG_TAG, "avatar upload completed." + url);
-						Prefs.setString(getActivity(), Const.KEY_COACH_AVATAR, url);
+						Prefs.setString(getActivity(), Const.KEY_REGISTER_COACH_AVATAR, url);
 					}
 
 					@Override

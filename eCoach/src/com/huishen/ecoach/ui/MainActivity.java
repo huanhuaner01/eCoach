@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private TextView tvUserGuide, tvRecommend, tvSetting;
 	private RoundImageView rimgAvatar;
 	private RatingBar rtbStar;
-	private ToggleButton tgbMsgPush;
+	private ToggleButton tgbOrderAutoAlert;
 	
 	public static final Intent getIntent(Context context){
 		Intent intent = new Intent(context, MainActivity.class);
@@ -98,13 +98,12 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
 		tvName = (TextView)findViewById(R.id.pcenter_tv_coachname);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
-		tgbMsgPush = (ToggleButton)findViewById(R.id.pcenter_tgb_msgpush);
+		tgbOrderAutoAlert = (ToggleButton)findViewById(R.id.pcenter_tgb_order_autoalert);
 		tvStarLevel = (TextView)findViewById(R.id.pcenter_tv_starnum);
 		tvOrdernum = (TextView)findViewById(R.id.pcenter_tv_ordernum);
 		tvRange = (TextView)findViewById(R.id.pcenter_tv_range);
 		tvGoodrate = (TextView)findViewById(R.id.pcenter_tv_goodrates);
 		rtbStar = (RatingBar)findViewById(R.id.pcenter_rating);
-		
 		rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.main_btn_rotate);
 	}
 	
@@ -112,15 +111,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		btnMe.setOnClickListener(this);
 		btnMsg.setOnClickListener(this);
 		tvBookManage.setOnClickListener(this);
+		tvRecruitManage.setOnClickListener(this);
 		tvSnapup.setOnClickListener(this);
 		tvRecommend.setOnClickListener(this);
 		tvSetting.setOnClickListener(this);
 		tvUserGuide.setOnClickListener(this);
-		tgbMsgPush.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		tgbOrderAutoAlert.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
+				// Feature not implement yet
 			}
 		});
 	}
@@ -144,6 +144,7 @@ public class MainActivity extends Activity implements OnClickListener{
 					JSONObject json = new JSONObject(arg0);
 					int code = json.getInt(SRL.ReturnField.FIELD_SNAPUP_STATUS);
 					if (code==SRL.ReturnCode.INFO_STATUS_OPEN){
+						isSnaping = true;	//设置标记位，否则将导致打开模式后下次开启应用第一次无法正确关闭模式的问题。
 						tvSnapAnimBkg.startAnimation(rotateAnimation);
 						tvSnapup.setText(R.string.str_main_menu_listening_snapup);
 					}
@@ -296,6 +297,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 			break;
 		case R.id.main_tv_recruit_manage:
+			if (checkAuditStatus()){
+				Uis.toastShort(this, R.string.str_feature_unsupported);
+			}
 			break;
 		case R.id.pcenter_tv_userguide:
 			startActivity(UserGuideActivity.getIntent(this));

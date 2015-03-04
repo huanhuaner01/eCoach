@@ -172,12 +172,12 @@
                 android:paddingBottom="@dimen/padding_middle"
                 android:layout_marginLeft="30dp"
                 android:layout_marginStart="30dp"
-                android:text="@string/str_pcenter_pushmsg"
+                android:text="@string/str_pcenter_neworder_autoalert"
                 android:textColor="@color/color_pcenter_textcolor"
                 android:textSize="@dimen/txtsize_default" />
 
             <ToggleButton
-                android:id="@+id/pcenter_tgb_msgpush"
+                android:id="@+id/pcenter_tgb_order_autoalert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
