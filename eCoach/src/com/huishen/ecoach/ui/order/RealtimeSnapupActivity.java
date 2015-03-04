@@ -1,5 +1,6 @@
 package com.huishen.ecoach.ui.order;
 
+import java.io.File;
 import java.util.HashMap;
 
 import com.baidu.location.BDLocation;
@@ -15,10 +16,12 @@ import com.huishen.ecoach.R;
 import com.huishen.ecoach.map.BaiduMapProxy;
 import com.huishen.ecoach.map.DistanceCalculator;
 import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.OnProgressChangedListener;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.dialog.MsgDialog;
 import com.huishen.ecoach.umeng.NewOrderPushData;
+import com.huishen.ecoach.util.FileUtil;
 import com.huishen.ecoach.util.SimpleAudioPlayer;
 import com.huishen.ecoach.util.Uis;
 
@@ -30,6 +33,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -106,6 +110,32 @@ public class RealtimeSnapupActivity extends Activity implements
 			findViewById(R.id.realtime_snapup_rl_voiceline).setVisibility(View.GONE);
 			findViewById(R.id.realtime_snapup_img_demand_txtonly).setVisibility(View.VISIBLE);
 		}
+		final Button btnAudio = (Button) findViewById(R.id.realtime_snapup_imgbtn_voice);
+		btnAudio.setText("请稍候，正在下载订单音频...");
+		File serverFile = new File(orderData.voicePath);
+		final File orderFile = new File(FileUtil.getTemporaryAudioPath()
+				+ File.separator + serverFile.getName());
+		Log.d(LOG_TAG, "downloading audio:"+orderFile.getAbsolutePath());
+		NetUtil.requestDownloadFile(orderData.voicePath, orderFile, new OnProgressChangedListener() {
+			
+			@Override
+			public void onTaskFinished() {
+				btnAudio.setText("点击播放");
+				btnAudio.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						SimpleAudioPlayer.getInstance().playFileAudio(
+							RealtimeSnapupActivity.this, orderFile.getAbsolutePath());
+					}
+				});
+			}
+			
+			@Override
+			public void onProgressChanged(int min, int max, int progress) {
+				Log.d(LOG_TAG, "downloader onTick : "+progress);
+			}
+		});
 		if (Double.isNaN(data.latitude)){
 			Log.w(LOG_TAG, "no valid latitude found, skipping reversegeo.");
 			return ;
@@ -126,6 +156,7 @@ public class RealtimeSnapupActivity extends Activity implements
 			// 反地理编码查询结果回调函数
 			@Override
 			public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+				Log.d(LOG_TAG, "revert geo:result received");
 				if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
 					// 没有检测到结果
 					Uis.toastShort(RealtimeSnapupActivity.this, "位置查询失败");

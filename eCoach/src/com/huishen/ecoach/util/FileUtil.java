@@ -16,11 +16,18 @@ public final class FileUtil {
 			.getExternalStorageDirectory() + File.separator + "ecoach";
 	// 二级目录
 	private static final String PATH_TEMP_PHOTO = "photo";
+	private static final String PATH_TEMP_AUDIO = "audio";
 
 	/**
 	 * 获取放置临时照片的文件路径。
 	 */
 	public static final String getTemporaryPhotoPath() {
 		return ROOT_PATH + File.separator + PATH_TEMP_PHOTO;
+	}
+	/**
+	 * 获取放置临时照片的文件路径。
+	 */
+	public static final String getTemporaryAudioPath() {
+		return ROOT_PATH + File.separator + PATH_TEMP_AUDIO;
 	}
 }

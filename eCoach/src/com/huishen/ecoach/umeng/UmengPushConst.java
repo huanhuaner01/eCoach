@@ -82,7 +82,7 @@ public final class UmengPushConst {
 		/**
 		 * 订单语音文件相对位置。
 		 */
-		public static final String PARAM_VOICE_PATH = "voicePath";
+		public static final String PARAM_VOICE_PATH = "audio";
 		/**
 		 * 学员所在纬度。
 		 */

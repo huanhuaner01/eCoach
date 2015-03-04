@@ -113,12 +113,12 @@
                 android:layout_toRightOf="@id/realtime_snapup_img_demand"
                 android:background="@drawable/bkg_realtime_snapup_voice" >
 
-                <ImageButton
-                    android:id="@+id/realtime_snapup_img_voice"
+                <Button
+                    android:id="@+id/realtime_snapup_imgbtn_voice"
                     style="@style/style_common_wrap_wrap"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/icon_realtime_snapup_btn_voice" />
+                    android:drawableLeft="@drawable/icon_realtime_snapup_btn_voice" />
             </RelativeLayout>
         </RelativeLayout>
 

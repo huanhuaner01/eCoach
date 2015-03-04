@@ -24,8 +24,6 @@ public final class NewOrderPushData extends PushData {
 	public final String voicePath;		//语音位置
 	public final double latitude; 		//纬度
 	public final double longitude; 		//经度
-//	public final float distance;		//距离
-//	public final String detailPosition;	//详细地点
 	
 	public NewOrderPushData(Map<String, String> extra) {
 		super(extra);
@@ -36,7 +34,6 @@ public final class NewOrderPushData extends PushData {
 		createTime = getLong(extra, NewOrder.PARAM_CREATETIME);
 		deadline = getLong(extra, NewOrder.PARAM_DEADLINE);
 		voicePath = extra.get(NewOrder.PARAM_VOICE_PATH);
-//		distance = getFloat(extra, NewOrder.PARAM_DISTANCE);
 		latitude = getDouble(extra, NewOrder.PARAM_LATITUDE);
 		longitude = getDouble(extra, NewOrder.PARAM_LONGITUDE);
 	}
@@ -52,8 +49,7 @@ public final class NewOrderPushData extends PushData {
 				.append(content).append(", createTime=").append(sdf.format(createTime))
 				.append(", deadline=").append(sdf.format(deadline)).append(", voicePath=")
 				.append(voicePath).append(", latitude=").append(latitude)
-				.append(", longitude=").append(longitude)/*.append(", distance=")
-				.append(distance)*/.append(", msgType=").append(msgType)
+				.append(", longitude=").append(longitude).append(", msgType=").append(msgType)
 				.append("]");
 		return builder.toString();
 	}
