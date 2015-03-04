@@ -111,7 +111,7 @@ public final class UploadCertifyFragment extends Fragment {
 	
 	private final void submitLastRequest(){
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.Param.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_VERIFIED_PHONE));
+		params.put(SRL.Param.PARAM_MOBILE_NUMBER, Prefs.getString(getActivity(), Const.KEY_REGISTER_VERIFIED_PHONE));
 		params.put(SRL.Param.PARAM_USERNAME, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_NAME));
 		params.put(SRL.Param.PARAM_SCHOOL, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_SCHOOL));
 		params.put(SRL.Param.PARAM_CARNO, Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_CARNO));
@@ -267,7 +267,16 @@ public final class UploadCertifyFragment extends Fragment {
 									startActivityForResult(openCameraIntent,
 											REQUEST_CODE_TAKE_PHOTO + position);
 								} else { // 从相册选择
+//									Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+//									intent.addCategory(Intent.CATEGORY_OPENABLE);
+//									intent.setType("image/jpeg");
+//									if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.KITKAT){                
+//									        startActivityForResult(intent, SELECT_PIC_KITKAT);  
+//									}else{              
+//									        startActivityForResult(intent, SELECT_PIC); 
+//									} 
 									Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+									openAlbumIntent.addCategory(Intent.CATEGORY_OPENABLE);
 				                    openAlbumIntent.setType("image/*");
 									startActivityForResult(openAlbumIntent,
 											REQUEST_CODE_FROM_ALBUM + position);
@@ -384,6 +393,10 @@ public final class UploadCertifyFragment extends Fragment {
 					String path = Uris.getImageFileRealPath(getActivity(), originalUri);
 					entities.get(position).photoPath = path;
 					Log.d(LOG_TAG, "resolved path:" + path);
+					if (path==null){
+						Log.e(LOG_TAG, "ERROR:resolved path is null, originUri="+originalUri);
+						return;
+					}
 					uploadPhoto(new File(path), position);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();

@@ -4,13 +4,16 @@ import java.util.HashMap;
 
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
+import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.logical.PasswordValidator;
 import com.huishen.ecoach.logical.PasswordValidator.ValidateResult;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
+import com.huishen.ecoach.net.ResponseParser;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.util.MsgEncryption;
+import com.huishen.ecoach.util.Prefs;
 import com.huishen.ecoach.util.Uis;
 
 import android.app.Activity;
@@ -80,6 +83,25 @@ public final class VerifyFragment extends Fragment {
 			protected String getRequestMobileParam() {
 				return SRL.Param.PARAM_MOBILE_NUMBER;
 			}
+			
+			@Override
+			protected ResponseListener getResponseListener() {
+				return new ResponseListener() {
+					
+					@Override
+					protected void onSuccess(String arg0) {
+						
+					}
+					
+					@Override
+					protected void onReturnBadResult(int errorCode, String arg0) {
+						if (errorCode==SRL.ReturnCode.ERR_GETVCODE_PHONE_ALREADY_EXIST){
+							Uis.toastShort(getActivity(), "该手机号已存在，您是否需要找回密码？");
+						}
+					}
+				};
+			}
+			
 		};
 		btnVcode.setOnClickListener(vbListener);
 		//手机号逻辑：长度大于0时可以发送验证码
@@ -163,9 +185,10 @@ public final class VerifyFragment extends Fragment {
 			public void onClick(View v) {
 				final String phoneNumber = editPhone.getText().toString();
 				final String pwd = editPassword.getText().toString();
+				final String vcode = editVcode.getText().toString();
 				if ((phoneNumber.length() <= 0) || (pwd.length() <= 0)
 						|| (editConfirmpwd.getText().length() <= 0)
-						|| (editVcode.getText().length() <= 0)) {
+						||  (vcode.length()<= 0)) {
 					Toast.makeText(getActivity(), "请填写所有信息", Toast.LENGTH_SHORT).show();
 					return ;
 				}
@@ -184,7 +207,9 @@ public final class VerifyFragment extends Fragment {
 							R.string.str_register_err_vcode_invalid), Toast.LENGTH_SHORT).show();
 					return ;
 				}
-				NetUtil.requestStringData(SRL.Method.METHOD_VERIFY_VCODE, 
+				HashMap<String, String> params = new HashMap<String, String>();
+				params.put(SRL.Param.PARAM_VCODE, vcode);
+				NetUtil.requestStringData(SRL.Method.METHOD_VERIFY_VCODE, params,
 						new ResponseListener() {
 							
 							@Override
@@ -215,6 +240,8 @@ public final class VerifyFragment extends Fragment {
 
 					@Override
 					protected void onSuccess(String arg0) {
+						String flag = ResponseParser.getStringFromResult(arg0, SRL.ReturnField.FIELD_MOBILE_FLAG);
+						Prefs.setString(getActivity(), Const.KEY_MOBILE_FLAG, flag);
 						if (nsListener != null) {
 							Log.d(LOG_TAG, "Step verify-phone completed.");
 							Uis.toastShort(getActivity(),

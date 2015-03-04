@@ -1,6 +1,7 @@
 package com.huishen.ecoach.ui.login;
 
 import com.huishen.ecoach.Const;
+import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.ui.MainActivity;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
@@ -78,7 +79,7 @@ public class RegisterActivity extends RightSideParentActivity implements
 		tvStepProfile.setEnabled(true);
 		String md5 = MsgEncryption.md5Encryption(pwd);
 		Log.d(LOG_TAG, md5);
-		Prefs.setString(this, Const.KEY_VERIFIED_PHONE, phoneNumber);
+		Prefs.setString(this, Const.KEY_REGISTER_VERIFIED_PHONE, phoneNumber);
 		Prefs.setString(this, Const.KEY_REGISTER_PASSWORD, pwd);
 		Prefs.setString(this, Const.KEY_REGISTER_PASSWORD_MD5, md5);
 		Prefs.setBoolean(this, KEY_STEP_VERIFY_COMPLETED, true);
@@ -103,10 +104,27 @@ public class RegisterActivity extends RightSideParentActivity implements
 	@Override
 	public void onUploadCertifyStepCompleted() {
 		Log.d(LOG_TAG, "all step completed. removing old keys...");
+		MainApp.getInstance().setLoginCoach(getCachedInformation());
 		clearRegisterInformation(this);
 		Prefs.setBoolean(this, Const.KEY_REGISTER_COMPLETED, true);
 		startActivity(MainActivity.getIntent(this));
 		finish();
+	}
+	
+	//TODO add avatar
+	private Coach getCachedInformation(){
+		Coach coach = new Coach();
+		coach.setPhoneNumber(Prefs.getString(this, Const.KEY_REGISTER_VERIFIED_PHONE));
+		coach.setName(Prefs.getString(this, Const.KEY_REGISTER_COACH_NAME));
+		coach.setCarno(Prefs.getString(this, Const.KEY_REGISTER_COACH_CARNO));
+		coach.setSchool(Prefs.getString(this, Const.KEY_REGISTER_COACH_SCHOOL));
+		coach.setCertno(Prefs.getString(this, Const.KEY_REGISTER_COACH_CERTNO));
+		coach.setAuditStatus(Coach.STATUS_AUDITING);
+		coach.setStarLevel(0);
+		coach.setGoodRate(0);
+		coach.setRange(99999);
+		coach.setOrderCount(0);
+		return coach;
 	}
 	
 	/**

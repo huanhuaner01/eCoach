@@ -340,9 +340,13 @@ public final class SRL {
 		 */
 		public static final int ERR_GETVCODE_FAILTOSEND = 1;
 		/**
-		 * 发送验证码时返回：手机号码不存在。
+		 * 找回密码发送验证码时返回：手机号码不存在。
 		 */
 		public static final int ERR_GETVCODE_PHONE_NOT_EXIST = 2;
+		/**
+		 * 注册发送验证码时返回：手机号码已存在。
+		 */
+		public static final int ERR_GETVCODE_PHONE_ALREADY_EXIST = 2;
 		/**
 		 * 重置密码时返回：验证码不匹配。
 		 */
@@ -394,7 +398,7 @@ public final class SRL {
 		//package access
 		protected static final String FIELD_SESSIONID = "sessionid";
 		/**
-		 * 登录返回字段：MobileFlag
+		 * 注册、登录返回字段：MobileFlag
 		 */
 		public static final String FIELD_MOBILE_FLAG = "mobileFlag";
 		/**

@@ -20,7 +20,7 @@ public final class Const {
 
 	/**
 	 * 保存最新登录成功的手机号。同一个设备上验证的手机号不允许多于一个，
-	 * 因此每次都应该替换掉原来的手机号。注意区分该字段和{@link #KEY_VERIFIED_PHONE}的区别。
+	 * 因此每次都应该替换掉原来的手机号。注意区分该字段和{@link #KEY_REGISTER_VERIFIED_PHONE}的区别。
 	 */
 	public static final String KEY_LOGIN_LASTLOGIN_PHONE = "lastLogin";
 	/**
@@ -32,7 +32,7 @@ public final class Const {
 	 * 保存已验证过的手机号，其值为String类型。同一个设备上验证的手机号不允许多于一个，
 	 * 因此每次都应该替换掉原来的手机号。
 	 */
-	public static final String KEY_VERIFIED_PHONE = "verifiedPhone";
+	public static final String KEY_REGISTER_VERIFIED_PHONE = "verifiedPhone";
 	/**
 	 * 保存设备的MobileFlag，其值为String类型。MobileFlag为每次登录的时候使用，每个用户的都不一样，
 	 * 因此只需要在登录时替换掉原有的即可。

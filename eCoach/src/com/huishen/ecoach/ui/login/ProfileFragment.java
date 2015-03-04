@@ -115,9 +115,11 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 			Uis.toastShort(getActivity(), R.string.str_register_err_cert_wronglength);
 			return;
 		}
+		String coachAvatar = Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_AVATAR);
 		//检查照片上传状态
-		if (Prefs.getString(getActivity(), Const.KEY_REGISTER_COACH_AVATAR)==null){
+		if (coachAvatar == null){
 			Uis.toastShort(getActivity(), R.string.str_register_err_noavatar);
+			return;
 		}
 		if (nsListener != null) {
 			Log.d(LOG_TAG, "Step verify-phone completed.");
@@ -200,6 +202,8 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 					@Override
 					public void onError(int httpCode) {
 						Log.e(LOG_TAG, "upload fail!");
+						Uis.toastShort(getActivity(), "上传失败，请重新选择图片");
+						imgAvatar.setImageBitmap(null);
 					}
 
 					@Override
@@ -259,8 +263,8 @@ public final class ProfileFragment extends Fragment implements OnClickListener {
 		 * @param certno
 		 *            证件号
 		 */
-		void onFillProfileStepCompleted(String name, String school,
-				String carno, String certno);
+		void onFillProfileStepCompleted(String name,
+				String school, String carno, String certno);
 	}
 
 }

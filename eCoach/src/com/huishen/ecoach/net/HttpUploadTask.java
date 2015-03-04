@@ -117,18 +117,23 @@ final class HttpUploadTask extends AsyncTask<Void, Void, String>{
 				while ((len = is.read(bytes)) != -1) {
 					dos.write(bytes, 0, len);
 					hasFinished += len;
-					int curprg = (int) (hasFinished*100/(double)file.length());
+					//Hack,文件内容写完后还有较长的尾部。
+					int curprg = (int) (hasFinished*80/(double)file.length());
 					if (curprg != progress){
 						progress = curprg;
 						listener.onProgressChanged(progress);
 					}
 				}
 				is.close();
+				Log.d(LOG_TAG, "File paragragh completed.writing tails...");
 				dos.write(LINE_END.getBytes());
+				listener.onProgressChanged(90);
 				byte[] end_data = (PREFIX + BOUNDARY + PREFIX + LINE_END)
 						.getBytes();
 				dos.write(end_data);
+				listener.onProgressChanged(100);
 				dos.flush();
+				Log.d(LOG_TAG, "All content write completed.");
 				/**
 				 * 获取响应码 200=成功 当响应成功，获取响应的流
 				 */
