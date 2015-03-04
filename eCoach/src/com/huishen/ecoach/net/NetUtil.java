@@ -12,20 +12,25 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ServerError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.util.Prefs;
+import com.huishen.ecoach.util.Uis;
 
 /**
  * 放置与网络相关的快捷方法，并对外隐藏服务器的根地址。
  * 
  * @author Muyangmin
  * @create 2015-2-7
- * @version 1.2 on 2015/03/02 by Muyangmin 修改了 {@link #getAbsolutePath(String)}
+ * @version 1.3 on 2015/03/04 by Muyangmin 增加了对网络错误的用户提示。
+ * 			1.2 on 2015/03/02 by Muyangmin 修改了 {@link #getAbsolutePath(String)}
  *          的访问权限，使得其他要使用网络路径的地方（例如WebView，NetworkImageView等）也可以使用。<br/>
  *          1.1 on 2015/02/28 by Muyangmin 增加了加载图片的方法。<br/>
  *          1.0 基础版本，包含文字请求和文件下载。
@@ -36,6 +41,29 @@ public final class NetUtil {
 	 * 网络请求日志标签。
 	 */
 	private static final String LOG_TAG = "NetRequest";
+	
+	static{//初始化网络监听器。
+		AbsStringRequest.setDefaultErrorListener(new ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				error.printStackTrace();
+				if (error instanceof NoConnectionError){
+					Uis.toastShort(MainApp.getInstance().getApplicationContext(), "没有可用的网络连接");
+				}
+				else if (error instanceof ServerError){
+					Uis.toastShort(MainApp.getInstance().getApplicationContext(), "服务器开小差了，一会儿再试吧");
+				}
+				else if (error instanceof HttpHeaderError){
+					Log.e("NetRequest", "HttpHeaderError:"+error);
+				}
+				
+			}
+		});
+	}
+	
+	//防止被实例化
+	private NetUtil(){}
 	
 	/**
 	 * 将相对路径转换为绝对路径。

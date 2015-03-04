@@ -28,7 +28,8 @@ import com.android.volley.toolbox.StringRequest;
  * 
  * @author Muyangmin
  * @create 2015-2-7
- * @version 1.1 on 2015/02/28 by Muyangmin 修改了超时策略并增加了对Cookie和部分HTTP响应头的处理。</br>
+ * @version 1.2 on 2015/03/03 by Muyangmin 增加了默认ErrorListener的设置方法。<br/>
+ * 			1.1 on 2015/02/28 by Muyangmin 修改了超时策略并增加了对Cookie和部分HTTP响应头的处理。</br>
  * 			1.0 基础版本。
  */
 // package access
@@ -43,7 +44,7 @@ class AbsStringRequest extends StringRequest {
 	 * 默认的异常监听器。由于客户端代码不传递ErrorListener时才会使用这个监听器，
 	 * 故认为用户并不关心本次请求中发生的异常，因此只打印堆栈信息，不做其他操作。
 	 */
-	private static final ErrorListener defaultErrorListener = new ErrorListener() {
+	private static ErrorListener defaultErrorListener = new ErrorListener() {
 
 		@Override
 		public void onErrorResponse(VolleyError error) {
@@ -53,6 +54,16 @@ class AbsStringRequest extends StringRequest {
 			error.printStackTrace();
 		}
 	};
+	
+	/**
+	 * 设置默认的异常监听器。通常是一些网络错误等的监听。
+	 * @param listener 要设置的监听器。如果为null，则不会有任何效果。
+	 */
+	protected static final void setDefaultErrorListener(ErrorListener listener){
+		if (listener!=null){
+			defaultErrorListener = listener;
+		}
+	}
 	
 	/**
 	 * 创建一个新的String网络访问请求，使用POST方式提交参数。
