@@ -182,13 +182,16 @@ public class SplashActivity extends Activity {
 		dotList = new ArrayList<View>();
 		LinearLayout llDots = (LinearLayout)findViewById(R.id.splash_ll_dots);
 		//safety check 
-		int dotnum = llDots.getChildCount();
-		if (pagenum != dotnum){
-			Log.e(LOG_TAG, "UI bug detected: dots!=pages.");
-			throw new RuntimeException("UI bug detected: dots!=pages.");
-		}
-		for (int i=0; i<dotnum; i++){
-			dotList.add(llDots.getChildAt(i));
+//		int dotnum = llDots.getChildCount();
+//		if (pagenum != dotnum){
+//			Log.e(LOG_TAG, "UI bug detected: dots!=pages.");
+//			throw new RuntimeException("UI bug detected: dots!=pages.");
+//		}
+		for (int i=0; i<3; i++){
+			ImageView img= new ImageView(SplashActivity.this, null, R.style.style_splash_viewpager_dot);
+			llDots.addView(img);
+//			dotList.add(llDots.getChildAt(i));
+			dotList.add(img);
 		}
 		
 		SplashAdapter adapter = new SplashAdapter(images);
