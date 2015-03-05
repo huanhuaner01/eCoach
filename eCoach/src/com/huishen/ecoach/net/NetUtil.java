@@ -348,11 +348,25 @@ public final class NetUtil {
 	 */
 	public static final void requestDownloadFile(final String relativePath,
 			final File target, final OnProgressChangedListener listener) {
-		new AsyncTask<Void, Void, Void>() {
+		new AsyncTask<Void, Integer, Void>() {
+			//使用一个内部监听器避免客户端的UI线程调用代码出现异常。
+			private OnProgressChangedListener innerListener = new OnProgressChangedListener() {
+				
+				@Override
+				public void onTaskFinished() {
+					onPostExecute(null);
+				}
+				
+				@Override
+				public void onProgressChanged(int min, int max, int progress) {
+					onProgressUpdate(min, max, progress);
+				}
+			};
+			
 			@Override
 			protected Void doInBackground(Void... params) {
 				SimpleDownloader downloader = new SimpleDownloader();
-				downloader.setOnProgressChangedListener(listener);
+				downloader.setOnProgressChangedListener(innerListener);
 				try {
 					downloader.download(getAbsolutePath(relativePath), target);
 				} catch (IOException e) {
@@ -360,6 +374,12 @@ public final class NetUtil {
 				}
 				return null;
 			}
+			protected void onProgressUpdate(Integer... values) {
+				listener.onProgressChanged(values[0], values[1], values[2]);
+			};
+			protected void onPostExecute(Void result) {
+				listener.onTaskFinished();
+			};
 		}.execute();
 	}
 }
