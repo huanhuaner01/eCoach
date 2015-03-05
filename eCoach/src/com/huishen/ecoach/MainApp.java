@@ -4,6 +4,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.huishen.ecoach.net.LruBitmapCache;
 import com.huishen.ecoach.ui.login.Coach;
@@ -24,6 +25,7 @@ public final class MainApp extends Application {
 	
 	private RequestQueue requestQueue;
 	private ImageLoader mImageLoader;
+	private LocationClient mLocationClient;
 	private String sessionId;
 	
 	//Singleton
@@ -47,6 +49,7 @@ public final class MainApp extends Application {
 		PushAgent.getInstance(instance).setMessageHandler(
 				new CustomUMessageHandler());// 友盟推送
 		SDKInitializer.initialize(this); // 初始化百度地图
+		mLocationClient = new LocationClient(this);
 	}
 
 	/**
@@ -56,6 +59,10 @@ public final class MainApp extends Application {
 		if (requestQueue != null){
 			requestQueue.add(request);
 		}
+	}
+	
+	public final LocationClient getLocationClient(){
+		return mLocationClient;
 	}
 
 	/**

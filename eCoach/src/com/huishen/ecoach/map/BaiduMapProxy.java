@@ -14,6 +14,7 @@ import com.huishen.ecoach.MainApp;
 import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
+import com.huishen.ecoach.util.Prefs;
 
 /**
  * @author Muyangmin
@@ -28,7 +29,11 @@ public final class BaiduMapProxy {
 
 	private BDLocation mCachedLocation;
 	private LocationClient mLocationClient;
-	private boolean islocating = false;
+	
+	//用于将最后获得的地理位置保存到本地文件，降低崩溃率
+	private static final String KEY_CACHED_LAT = "lat";
+	private static final String KEY_CACHED_LNG = "lng";
+	private static final String KEY_CACHED_ADDR = "addr";
 	
 	private BaiduMapProxy() {
 	}
@@ -41,13 +46,12 @@ public final class BaiduMapProxy {
 	 * 发起定位请求。如果重复调用，不会做任何处理。
 	 * @param context 上下文信息。
 	 */
-	public void startLocate(Context context) {
-		if (islocating){
-			Log.d(LOG_TAG, "avoid dumplicate locating request.");
+	public void startLocate(final Context context) {
+		mLocationClient = MainApp.getInstance().getLocationClient();
+		if (mLocationClient.isStarted()){
+			Log.d(LOG_TAG, "LocationClient has started, avoid dumplicate request.");
 			return ;
 		}
-		islocating = true;
-		mLocationClient = new LocationClient(context.getApplicationContext());
 		BDLocationListener myListener = new BDLocationListener() {
 
 			@Override
@@ -59,6 +63,7 @@ public final class BaiduMapProxy {
 						|| type == BDLocation.TypeGpsLocation) {
 					Log.d(LOG_TAG, buildLocationString(location));
 					mCachedLocation = location;
+					saveLocationToLocal(context, location);
 					syncGps(location);
 				}
 			}
@@ -72,9 +77,7 @@ public final class BaiduMapProxy {
 		option.setOpenGps(true);
 		option.setAddrType("all");// 返回的定位结果包含地址信息
 		mLocationClient.setLocOption(option);
-		if (!mLocationClient.isStarted()) {
-			mLocationClient.start();
-		}
+		mLocationClient.start();
 		Log.d(LOG_TAG, "已经开始定位");
 	}
 	
@@ -103,8 +106,30 @@ public final class BaiduMapProxy {
 		});
 	}
 	
+	//将地理信息数据保存到本地文件中
+	private void saveLocationToLocal(Context context, BDLocation location){
+		Prefs.setString(context, KEY_CACHED_ADDR, location.getAddrStr());
+		Prefs.setString(context, KEY_CACHED_LAT, String.valueOf(location.getLatitude()));
+		Prefs.setString(context, KEY_CACHED_LNG, String.valueOf(location.getLongitude()));
+	}
+	
+	//从缓存的本地文件中读取数据。
+	private BDLocation readLocationFromLocal(Context context){
+		BDLocation location = new BDLocation();
+		location.setAddrStr(Prefs.getString(context, KEY_CACHED_ADDR));
+		location.setLatitude(Double.parseDouble(Prefs.getString(context, KEY_CACHED_LAT)));
+		location.setLongitude(Double.parseDouble(Prefs.getString(context, KEY_CACHED_LNG)));
+		return location;
+	}
+	
 	public BDLocation getCachedLocation() {
-		return mCachedLocation;
+		if (mCachedLocation != null){
+			return mCachedLocation;
+		}
+		else {
+			Log.w(LOG_TAG, "no cached location avaliable, return local information.");
+			return readLocationFromLocal(MainApp.getInstance().getApplicationContext());
+		}
 	}
 	
 	private String buildLocationString(BDLocation loc) {
