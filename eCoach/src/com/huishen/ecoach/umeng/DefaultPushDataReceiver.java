@@ -34,6 +34,9 @@ public final class DefaultPushDataReceiver extends BroadcastReceiver {
 		Log.d(LOG_TAG, "default receiver has get message.");
 		PushData data = (PushData) intent
 				.getSerializableExtra(UmengPushConst.EXTRA_PUSHDATA);
+		if (data==null){
+			return ;
+		}
 		Log.d(LOG_TAG, data.toString());
 		switch (data.msgType) {
 		case PushData.TYPE_NEWORDER:			//直接跳转

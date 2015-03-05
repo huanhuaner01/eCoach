@@ -74,9 +74,8 @@ public final class CustomUMessageHandler extends UmengMessageHandler {
 			data = (T) new NewOrderPushData(extra);
 			break;
 			default:
-				data = null;
-				intent = new Intent(UmengPushConst.Action.ACTION_UNKNOWN_PUSHDATA);
-				break;
+				Log.w(LOG_TAG, "unsupported msgType:"+PushData.getPushDataType(extra));
+				return ;
 		}
 		intent.putExtra(UmengPushConst.EXTRA_PUSHDATA, data);
 		context.sendOrderedBroadcast(intent, null);
