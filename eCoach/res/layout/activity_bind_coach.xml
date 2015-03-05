@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:imgctrl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/color_all_bkg"
+    android:padding="@dimen/padding_large"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <com.huishen.ecoach.widget.RoundImageView
+        android:id="@+id/bindcoach_rimg_avatar"
+        android:layout_width="@dimen/common_avatar_width"
+        android:layout_height="@dimen/common_avatar_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_large"
+        android:src="@drawable/default_personal_avatar"
+        imgctrl:border_outside_color="@color/color_common_avatar_border"
+        imgctrl:border_thickness="@dimen/common_avatar_border_width" />
+
+    <LinearLayout
+        android:id="@+id/bindcoach_ll_stuinfo"
+        style="@style/style_common_macth_wrap"
+        android:layout_below="@id/bindcoach_rimg_avatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_large"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_large"
+        android:paddingTop="@dimen/margin_large" >
+
+        <LinearLayout
+            style="@style/style_common_macth_wrap"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/style_bindcoach_tv_itemname"
+                android:text="@string/str_bindcoach_stuname" />
+
+            <TextView
+                android:id="@+id/bindcoach_tv_name"
+                style="@style/style_bindcoach_tv_itemvalue" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/style_common_macth_wrap"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/style_bindcoach_tv_itemname"
+                android:text="@string/str_bindcoach_phone" />
+
+            <TextView
+                android:id="@+id/bindcoach_tv_phone"
+                style="@style/style_bindcoach_tv_itemvalue" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/style_common_macth_wrap"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/style_bindcoach_tv_itemname"
+                android:text="@string/str_bindcoach_addinfo" />
+
+            <TextView
+                android:id="@+id/bindcoach_tv_addinfo"
+                style="@style/style_bindcoach_tv_itemvalue" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/style_common_wrap_wrap"
+        android:layout_below="@id/bindcoach_ll_stuinfo"
+        android:layout_centerHorizontal="true" >
+
+        <Button
+            android:id="@+id/bindcoach_btn_confirm"
+            style="@style/style_common_theme_btn"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:text="@string/str_bindcoach_confirm" />
+
+        <Button
+            android:id="@+id/bindcoach_btn_ignore"
+            style="@style/style_common_theme_btn"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_middle"
+            android:layout_toRightOf="@id/bindcoach_btn_confirm"
+            android:paddingLeft="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:text="@string/str_bindcoach_ignore" />
+    </RelativeLayout>
+
+</RelativeLayout>

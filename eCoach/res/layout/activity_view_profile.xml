@@ -46,8 +46,8 @@
 
             <com.huishen.ecoach.widget.RoundImageView
                 android:id="@+id/viewprofile_rimg_avatar"
-                android:layout_width="@dimen/view_profile_avatar_width"
-                android:layout_height="@dimen/view_profile_avatar_height"
+                android:layout_width="@dimen/common_avatar_width"
+                android:layout_height="@dimen/common_avatar_height"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_xlarge"

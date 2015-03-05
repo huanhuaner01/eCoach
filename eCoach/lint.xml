@@ -10,6 +10,7 @@
     <issue id="InflateParams" severity="ignore" />
     <issue id="Overdraw" severity="ignore" />
     <issue id="RtlHardcoded">
+        <ignore path="res/layout/activity_bind_coach.xml" />
         <ignore path="res/layout/activity_calendar.xml" />
         <ignore path="res/layout/activity_forget_password.xml" />
         <ignore path="res/layout/activity_realtime_snapup.xml" />

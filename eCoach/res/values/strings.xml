@@ -128,7 +128,6 @@
     <!-- 服务协议 -->
     <string name="str_service_info_se">服务条款</string>
     <string name="str_service_info_pri">隐私政策</string>
-
     <string name="str_userguide_tips">【温馨提醒】</string>
     <string name="str_setting_header_personal">个人设置</string>
     <string name="str_setting_menuitem_viewprofile">查看个人资料</string>
@@ -206,28 +205,37 @@
     <string name="str_snap_success_cancelorder">取消订单</string>
     <string name="title_activity_book_setting">设置</string>
     <string name="str_booksetting_confirm">完成</string>
-	<string name="str_booksetting_hint_fillcount">请填写人数</string>
-	<string name="str_booksetting_period_am">上午</string>
-	<string name="str_booksetting_period_pm">下午</string>
-	<string name="str_booksetting_period_night">晚上</string>
-	<string name="str_booksetting_time_am">07:00&#8212;&#8212;12:00</string>
-	<string name="str_booksetting_time_pm">13:00&#8212;&#8212;18:00</string>
-	<string name="str_booksetting_time_night">19:00&#8212;&#8212;20:00</string>
-	<string name="str_appointment_subject2">科目二</string>
-	<string name="str_appointment_subject3">科目三</string>
-	<string-array name="str_appointment_subjectlist">
-	    <item >科目二</item>
-	    <item >科目三</item>
-	</string-array>
-	<string-array name="str_appointment_periodlist">
-	    <item >上午</item>
-	    <item >下午</item>
-	    <item >晚上</item>
-	</string-array>
-	<string name="str_checkupdate_update_avaliable">应用有更新</string>
-	<string name="str_checkupdate_update_unavaliable">应用已是最新版本</string>
-	<!-- 参数说明：参数1=版本号，字符串；参数2=更新说明 -->
-	<string name="str_checkupdate_update_description">新版本：%1$s\n更新说明：%2$s</string>
-	<string name="str_checkupdate_update_now">立即更新</string>
-	<string name="str_checkupdate_update_later">暂不更新</string>
+    <string name="str_booksetting_hint_fillcount">请填写人数</string>
+    <string name="str_booksetting_period_am">上午</string>
+    <string name="str_booksetting_period_pm">下午</string>
+    <string name="str_booksetting_period_night">晚上</string>
+    <string name="str_booksetting_time_am">07:00&#8212;&#8212;12:00</string>
+    <string name="str_booksetting_time_pm">13:00&#8212;&#8212;18:00</string>
+    <string name="str_booksetting_time_night">19:00&#8212;&#8212;20:00</string>
+    <string name="str_appointment_subject2">科目二</string>
+    <string name="str_appointment_subject3">科目三</string>
+
+    <string-array name="str_appointment_subjectlist">
+        <item>科目二</item>
+        <item>科目三</item>
+    </string-array>
+    <string-array name="str_appointment_periodlist">
+        <item>上午</item>
+        <item>下午</item>
+        <item>晚上</item>
+    </string-array>
+
+    <string name="str_checkupdate_update_avaliable">应用有更新</string>
+    <string name="str_checkupdate_update_unavaliable">应用已是最新版本</string>
+    <!-- 参数说明：参数1=版本号，字符串；参数2=更新说明 -->
+    <string name="str_checkupdate_update_description">新版本：%1$s\n更新说明：%2$s</string>
+    <string name="str_checkupdate_update_now">立即更新</string>
+    <string name="str_checkupdate_update_later">暂不更新</string>
+    <string name="title_activity_bind_coach">学员绑定</string>
+    <string name="str_bindcoach_confirm">确认</string>
+    <string name="str_bindcoach_ignore">忽略</string>
+    <string name="str_bindcoach_stuname">学员姓名:</string>
+    <string name="str_bindcoach_phone">电　　话:</string>
+    <string name="str_bindcoach_addinfo">附加信息:</string>
+
 </resources>

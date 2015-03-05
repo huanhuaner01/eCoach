@@ -71,11 +71,15 @@ public final class CustomUMessageHandler extends UmengMessageHandler {
 		Intent intent = new Intent();
 		T data;	//附加数据，通过具体消息类型实例化其子类
 		switch (PushData.getPushDataType(extra)){
-		case PushData.TYPE_NEWORDER:
-			//直接弹出
-			intent = new Intent(UmengPushConst.Action.ACTION_NEWORDER_PUSHDATA);
-			data = (T) new NewOrderPushData(extra);
-			break;
+			case PushData.TYPE_NEWORDER:
+				//直接弹出
+				intent = new Intent(UmengPushConst.Action.ACTION_NEWORDER_PUSHDATA);
+				data = (T) new NewOrderPushData(extra);
+				break;
+			case PushData.TYPE_BINDCOACH:
+				intent = new Intent(UmengPushConst.Action.ACTION_BINDCOACH_PUSHDATA);
+				data = (T) new BindCoachPushData(extra);
+				break;
 			default:
 				Log.w(LOG_TAG, "unsupported msgType:"+PushData.getPushDataType(extra));
 				return ;

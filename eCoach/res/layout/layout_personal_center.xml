@@ -23,8 +23,8 @@
             android:layout_marginTop="@dimen/margin_xlarge"
             android:contentDescription="@string/app_name"
             android:src="@drawable/default_personal_avatar"
-            imgctrl:border_outside_color="#3A898989"
-            imgctrl:border_thickness="4dp" />
+            imgctrl:border_outside_color="@color/color_common_avatar_border"
+            imgctrl:border_thickness="@dimen/common_avatar_border_width" />
 
         <TextView
             android:id="@+id/pcenter_tv_coachname"

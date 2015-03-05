@@ -3,6 +3,7 @@
  */
 package com.huishen.ecoach.umeng;
 
+import com.huishen.ecoach.ui.order.BindCoachActivity;
 import com.huishen.ecoach.ui.order.RealtimeSnapupActivity;
 
 import android.content.BroadcastReceiver;
@@ -46,7 +47,13 @@ public final class DefaultPushDataReceiver extends BroadcastReceiver {
 				context.startActivity(intent);
 			}
 			break;
-
+		case PushData.TYPE_BINDCOACH:
+			if (data instanceof BindCoachPushData){
+				intent = BindCoachActivity.getIntent(context, (BindCoachPushData)data);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				context.startActivity(intent);
+			}
+			break;
 		default:
 			break;
 		}
