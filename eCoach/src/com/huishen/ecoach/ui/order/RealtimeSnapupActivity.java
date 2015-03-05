@@ -19,13 +19,15 @@ import com.huishen.ecoach.net.NetUtil;
 import com.huishen.ecoach.net.OnProgressChangedListener;
 import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
-import com.huishen.ecoach.ui.dialog.MsgDialog;
+import com.huishen.ecoach.ui.dialog.MessageDialogFragment;
+import com.huishen.ecoach.ui.dialog.MessageDialogFragment.OnButtonClickedListener;
 import com.huishen.ecoach.umeng.NewOrderPushData;
 import com.huishen.ecoach.util.FileUtil;
 import com.huishen.ecoach.util.SimpleAudioPlayer;
 import com.huishen.ecoach.util.Uis;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +46,7 @@ import android.widget.TextView;
  * @create 2015-2-28
  */
 public class RealtimeSnapupActivity extends Activity implements
-		android.view.View.OnClickListener {
+		android.view.View.OnClickListener, OnButtonClickedListener {
 
 	private static final String LOG_TAG = "RealtimeSnapupActivity";
 	private static final String EXTRA_NEWORDER = "neworder";
@@ -218,31 +220,36 @@ public class RealtimeSnapupActivity extends Activity implements
 			protected void onReturnBadResult(int errorCode, String arg0) {
 				switch (errorCode) {
 				case SRL.ReturnCode.ERR_ORDER_NOT_EXIST:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this, 
-							R.string.str_realtime_snapup_err_order_notexist);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_realtime_snapup_err_order_notexist)
+							.show(getFragmentManager(), "");
 					break;
 				case SRL.ReturnCode.ERR_ORDER_OUT_OF_DATE:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this, 
-							R.string.str_realtime_snapup_err_order_outofdate);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_realtime_snapup_err_order_outofdate)
+							.show(getFragmentManager(), "");
 					break;
 				case SRL.ReturnCode.ERR_ORDER_NOT_VALID:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this, 
-							R.string.str_realtime_snapup_err_order_notvalid);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_realtime_snapup_err_order_notvalid)
+							.show(getFragmentManager(), "");
 					break;
 				case SRL.ReturnCode.ERR_ORDER_CANCELED:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this, 
-							R.string.str_realtime_snapup_err_order_cancelled);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_realtime_snapup_err_order_cancelled)
+							.show(getFragmentManager(), "");
 					break;
 				case SRL.ReturnCode.ERR_ORDER_SNAPPED_BY_OTHER:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this, 
-							R.string.str_realtime_snapup_err_order_snappedbyother);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_realtime_snapup_err_order_snappedbyother)
+							.show(getFragmentManager(), "");
 					break;
 				default:
-					MsgDialog.showDialog(RealtimeSnapupActivity.this,
-							R.string.str_err_unknown_reason);
+					MessageDialogFragment.newWarningInstance(
+							R.string.str_err_unknown_reason)
+							.show(getFragmentManager(), "");
 					break;
 				}
-				finish();
 			}
 		});
 	}
@@ -266,5 +273,11 @@ public class RealtimeSnapupActivity extends Activity implements
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void onConfirmButtonClicked(DialogFragment fragment) {
+		fragment.dismiss();
+		finish();
 	}
 }

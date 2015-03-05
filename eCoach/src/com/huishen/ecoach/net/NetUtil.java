@@ -350,16 +350,17 @@ public final class NetUtil {
 			final File target, final OnProgressChangedListener listener) {
 		new AsyncTask<Void, Integer, Void>() {
 			//使用一个内部监听器避免客户端的UI线程调用代码出现异常。
+			//XXX 重新封装下载任务
 			private OnProgressChangedListener innerListener = new OnProgressChangedListener() {
 				
 				@Override
 				public void onTaskFinished() {
-					onPostExecute(null);
+					//just do nothing.
 				}
 				
 				@Override
 				public void onProgressChanged(int min, int max, int progress) {
-					onProgressUpdate(min, max, progress);
+					publishProgress(min, max, progress);
 				}
 			};
 			
@@ -375,7 +376,9 @@ public final class NetUtil {
 				return null;
 			}
 			protected void onProgressUpdate(Integer... values) {
-				listener.onProgressChanged(values[0], values[1], values[2]);
+				if (listener!=null){
+					listener.onProgressChanged(values[0], values[1], values[2]);
+				}
 			};
 			protected void onPostExecute(Void result) {
 				listener.onTaskFinished();
