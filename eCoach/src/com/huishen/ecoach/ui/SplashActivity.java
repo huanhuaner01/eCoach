@@ -3,12 +3,21 @@ package com.huishen.ecoach.ui;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
+import com.huishen.ecoach.net.NetUtil;
+import com.huishen.ecoach.net.ResponseListener;
+import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.login.LoginActivity;
+import com.huishen.ecoach.util.Packages;
 import com.huishen.ecoach.util.Prefs;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,23 +56,78 @@ public class SplashActivity extends Activity {
 		if (!firstuse){
 			viewPager.setVisibility(View.INVISIBLE);
 			findViewById(R.id.splash_ll_dots).setVisibility(View.INVISIBLE);
-			handler.sendEmptyMessageDelayed(SplashHandler.MSG_JUMP_TO_NEXT,
+			handler.sendEmptyMessageDelayed(SplashHandler.MSG_UI_FINISHED,
 					getResources().getInteger(R.integer.splash_min_displaytime));
 		}
 		else{
 			initViewPager();
 		}
+//		checkSoftwareUpdate();
+	}
+	
+	private void checkSoftwareUpdate(){
+		NetUtil.requestStringData(SRL.Method.METHOD_CHECK_UPDATE, new ResponseListener() {
+			
+			@Override
+			protected void onSuccess(String arg0) {
+				try {
+					JSONObject json = new JSONObject(arg0);
+					int servercode = json.getInt(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONCODE);
+					int localcode = Packages.getVersioCode(SplashActivity.this);
+					if (servercode <= localcode){
+						Log.d(LOG_TAG, "No avaliable update found.");
+						return;
+					}
+					final boolean forceUpdate = json.optBoolean(SRL.ReturnField.FIELD_UPDATE_FORCE_UPDATE);
+					new AlertDialog.Builder(SplashActivity.this).setTitle(getString(R.string.str_checkupdate_update_avaliable))
+					.setMessage(getString(R.string.str_checkupdate_update_description, json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONNAME), json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONDESC)))
+					.setPositiveButton(R.string.str_checkupdate_update_now, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							performUpdate();
+						}
+					}).setPositiveButton(R.string.str_checkupdate_update_later, new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							if (forceUpdate){
+								finish();
+							}
+							else{
+								//TODO finish logic
+							}
+						}
+					}).create();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			@Override
+			protected void onReturnBadResult(int errorCode, String arg0) {
+				
+			}
+		});
+	}
+	
+	private void performUpdate(){
+		
 	}
 	
 	private static final class SplashHandler extends Handler{
 		
 		WeakReference<SplashActivity> wk;
 		
+		//使用该标记保证用户的强制更新
+		private boolean noUpdateAvaliable = false;
+		private boolean uiPerformFinished = false;
+		
 		SplashHandler(WeakReference<SplashActivity> wk) {
 			this.wk = wk;
 		}
-
-		private static final int MSG_JUMP_TO_NEXT = 1;
+		private static final int MSG_UI_FINISHED = 1;
+		private static final int MSG_NO_UPDATE = 2;
 		
 		@Override
 		public void handleMessage(Message msg) {
@@ -74,10 +138,18 @@ public class SplashActivity extends Activity {
 				return ;
 			}
 			switch (msg.what) {
-			case MSG_JUMP_TO_NEXT:
-				activity.startNextActivity();
+			case MSG_UI_FINISHED:
+//				uiPerformFinished = true;
+//				if (noUpdateAvaliable){
+					activity.startNextActivity();
+//				}
 				break;
-
+			case MSG_NO_UPDATE:
+				noUpdateAvaliable = true;
+				if (uiPerformFinished){
+					activity.startNextActivity();
+				}
+				break;
 			default:
 				break;
 			}
@@ -136,7 +208,8 @@ public class SplashActivity extends Activity {
 				if (arg0==pagenum-1 && !hasJumped){
 					Log.d(LOG_TAG, "on page last");
 					hasJumped = true;
-					startNextActivity();
+					//using handler to force update.
+					handler.sendEmptyMessage(SplashHandler.MSG_UI_FINISHED);
 				}
 			}
 			

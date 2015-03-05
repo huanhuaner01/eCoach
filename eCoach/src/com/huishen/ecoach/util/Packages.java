@@ -13,7 +13,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
  */
 public final class Packages {
 	/**
-	 * 获得当前应用的版本号。
+	 * 获得当前应用的版本名称。
 	 * 
 	 * @return 返回应用版本号；如果未获取到，返回null。
 	 */
@@ -22,11 +22,11 @@ public final class Packages {
 	}
 
 	/**
-	 * 获得指定应用的版本号。
+	 * 获得指定应用的版本名称。
 	 * 
 	 * @param pkgname
 	 *            应用包名。
-	 * @return 返回应用版本号；如果未获取到，返回null。
+	 * @return 返回应用版本名称；如果未获取到，返回null。
 	 */
 	public static final String getVersionName(Context context, String pkgname) {
 		try {
@@ -38,6 +38,32 @@ public final class Packages {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	/**
+	 * 获得当前应用的版本号。
+	 * 
+	 * @return 返回应用版本号。
+	 */
+	public static final int getVersioCode(Context context) {
+		return getVersionCode(context, context.getPackageName());
+	}
 
+	/**
+	 * 获得指定应用的版本号。
+	 * 
+	 * @param pkgname
+	 *            应用包名。
+	 * @return 返回应用版本号；如果未获取到，返回-1。
+	 */
+	public static final int getVersionCode(Context context, String pkgname) {
+		try {
+			PackageManager manager = context.getPackageManager();
+			PackageInfo info = manager.getPackageInfo(pkgname, 0);
+			int version = info.versionCode;
+			return version;
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }

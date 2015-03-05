@@ -128,25 +128,6 @@
     <!-- 服务协议 -->
     <string name="str_service_info_se">服务条款</string>
     <string name="str_service_info_pri">隐私政策</string>
-    <string name="str_userguide_punish">【爽约处罚】</string>
-    <string name="str_userguide_punish_content">这是一个简单的应用程序以至于程序员花了三个月的时间来完成它。</string>
-    <string name="str_userguide_list_header_times">近10次订单中爽约次数</string>
-    <string name="str_userguide_list_header_solutions">处罚方法</string>
-
-    <string-array name="str_userguide_list_times">
-        <item>1次</item>
-        <item>2次</item>
-        <item>3次</item>
-        <item>4次</item>
-        <item>5次</item>
-    </string-array>
-    <string-array name="str_userguide_list_solutions">
-        <item>书面警告</item>
-        <item>记过</item>
-        <item>记大过</item>
-        <item>留校察看</item>
-        <item>开除</item>
-    </string-array>
 
     <string name="str_userguide_tips">【温馨提醒】</string>
     <string name="str_setting_header_personal">个人设置</string>
@@ -243,4 +224,10 @@
 	    <item >下午</item>
 	    <item >晚上</item>
 	</string-array>
+	<string name="str_checkupdate_update_avaliable">应用有更新</string>
+	<string name="str_checkupdate_update_unavaliable">应用已是最新版本</string>
+	<!-- 参数说明：参数1=版本号，字符串；参数2=更新说明 -->
+	<string name="str_checkupdate_update_description">新版本：%1$s\n更新说明：%2$s</string>
+	<string name="str_checkupdate_update_now">立即更新</string>
+	<string name="str_checkupdate_update_later">暂不更新</string>
 </resources>

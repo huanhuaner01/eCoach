@@ -18,6 +18,11 @@ public final class SRL {
 	 * @create 2015-2-20
 	 */
 	public static final class Method{
+		
+		/**
+		 * 检查软件更新。
+		 */
+		public static final String METHOD_CHECK_UPDATE = "/cohMobile/checkupdate";
 
 		/**
 		 * 完善注册信息(第三步保存操作)
@@ -96,7 +101,7 @@ public final class SRL {
 		/**
 		 * 提交用户的意见反馈。
 		 */
-		public static final String METHOD_FEEDBACK = "";
+		public static final String METHOD_FEEDBACK = "/cohMobile/feedback";
 		
 		/**
 		 * 查询教练的抢单状态。
@@ -397,6 +402,28 @@ public final class SRL {
 	public static final class ReturnField{
 		//package access
 		protected static final String FIELD_SESSIONID = "sessionid";
+		
+		/**
+		 * 检查版本更新时返回，安装包下载路径。
+		 */
+		public static final String FIELD_UPDATE_APK_PATH = "";
+		/**
+		 * 检查版本更新时返回，版本名。
+		 */
+		public static final String FIELD_UPDATE_SERVER_VERSIONNAME = "";
+		/**
+		 * 检查版本更新时返回，版本号。
+		 */
+		public static final String FIELD_UPDATE_SERVER_VERSIONCODE = "";
+		/**
+		 * 检查版本更新时返回，版本描述。
+		 */
+		public static final String FIELD_UPDATE_SERVER_VERSIONDESC = "";
+		/**
+		 * 检查版本更新时返回，是否强制更新。
+		 */
+		public static final String FIELD_UPDATE_FORCE_UPDATE = "";
+		
 		/**
 		 * 注册、登录返回字段：MobileFlag
 		 */
