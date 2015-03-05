@@ -1,5 +1,8 @@
 package com.huishen.ecoach;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -12,6 +15,7 @@ import com.huishen.ecoach.umeng.CustomUMessageHandler;
 import com.umeng.message.PushAgent;
 
 import android.app.Application;
+import android.util.Log;
 
 /**
  * 继承Application类，实现应用全局变量的管理，及部分第三方库的初始化工作。
@@ -22,6 +26,9 @@ public final class MainApp extends Application {
 	
 	private static MainApp instance;
 	private Coach loginCoach = null;
+	
+	private static final String LOGIN_OBJECT_FILE = "weaklogin.ekq";	//confusing file name for safety
+	private static final String LOG_TAG = "MainApp";
 	
 	private RequestQueue requestQueue;
 	private ImageLoader mImageLoader;
@@ -91,11 +98,41 @@ public final class MainApp extends Application {
 	 * 获取当前已登录的教练的信息。如果没有设置，返回null。
 	 */
 	public Coach getLoginCoach() {
+		if (loginCoach == null){
+			Log.w(LOG_TAG, "No active login information, read it from local.");
+			loginCoach = readLoginInformation();
+			Log.d(LOG_TAG, "weak login:" + loginCoach.toString());
+		}
 		return loginCoach;
 	}
 
 	public void setLoginCoach(Coach loginCoach) {
-		this.loginCoach = loginCoach;
+		if (loginCoach!=null){
+			this.loginCoach = loginCoach;
+			saveLoginInformation(loginCoach);			
+		}
+	}
+	
+	private final void saveLoginInformation(Coach coach){
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(openFileOutput(LOGIN_OBJECT_FILE, MODE_PRIVATE));
+			oos.writeObject(coach);
+			oos.close();
+		} catch (Exception e) {
+			Log.w(LOG_TAG, "Cannot write object into file.");
+		}
+	}
+	
+	private final Coach readLoginInformation(){
+		try {
+			ObjectInputStream ois = new ObjectInputStream(openFileInput(LOGIN_OBJECT_FILE));
+			Coach weaklogin = (Coach) ois.readObject();
+			ois.close();
+			return weaklogin;
+		} catch (Exception e) {
+			Log.w(LOG_TAG, "Cannot read object into file.");
+			return null;
+		}
 	}
 
 }

@@ -127,8 +127,9 @@ public final class BaiduMapProxy {
 			return mCachedLocation;
 		}
 		else {
-			Log.w(LOG_TAG, "no cached location avaliable, return local information.");
-			return readLocationFromLocal(MainApp.getInstance().getApplicationContext());
+			BDLocation local = readLocationFromLocal(MainApp.getInstance().getApplicationContext());
+			Log.w(LOG_TAG, "no cached location avaliable, return local information."+buildLocationString(local));
+			return local;
 		}
 	}
 	
