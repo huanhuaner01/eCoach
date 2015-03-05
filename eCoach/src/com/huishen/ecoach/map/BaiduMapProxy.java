@@ -28,6 +28,7 @@ public final class BaiduMapProxy {
 
 	private BDLocation mCachedLocation;
 	private LocationClient mLocationClient;
+	private boolean islocating = false;
 	
 	private BaiduMapProxy() {
 	}
@@ -36,7 +37,16 @@ public final class BaiduMapProxy {
 		return instance;
 	}
 
+	/**
+	 * 发起定位请求。如果重复调用，不会做任何处理。
+	 * @param context 上下文信息。
+	 */
 	public void startLocate(Context context) {
+		if (islocating){
+			Log.d(LOG_TAG, "avoid dumplicate locating request.");
+			return ;
+		}
+		islocating = true;
 		mLocationClient = new LocationClient(context.getApplicationContext());
 		BDLocationListener myListener = new BDLocationListener() {
 

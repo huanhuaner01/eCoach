@@ -100,9 +100,16 @@ public class RealtimeSnapupActivity extends Activity implements
 		imgbtnClose.setOnClickListener(this);
 		btnSnapup.setOnClickListener(this);
 		BDLocation currentLocation = BaiduMapProxy.getInstance().getCachedLocation();
-		double distanceMeters = DistanceCalculator.GetLongDistance(
+		double distanceMeters;
+		if (currentLocation==null){
+			Log.w(LOG_TAG, "currentLocation is null");
+			distanceMeters = 0;
+		}
+		else{
+			distanceMeters = DistanceCalculator.GetLongDistance(
 				orderData.longitude, orderData.latitude,
 				currentLocation.getLongitude(), currentLocation.getLatitude());
+		}
 		tvDistance.setText(String.format(
 				getString(R.string.str_realtime_snapup_distance),
 				distanceMeters / 1000));

@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		refreshSnapupStatus();
 		displayLoginInfo();
 		UmengServiceProxy.startPushService(this);
-		BaiduMapProxy.getInstance().startLocate(this);
+		BaiduMapProxy.getInstance().startLocate(this);//开始自动定位
 	}
 	
 	/**
@@ -132,6 +132,10 @@ public class MainActivity extends Activity implements OnClickListener{
 	private final void refreshSnapupStatus(){
 		//如果教练未通过审核，则无需查询
 		final Coach coach = MainApp.getInstance().getLoginCoach();
+		if (coach==null){
+			Log.w(LOG_TAG, "This coach information is null. Skiping query status.");
+			return ;
+		}
 		if (coach.getAuditStatus() != Coach.STATUS_AUDIT_PASS){
 			Log.d(LOG_TAG, "This coach hasn't pass audit yet. Skiping query status.");
 			return ;

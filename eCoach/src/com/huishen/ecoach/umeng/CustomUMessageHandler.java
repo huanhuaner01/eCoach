@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.huishen.ecoach.map.BaiduMapProxy;
 import com.umeng.message.UmengMessageHandler;
 import com.umeng.message.entity.UMessage;
 
@@ -37,6 +38,8 @@ public final class CustomUMessageHandler extends UmengMessageHandler {
 		Map<String, String> args = resolveCustomMsg(msg.custom);
 		if (args!=null){
 			Log.d(LOG_TAG, args.toString());
+			//尽早发起定位请求，避免后台收到订单后无法获取教练信息
+			BaiduMapProxy.getInstance().startLocate(context);
 			dispatchMessage(context, args);	
 		}
     }
@@ -80,8 +83,6 @@ public final class CustomUMessageHandler extends UmengMessageHandler {
 		intent.putExtra(UmengPushConst.EXTRA_PUSHDATA, data);
 		context.sendOrderedBroadcast(intent, null);
 		Log.d(LOG_TAG, "dispatch message : send broadcast completed.");
-		// 更新数量广播，否则，在“我的”页面，收到了信息，却未更新数量
-//		Intent ai = new Intent(Const.TDB_HP_NUM_REFRESH_ACTION);
-//		context.sendBroadcast(ai);
+		// 可以发出广播更新其他数据
 	}
 }
