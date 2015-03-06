@@ -1,11 +1,14 @@
 package com.huishen.ecoach.ui.appointment;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import android.widget.ExpandableListAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,6 +71,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	private boolean isSection = false; // 是否使用选区
 	
 	private ArrayList<SubjectCfg> subjectCfgs;	//保存科目的时间、限约人数等设置。
+	private Map<String, ArrayList<AppointSubject>> cachedDateAppointMap;	//保存每天的数据
 	
 	/**
 	 * 获得一个没有选区的Intent。
@@ -90,7 +94,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	 */
 	public static final Intent getIntent(Context context, String beginDate,
 			String endDate) {
-		if (!(beginDate.matches("yyyy-MM-dd") && endDate.matches("yyyy-MM-dd"))) {
+		if (!(beginDate.matches("\\d{4}-\\d{2}-\\d{2}") && endDate.matches("\\d{4}-\\d{2}-\\d{2}"))) {
 			throw new IllegalArgumentException(
 					"Date params must match yyyy-MM-dd pattern!");
 		}
@@ -111,6 +115,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			endDate = getIntent().getStringExtra(EXTRA_END_DATE);
 			Log.d(LOG_TAG, "beginDate:" + beginDate + ",endDate:" + endDate);
 		}
+		cachedDateAppointMap = new HashMap<String, ArrayList<AppointSubject>>();
 		registView();
 		initCalendar();
 		getAppointPeriodCfg();
@@ -125,7 +130,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 					JSONObject json = new JSONObject(ResponseParser
 									.getStringFromResult(arg0,SRL.ReturnField.FIELD_INFO));
 					parseAppointConfig(json);
-					refreshAppointTables(2015, 3, 3);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -170,12 +174,20 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	/**
 	 * 查询指定日期的预约学员列表并刷新列表数据。
 	 * @param year 年
-	 * @param month 月
+	 * @param month 月（自然月，1，2，3，。。。）
 	 * @param day 日
 	 */
 	private final void refreshAppointTables(int year, int month, int day){
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(SRL.Param.PARAM_APPOINT_DATE, String.format("%1$d-%2$d-%3$d", year, month, day));
+		final String date = String.format(Locale.US, "%1$d-%2$d-%3$d", year, month, day);
+		if (cachedDateAppointMap.containsKey(date)){
+			Log.d(LOG_TAG, "Specified day["+date+"] already in cached map. skipping net request...");
+			((AppointmentListAdapter) expListView
+					.getExpandableListAdapter())
+					.refreshData(cachedDateAppointMap.get(date));
+			return;
+		}
+		params.put(SRL.Param.PARAM_APPOINT_DATE, date);
 		NetUtil.requestStringData(SRL.Method.METHOD_QUERY_APPOINT_STULIST, params, new ResponseListener() {
 			
 			@Override
@@ -183,8 +195,15 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 				try {
 					JSONArray array = new JSONArray(ResponseParser
 							.getStringFromResult(arg0, SRL.ReturnField.FIELD_INFO));
-					buildAppointTableData(array);
-					expListView.setAdapter(buildAppointTableData(array));
+					if(expListView.getExpandableListAdapter()==null){
+						expListView.setAdapter(new AppointmentListAdapter(buildAppointTableData(date, array)));
+					}
+					else{
+						((AppointmentListAdapter) expListView
+								.getExpandableListAdapter())
+								.refreshData(buildAppointTableData(date,
+										array));
+					}
 				} catch (JSONException e) {
 					Uis.toastShort(CalendarActivity.this, "Fuck beautiful");
 				}
@@ -197,10 +216,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		});
 	}
 	
-	private final ExpandableListAdapter buildAppointTableData(JSONArray array) throws JSONException{
-		String[] subjects = getResources().getStringArray(R.array.str_appointment_subjectlist);
-		String[] periods = getResources().getStringArray(R.array.str_appointment_periodlist);
-		ArrayList<AppointSubject> subjectList = new ArrayList<CalendarActivity.AppointSubject>(subjects.length);
+	private final ArrayList<AppointSubject> buildAppointTableData(String date,
+			JSONArray array) throws JSONException {
+		String[] subjects = getResources().getStringArray(
+				R.array.str_appointment_subjectlist);
+		String[] periods = getResources().getStringArray(
+				R.array.str_appointment_periodlist);
+		ArrayList<AppointSubject> subjectList = new ArrayList<CalendarActivity.AppointSubject>(
+				subjects.length);
 		for (int i=0; i<subjects.length; i++){
 			ArrayList<AppointPeriod> periodList = new ArrayList<CalendarActivity.AppointPeriod>();
 			SubjectCfg cfg = subjectCfgs.get(i);
@@ -225,7 +248,9 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			subjectList.get(subjectIndex).getPeriodList().get(periodIndex).studentList
 					.add(new AppointStudent(name, phone));
 		}
-		return new AppointmentListAdapter(subjectList);
+		cachedDateAppointMap.put(date, subjectList);
+		return subjectList;
+//		return new AppointmentListAdapter(subjectList);
 	}
 	
 
@@ -358,7 +383,19 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	 */
 	@Override
 	public void resultdata(String data) {
-		Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+//		Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
+//		refreshAppointTables(year, month, day);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.US); //Hacking
+		try {
+			Date date = sdf.parse(data);
+			Calendar calendar = GregorianCalendar.getInstance();
+			calendar.setTime(date);
+			refreshAppointTables(calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH) + 1,
+					calendar.get(Calendar.DAY_OF_MONTH));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -430,7 +467,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	 * @author Muyangmin
 	 * @create 2015-2-26
 	 */
-	private final class AppointmentListAdapter implements ExpandableListAdapter{
+	private final class AppointmentListAdapter extends BaseExpandableListAdapter{
 		
 		private ArrayList<AppointSubject> subjects;		//科目数
 
@@ -439,6 +476,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 				throw new NullPointerException("params cannot be null");
 			}
 			this.subjects = subjects;
+		}
+		
+		//刷新数据
+		public void refreshData(ArrayList<AppointSubject> subjects){
+			if (subjects!=null){
+			this.subjects = subjects;
+				notifyDataSetChanged(); 
+			}
 		}
 
 		@Override
@@ -563,7 +608,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 						getResources().getColor(R.color.color_theme_orange));
 				int start = matcher.start();
 				int end = matcher.end();
-				Log.d(LOG_TAG, "start=" + start + ", end=" + end);
+//				Log.d(LOG_TAG, "start=" + start + ", end=" + end);
 				ssb.setSpan(span, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 			}
 			return ssb;

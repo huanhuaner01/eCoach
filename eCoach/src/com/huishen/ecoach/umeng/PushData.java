@@ -25,6 +25,10 @@ public abstract class PushData implements Serializable {
 	 * 新订单推送。
 	 */
 	public static final int TYPE_NEWORDER = 1001;
+	/**
+	 * 绑定教练推送。
+	 */
+	public static final int TYPE_BINDCOACH = 1002;
 	
 	public final int msgType; // 消息类型
 

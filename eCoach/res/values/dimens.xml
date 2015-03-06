@@ -37,11 +37,11 @@
     <dimen name="common_reddot_width">5dp</dimen>
     <dimen name="common_reddot_height">5dp</dimen>
     
-    <!-- slide bar dimensions -->
     <dimen name="pcenter_avatar_width">100dp</dimen>
     <dimen name="pcenter_avatar_height">100dp</dimen>
-    <dimen name="view_profile_avatar_width">85dp</dimen>
-    <dimen name="view_profile_avatar_height">85dp</dimen>
+    <dimen name="common_avatar_width">85dp</dimen>
+    <dimen name="common_avatar_height">85dp</dimen>
+    <dimen name="common_avatar_border_width">4dp</dimen>
     
     <!-- library dimens -->
     <dimen name="calendar_padding_middle">7dp</dimen>

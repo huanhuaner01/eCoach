@@ -47,6 +47,10 @@ public final class UmengPushConst {
 		 * 新订单提醒。
 		 */
 		public static final String ACTION_NEWORDER_PUSHDATA = "com.huishen.ecoach.NEW_ORDER";
+		/**
+		 * 学院绑定教练提醒。
+		 */
+		public static final String ACTION_BINDCOACH_PUSHDATA = "com.huishen.ecoach.BIND_COACH";
 	}
 	
 	/**
@@ -99,5 +103,41 @@ public final class UmengPushConst {
 		 * 学员距离远近。
 		 */
 		public static final String PARAM_DISTANCE = "distance";
+		/**
+		 * 学员手机。
+		 */
+		public static final String PARAM_PHONE = "phone";
 	}
+	
+	/**
+	 * 绑定教练推送信息。
+	 * @author Muyangmin
+	 * @create 2015-3-5
+	 */
+	protected static final class BindCoach{
+		/**
+		 * 学员ID。
+		 */
+		public static final String PARAM_ID = "stuId";
+		/**
+		 * 学员报名ID。
+		 */
+		public static final String PARAM_ENROLLID = "stuEnrollId";
+		/**
+		 * 学员头像路径。
+		 */
+		public static final String PARAM_AVATAR = "stuPic";
+		/**
+		 * 学员姓名。
+		 */
+		public static final String PARAM_NAME = "stuName";
+		/**
+		 * 绑定附加信息。
+		 */
+		public static final String PARAM_ADDI_INFO = "content";
+		/**
+		 * 学员手机号。
+		 */
+		public static final String PARAM_PHONE = "phone";
+	} 
 }

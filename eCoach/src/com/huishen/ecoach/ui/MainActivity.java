@@ -2,6 +2,7 @@ package com.huishen.ecoach.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -300,7 +301,15 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.main_tv_book_manage:
 			if (checkAuditStatus()){
-				startActivity(CalendarActivity.getIntent(this));
+//				startActivity(CalendarActivity.getIntent(this));
+				Calendar calendar = GregorianCalendar.getInstance(Locale.CHINA);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+				String begin = sdf.format(calendar.getTime());
+				calendar.add(Calendar.DAY_OF_MONTH,
+						getResources().getInteger(R.integer.calendar_appoint_datelimit)-1);
+				String end = sdf.format(calendar.getTime());
+				Log.d(LOG_TAG, "begin="+begin+",end="+end);
+				startActivity(CalendarActivity.getIntent(this, begin, end));
 			}
 			break;
 		case R.id.main_tv_snapup:

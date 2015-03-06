@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.huishen.ecoach"
     android:versionCode="1000"
-    android:versionName="1.0.0Beta" >
+    android:versionName="1.0.0 Beta" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -137,70 +137,71 @@
         </activity>
         <activity
             android:name=".ui.pcenter.SettingActivity"
-            android:label="@string/title_activity_setting" 
+            android:label="@string/title_activity_setting"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.pcenter.ViewProfileActivity"
-            android:label="@string/title_activity_view_profile" 
+            android:label="@string/title_activity_view_profile"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.pcenter.ModifyPasswordActivity"
-            android:label="@string/title_activity_modify_password" 
+            android:label="@string/title_activity_modify_password"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.pcenter.FeedbackActivity"
-            android:label="@string/title_activity_feedback" 
+            android:label="@string/title_activity_feedback"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.pcenter.AboutUsActivity"
-            android:label="@string/title_activity_about_us" 
+            android:label="@string/title_activity_about_us"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.msg.MessageActivity"
-            android:label="@string/title_activity_message" 
+            android:label="@string/title_activity_message"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.order.OrderListActivity"
-            android:label="@string/title_activity_order_list" 
+            android:label="@string/title_activity_order_list"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.order.OrderStateActivity"
-            android:label="@string/title_activity_order_state" 
+            android:label="@string/title_activity_order_state"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.order.ComplaintActivity"
-            android:label="@string/title_activity_complaint" 
+            android:label="@string/title_activity_complaint"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.appointment.CalendarActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.login.ForgetPasswordActivity"
-            android:label="@string/title_activity_forget_password" 
+            android:label="@string/title_activity_forget_password"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ui.order.RealtimeSnapupActivity"
             android:label="@string/title_activity_realtime_snapup"
-            android:theme="@style/DialogActivityNoTitlebar" 
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogActivityNoTitlebar" >
         </activity>
 
         <receiver android:name=".umeng.DefaultPushDataReceiver" >
             <intent-filter>
                 <action android:name="com.huishen.ecoach.UNKNOWN_PUSHDATA" />
                 <action android:name="com.huishen.ecoach.NEW_ORDER" />
+                <action android:name="com.huishen.ecoach.BIND_COACH" />
             </intent-filter>
         </receiver>
         <!-- 友盟推送相关组件 BEGIN -->
@@ -279,13 +280,18 @@
 
         <activity
             android:name=".ui.order.SnapSuccessActivity"
-            android:label="@string/title_activity_snap_success" 
+            android:label="@string/title_activity_snap_success"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.appointment.BookSettingActivity"
-            android:label="@string/title_activity_book_setting" 
+            android:name=".ui.appointment.BookSettingActivity"
+            android:label="@string/title_activity_book_setting"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.order.BindCoachActivity"
+            android:label="@string/title_activity_bind_coach"
+            android:theme="@style/DialogActivityNoTitlebar" >
         </activity>
     </application>
 

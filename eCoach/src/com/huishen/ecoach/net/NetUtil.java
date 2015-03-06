@@ -1,13 +1,11 @@
 package com.huishen.ecoach.net;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -348,18 +346,27 @@ public final class NetUtil {
 	 */
 	public static final void requestDownloadFile(final String relativePath,
 			final File target, final OnProgressChangedListener listener) {
-		new AsyncTask<Void, Void, Void>() {
+		final String url = getAbsolutePath(relativePath);
+		new SimpleDownloadTask(target, url){
 			@Override
-			protected Void doInBackground(Void... params) {
-				SimpleDownloader downloader = new SimpleDownloader();
-				downloader.setOnProgressChangedListener(listener);
-				try {
-					downloader.download(getAbsolutePath(relativePath), target);
-				} catch (IOException e) {
-					e.printStackTrace();
+			protected void onPostExecute(Boolean result) {
+				super.onPostExecute(result);
+				if (result){
+					Log.i(LOG_TAG, "File download finished:"+url);
+					listener.onTaskFinished();
 				}
-				return null;
+				else{
+					Log.i(LOG_TAG, "File download failed:"+url);
+					listener.onTaskFailed();
+				}
 			}
+			@Override
+			protected void onProgressUpdate(Integer... values) {
+				if (values.length != 3){
+					throw new IllegalArgumentException("required param lost.");
+				}
+				listener.onProgressChanged(values[0], values[1], values[2]);
+			};
 		}.execute();
 	}
 }

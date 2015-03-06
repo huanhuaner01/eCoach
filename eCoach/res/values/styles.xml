@@ -422,6 +422,23 @@
         <item name="android:textColor">#D2D2D2</item>
         <item name="android:textSize">@dimen/txtsize_middle</item>
     </style>
+    
+    <style name="style_bindcoach_tv_itemname">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="android:textSize">@dimen/txtsize_default</item>
+        <item name="android:textColor">#FF6600</item>
+    </style>
+        <style name="style_bindcoach_tv_itemvalue">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="android:textSize">@dimen/txtsize_default</item>
+        <item name="android:textColor">#474747</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

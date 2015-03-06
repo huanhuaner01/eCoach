@@ -19,20 +19,26 @@ import com.huishen.ecoach.util.Uis;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class SnapSuccessActivity extends NewIntentParentActivity {
+public class SnapSuccessActivity extends NewIntentParentActivity implements OnClickListener{
 	
 	private static final String EXTRA_PUSHDATA = "succorder";
 	private static final String EXTRA_STUPOSITION = "stupos";
 	private static final String EXTRA_DISTANCE = "distance";
 	
+	private static final String LOG_TAG = "SnapSuccessActivity";
+	
 	private TextView tvStuPosition, tvCoachPosition;
 	private Button btnComplaint;
+	private ImageButton imgbtnCall;
 	private MapView mMapView;
 	private BaiduMap mBaiduMap;
 	private NewOrderPushData orderPushData;
@@ -70,15 +76,15 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 		tvStuPosition = (TextView)findViewById(R.id.snap_success_tv_stu_postiion);
 		tvCoachPosition = (TextView)findViewById(R.id.snap_success_tv_coach_postiion);
 		btnComplaint = (Button)findViewById(R.id.snap_success_btn_complaint);
-		btnComplaint.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				Uis.toastShort(SnapSuccessActivity.this, R.string.str_feature_unsupported);
-			}
-		});
-		tvStuPosition.setText(stuPosition);
+		imgbtnCall = (ImageButton)findViewById(R.id.snap_success_imgbtn_makecall);
+		btnComplaint.setOnClickListener(this);
+		imgbtnCall.setOnClickListener(this);
 		
+		tvStuPosition.setText(stuPosition);
+		drawMap();
+	}
+	
+	private void drawMap(){
 		BDLocation location = BaiduMapProxy.getInstance().getCachedLocation();
 		tvCoachPosition.setText(location.getAddrStr());
 		
@@ -142,5 +148,28 @@ public class SnapSuccessActivity extends NewIntentParentActivity {
 		mBaiduMap.setMyLocationEnabled(false);
 		mMapView.onDestroy();
 		mMapView = null;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.snap_success_btn_complaint:
+			Uis.toastShort(SnapSuccessActivity.this, R.string.str_feature_unsupported);
+			break;
+		case R.id.snap_success_imgbtn_makecall:
+			String phone = orderPushData.phoneNumber;
+			if (phone==null || phone.equals("")){
+				Log.w(LOG_TAG, "no avaliable phonenumber.");
+			}
+			else{
+				Log.d(LOG_TAG, "calling" + orderPushData.phoneNumber + "...");
+				Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+orderPushData.phoneNumber));
+				startActivity(intent);
+			}
+			break;
+		default:
+			break;
+		}
+		
 	}
 }
