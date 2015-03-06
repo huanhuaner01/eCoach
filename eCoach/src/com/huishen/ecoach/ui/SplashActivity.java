@@ -2,14 +2,17 @@ package com.huishen.ecoach.ui;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.android.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
 import com.huishen.ecoach.Const;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.net.NetUtil;
-import com.huishen.ecoach.net.ResponseListener;
 import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.login.LoginActivity;
 import com.huishen.ecoach.util.Packages;
@@ -58,61 +61,82 @@ public class SplashActivity extends Activity {
 			findViewById(R.id.splash_ll_dots).setVisibility(View.INVISIBLE);
 			handler.sendEmptyMessageDelayed(SplashHandler.MSG_UI_FINISHED,
 					getResources().getInteger(R.integer.splash_min_displaytime));
+			handler.sendEmptyMessageDelayed(SplashHandler.MSG_MAX_WAIT, 
+					getResources().getInteger(R.integer.splash_max_displaytime));
 		}
 		else{
 			initViewPager();
 		}
-//		checkSoftwareUpdate();
+		checkSoftwareUpdate();
 	}
 	
 	private void checkSoftwareUpdate(){
-		NetUtil.requestStringData(SRL.Method.METHOD_CHECK_UPDATE, new ResponseListener() {
-			
+		HashMap<String , String> hashMap = new HashMap<String, String>();
+		hashMap .put(SRL.Param.PARAM_UPDATE_SOFTKEY, "stu_client.apk");
+		NetUtil.requestStringData(SRL.Method.METHOD_CHECK_UPDATE, hashMap, getUpdateResponseListener(),
+				new ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						error.printStackTrace();
+						handler.sendEmptyMessage(SplashHandler.MSG_NO_UPDATE);
+					}
+				});
+	}
+	
+	private Listener<String> getUpdateResponseListener(){
+
+		return new Listener<String>() {
+
 			@Override
-			protected void onSuccess(String arg0) {
+			public void onResponse(String arg0) {
 				try {
 					JSONObject json = new JSONObject(arg0);
 					int servercode = json.getInt(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONCODE);
 					int localcode = Packages.getVersioCode(SplashActivity.this);
 					if (servercode <= localcode){
-						Log.d(LOG_TAG, "No avaliable update found.");
+						Log.d(LOG_TAG, "server=" + servercode + ",local="
+								+ localcode + ".No avaliable update found.");
+						handler.sendEmptyMessage(SplashHandler.MSG_NO_UPDATE);
 						return;
 					}
 					final boolean forceUpdate = json.optBoolean(SRL.ReturnField.FIELD_UPDATE_FORCE_UPDATE);
-					new AlertDialog.Builder(SplashActivity.this).setTitle(getString(R.string.str_checkupdate_update_avaliable))
-					.setMessage(getString(R.string.str_checkupdate_update_description, json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONNAME), json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONDESC)))
-					.setPositiveButton(R.string.str_checkupdate_update_now, new DialogInterface.OnClickListener() {
+					new AlertDialog.Builder(SplashActivity.this)
+					.setMessage(getString(R.string.str_checkupdate_update_avaliable))
+//					.setMessage(getString(R.string.str_checkupdate_update_description, 
+//							json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONNAME), 
+//							json.optString(SRL.ReturnField.FIELD_UPDATE_SERVER_VERSIONDESC)))
+					.setPositiveButton(R.string.str_checkupdate_update_now, 
+							new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							performUpdate();
 						}
-					}).setPositiveButton(R.string.str_checkupdate_update_later, new DialogInterface.OnClickListener() {
+					}).setPositiveButton(R.string.str_checkupdate_update_later, 
+							new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							if (forceUpdate){
+								dialog.dismiss();
 								finish();
 							}
 							else{
-								//TODO finish logic
+								dialog.dismiss();
+								handler.sendEmptyMessage(SplashHandler.MSG_NO_UPDATE);
 							}
 						}
-					}).create();
+					}).create().show();
 				} catch (JSONException e) {
+					handler.sendEmptyMessage(SplashHandler.MSG_NO_UPDATE);
 					e.printStackTrace();
 				}
 			}
 			
-			@Override
-			protected void onReturnBadResult(int errorCode, String arg0) {
-				
-			}
-		});
-	}
+		};
+	} 
 	
 	private void performUpdate(){
-		
 	}
 	
 	private static final class SplashHandler extends Handler{
@@ -126,8 +150,18 @@ public class SplashActivity extends Activity {
 		SplashHandler(WeakReference<SplashActivity> wk) {
 			this.wk = wk;
 		}
+		/**
+		 * 用于标记Splash图片或数组展示完毕，可以进入下个界面。
+		 */
 		private static final int MSG_UI_FINISHED = 1;
+		/**
+		 * 用于标记无需更新软件，可以进入下个界面。
+		 */
 		private static final int MSG_NO_UPDATE = 2;
+		/**
+		 * 用于标记最长等待时间已到（避免因404等Volley框架无法捕捉的错误造成无限卡屏），强制进入下个界面。
+		 */
+		private static final int MSG_MAX_WAIT = 3;
 		
 		@Override
 		public void handleMessage(Message msg) {
@@ -139,16 +173,24 @@ public class SplashActivity extends Activity {
 			}
 			switch (msg.what) {
 			case MSG_UI_FINISHED:
-//				uiPerformFinished = true;
-//				if (noUpdateAvaliable){
+				//必须等待升级检查的消息，因此要检查其值
+				uiPerformFinished = true;
+				if (noUpdateAvaliable){
 					activity.startNextActivity();
-//				}
+					removeMessages(SplashHandler.MSG_MAX_WAIT);
+				}
 				break;
 			case MSG_NO_UPDATE:
 				noUpdateAvaliable = true;
+				//用于处理更新消息到来晚于UI的情况。 
 				if (uiPerformFinished){
 					activity.startNextActivity();
+					removeMessages(SplashHandler.MSG_MAX_WAIT);
 				}
+				break;
+			case MSG_MAX_WAIT:
+				Log.d(LOG_TAG, "max wait time up, force enter next activity.");
+				activity.startNextActivity();
 				break;
 			default:
 				break;
@@ -213,6 +255,9 @@ public class SplashActivity extends Activity {
 					hasJumped = true;
 					//using handler to force update.
 					handler.sendEmptyMessage(SplashHandler.MSG_UI_FINISHED);
+					handler.sendEmptyMessageDelayed(
+							SplashHandler.MSG_MAX_WAIT,
+							getResources().getInteger(R.integer.splash_max_displaytime));
 				}
 			}
 			

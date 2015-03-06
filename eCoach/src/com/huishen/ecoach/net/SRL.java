@@ -22,7 +22,7 @@ public final class SRL {
 		/**
 		 * 检查软件更新。
 		 */
-		public static final String METHOD_CHECK_UPDATE = "/cohMobile/checkupdate";
+		public static final String METHOD_CHECK_UPDATE = "/queryVersion";
 
 		/**
 		 * 完善注册信息(第三步保存操作)
@@ -324,6 +324,10 @@ public final class SRL {
 		 * 同步教练地理位置时使用，经度信息。
 		 */
 		public static final String PARAM_SYNCGPS_LNG = "lng";
+		/**
+		 * 检查软件更新时使用(what a fking parameter...);
+		 */
+		public static final String PARAM_UPDATE_SOFTKEY = "softKey";
 	}
 	
 	/**
@@ -406,23 +410,23 @@ public final class SRL {
 		/**
 		 * 检查版本更新时返回，安装包下载路径。
 		 */
-		public static final String FIELD_UPDATE_APK_PATH = "";
-		/**
-		 * 检查版本更新时返回，版本名。
-		 */
-		public static final String FIELD_UPDATE_SERVER_VERSIONNAME = "";
+		public static final String FIELD_UPDATE_APK_PATH = "path";
+//		/**
+//		 * 检查版本更新时返回，版本名。
+//		 */
+//		public static final String FIELD_UPDATE_SERVER_VERSIONNAME = "";
 		/**
 		 * 检查版本更新时返回，版本号。
 		 */
-		public static final String FIELD_UPDATE_SERVER_VERSIONCODE = "";
-		/**
-		 * 检查版本更新时返回，版本描述。
-		 */
-		public static final String FIELD_UPDATE_SERVER_VERSIONDESC = "";
+		public static final String FIELD_UPDATE_SERVER_VERSIONCODE = "version";
+//		/**
+//		 * 检查版本更新时返回，版本描述。
+//		 */
+//		public static final String FIELD_UPDATE_SERVER_VERSIONDESC = "";
 		/**
 		 * 检查版本更新时返回，是否强制更新。
 		 */
-		public static final String FIELD_UPDATE_FORCE_UPDATE = "";
+		public static final String FIELD_UPDATE_FORCE_UPDATE = "req";
 		
 		/**
 		 * 注册、登录返回字段：MobileFlag
