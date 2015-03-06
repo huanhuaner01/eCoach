@@ -42,6 +42,7 @@ public class BindCoachActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bind_coach);
+		setFinishOnTouchOutside(false);
 		try {
 			bindData = (BindCoachPushData) getIntent().getSerializableExtra(EXTRA_BINDCOACH);
 		} catch(Exception e) {

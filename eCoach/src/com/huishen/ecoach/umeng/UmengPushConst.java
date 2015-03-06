@@ -103,6 +103,10 @@ public final class UmengPushConst {
 		 * 学员距离远近。
 		 */
 		public static final String PARAM_DISTANCE = "distance";
+		/**
+		 * 学员手机。
+		 */
+		public static final String PARAM_PHONE = "phone";
 	}
 	
 	/**

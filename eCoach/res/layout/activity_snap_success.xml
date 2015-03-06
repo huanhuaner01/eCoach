@@ -58,6 +58,7 @@
             android:textSize="@dimen/txtsize_large" />
 
         <ImageButton
+            android:id="@+id/snap_success_imgbtn_makecall"
             style="@style/style_common_wrap_wrap"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

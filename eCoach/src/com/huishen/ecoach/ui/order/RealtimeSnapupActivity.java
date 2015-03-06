@@ -152,6 +152,11 @@ public class RealtimeSnapupActivity extends Activity implements
 			}
 			
 			@Override
+			public void onTaskFailed() {
+				btnAudio.setText(">_<下载失败，无法播放");
+			}
+			
+			@Override
 			public void onProgressChanged(int min, int max, int progress) {
 				Log.d(LOG_TAG, "downloader onTick : "+progress);
 			}

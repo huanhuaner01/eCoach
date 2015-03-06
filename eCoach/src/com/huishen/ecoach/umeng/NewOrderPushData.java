@@ -24,6 +24,10 @@ public final class NewOrderPushData extends PushData {
 	public final String voicePath;		//语音位置
 	public final double latitude; 		//纬度
 	public final double longitude; 		//经度
+	/**
+	 * Warning：该属性不应被用户看到。
+	 */
+	public final String phoneNumber;	//学员电话
 	
 	public NewOrderPushData(Map<String, String> extra) {
 		super(extra);
@@ -36,6 +40,7 @@ public final class NewOrderPushData extends PushData {
 		voicePath = extra.get(NewOrder.PARAM_VOICE_PATH);
 		latitude = getDouble(extra, NewOrder.PARAM_LATITUDE);
 		longitude = getDouble(extra, NewOrder.PARAM_LONGITUDE);
+		phoneNumber = extra.get(NewOrder.PARAM_PHONE);
 	}
 	
 	@Override
@@ -50,7 +55,7 @@ public final class NewOrderPushData extends PushData {
 				.append(", deadline=").append(sdf.format(deadline)).append(", voicePath=")
 				.append(voicePath).append(", latitude=").append(latitude)
 				.append(", longitude=").append(longitude).append(", msgType=").append(msgType)
-				.append("]");
+				.append(", phoneNumber=").append(phoneNumber).append("]");
 		return builder.toString();
 	}
 }
