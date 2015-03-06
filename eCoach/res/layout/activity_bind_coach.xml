@@ -90,7 +90,7 @@
             android:layout_toRightOf="@id/bindcoach_btn_confirm"
             android:paddingLeft="@dimen/padding_large"
             android:paddingRight="@dimen/padding_large"
-            android:text="@string/str_bindcoach_ignore" />
+            android:text="@string/str_bindcoach_reject" />
     </RelativeLayout>
 
 </RelativeLayout>

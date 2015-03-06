@@ -184,6 +184,10 @@ public final class SRL {
 		 * 执行下线操作。
 		 */
 		public static final String METHOD_LOGOUT = "/cohMobile/cohLoginOut";
+		/**
+		 * 执行绑定操作。
+		 */
+		public static final String METHOD_BIND_COACH = "/cohMobile/agreeBind";
 	}
 	
 	/**
@@ -328,6 +332,14 @@ public final class SRL {
 		 * 检查软件更新时使用(what a fking parameter...);
 		 */
 		public static final String PARAM_UPDATE_SOFTKEY = "softKey";
+		/**
+		 * 教练处理绑定操作时使用，报名信息。
+		 */
+		public static final String PARAM_BINDCOACH_ENROLLID = "stuEnrollId";
+		/**
+		 * 教练处理绑定操作时使用，是否同意绑定。
+		 */
+		public static final String PARAM_BINDCOACH_STATUS = "status";
 	}
 	
 	/**

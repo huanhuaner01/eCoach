@@ -290,7 +290,8 @@
         </activity>
         <activity
             android:name="com.huishen.ecoach.ui.order.BindCoachActivity"
-            android:label="@string/title_activity_bind_coach" >
+            android:label="@string/title_activity_bind_coach"
+            android:theme="@style/DialogActivityNoTitlebar" >
         </activity>
     </application>
 

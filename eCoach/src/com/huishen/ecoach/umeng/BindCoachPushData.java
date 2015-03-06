@@ -15,7 +15,7 @@ public final class BindCoachPushData extends PushData {
 	public final String avatar;				//学生头像
 	public final String name;				//学员姓名
 	public final String phoneNumber;		//学员手机号
-	public final String addtionalInfo;	//附加信息
+	public final String addtionalInfo;		//附加信息
 	public final long id;					//学员ID
 	public final String enrollId;			//学员报名信息ID
 	
