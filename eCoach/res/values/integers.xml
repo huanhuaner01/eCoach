@@ -20,4 +20,6 @@
     <integer name="ratingbar_default_rating">3</integer>
     <!-- 新订单震动提醒时长 -->
     <integer name="viborator_time_neworder">1000</integer>
+    <!-- 学员可预约日期限制 -->
+    <integer name="calendar_appoint_datelimit">7</integer>
 </resources>

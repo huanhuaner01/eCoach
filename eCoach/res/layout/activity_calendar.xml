@@ -33,6 +33,7 @@
             android:layout_centerInParent="true"
             android:ellipsize="marquee"
             android:singleLine="true"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/txtsize_large" />
 
         <ImageButton
