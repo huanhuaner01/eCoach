@@ -13,19 +13,27 @@ import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import com.huishen.ecoach.util.Uis;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 /**
+ * TODO 由于出于可扩展性和界面自适应性的考虑采用了ListView（而不是硬布局科目二、科目三），
+ * 使得该页的逻辑比较复杂，在提交保存请求的时候较难获取到数据。一个可能的方案是使用 监听器
+ * 将数值的改变反应到ListView的数据集中，另一个方案是丢弃现有的结构，采用硬布局。
  * @author Muyangmin
  * @create 2015-3-7
  */
@@ -103,7 +111,7 @@ public class AppointSettingActivity extends RightSideParentActivity {
 		params.put(SRL.Param.PARAM_APPOINTCFG_AMPERIOD, km2.amtime);
 		params.put(SRL.Param.PARAM_APPOINTCFG_PMPERIOD, km2.pmtime);
 		params.put(SRL.Param.PARAM_APPOINTCFG_NTPERIOD, km2.nttime);
-		NetUtil.requestStringData(SRL.Method.METHOD_APPOINT_CONFIG, new ResponseListener() {
+		NetUtil.requestStringData(SRL.Method.METHOD_APPOINT_CONFIG, params, new ResponseListener() {
 			
 			@Override
 			protected void onSuccess(String arg0) {
@@ -144,18 +152,20 @@ public class AppointSettingActivity extends RightSideParentActivity {
 			return arg0;
 		}
 
+		@SuppressLint("ViewHolder")
 		@Override
 		public View getView (int position, View convertView, ViewGroup parent){
 			ViewHolder holder;
-			if (convertView == null) {
+//			convertView=null;		//force reallocate to avoid dumplicate UI update bug
+//			if (convertView == null) {
 				convertView = LayoutInflater.from(AppointSettingActivity.this)
 						.inflate(R.layout.listitem_booksetting_subject, null);
 				holder = new ViewHolder();
-				holder.tvAmCount = (TextView) convertView
+				holder.editAmCount = (EditText) convertView
 						.findViewById(R.id.listitem_booksetting_edit_amnum);
-				holder.tvPmCount = (TextView) convertView
+				holder.editPmCount = (EditText) convertView
 						.findViewById(R.id.listitem_booksetting_edit_pmnum);
-				holder.tvNightCount = (TextView) convertView
+				holder.editNightCount = (EditText) convertView
 						.findViewById(R.id.listitem_booksetting_edit_nightnum);
 				holder.tvSubjectName = (TextView) convertView
 						.findViewById(R.id.listitem_booksetting_subject);
@@ -166,26 +176,85 @@ public class AppointSettingActivity extends RightSideParentActivity {
 				holder.tvNtPeriod = (TextView)convertView
 						.findViewById(R.id.listitem_booksetting_tv_nighttime);
 				convertView.setTag(holder);
-			}
-			else{
-				holder = (ViewHolder) convertView.getTag();
-			}
+//			}
+//			else{
+//				holder = (ViewHolder) convertView.getTag();
+//			}
 			SubjectCfg subject = list.get(position);
 			holder.tvSubjectName.setText(subject.name);
-			holder.tvAmCount.setText(String.valueOf(subject.amCount));
-			holder.tvPmCount.setText(String.valueOf(subject.pmCount));
-			holder.tvNightCount.setText(String.valueOf(subject.ntCount));
+			holder.editAmCount.setText(String.valueOf(subject.amCount));
+			holder.editPmCount.setText(String.valueOf(subject.pmCount));
+			holder.editNightCount.setText(String.valueOf(subject.ntCount));
 			holder.tvAmPeriod.setText(SubjectCfg.parseTimeString(subject.amtime));
 			holder.tvPmPeriod.setText(SubjectCfg.parseTimeString(subject.pmtime));
 			holder.tvNtPeriod.setText(SubjectCfg.parseTimeString(subject.nttime));
+			addListeners(holder, position);
 			return convertView;
+		}
+		
+		private void addListeners(ViewHolder holder, final int position){
+			holder.editAmCount.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					if (s.length()>0){
+						Log.d("AppointSetting", "position="+position+", s="+s.toString());
+						list.get(position).setAmCount(Integer.parseInt(s.toString()));
+					}
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
+			holder.editPmCount.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					if (s.length()>0){
+						list.get(position).setPmCount(Integer.parseInt(s.toString()));
+					}
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
+			holder.editNightCount.addTextChangedListener(new TextWatcher() {
+				
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					if (s.length()>0){
+						list.get(position).setNtCount(Integer.parseInt(s.toString()));
+					}
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
 		}
 		
 		private class ViewHolder {
 			protected TextView tvSubjectName;
-			protected TextView tvAmCount;
-			protected TextView tvPmCount;
-			protected TextView tvNightCount;
+			protected EditText editAmCount;
+			protected EditText editPmCount;
+			protected EditText editNightCount;
 			protected TextView tvAmPeriod;
 			protected TextView tvPmPeriod;
 			protected TextView tvNtPeriod;

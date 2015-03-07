@@ -24,7 +24,7 @@
         android:id="@+id/booksetting_listview"
         style="@style/style_common_macth_match"
         android:divider="@android:color/transparent"
-        android:dividerHeight="@dimen/margin_small"
+        android:dividerHeight="@dimen/margin_middle"
         android:layout_below="@id/booksetting_titlebar" />
 
 </RelativeLayout>

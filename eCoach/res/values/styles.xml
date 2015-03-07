@@ -408,8 +408,10 @@
         <item name="android:paddingRight">@dimen/padding_small</item>
         <item name="android:paddingBottom">@dimen/padding_small</item>
         <item name="android:paddingTop">@dimen/padding_small</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/txtsize_middle</item>
+        <item name="android:textColor">#2D2D2D</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">2</item>
         <item name="android:hint">@string/str_booksetting_hint_fillcount</item>
     </style>
     <style name="style_booksetting_tv_time" parent="@style/style_common_wrap_wrap">
