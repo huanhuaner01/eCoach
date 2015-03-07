@@ -45,7 +45,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -139,7 +138,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			
 			@Override
 			protected void onReturnBadResult(int errorCode, String arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -190,9 +188,10 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		final String date = String.format(Locale.US, "%1$d-%2$d-%3$d", year, month, day);
 		if (cachedDateAppointMap.containsKey(date)){
 			Log.d(LOG_TAG, "Specified day["+date+"] already in cached map. skipping net request...");
-			((AppointmentListAdapter) expListView
-					.getExpandableListAdapter())
-					.refreshData(cachedDateAppointMap.get(date));
+			expListView.setAdapter(new AppointmentListAdapter(cachedDateAppointMap.get(date)));
+//			((AppointmentListAdapter) expListView
+//					.getExpandableListAdapter())
+//					.refreshData(cachedDateAppointMap.get(date));
 			return;
 		}
 		params.put(SRL.Param.PARAM_APPOINT_DATE, date);
@@ -203,15 +202,15 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 				try {
 					JSONArray array = new JSONArray(ResponseParser
 							.getStringFromResult(arg0, SRL.ReturnField.FIELD_INFO));
-					if(expListView.getExpandableListAdapter()==null){
+//					if(expListView.getExpandableListAdapter()==null){
 						expListView.setAdapter(new AppointmentListAdapter(buildAppointTableData(date, array)));
-					}
-					else{
-						((AppointmentListAdapter) expListView
-								.getExpandableListAdapter())
-								.refreshData(buildAppointTableData(date,
-										array));
-					}
+//					}
+//					else{
+//						((AppointmentListAdapter) expListView
+//								.getExpandableListAdapter())
+//								.refreshData(buildAppointTableData(date,
+//										array));
+//					}
 				} catch (JSONException e) {
 					Uis.toastShort(CalendarActivity.this, "Fuck beautiful");
 				}
@@ -258,7 +257,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		}
 		cachedDateAppointMap.put(date, subjectList);
 		return subjectList;
-//		return new AppointmentListAdapter(subjectList);
 	}
 	
 
@@ -493,14 +491,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			}
 			this.subjects = subjects;
 		}
-		
-		//刷新数据
-		public void refreshData(ArrayList<AppointSubject> subjects){
-			if (subjects!=null){
-			this.subjects = subjects;
-				notifyDataSetChanged(); 
-			}
-		}
 
 		@Override
 		public boolean areAllItemsEnabled() {
@@ -521,7 +511,6 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			ChildViewHolder holder = null;
-			AppointPeriod table = (AppointPeriod) getChild(groupPosition, childPosition);
 			if (convertView==null){
 				convertView = LayoutInflater.from(CalendarActivity.this)
 						.inflate(R.layout.listitem_calendar_periods, null);
@@ -537,8 +526,11 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			else{
 				holder = (ChildViewHolder)convertView.getTag();
 			}
+			AppointPeriod table = (AppointPeriod) getChild(groupPosition, childPosition);
 			holder.tvPeriodName.setText(table.periodName);
 			holder.tvPeriodDescription.setText(table.perioidDescription);
+			Log.d(LOG_TAG, "setadapter:position=[" + groupPosition + ","
+					+ childPosition + "],data=" + table.studentList.toString());
 			holder.lvStudents.setAdapter( new StudentListAdapter(table.studentList));
 			return convertView;
 		}
@@ -547,17 +539,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		public int getChildrenCount(int groupPosition) {
 			return subjects.get(groupPosition).periodList.size();
 		}
-
-		@Override
-		public long getCombinedChildId(long groupId, long childId) {
-			return 0;
-		}
-
-		@Override
-		public long getCombinedGroupId(long groupId) {
-			return 0;
-		}
-
+		
 		@Override
 		public Object getGroup(int groupPosition) {
 			return null;
@@ -596,10 +578,12 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			holder.tvSubject.setText(subject.getName());
 			holder.tvLimits.setText(buildLimitString(getCurrentAppoint(), subject.getLimits()));
 			if (isExpanded){
-				holder.imgIndicator.setBackgroundResource(R.drawable.icon_calendar_appoint_group_expanded);
+				holder.imgIndicator.setBackgroundResource(
+						R.drawable.icon_calendar_appoint_group_expanded);
 			}
 			else {
-				holder.imgIndicator.setBackgroundResource(R.drawable.icon_calendar_appoint_group_normal);
+				holder.imgIndicator.setBackgroundResource(
+						R.drawable.icon_calendar_appoint_group_normal);
 			}
 			return convertView;
 		}
@@ -644,26 +628,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		public boolean isEmpty() {
 			return false;
 		}
-
-		@Override
-		public void onGroupCollapsed(int groupPosition) {
-			
-		}
-
-		@Override
-		public void onGroupExpanded(int groupPosition) {
-			
-		}
-
-		@Override
-		public void registerDataSetObserver(DataSetObserver observer) {
-			
-		}
-
-		@Override
-		public void unregisterDataSetObserver(DataSetObserver observer) {
-			
-		}
+		
 		private final class ChildViewHolder {
 			protected TextView tvPeriodName;
 			protected TextView tvPeriodDescription;
@@ -706,6 +671,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 			this.name = name;
 			this.phone = phone;
 		}
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("AppointStudent [name=").append(name)
+					.append(", phone=").append(phone).append("]");
+			return builder.toString();
+		}
+		
 	}
 	
 	//预约表实体类

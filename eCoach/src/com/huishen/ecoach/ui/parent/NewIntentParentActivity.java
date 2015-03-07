@@ -8,7 +8,7 @@ import android.view.View;
  * @author Muyangmin
  * @create 2015-3-2
  */
-public class NewIntentParentActivity extends Activity {
+public abstract class NewIntentParentActivity extends Activity {
 	public void onBackButtonClicked(View v) {
 		finish();
 	}

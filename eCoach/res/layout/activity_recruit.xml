@@ -30,7 +30,7 @@
             <RelativeLayout style="@style/style_recruit_menuitem" >
 
                 <TextView
-                    style="@style/style_setting_menuitem_tv"
+                    style="@style/style_recruit_menuitem_tv"
                     android:text="@string/str_recruit_training_place" />
 
                 <ImageView style="@style/style_recruit_menuitem_imgright" />
@@ -39,7 +39,7 @@
             <RelativeLayout style="@style/style_recruit_menuitem" >
 
                 <TextView
-                    style="@style/style_setting_menuitem_tv"
+                    style="@style/style_recruit_menuitem_tv"
                     android:text="@string/str_recruit_training_photo" />
 
                 <ImageView style="@style/style_recruit_menuitem_imgright" />
@@ -52,7 +52,7 @@
             android:layout_marginTop="@dimen/margin_middle">
 
             <TextView
-                style="@style/style_setting_menuitem_tv"
+                style="@style/style_recruit_menuitem_tv"
                 android:text="@string/str_recruit_coach_detail" />
 
             <ImageView style="@style/style_recruit_menuitem_imgright" />
@@ -63,7 +63,7 @@
             android:layout_marginTop="@dimen/margin_middle">
 
             <TextView
-                style="@style/style_setting_menuitem_tv"
+                style="@style/style_recruit_menuitem_tv"
                 android:text="@string/str_recruit_modify_package" />
 
             <ImageView style="@style/style_recruit_menuitem_imgright" />

@@ -120,7 +120,6 @@ public class AppointSettingActivity extends RightSideParentActivity {
 			
 			@Override
 			protected void onReturnBadResult(int errorCode, String arg0) {
-				// TODO Auto-generated method stub
 				
 			}
 		});

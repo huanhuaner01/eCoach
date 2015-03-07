@@ -458,6 +458,22 @@
         <item name="android:layout_marginRight">@dimen/margin_xlarge</item>
         <item name="android:src">@drawable/icon_navi_right</item>
     </style>
+    
+    <!-- 招生管理界面菜单名称样式，应该使用在TextView上。 -->
+    <style name="style_recruit_menuitem_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_middle</item>
+        <item name="android:paddingBottom">@dimen/padding_middle</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/bkg_setting_menuitem</item>
+        <item name="android:textColor">@drawable/sel_setting_menuitem_txtcolor</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:layout_marginRight">@dimen/margin_large</item>
+        <item name="android:textSize">@dimen/txtsize_large</item>
+        <item name="android:focusable">false</item>
+        <item name="android:drawablePadding">@dimen/padding_middle</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

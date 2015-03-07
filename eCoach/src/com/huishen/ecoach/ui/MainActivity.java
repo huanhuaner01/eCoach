@@ -21,6 +21,7 @@ import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+import com.huishen.ecoach.ui.recruit.RecruitActivity;
 import com.huishen.ecoach.umeng.UmengServiceProxy;
 import com.huishen.ecoach.util.Uis;
 import com.huishen.ecoach.widget.RoundImageView;
@@ -319,7 +320,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.main_tv_recruit_manage:
 			if (checkAuditStatus()){
-				Uis.toastShort(this, R.string.str_feature_unsupported);
+//				Uis.toastShort(this, R.string.str_feature_unsupported);
+				startActivity(RecruitActivity.getIntent(this));
 			}
 			break;
 		case R.id.pcenter_tv_userguide:
