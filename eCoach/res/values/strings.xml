@@ -203,7 +203,8 @@
     <string name="str_dialog_btn_iknow">我知道了</string>
     <string name="title_activity_snap_success">抢单成功</string>
     <string name="str_snap_success_cancelorder">取消订单</string>
-    <string name="title_activity_book_setting">设置</string>
+    <string name="str_calendar_setting">设置</string>
+    <string name="title_activity_appoint_setting">设置</string>
     <string name="str_booksetting_confirm">完成</string>
     <string name="str_booksetting_hint_fillcount">请填写人数</string>
     <string name="str_booksetting_period_am">上午</string>
@@ -212,6 +213,7 @@
     <string name="str_booksetting_time_am">07:00&#8212;&#8212;12:00</string>
     <string name="str_booksetting_time_pm">13:00&#8212;&#8212;18:00</string>
     <string name="str_booksetting_time_night">19:00&#8212;&#8212;20:00</string>
+    <string name="str_appointsetting_err_noconfig">获取设置信息失败，请稍后再试</string>
     <string name="str_appointment_subject2">科目二</string>
     <string name="str_appointment_subject3">科目三</string>
 

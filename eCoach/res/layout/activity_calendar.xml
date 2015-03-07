@@ -9,6 +9,10 @@
         <ImageButton style="@style/style_common_title_backbtn"/>
         <TextView style="@style/style_common_titletv"
             android:text="@string/title_activity_calendar"/>
+        <Button 
+            android:id="@+id/calendar_btn_setting"
+            style="@style/style_common_title_rightbtn"
+            android:text="@string/str_calendar_setting"/>
     </RelativeLayout>
 
     <RelativeLayout

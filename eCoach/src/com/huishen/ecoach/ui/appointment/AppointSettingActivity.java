@@ -2,7 +2,6 @@ package com.huishen.ecoach.ui.appointment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +13,8 @@ import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 import com.huishen.ecoach.util.Uis;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,17 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class BookSettingActivity extends RightSideParentActivity {
+/**
+ * @author Muyangmin
+ * @create 2015-3-7
+ */
+public class AppointSettingActivity extends RightSideParentActivity {
 	
-//	private static final String LOG_TAG = "BookSettingActivity";
+	
+	protected static final Intent getIntent(Context context){
+		Intent intent = new Intent(context, AppointSettingActivity.class);
+		return intent;
+	}
 	
 	private Button btnSubmit;
 	private ListView lvSubjects;
@@ -64,7 +73,7 @@ public class BookSettingActivity extends RightSideParentActivity {
 			
 			@Override
 			protected void onReturnBadResult(int errorCode, String arg0) {
-				
+				Uis.toastShort(AppointSettingActivity.this, R.string.str_appointsetting_err_noconfig);
 			}
 		});
 	}
@@ -98,7 +107,7 @@ public class BookSettingActivity extends RightSideParentActivity {
 			
 			@Override
 			protected void onSuccess(String arg0) {
-				Uis.toastShort(BookSettingActivity.this, "修改成功");
+				Uis.toastShort(AppointSettingActivity.this, "修改成功");
 			}
 			
 			@Override
@@ -139,7 +148,7 @@ public class BookSettingActivity extends RightSideParentActivity {
 		public View getView (int position, View convertView, ViewGroup parent){
 			ViewHolder holder;
 			if (convertView == null) {
-				convertView = LayoutInflater.from(BookSettingActivity.this)
+				convertView = LayoutInflater.from(AppointSettingActivity.this)
 						.inflate(R.layout.listitem_booksetting_subject, null);
 				holder = new ViewHolder();
 				holder.tvAmCount = (TextView) convertView
@@ -152,9 +161,9 @@ public class BookSettingActivity extends RightSideParentActivity {
 						.findViewById(R.id.listitem_booksetting_subject);
 				holder.tvAmPeriod = (TextView)convertView
 						.findViewById(R.id.listitem_booksetting_tv_amtime);
-				holder.tvAmPeriod = (TextView)convertView
+				holder.tvPmPeriod = (TextView)convertView
 						.findViewById(R.id.listitem_booksetting_tv_pmtime);
-				holder.tvAmPeriod = (TextView)convertView
+				holder.tvNtPeriod = (TextView)convertView
 						.findViewById(R.id.listitem_booksetting_tv_nighttime);
 				convertView.setTag(holder);
 			}
@@ -163,17 +172,13 @@ public class BookSettingActivity extends RightSideParentActivity {
 			}
 			SubjectCfg subject = list.get(position);
 			holder.tvSubjectName.setText(subject.name);
-			holder.tvAmCount.setText(subject.amCount);
-			holder.tvPmCount.setText(subject.pmCount);
-			holder.tvNightCount.setText(subject.ntCount);
-			holder.tvAmPeriod.setText(getTimeString(subject.amtime));
-			holder.tvPmPeriod.setText(getTimeString(subject.pmtime));
-			holder.tvNtPeriod.setText(getTimeString(subject.nttime));
+			holder.tvAmCount.setText(String.valueOf(subject.amCount));
+			holder.tvPmCount.setText(String.valueOf(subject.pmCount));
+			holder.tvNightCount.setText(String.valueOf(subject.ntCount));
+			holder.tvAmPeriod.setText(SubjectCfg.parseTimeString(subject.amtime));
+			holder.tvPmPeriod.setText(SubjectCfg.parseTimeString(subject.pmtime));
+			holder.tvNtPeriod.setText(SubjectCfg.parseTimeString(subject.nttime));
 			return convertView;
-		}
-		
-		private final String getTimeString(String server){
-			return server;
 		}
 		
 		private class ViewHolder {

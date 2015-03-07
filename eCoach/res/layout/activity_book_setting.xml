@@ -13,7 +13,7 @@
 
         <TextView
             style="@style/style_common_titletv"
-            android:text="@string/title_activity_book_setting" />
+            android:text="@string/title_activity_appoint_setting" />
         <Button 
 	        android:id="@+id/booksetting_btn_submit"
             style="@style/style_common_title_rightbtn"

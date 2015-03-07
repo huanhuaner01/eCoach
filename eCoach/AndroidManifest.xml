@@ -284,8 +284,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ui.appointment.BookSettingActivity"
-            android:label="@string/title_activity_book_setting"
+            android:name=".ui.appointment.AppointSettingActivity"
+            android:label="@string/title_activity_appoint_setting"
             android:screenOrientation="portrait" >
         </activity>
         <activity

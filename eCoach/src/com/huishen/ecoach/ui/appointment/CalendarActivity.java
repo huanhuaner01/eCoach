@@ -36,6 +36,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -70,6 +71,7 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	private String beginDate, endDate; // 选区开始时间和结束时间
 	private boolean isSection = false; // 是否使用选区
 	
+	private Button btnSetting;
 	private ArrayList<SubjectCfg> subjectCfgs;	//保存科目的时间、限约人数等设置。
 	private Map<String, ArrayList<AppointSubject>> cachedDateAppointMap;	//保存每天的数据
 	
@@ -144,30 +146,36 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 	}
 	
 	//解析预约设置。
-	private void parseAppointConfig(JSONObject json){
+	private void parseAppointConfig(JSONObject json) {
 		SubjectCfg km2 = subjectCfgs.get(0);
 		km2.setName(getString(R.string.str_appointment_subject2));
 		km2.setAmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2AMLIMIT));
 		km2.setPmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2PMLIMIT));
 		km2.setNtCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM2NTLIMIT));
-		km2.setAmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
-				getString(R.string.str_booksetting_time_am)).replace(",", "-"));
-		km2.setPmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
-				getString(R.string.str_booksetting_time_pm)).replace(",", "-"));
-		km2.setNttime(json.optString(SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
-				getString(R.string.str_booksetting_time_night).replace(",", "-")));
-		
+		km2.setAmtime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
+				getString(R.string.str_booksetting_time_am))));
+		km2.setPmtime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
+				getString(R.string.str_booksetting_time_pm))));
+		km2.setNttime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
+				getString(R.string.str_booksetting_time_night))));
+
 		SubjectCfg km3 = subjectCfgs.get(1);
 		km3.setName(getString(R.string.str_appointment_subject3));
 		km3.setAmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3AMLIMIT));
 		km3.setPmCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3PMLIMIT));
 		km3.setNtCount(json.optInt(SRL.Param.PARAM_APPOINTCFG_KM3NTLIMIT));
-		km3.setAmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
-				getString(R.string.str_booksetting_time_am)).replace(",", "-"));
-		km3.setPmtime(json.optString(SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
-				getString(R.string.str_booksetting_time_pm)).replace(",", "-"));
-		km3.setNttime(json.optString(SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
-				getString(R.string.str_booksetting_time_night).replace(",", "-")));
+		km3.setAmtime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_AMPERIOD,
+				getString(R.string.str_booksetting_time_am))));
+		km3.setPmtime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_PMPERIOD,
+				getString(R.string.str_booksetting_time_pm))));
+		km3.setNttime(SubjectCfg.parseTimeString(json.optString(
+				SRL.Param.PARAM_APPOINTCFG_NTPERIOD,
+				getString(R.string.str_booksetting_time_night))));
 		Log.d(LOG_TAG, subjectCfgs.toString());
 	}
 
@@ -263,6 +271,14 @@ public class CalendarActivity extends RightSideParentFragmentActivity implements
 		pre = (ImageButton) findViewById(R.id.calendar_month_pre);
 		next = (ImageButton) findViewById(R.id.calendar_month_next);
 		expListView = (ExpandableListView)findViewById(R.id.calendar_sub_list);
+		btnSetting = (Button)findViewById(R.id.calendar_btn_setting);
+		btnSetting.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(AppointSettingActivity.getIntent(CalendarActivity.this));
+			}
+		});
 		//test code begin
 //		Log.d(LOG_TAG, "adding emulated data...");
 //		ArrayList<AppointSubject> subjects = new ArrayList<CalendarActivity.AppointSubject>();
