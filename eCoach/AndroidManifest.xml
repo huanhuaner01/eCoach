@@ -289,9 +289,13 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.huishen.ecoach.ui.order.BindCoachActivity"
+            android:name=".ui.order.BindCoachActivity"
             android:label="@string/title_activity_bind_coach"
             android:theme="@style/DialogActivityNoTitlebar" >
+        </activity>
+        <activity
+            android:name="com.huishen.ecoach.ui.recruit.RecruitActivity"
+            android:label="@string/title_activity_recruit" >
         </activity>
     </application>
 

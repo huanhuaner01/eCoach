@@ -439,6 +439,23 @@
         <item name="android:textSize">@dimen/txtsize_default</item>
         <item name="android:textColor">#474747</item>
     </style>
+    
+    <!-- 招生管理界面菜单横条 -->
+    <style name="style_recruit_menuitem" parent="@style/style_common_macth_wrap">
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="android:clickable">true</item>
+        <item name="android:longClickable">true</item>
+    </style>
+        
+    <!-- 招生管理界面箭头详情 -->
+    <style name="style_recruit_menuitem_imgright">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/margin_xlarge</item>
+        <item name="android:src">@drawable/icon_navi_right</item>
+    </style>
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

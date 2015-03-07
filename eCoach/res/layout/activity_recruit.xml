@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.recruit.RecruitActivity" >
+
+    <RelativeLayout
+        android:id="@+id/recruit_titlebar"
+        style="@style/style_common_titlebar" >
+
+        <ImageButton style="@style/style_common_title_backbtn" />
+
+        <TextView
+            style="@style/style_common_titletv"
+            android:text="@string/title_activity_recruit" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/style_common_macth_match"
+        android:layout_below="@id/recruit_titlebar"
+        android:background="@color/color_bkg_gray"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            style="@style/style_common_macth_wrap"
+            android:background="@android:color/white"  
+            android:layout_marginTop="@dimen/margin_middle"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/style_recruit_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_recruit_training_place" />
+
+                <ImageView style="@style/style_recruit_menuitem_imgright" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/style_recruit_menuitem" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:text="@string/str_recruit_training_photo" />
+
+                <ImageView style="@style/style_recruit_menuitem_imgright" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout style="@style/style_recruit_menuitem"  
+            android:background="@android:color/white"
+            android:layout_marginTop="@dimen/margin_middle">
+
+            <TextView
+                style="@style/style_setting_menuitem_tv"
+                android:text="@string/str_recruit_coach_detail" />
+
+            <ImageView style="@style/style_recruit_menuitem_imgright" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/style_recruit_menuitem" 
+            android:background="@android:color/white"
+            android:layout_marginTop="@dimen/margin_middle">
+
+            <TextView
+                style="@style/style_setting_menuitem_tv"
+                android:text="@string/str_recruit_modify_package" />
+
+            <ImageView style="@style/style_recruit_menuitem_imgright" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

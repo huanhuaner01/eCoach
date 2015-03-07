@@ -238,4 +238,11 @@
     <string name="str_bindcoach_phone">电　　话:</string>
     <string name="str_bindcoach_addinfo">附加信息:</string>
     <string name="str_bindcoach_info_operation_success">操作成功</string>
+    <string name="title_activity_recruit">招　生</string>
+	<string name="str_recruit_me">我</string>
+	<string name="str_recruit_training_place">所在训练场</string>
+	<string name="str_recruit_training_photo">训练场图片</string>
+	<string name="str_recruit_coach_detail">教练详情</string>
+	<string name="str_recruit_modify_package">招生套餐</string>
+    
 </resources>
