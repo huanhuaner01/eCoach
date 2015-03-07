@@ -8,6 +8,8 @@ import java.util.Locale;
 import com.huishen.ecoach.R;
 import com.huishen.ecoach.ui.parent.RightSideParentActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class OrderListActivity extends RightSideParentActivity {
+	
+	public static Intent getIntent(Context context){
+		Intent intent = new Intent(context, OrderListActivity.class);
+		return intent;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +34,7 @@ public class OrderListActivity extends RightSideParentActivity {
 	}
 
 	private void initWidgets() {
-		ListView listView = (ListView) findViewById(R.id.message_listview);
+		ListView listView = (ListView) findViewById(R.id.orderlist_listview);
 		ArrayList<Order> list = new ArrayList<Order>();
 		OrderAdapter adapter = new OrderAdapter(list);
 		listView.setAdapter(adapter);

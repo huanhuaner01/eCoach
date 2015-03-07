@@ -19,8 +19,10 @@ import com.huishen.ecoach.net.SRL;
 import com.huishen.ecoach.ui.appointment.CalendarActivity;
 import com.huishen.ecoach.ui.login.Coach;
 import com.huishen.ecoach.ui.msg.MessageActivity;
+import com.huishen.ecoach.ui.order.OrderListActivity;
 import com.huishen.ecoach.ui.pcenter.SettingActivity;
 import com.huishen.ecoach.ui.pcenter.UserGuideActivity;
+import com.huishen.ecoach.ui.pcenter.ViewProfileActivity;
 import com.huishen.ecoach.ui.recruit.RecruitActivity;
 import com.huishen.ecoach.umeng.UmengServiceProxy;
 import com.huishen.ecoach.util.Uis;
@@ -41,6 +43,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -62,6 +65,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	//--- Slide Pane Widgets
 	private TextView tvName, tvOrdernum, tvRange, tvGoodrate, tvStarLevel;
 	private TextView tvUserGuide, tvRecommend, tvSetting;
+	private LinearLayout llOrderCount;
 	private RoundImageView rimgAvatar;
 	private RatingBar rtbStar;
 	private ToggleButton tgbOrderAutoAlert;
@@ -100,6 +104,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvRecruitManage = (TextView)findViewById(R.id.main_tv_recruit_manage);
 		rimgAvatar = (RoundImageView)findViewById(R.id.pcenter_rimg_avatar);
 		tvRecommend = (TextView)findViewById(R.id.pcenter_tv_recommend);
+		llOrderCount = (LinearLayout)findViewById(R.id.pcenter_ll_ordercount);
 		tvSetting = (TextView)findViewById(R.id.pcenter_tv_setting);
 		tvName = (TextView)findViewById(R.id.pcenter_tv_coachname);
 		tvUserGuide = (TextView)findViewById(R.id.pcenter_tv_userguide);
@@ -121,6 +126,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvRecommend.setOnClickListener(this);
 		tvSetting.setOnClickListener(this);
 		tvUserGuide.setOnClickListener(this);
+		rimgAvatar.setOnClickListener(this);
+		llOrderCount.setOnClickListener(this);
 		tgbOrderAutoAlert.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -297,12 +304,14 @@ public class MainActivity extends Activity implements OnClickListener{
 				slidePaneLayout.closePane();
 			}
 			break;
+		case R.id.pcenter_rimg_avatar:
+			startActivity(ViewProfileActivity.getIntent(this));
+			break;
 		case R.id.main_btn_msg:
 			startActivity(MessageActivity.getIntent(this));
 			break;
 		case R.id.main_tv_book_manage:
 			if (checkAuditStatus()){
-//				startActivity(CalendarActivity.getIntent(this));
 				Calendar calendar = GregorianCalendar.getInstance(Locale.CHINA);
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 				String begin = sdf.format(calendar.getTime());
@@ -320,8 +329,15 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.main_tv_recruit_manage:
 			if (checkAuditStatus()){
-//				Uis.toastShort(this, R.string.str_feature_unsupported);
 				startActivity(RecruitActivity.getIntent(this));
+			}
+			break;
+		case R.id.pcenter_ll_ordercount:
+			if (checkAuditStatus()){
+				Coach coach = MainApp.getInstance().getLoginCoach();
+				if (coach!=null && coach.getOrderCount()>0){
+					startActivity(OrderListActivity.getIntent(this));
+				}
 			}
 			break;
 		case R.id.pcenter_tv_userguide:

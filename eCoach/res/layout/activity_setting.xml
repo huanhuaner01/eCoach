@@ -29,12 +29,12 @@
         android:layout_marginStart="@dimen/margin_xxlarge"
         android:orientation="vertical" >
 
+<!-- 
         <TextView
             style="@style/style_setting_menugrp_header"
             android:text="@string/str_setting_header_personal" />
 
         <LinearLayout style="@style/style_setting_menugrp" >
-
             <RelativeLayout
                 android:id="@+id/setting_rl_viewprofile"
                 style="@style/style_setting_menuitem" >
@@ -51,7 +51,8 @@
 
             <RelativeLayout
                 android:id="@+id/setting_rl_modifypwd"
-                style="@style/style_setting_menuitem" >
+                style="@style/style_setting_menuitem"
+                tools:ignore="UselessParent" >
 
                 <TextView
                     style="@style/style_setting_menuitem_tv"
@@ -61,6 +62,7 @@
                 <ImageView style="@style/style_setting_menuitem_imgright" />
             </RelativeLayout>
         </LinearLayout>
+ -->
 
         <TextView
             style="@style/style_setting_menugrp_header"
@@ -69,7 +71,7 @@
         <LinearLayout style="@style/style_setting_menugrp" >
 
             <RelativeLayout
-                android:id="@+id/setting_rl_orderprompt"
+                android:id="@+id/setting_rl_order_autoalert"
                 style="@style/style_setting_menuitem"
                 tools:ignore="UselessParent" >
 
@@ -79,7 +81,29 @@
                     android:text="@string/str_setting_menuitem_orderprompt" />
 
                 <ToggleButton
-                    android:id="@+id/setting_tgb_orderprompt"
+                    android:id="@+id/setting_tgb_order_autoalert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textOn=""
+                    android:textOff=""
+                    android:layout_marginRight="@dimen/margin_small"
+                android:background="@drawable/sel_common_togglebtn" />
+            </RelativeLayout>
+            <View style="@style/style_setting_menuitem_divider" />
+            <RelativeLayout
+                android:id="@+id/setting_rl_voice"
+                style="@style/style_setting_menuitem"
+                tools:ignore="UselessParent" >
+
+                <TextView
+                    style="@style/style_setting_menuitem_tv"
+                    android:drawableLeft="@drawable/icon_setting_voice"
+                    android:text="@string/str_setting_menuitem_voicetoggle" />
+
+                <ToggleButton
+                    android:id="@+id/setting_tgb_voice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

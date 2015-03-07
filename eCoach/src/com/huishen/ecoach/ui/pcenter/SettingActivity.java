@@ -25,7 +25,7 @@ public class SettingActivity extends RightSideParentActivity implements OnClickL
 	
 	private static final String LOG_TAG = "SettingActivity";
 	
-	private RelativeLayout rlViewProfile, rlModifypwd, rlUpdateSoftware,
+	private RelativeLayout rlUpdateSoftware,
 			rlFeedback, rlAboutUs;
 	private Button btnLogout;
 
@@ -42,15 +42,13 @@ public class SettingActivity extends RightSideParentActivity implements OnClickL
 	}
 	
 	private final void initWidgets() {
-		rlViewProfile = (RelativeLayout) findViewById(R.id.setting_rl_viewprofile);
-		rlModifypwd = (RelativeLayout) findViewById(R.id.setting_rl_modifypwd);
+//		rlModifypwd = (RelativeLayout) findViewById(R.id.setting_rl_modifypwd);
 		rlUpdateSoftware = (RelativeLayout) findViewById(R.id.setting_rl_update_software);
 		rlFeedback = (RelativeLayout) findViewById(R.id.setting_rl_feedback);
 		rlAboutUs = (RelativeLayout) findViewById(R.id.setting_rl_aboutus);
 		btnLogout = (Button)findViewById(R.id.setting_btn_logout);
 		
-		rlViewProfile.setOnClickListener(this);
-		rlModifypwd.setOnClickListener(this);
+//		rlModifypwd.setOnClickListener(this);
 		rlUpdateSoftware.setOnClickListener(this);
 		rlFeedback.setOnClickListener(this);
 		rlAboutUs.setOnClickListener(this);
@@ -58,6 +56,7 @@ public class SettingActivity extends RightSideParentActivity implements OnClickL
 	}
 	
 	private void performLogout(){
+		//注销登录这个请求即使失败也不让用户知道 >_<
 		NetUtil.requestStringData(SRL.Method.METHOD_LOGOUT, new ResponseListener() {
 			
 			@Override
@@ -82,12 +81,9 @@ public class SettingActivity extends RightSideParentActivity implements OnClickL
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.setting_rl_viewprofile:
-			startActivity(ViewProfileActivity.getIntent(this));
-			break;
-		case R.id.setting_rl_modifypwd:
-			startActivity(ModifyPasswordActivity.getIntent(this));
-			break;
+//		case R.id.setting_rl_modifypwd:
+//			startActivity(ModifyPasswordActivity.getIntent(this));
+//			break;
 		case R.id.setting_rl_update_software:
 			
 			break;

@@ -74,7 +74,9 @@
             style="@style/style_common_macth_wrap"
             android:orientation="horizontal" >
 
-            <LinearLayout style="@style/style_pcenter_stat_linear" >
+            <LinearLayout 
+                android:id="@+id/pcenter_ll_ordercount"
+                style="@style/style_pcenter_stat_linear" >
 
                 <TextView
                     style="@style/style_pcenter_stat_keytv"
