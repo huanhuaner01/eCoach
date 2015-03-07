@@ -9,15 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+//订单状态，当前设计为仅有已取消和已投诉两种不兼容的状态，因此暂时将其放在一起。
 public class OrderStateActivity extends Activity {
 
-	private static final String LOG_TAG = "OrderStateActivity";
+//	private static final String LOG_TAG = "OrderStateActivity";
 	private static final String EXTRA_ORDER = "order";
 	private Order mOrder;
 
 	private TextView tvTitle, tvStuPosition, tvStudyPosition; // common
 	private TextView tvCancelReason; // state:cancel
-	private TextView tvDate, tvTime, tvPhone, tvContent; // state:evaluated
+//	private TextView tvDate, tvTime, tvPhone, tvContent; // state:evaluated
 
 	public static final Intent getIntent(Context context, Order order) {
 		Intent intent = new Intent(context, OrderStateActivity.class);
@@ -42,10 +43,10 @@ public class OrderStateActivity extends Activity {
 		tvStuPosition = (TextView) findViewById(R.id.orderstate_tv_stu_postiion);
 		tvStudyPosition = (TextView) findViewById(R.id.orderstate_tv_coach_postiion);
 		tvCancelReason = (TextView) findViewById(R.id.orderstate_tv_cancel_reason);
-		tvDate = (TextView) findViewById(R.id.orderstate_tv_evaldate);
-		tvTime = (TextView) findViewById(R.id.orderstate_tv_evaltime);
-		tvPhone = (TextView) findViewById(R.id.orderstate_tv_evalphone);
-		tvContent = (TextView) findViewById(R.id.orderstate_tv_content);
+//		tvDate = (TextView) findViewById(R.id.orderstate_tv_evaldate);
+//		tvTime = (TextView) findViewById(R.id.orderstate_tv_evaltime);
+//		tvPhone = (TextView) findViewById(R.id.orderstate_tv_evalphone);
+//		tvContent = (TextView) findViewById(R.id.orderstate_tv_content);
 		
 		tvStuPosition.setText(mOrder.getStudentPosition());
 		tvStudyPosition.setText(mOrder.getStudyPosition());
